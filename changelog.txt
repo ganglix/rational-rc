@@ -1,0 +1,11 @@
+1 with upgraded numpy function in the cracking module
+
+2 adding unittest
+
+3 pep8 format
+
+Note fix doctring beta a: lower bound and b: upper bound
+
+4 fully vectorized cracking model
+
+5 model results with year added to membrane.py and chloride.py
