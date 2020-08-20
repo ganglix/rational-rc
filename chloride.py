@@ -471,7 +471,7 @@ def C_crit_param():
     out : tuple
          parameters of general beta distribution (mean, std, lower_bound, upper_bound)
     """
-    C_crit_param = (0.6, 0.15, 0.2, 2.0)
+    C_crit_param = hf.Beta_custom(0.6, 0.15, 0.2, 2.0)
     return C_crit_param
 
 
