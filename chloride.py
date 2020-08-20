@@ -53,8 +53,6 @@ def Chloride_content(x, t, pars):
     D_app  : apparent coefficient of chloride diffusion through concxrete [mm^2/year]
     erf    : imported error function
     """
-    pars.C_S_dx = C_S_dx(pars)
-    pars.dx = dx(pars)
     pars.D_app = D_app(t, pars)
     C_x_t = pars.C_0 + (pars.C_S_dx - pars.C_0) * \
         (1 - erf((x - pars.dx) / (2 * (pars.D_app * t) ** 0.5)))
@@ -659,6 +657,9 @@ class Chloride_Model:
     def __init__(self, pars_raw):
         # attached a deepcopy of pars_raw with user-input, then update the copy with derived parameters
         self.pars = deepcopy(pars_raw)
+        self.pars.C_S_dx = C_S_dx(pars_raw)
+        self.pars.dx = dx(pars_raw)
+
 
     def run(self, x, t):
         """
