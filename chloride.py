@@ -18,13 +18,16 @@ import helper_func as hf
 # logger
 # log levels: NOTSET, DEBUG, INFO, WARNING, ERROR, and CRITICAL
 LOG_FORMAT = "%(levelname)s %(asctime)s - %(message)s"
-logging.basicConfig(filename='mylog.log',
-                    # level=logging.DEBUG,
-                    format=LOG_FORMAT)
+logging.basicConfig(
+    filename="mylog.log",
+    # level=logging.DEBUG,
+    format=LOG_FORMAT,
+)
 
 logger = logging.getLogger(__name__)
 logger.setLevel(
-    logging.CRITICAL)  # set logging level here to work in jupyter notebook where maybe a default setting was there
+    logging.CRITICAL
+)  # set logging level here to work in jupyter notebook where maybe a default setting was there
 
 
 # model functions
@@ -54,8 +57,9 @@ def Chloride_content(x, t, pars):
     erf    : imported error function
     """
     pars.D_app = D_app(t, pars)
-    C_x_t = pars.C_0 + (pars.C_S_dx - pars.C_0) * \
-        (1 - erf((x - pars.dx) / (2 * (pars.D_app * t) ** 0.5)))
+    C_x_t = pars.C_0 + (pars.C_S_dx - pars.C_0) * (
+        1 - erf((x - pars.dx) / (2 * (pars.D_app * t) ** 0.5))
+    )
     return C_x_t
 
 
@@ -137,15 +141,15 @@ def A_t(t, pars):
     pars.k_t = 1
     # a: agieng exponent
     a = None
-    if pars.concrete_type == 'Portland cement concrete':
+    if pars.concrete_type == "Portland cement concrete":
         # CEM I; 0.40 ≤ w/c ≤ 0.60
         a = hf.Beta_custom(0.3, 0.12, 0.0, 1.0)
 
-    if pars.concrete_type == 'Portland fly ash cement concrete':
+    if pars.concrete_type == "Portland fly ash cement concrete":
         # f≥0.20·z;k=0.50; 0.40≤w/ceqv. ≤0.62
         a = hf.Beta_custom(0.6, 0.15, 0.0, 1.0)
 
-    if pars.concrete_type == 'Blast furnace slag cement concrete':
+    if pars.concrete_type == "Blast furnace slag cement concrete":
         # CEM III/B; 0.40 ≤ w/c ≤ 0.60
         a = hf.Beta_custom(0.45, 0.20, 0.0, 1.0)
 
@@ -180,7 +184,7 @@ def D_RCM_0(pars):
     out : numpy array
          D_RCM_0_final [mm^2/year]
     """
-    if (isinstance(pars.D_RCM_test, int) or isinstance(pars.D_RCM_test, float)):
+    if isinstance(pars.D_RCM_test, int) or isinstance(pars.D_RCM_test, float):
         # though test result [m^2/s]
         D_RCM_0_mean = pars.D_RCM_test  # [m^2/s]
         D_RCM_0_std = 0.2 * D_RCM_0_mean
@@ -194,14 +198,13 @@ def D_RCM_0(pars):
         x = fit_df.index.astype(float).values
         y = fit_df.values
         # [m^2/s] #interp_extrap_f: defined function
-        D_RCM_0_mean = hf.interp_extrap_f(
-            x, y, pars.option.wc_eqv, plot=False) * 1e-12
+        D_RCM_0_mean = hf.interp_extrap_f(x, y, pars.option.wc_eqv, plot=False) * 1e-12
         D_RCM_0_std = 0.2 * D_RCM_0_mean  # [m^2/s]
 
         D_RCM_0_temp = hf.Normal_custom(D_RCM_0_mean, D_RCM_0_std)  # [m^2/s]
 
     else:
-        print('D_RCM_0 calculation failed.')
+        print("D_RCM_0 calculation failed.")
         sys.exit("Error message")
 
     # unit change [m^2/s] -> [mm^2/year]  final model input
@@ -229,17 +232,21 @@ def load_df_D_RCM():
     """
     wc_eqv = np.arange(0.35, 0.60 + (0.05 / 2), 0.05)
 
-    df = pd.DataFrame(columns=['wc_eqv',  # water/cement ratio (equivalent)
-                               'CEM_I_42.5_R',  # k=0
-                               'CEM_I_42.5_R+FA',  # k=0.5
-                               'CEM_I_42.5_R+SF',  # k=2.0
-                               'CEM_III/B_42.5'])  # k=0
-    df['wc_eqv'] = wc_eqv
-    df['CEM_I_42.5_R'] = np.array([np.nan, 8.9, 10.0, 15.8, 17.9, 25.0])
-    df['CEM_I_42.5_R+FA'] = np.array([np.nan, 5.6, 6.9, 9.0, 10.9, 14.9])
-    df['CEM_I_42.5_R+SF'] = np.array([4.4, 4.8, np.nan, np.nan, 5.3, np.nan])
-    df['CEM_III/B_42.5'] = np.array([np.nan, 8.3, 1.9, 2.8, 3.0, 3.4])
-    df = df.set_index('wc_eqv')
+    df = pd.DataFrame(
+        columns=[
+            "wc_eqv",  # water/cement ratio (equivalent)
+            "CEM_I_42.5_R",  # k=0
+            "CEM_I_42.5_R+FA",  # k=0.5
+            "CEM_I_42.5_R+SF",  # k=2.0
+            "CEM_III/B_42.5",
+        ]
+    )  # k=0
+    df["wc_eqv"] = wc_eqv
+    df["CEM_I_42.5_R"] = np.array([np.nan, 8.9, 10.0, 15.8, 17.9, 25.0])
+    df["CEM_I_42.5_R+FA"] = np.array([np.nan, 5.6, 6.9, 9.0, 10.9, 14.9])
+    df["CEM_I_42.5_R+SF"] = np.array([4.4, 4.8, np.nan, np.nan, 5.3, np.nan])
+    df["CEM_III/B_42.5"] = np.array([np.nan, 8.3, 1.9, 2.8, 3.0, 3.4])
+    df = df.set_index("wc_eqv")
     return df
 
 
@@ -258,8 +265,7 @@ def C_eqv_to_C_S_0(C_eqv):
         saturated chloride content in concrete[wt-%/cement]
     """
     #  chloride content of the solution at the surface[g/L]
-    x = np.array([0.0, 0.25, 0.93, 2.62, 6.14,
-                  9.12, 13.10, 20.18, 25.03, 30.0])
+    x = np.array([0.0, 0.25, 0.93, 2.62, 6.14, 9.12, 13.10, 20.18, 25.03, 30.0])
     # saturated chloride content in concrete[wt-%/cement]
     y = np.array([0.0, 0.26, 0.47, 0.74, 1.13, 1.39, 1.70, 2.19, 2.49, 2.78])
 
@@ -373,24 +379,23 @@ def C_S_dx(pars):
     pars.C_S_0 = C_S_0(pars)
     # transfer functions considering geometry and exposure conditions
     # C_S_dx considered as time independent for simplification
-    if pars.exposure_condition in ['submerged', 'leakage', 'spray']:
+    if pars.exposure_condition in ["submerged", "leakage", "spray"]:
         # for continuous exposure, such as submerge: use transfer function dx=0
         C_S_dx = pars.C_S_0  # dx = 0, set in dx()
 
-    elif pars.exposure_condition == 'splash':
+    elif pars.exposure_condition == "splash":
         if pars.exposure_condition_geom_sensitive:
             # gelometry-sensitive road splash use C_max
             pars.C_max = C_max(pars)
             C_S_dx_mean = pars.C_max
             C_S_dx_std = 0.75 * C_S_dx_mean
-            C_S_dx = hf.Normal_custom(
-                C_S_dx_mean, C_S_dx_std, non_negative=True)
+            C_S_dx = hf.Normal_custom(C_S_dx_mean, C_S_dx_std, non_negative=True)
         else:
             # intermittent exposure, dx >0, set in dx()
             C_S_dx = pars.C_S_0
     else:
         C_S_dx = None
-        logger.warning('C_S_dx calculation failed')
+        logger.warning("C_S_dx calculation failed")
     return C_S_dx
 
 
@@ -403,15 +408,15 @@ def dx(pars):
         # - for splash conditions (splash road environment, splash marine environment)
         dx = hf.Beta_custom(5.6, 8.9, 0.0, 50.0)
 
-    if condition in ['submerged', 'leakage', 'spray']:
+    if condition in ["submerged", "leakage", "spray"]:
         # - for submerged marine structures
         # - for leakage due to seawater and constant ground water level
         # - for spray conditions(spray road environment, spray marine environment)
         #   a height of more than 1.50 m above the road (spray zone) no dx develops
-        dx = 0.
+        dx = 0.0
 
-    if condition == 'other':
-        print('to be determined')
+    if condition == "other":
+        print("to be determined")
         pass
     return dx
 
@@ -442,7 +447,7 @@ def C_max(pars):
         C_max: maximum content of chlorides within the chloride profile, [wt.-%/cement]
     """
     C_max_temp = None
-    if pars.C_max_option == 'empirical':
+    if pars.C_max_option == "empirical":
         # empirical eq should be determined for structures of different exposure or concrete mixes????????
         # A typical C_max
         # – location: urban and rural areas in Germany
@@ -450,11 +455,11 @@ def C_max(pars):
         # – concrete: CEM I, w/c = 0.45 up to w/c = 0.60,
         x_a = pars.x_a
         x_h = pars.x_h
-        C_max_temp = 0.465 - 0.051 * \
-            np.log(x_a + 1) - (0.00065 * (x_a + 1)
-                               ** -0.187) * x_h  # wt.%/concrete
+        C_max_temp = (
+            0.465 - 0.051 * np.log(x_a + 1) - (0.00065 * (x_a + 1) ** -0.187) * x_h
+        )  # wt.%/concrete
 
-    if pars.C_max_option == 'user_input':
+    if pars.C_max_option == "user_input":
         C_max_temp = pars.C_max_user_input  # wt-% concrete
 
     # wt.%/concrete -> wt.%cement
@@ -471,12 +476,21 @@ def C_crit_param():
     out : tuple
          parameters of general beta distribution (mean, std, lower_bound, upper_bound)
     """
-    C_crit_param = hf.Beta_custom(0.6, 0.15, 0.2, 2.0)
+    C_crit_param = (0.6, 0.15, 0.2, 2.0)
     return C_crit_param
 
 
 # helper function: calibration fucntion
-def calibrate_chloride_f(model_raw, x, t, chloride_content, tol=1e-15, max_count=50, print_out=True, print_proc=False):
+def calibrate_chloride_f(
+    model_raw,
+    x,
+    t,
+    chloride_content,
+    tol=1e-15,
+    max_count=50,
+    print_out=True,
+    print_proc=False,
+):
     """calibrate chloride model to field data at one depth at one time.
     Calibrate the chloride model with field chloride test data and return the new calibrated model object/instance
     Optimization metheod:  Field chloirde content at depth x and time t -> find corresponding D_RCM_0(repaid chloride migration diffusivity[m^2/s])
@@ -520,7 +534,7 @@ def calibrate_chloride_f(model_raw, x, t, chloride_content, tol=1e-15, max_count
 
     # DCM test
     # cap
-    D_RCM_test_min = 0.
+    D_RCM_test_min = 0.0
     # [m/s] unrealistically large safe ceiling cooresponding to a D_RCM_0= [94] [mm/year]
     D_RCM_test_max = 3e-12
 
@@ -543,23 +557,28 @@ def calibrate_chloride_f(model_raw, x, t, chloride_content, tol=1e-15, max_count
             D_RCM_test_max = min(D_RCM_test_guess, D_RCM_test_max)
 
         if print_proc:
-            print('chloride_mean', chloride_mean)
-            print('D_RCM_test', D_RCM_test_guess)
-            print('cap', (D_RCM_test_min, D_RCM_test_max))
+            print("chloride_mean", chloride_mean)
+            print("D_RCM_test", D_RCM_test_guess)
+            print("cap", (D_RCM_test_min, D_RCM_test_max))
         count += 1
         if count > max_count:
-            print('iteration exceeded max number of iteration: {}'.format(count))
+            print("iteration exceeded max number of iteration: {}".format(count))
             break
 
     if print_out:
-        print('chloride_content:')
-        print('model: \nmean:{}\nstd:{}'.format(
-            hf.Get_mean(model.C_x_t), hf.Get_std(model.C_x_t)))
-        print('field: \nmean:{}\nstd:{}'.format(cl.mean(), cl.std()))
+        print("chloride_content:")
+        print(
+            "model: \nmean:{}\nstd:{}".format(
+                hf.Get_mean(model.C_x_t), hf.Get_std(model.C_x_t)
+            )
+        )
+        print("field: \nmean:{}\nstd:{}".format(cl.mean(), cl.std()))
     return model  # new calibrated obj
 
 
-def calibrate_chloride_f_group(model_raw, t, chloride_content_field, plot=True, print_proc=False):
+def calibrate_chloride_f_group(
+    model_raw, t, chloride_content_field, plot=True, print_proc=False
+):
     """use calibrate_chloride_f() to calibrate model to field chloride content at three or more depths, and return the new calibrated model with the averaged D_RCM_0
 
     Parameters
@@ -579,23 +598,37 @@ def calibrate_chloride_f_group(model_raw, t, chloride_content_field, plot=True, 
     M_cal_lis = []
     M_cal_new = None
     for i in range(len(chloride_content_field)):
-        M_cal = calibrate_chloride_f(model_raw, chloride_content_field.depth.iloc[i], t,
-                                     chloride_content_field.cl.iloc[i], print_proc=print_proc, print_out=False)
+        M_cal = calibrate_chloride_f(
+            model_raw,
+            chloride_content_field.depth.iloc[i],
+            t,
+            chloride_content_field.cl.iloc[i],
+            print_proc=print_proc,
+            print_out=False,
+        )
         M_cal_lis.append(M_cal)  # M_cal is a new obj
         print(M_cal.pars.D_RCM_test)
 
         M_cal_new = model_raw.copy()
         M_cal_new.pars.D_RCM_test = np.mean(
-            np.array([M_cal.pars.D_RCM_test for M_cal in M_cal_lis]))
+            np.array([M_cal.pars.D_RCM_test for M_cal in M_cal_lis])
+        )
 
     if plot:
-        Cl_model = [hf.Get_mean(M_cal_new.run(depth, t))
-                    for depth in chloride_content_field.depth]
+        Cl_model = [
+            hf.Get_mean(M_cal_new.run(depth, t))
+            for depth in chloride_content_field.depth
+        ]
         fig, ax = plt.subplots()
-        ax.plot(chloride_content_field['depth'],
-                chloride_content_field['cl'], '--.', label='field')
-        ax.plot(chloride_content_field.depth, Cl_model,
-                'o', alpha=0.5, label='calibrated')
+        ax.plot(
+            chloride_content_field["depth"],
+            chloride_content_field["cl"],
+            "--.",
+            label="field",
+        )
+        ax.plot(
+            chloride_content_field.depth, Cl_model, "o", alpha=0.5, label="calibrated"
+        )
         ax.legend()
 
     return M_cal_new
@@ -612,42 +645,59 @@ def chloride_year(model, depth, year_lis, plot=True, amplify=80):
         M_cal.postproc()
         M_lis.append(M_cal.copy())
     if plot:
-        fig, [ax1, ax2, ax3] = plt.subplots(nrows=3, figsize=(
-            8, 8), sharex=True, gridspec_kw={'height_ratios': [1, 1, 3]})
+        fig, [ax1, ax2, ax3] = plt.subplots(
+            nrows=3,
+            figsize=(8, 8),
+            sharex=True,
+            gridspec_kw={"height_ratios": [1, 1, 3]},
+        )
         # plot a few distrubtion
-        indx = np.linspace(0, len(year_lis) - 1,
-                           min(6, len(year_lis))).astype('int')[1:]
+        indx = np.linspace(0, len(year_lis) - 1, min(6, len(year_lis))).astype("int")[
+            1:
+        ]
         M_sel = [M_lis[i] for i in indx]
 
-        ax1.plot([this_M.t for this_M in M_lis], [
-                 this_M.pf for this_M in M_lis], 'k--')
-        ax1.plot([this_M.t for this_M in M_sel], [
-                 this_M.pf for this_M in M_sel], 'k|', markersize=15)
-        ax1.set_ylabel('Probability of failure $P_f$')
+        ax1.plot([this_M.t for this_M in M_lis], [this_M.pf for this_M in M_lis], "k--")
+        ax1.plot(
+            [this_M.t for this_M in M_sel],
+            [this_M.pf for this_M in M_sel],
+            "k|",
+            markersize=15,
+        )
+        ax1.set_ylabel("Probability of failure $P_f$")
 
-        ax2.plot([this_M.t for this_M in M_lis], [
-                 this_M.beta_factor for this_M in M_lis], 'k--')
-        ax2.plot([this_M.t for this_M in M_sel], [
-                 this_M.beta_factor for this_M in M_sel], 'k|', markersize=15)
-        ax2.set_ylabel(r'Reliability factor $\beta$')
+        ax2.plot(
+            [this_M.t for this_M in M_lis],
+            [this_M.beta_factor for this_M in M_lis],
+            "k--",
+        )
+        ax2.plot(
+            [this_M.t for this_M in M_sel],
+            [this_M.beta_factor for this_M in M_sel],
+            "k|",
+            markersize=15,
+        )
+        ax2.set_ylabel(r"Reliability factor $\beta$")
 
         # plot mean results
-        ax3.plot(t_lis, [M.pars.C_crit_distrib_param[0]
-                         for M in M_lis], '--C0')
-        ax3.plot(t_lis, [hf.Get_mean(M.C_x_t) for M in M_lis], '--C1')
+        ax3.plot(t_lis, [M.pars.C_crit_distrib_param[0] for M in M_lis], "--C0")
+        ax3.plot(t_lis, [hf.Get_mean(M.C_x_t) for M in M_lis], "--C1")
         # plot distribution
         for this_M in M_sel:
             hf.RS_plot(this_M, ax=ax3, t_offset=this_M.t, amplify=amplify)
 
         import matplotlib.patches as mpatches
-        R_patch = mpatches.Patch(
-            color='C0', label='R: critical chloride content', alpha=0.8)
-        S_patch = mpatches.Patch(
-            color='C1', label='S: chloride content at rebar depth', alpha=0.8)
 
-        ax3.set_xlabel('Time[year]')
-        ax3.set_ylabel('Chloride content[wt-% cement]')
-        ax3.legend(handles=[R_patch, S_patch], loc='upper left')
+        R_patch = mpatches.Patch(
+            color="C0", label="R: critical chloride content", alpha=0.8
+        )
+        S_patch = mpatches.Patch(
+            color="C1", label="S: chloride content at rebar depth", alpha=0.8
+        )
+
+        ax3.set_xlabel("Time[year]")
+        ax3.set_ylabel("Chloride content[wt-% cement]")
+        ax3.legend(handles=[R_patch, S_patch], loc="upper left")
 
         plt.tight_layout()
     return [this_M.pf for this_M in M_lis], [this_M.beta_factor for this_M in M_lis]
@@ -660,7 +710,6 @@ class Chloride_Model:
         self.pars.C_S_dx = C_S_dx(pars_raw)
         self.pars.dx = dx(pars_raw)
 
-
     def run(self, x, t):
         """
         x[mm]
@@ -671,8 +720,9 @@ class Chloride_Model:
         return self.C_x_t
 
     def postproc(self, plot=False):
-        sol = hf.Pf_RS(self.pars.C_crit_distrib_param,
-                       self.C_x_t, R_distrib_type='beta', plot=plot)
+        sol = hf.Pf_RS(
+            self.pars.C_crit_distrib_param, self.C_x_t, R_distrib_type="beta", plot=plot
+        )
         self.pf = sol[0]
         self.beta_factor = sol[1]
         self.R_distrib = sol[2]
@@ -687,7 +737,8 @@ class Chloride_Model:
         object
         """
         model_cal = calibrate_chloride_f_group(
-            self, t, chloride_content_field, print_proc=print_proc, plot=plot)
+            self, t, chloride_content_field, print_proc=print_proc, plot=plot
+        )
         return model_cal
 
     def copy(self):
@@ -695,5 +746,6 @@ class Chloride_Model:
 
     def chloride_with_year(self, depth, year_lis, plot=True, amplify=80):
         pf_lis, beta_lis = chloride_year(
-            self, depth, year_lis, plot=plot, amplify=amplify)
+            self, depth, year_lis, plot=plot, amplify=amplify
+        )
         return np.array(pf_lis), np.array(beta_lis)
