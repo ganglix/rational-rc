@@ -137,10 +137,11 @@ def iL_f(pars):
 
 def Cs_g_f():
     """O2 concentration in gas phase on the boundary [mol/m^3]"""
-    O2_fraction = 20.95 / 100
-    air_molar_vol = 22.4  # [L/mol]
-    Cs_g = 1 / (air_molar_vol * O2_fraction) * 1000  # mol/m^3
+    O2_fraction = 20.95/100
+    air_molar_vol = 22.4 # [L/mol]
+    Cs_g =  1 /air_molar_vol * O2_fraction * 1000  # mol/m^3
     return Cs_g
+
 
 
 def De_O2_f(pars):
