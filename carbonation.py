@@ -35,7 +35,7 @@ def Carb_depth(t, pars):
     -------
     out : carbionation depth at the time t [mm]
 
-    Notes ----- intermediate parameters calcualted and attached to pars k_e    : environmental function [-] k_c    :
+    Notes ----- intermediate parameters calculated and attached to pars k_e    : environmental function [-] k_c    :
     execution transfer parameter [-] ,account for curing measures k_t    : regression parameter [-] R_ACC_0_inv:
     inverse effective carbonation resistance of concrete(accelerated) [(mm^2/year)/(kg/m^3)] eps_t  : error term [-]
     C_S    : CO2 concentration [kg/m^3] W_t    : weather function [-] k      : constant before the sqrt of time(time[

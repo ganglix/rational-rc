@@ -528,7 +528,7 @@ def RS_plot(model, ax=None, t_offset=0, amplify=1):  # updated!
                       distribution of load, e.g. carbonation depth, chlride content, tensile     stress. The distrubtion type is calculated S is usually not determined, can vary a lot in different cases, therefore fitted with kernel
 
     model.S : numpy array
-              load, e.g. carbonation depth, chlride content, tensile stress
+              load, e.g. carbonation depth, chloride content, tensile stress
     ax : axis
     t_offset : time offset to move the plot along the t-axis. default is zero
     amplify : scale the height of the pdf plot

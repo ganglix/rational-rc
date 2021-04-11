@@ -742,6 +742,13 @@ class Chloride_Model:
         return model_cal
 
     def copy(self):
+        """create a deepcopy of the instance
+
+        Returns
+        -------
+        model object instance
+    
+        """
         return deepcopy(self)
 
     def chloride_with_year(self, depth, year_lis, plot=True, amplify=80):
@@ -749,3 +756,4 @@ class Chloride_Model:
             self, depth, year_lis, plot=plot, amplify=amplify
         )
         return np.array(pf_lis), np.array(beta_lis)
+
