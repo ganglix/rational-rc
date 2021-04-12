@@ -157,6 +157,18 @@
             
   <h1>Source code for membrane</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Summary</span>
+<span class="sd">-------</span>
+<span class="sd">a statistical model is used to predict the probability of failure for the membrane. </span>
+
+<span class="sd">+ The resistance is the service life of the membrane, and the load is the age in service. </span>
+<span class="sd">+ The limit-state is when the ago is greater than the service life. </span>
+<span class="sd">The initial estimation of the service life is assumed to follow the normal distribution with a mean and standard deviation such that the manufacture-labelled service life is 95% guaranteed. </span>
+<span class="sd">The estimated distribution of service life is then calibrated to the field survey results, </span>
+<span class="sd">where the failure rate of the membrane is reported through the half-cell test. </span>
+<span class="sd">So that the model matches the field observation at a given time by the updated standard deviation. </span>
+<span class="sd">This process captures the varied uncertainty of the field service life by adjusting the service life distribution. </span>
+<span class="sd">Then, the calibrated model is used to project future deterioration. The accuracy of the calibrated model is improved when more historical data is available.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -397,10 +409,32 @@
 
 
 <span class="c1"># calibrate Resistance to match the probability</span>
-<div class="viewcode-block" id="calbrate_f"><a class="viewcode-back" href="../membrane.html#membrane.calbrate_f">[docs]</a><span class="k">def</span> <span class="nf">calbrate_f</span><span class="p">(</span>
+<div class="viewcode-block" id="calibrate_f"><a class="viewcode-back" href="../membrane.html#membrane.calibrate_f">[docs]</a><span class="k">def</span> <span class="nf">calibrate_f</span><span class="p">(</span>
     <span class="n">model_raw</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">membrane_failure_ratio_field</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">max_count</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">print_out</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;find the corresponding membrane service life std that matches the failure ratio in the field&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;calibrate membrane model to field condition by finding the corresponding membrane service life std that matches the failure ratio in the field</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    model_raw : model instance</span>
+<span class="sd">        model to be calibrated</span>
+<span class="sd">    t : int, float</span>
+<span class="sd">        membrane age when membrane failure rate is surveyed [year]</span>
+<span class="sd">    membrane_failure_ratio_field : float</span>
+<span class="sd">        falure rate e.g. 0.1 for 10%</span>
+<span class="sd">    tol : float, optional</span>
+<span class="sd">        optimization tolerance, by default 1e-6</span>
+<span class="sd">    max_count : int, optional</span>
+<span class="sd">        optimization max iteration number, by default 100</span>
+<span class="sd">    print_out : bool, optional</span>
+<span class="sd">        if True print out model vs field compare, by default True</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    memebrane model object instance</span>
+<span class="sd">        calibrated model</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
     <span class="n">model</span> <span class="o">=</span> <span class="n">model_raw</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="n">std_min</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="n">std_max</span> <span class="o">=</span> <span class="mf">100.0</span>  <span class="c1"># year, unrealistic large safe ceiling</span>
@@ -547,7 +581,25 @@
 
 <div class="viewcode-block" id="Membrane_Model.copy"><a class="viewcode-back" href="../membrane.html#membrane.Membrane_Model.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;create a deepcopy&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Membrane_Model.calibrate"><a class="viewcode-back" href="../membrane.html#membrane.Membrane_Model.calibrate">[docs]</a>    <span class="k">def</span> <span class="nf">calibrate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">membrane_age_field</span><span class="p">,</span> <span class="n">membrane_failure_ratio_field</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;calibrate membrane model to field condition</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        membrane_age_field : float, int</span>
+<span class="sd">            membrane age when membrane failure rate is surveyed</span>
+<span class="sd">        membrane_failure_ratio_field : float</span>
+<span class="sd">            falure rate e.g. 0.1 for 10%</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        memebrane model object instance</span>
+<span class="sd">            calibrated model</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">M_cal</span> <span class="o">=</span> <span class="n">calibrate_f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">membrane_age_field</span><span class="p">,</span> <span class="n">membrane_failure_ratio_field</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">M_cal</span></div></div>
 </pre></div>
 
            </div>

@@ -1,4 +1,16 @@
 """
+Summary
+-------
+a statistical model is used to predict the probability of failure for the membrane. 
+
++ The resistance is the service life of the membrane, and the load is the age in service. 
++ The limit-state is when the ago is greater than the service life. 
+The initial estimation of the service life is assumed to follow the normal distribution with a mean and standard deviation such that the manufacture-labelled service life is 95% guaranteed. 
+The estimated distribution of service life is then calibrated to the field survey results, 
+where the failure rate of the membrane is reported through the half-cell test. 
+So that the model matches the field observation at a given time by the updated standard deviation. 
+This process captures the varied uncertainty of the field service life by adjusting the service life distribution. 
+Then, the calibrated model is used to project future deterioration. The accuracy of the calibrated model is improved when more historical data is available.
 """
 
 import matplotlib.pyplot as plt
@@ -239,10 +251,32 @@ def membrane_life(pars):
 
 
 # calibrate Resistance to match the probability
-def calbrate_f(
+def calibrate_f(
     model_raw, t, membrane_failure_ratio_field, tol=1e-6, max_count=100, print_out=True
 ):
-    """find the corresponding membrane service life std that matches the failure ratio in the field"""
+    """calibrate membrane model to field condition by finding the corresponding membrane service life std that matches the failure ratio in the field
+
+    Parameters
+    ----------
+    model_raw : model instance
+        model to be calibrated
+    t : int, float
+        membrane age when membrane failure rate is surveyed [year]
+    membrane_failure_ratio_field : float
+        falure rate e.g. 0.1 for 10%
+    tol : float, optional
+        optimization tolerance, by default 1e-6
+    max_count : int, optional
+        optimization max iteration number, by default 100
+    print_out : bool, optional
+        if True print out model vs field compare, by default True
+
+    Returns
+    -------
+    memebrane model object instance
+        calibrated model
+    """
+    
     model = model_raw.copy()
     std_min = 0.0
     std_max = 100.0  # year, unrealistic large safe ceiling
@@ -390,3 +424,21 @@ class Membrane_Model:
     def copy(self):
         """create a deepcopy"""
         return deepcopy(self)
+
+    def calibrate(self, membrane_age_field, membrane_failure_ratio_field):
+        """calibrate membrane model to field condition
+
+        Parameters
+        ----------
+        membrane_age_field : float, int
+            membrane age when membrane failure rate is surveyed
+        membrane_failure_ratio_field : float
+            falure rate e.g. 0.1 for 10%
+
+        Returns
+        -------
+        memebrane model object instance
+            calibrated model
+        """
+        M_cal = calibrate_f(self,membrane_age_field, membrane_failure_ratio_field)
+        return M_cal
