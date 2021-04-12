@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>carbonation &mdash; Tinkrete 0.2.2 documentation</title>
+  <title>carbonation &mdash; Tinkrete alpha documentation</title>
   
 
   
@@ -59,6 +59,10 @@
 
           
             
+            
+              <div class="version">
+                0.2.2
+              </div>
             
           
 
@@ -192,12 +196,26 @@
 <span class="sd">    -------</span>
 <span class="sd">    out : carbionation depth at the time t [mm]</span>
 
-<span class="sd">    Notes ----- intermediate parameters calculated and attached to pars k_e    : environmental function [-] k_c    :</span>
-<span class="sd">    execution transfer parameter [-] ,account for curing measures k_t    : regression parameter [-] R_ACC_0_inv:</span>
-<span class="sd">    inverse effective carbonation resistance of concrete(accelerated) [(mm^2/year)/(kg/m^3)] eps_t  : error term [-]</span>
-<span class="sd">    C_S    : CO2 concentration [kg/m^3] W_t    : weather function [-] k      : constant before the sqrt of time(time[</span>
-<span class="sd">    year], carbonation depth[mm]) [mm/year^0.5] typical value of k =3~4 for unit mm,</span>
-<span class="sd">    year [https://www.researchgate.net/publication/272174090_Carbonation_Coefficient_of_Concrete_in_Dhaka_City]</span>
+<span class="sd">    Note</span>
+<span class="sd">    ----</span>
+<span class="sd">        intermediate parameters calculated and attached to </span>
+<span class="sd">        </span>
+<span class="sd">        pars k_e : environmental function [-] </span>
+<span class="sd">        </span>
+<span class="sd">        k_c : execution transfer parameter [-] </span>
+<span class="sd">        </span>
+<span class="sd">        account for curing measures </span>
+<span class="sd">        </span>
+<span class="sd">        k_t : regression parameter [-] </span>
+<span class="sd">        </span>
+<span class="sd">        R_ACC_0_inv: inverse effective carbonation resistance of concrete(accelerated) [(mm^2/year)/(kg/m^3)] eps_t  : error term [-]</span>
+<span class="sd">        </span>
+<span class="sd">        C_S    : CO2 concentration [$kg/m^3$] </span>
+<span class="sd">        </span>
+<span class="sd">        W_t    : weather function [-] </span>
+<span class="sd">        </span>
+<span class="sd">        k      : constant before the sqrt of time(time[year], carbonation depth[mm]) [mm/year^0.5] </span>
+<span class="sd">        typical value of k =3~4 for unit mm,year [https://www.researchgate.net/publication/272174090_Carbonation_Coefficient_of_Concrete_in_Dhaka_City]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">pars</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="n">t</span>
     <span class="n">pars</span><span class="o">.</span><span class="n">k_e</span> <span class="o">=</span> <span class="n">k_e</span><span class="p">(</span><span class="n">pars</span><span class="p">)</span>

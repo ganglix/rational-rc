@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>carbonation module &mdash; Tinkrete 0.2.2 documentation</title>
+  <title>carbonation module &mdash; Tinkrete alpha documentation</title>
   
 
   
@@ -32,6 +32,7 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -61,6 +62,10 @@
 
           
             
+            
+              <div class="version">
+                0.2.2
+              </div>
             
           
 
@@ -189,18 +194,25 @@ so a deepcopy of the original instance should be used if the calculation is not 
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>out</strong> (<em>carbionation depth at the time t [mm]</em>)</p></li>
-<li><p><strong>Notes —– intermediate parameters calculated and attached to pars k_e</strong> (<em>environmental function [-] k_c    :</em>)</p></li>
-<li><p><strong>execution transfer parameter [-] ,account for curing measures k_t</strong> (<em>regression parameter [-] R_ACC_0_inv:</em>)</p></li>
-<li><p><strong>inverse effective carbonation resistance of concrete(accelerated) [(mm^2/year)/(kg/m^3)] eps_t</strong> (<em>error term [-]</em>)</p></li>
-<li><p><strong>C_S</strong> (<em>CO2 concentration [kg/m^3] W_t    : weather function [-] k      : constant before the sqrt of time(time[</em>)</p></li>
-<li><p><em>year], carbonation depth[mm]) [mm/year^0.5] typical value of k =3~4 for unit mm,</em></p></li>
-<li><p><strong>year [https</strong> (<em>//www.researchgate.net/publication/272174090_Carbonation_Coefficient_of_Concrete_in_Dhaka_City]</em>)</p></li>
-</ul>
-</p>
+<dd class="field-even"><p><strong>out</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>carbionation depth at the time t [mm]</p>
 </dd>
 </dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>intermediate parameters calculated and attached to</p>
+<p>pars k_e : environmental function [-]</p>
+<p>k_c : execution transfer parameter [-]</p>
+<p>account for curing measures</p>
+<p>k_t : regression parameter [-]</p>
+<p>R_ACC_0_inv: inverse effective carbonation resistance of concrete(accelerated) [(mm^2/year)/(kg/m^3)] eps_t  : error term [-]</p>
+<p>C_S    : CO2 concentration [<span class="math notranslate nohighlight">\(kg/m^3\)</span>]</p>
+<p>W_t    : weather function [-]</p>
+<p>k      : constant before the sqrt of time(time[year], carbonation depth[mm]) [mm/year^0.5]
+typical value of k =3~4 for unit mm,year [<a class="reference external" href="https://www.researchgate.net/publication/272174090_Carbonation_Coefficient_of_Concrete_in_Dhaka_City">https://www.researchgate.net/publication/272174090_Carbonation_Coefficient_of_Concrete_in_Dhaka_City</a>]</p>
+</div>
 </dd></dl>
 
 <dl class="py class">

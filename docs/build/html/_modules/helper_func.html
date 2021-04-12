@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>helper_func &mdash; Tinkrete 0.2.2 documentation</title>
+  <title>helper_func &mdash; Tinkrete alpha documentation</title>
   
 
   
@@ -59,6 +59,10 @@
 
           
             
+            
+              <div class="version">
+                0.2.2
+              </div>
             
           
 
@@ -152,7 +156,21 @@
            <div itemprop="articleBody">
             
   <h1>Source code for helper_func</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span></span><span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">Summary</span>
+<span class="sd">-------</span>
+<span class="sd">The helper module is designed to handle the repeated math operations that are not directly related to the mechanistic model calculation. These operations include the following</span>
+
+<span class="sd">+ distribution sampling from a distribution (uniform, beta)</span>
+<span class="sd">+ distribution curve fitting to data with an analytical or a numerical method</span>
+<span class="sd">+ interpolation function for data tables</span>
+<span class="sd">+ numerical integration for probability density functions</span>
+<span class="sd">+ reliability probability calculation </span>
+<span class="sd">+ statistical calculation to find mean and standard distribution ignoring not-a-number (nan).</span>
+<span class="sd">+ figure sub-plotting</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">logging</span>
@@ -180,6 +198,7 @@
 
 <span class="c1"># Helper function</span>
 <div class="viewcode-block" id="dropna"><a class="viewcode-back" href="../helper_func.html#helper_func.dropna">[docs]</a><span class="k">def</span> <span class="nf">dropna</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;removes nans&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span></div>
 
 
@@ -223,7 +242,8 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    out : numpy array</span>
+<span class="sd">    numpy array</span>
+<span class="sd">        sample array from the distribution</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">m</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">s</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_sample</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">non_negative</span><span class="p">:</span>
@@ -238,12 +258,12 @@
 
 
 <div class="viewcode-block" id="Beta_custom"><a class="viewcode-back" href="../helper_func.html#helper_func.Beta_custom">[docs]</a><span class="k">def</span> <span class="nf">Beta_custom</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n_sample</span><span class="o">=</span><span class="n">N_SAMPLE</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; draw samples from a general beta distribution described by mean, std and lower and upper   bounds</span>
+    <span class="sd">&quot;&quot;&quot; Beta_custom draws samples from a general beta distribution described by mean, std and lower and upper   bounds</span>
 <span class="sd">    X~General Beta(a,b, loc = c, scale = d)</span>
 <span class="sd">    Z~std Beta(alpha, beta)</span>
 
-<span class="sd">    X = c + d*Z</span>
-<span class="sd">    E(X) = c + d * E(Z)</span>
+<span class="sd">    X = c + d*Z \n</span>
+<span class="sd">    E(X) = c + d * E(Z) \n</span>
 <span class="sd">    var(X) = d^2 * var(Z)</span>
 
 <span class="sd">    Parameters</span>
@@ -259,7 +279,8 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    out : numpy array</span>
+<span class="sd">    numpy array</span>
+<span class="sd">        sample array from the distribution</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># location:c and scale:d for General Beta (standard Beta range [0,1])</span>
     <span class="n">c</span> <span class="o">=</span> <span class="n">a</span>
@@ -356,7 +377,20 @@
 
 
 <div class="viewcode-block" id="find_similar_group"><a class="viewcode-back" href="../helper_func.html#helper_func.find_similar_group">[docs]</a><span class="k">def</span> <span class="nf">find_similar_group</span><span class="p">(</span><span class="n">item_list</span><span class="p">,</span> <span class="n">similar_group_size</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;find similar sublist of similar_group_size from a item_list&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;find_similar_group finds most alike values in a list</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    item_list : list</span>
+<span class="sd">        a list to choose from</span>
+<span class="sd">    similar_group_size : int, optional</span>
+<span class="sd">        number of the alike values, by default 2</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    list</span>
+<span class="sd">        a sublist with alike values</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
 
     <span class="n">combos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">combinations</span><span class="p">(</span><span class="n">item_list</span><span class="p">,</span> <span class="n">similar_group_size</span><span class="p">)))</span>
@@ -366,20 +400,27 @@
 
 
 <div class="viewcode-block" id="sample_integral"><a class="viewcode-back" href="../helper_func.html#helper_func.sample_integral">[docs]</a><span class="k">def</span> <span class="nf">sample_integral</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;integrate Y over x, where every Y point is a bunch of distribution samples,</span>
+    <span class="sd">&quot;&quot;&quot;integrate Y over x, where every Y data point is a bunch of distribution samples,</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    Y : numpy array</span>
-<span class="sd">        2D</span>
-<span class="sd">        column: y data points</span>
-<span class="sd">        row: samples for y point</span>
+<span class="sd">        2D \n</span>
+<span class="sd">        column: y data point\n</span>
+<span class="sd">        row: samples for each y data point</span>
 <span class="sd">    x : numpy array</span>
+<span class="sd">        1D</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    int_y_x : numpy array</span>
-<span class="sd">            integral of y over x for all sampled data</span>
+<span class="sd">    numpy array</span>
+<span class="sd">            int_y_x : integral of y over x for all sampled data</span>
+<span class="sd">    </span>
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    [y0_sample1, y0_sample2\n</span>
+<span class="sd">     y1_sample1, y1_sample2]</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">simps</span>
 
@@ -391,6 +432,8 @@
 
 
 <div class="viewcode-block" id="f_solve_poly2"><a class="viewcode-back" href="../helper_func.html#helper_func.f_solve_poly2">[docs]</a><span class="k">def</span> <span class="nf">f_solve_poly2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;find the two roots of $ax^2+bx+c=0$</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">r1</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">b</span> <span class="o">+</span> <span class="p">(</span><span class="n">b</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="n">c</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">a</span><span class="p">)</span>
     <span class="n">r2</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">b</span> <span class="o">-</span> <span class="p">(</span><span class="n">b</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="n">c</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">a</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span></div>
@@ -410,14 +453,15 @@
 <span class="sd">    fit_type : string</span>
 <span class="sd">        fit type keywords, &#39;kernel&#39;, &#39;normal&#39;</span>
 <span class="sd">    plot : bool</span>
-<span class="sd">        create a plot with histogram and fitted pdf curve</span>
+<span class="sd">        when True, create a plot with histogram and fitted pdf curve</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    out : continuous random variable : stats.norm(loc = mu, scale = sigma)</span>
-<span class="sd">              when parametric normal is used</span>
-<span class="sd">          Gaussian kernel random variable : (stats.gaussian_kde)</span>
-<span class="sd">              when kernel is used</span>
+<span class="sd">    instance of random varible </span>
+<span class="sd">        when parametric normal is used</span>
+<span class="sd">            continuous random variable : stats.norm(loc = mu, scale = sigma)</span>
+<span class="sd">        when kernel is used</span>
+<span class="sd">            Gaussian kernel random variable : (stats.gaussian_kde)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">mu</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">sigma</span> <span class="o">=</span> <span class="kc">None</span>
@@ -467,40 +511,46 @@
 
 
 <div class="viewcode-block" id="Pf_RS"><a class="viewcode-back" href="../helper_func.html#helper_func.Pf_RS">[docs]</a><span class="k">def</span> <span class="nf">Pf_RS</span><span class="p">(</span><span class="n">R_info</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">R_distrib_type</span><span class="o">=</span><span class="s2">&quot;normal&quot;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>  <span class="c1"># updated!</span>
-    <span class="sd">&quot;&quot;&quot;Calculate the probability of failure  Pf = P(R-S&lt;0), given the R(resistance) and S(load)</span>
-<span class="sd">       with three three methods and use method 3) if checked OK with the other two</span>
-<span class="sd">           1) crude monte carlo</span>
-<span class="sd">           2) numerical integral of g kernel fit</span>
-<span class="sd">           3) R S integral: (&#39;$\int\limits_{-\infty}^{\infty} F_R(x)f_S(x)dx$&#39;)</span>
-<span class="sd">       reliability index(beta factor) is calculated with simple 1st order g.mean()/g.std()</span>
+    <span class="sd">&quot;&quot;&quot;Pf_RS calculates the probability of failure  Pf = P(R-S&lt;0), given the R(resistance) and S(load)</span>
+<span class="sd">    with three three methods and use method 3 if it is checked &quot;OK&quot; with the other two</span>
+
+<span class="sd">    1. crude monte carlo  </span>
+<span class="sd">    2. numerical integral of g kernel fit</span>
+<span class="sd">    3. R S integral: $\int\limits_{-\infty}^{\infty} F_R(x)f_S(x)dx$, reliability index(beta factor) is calculated with simple 1st order g.mean()/g.std()</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    R_info : tuple or numpy array</span>
-<span class="sd">             distribution of Resistance, e.g. cover thickness, critical chloride content, tensile strength</span>
-<span class="sd">             can be array or distribution parameters</span>
-<span class="sd">             R_distrib_type=&#39;normal&#39; -&gt; tuple(m,s) for normal m: mean s: standard deviation</span>
-<span class="sd">             R_distrib_type=&#39;normal&#39; -&gt; tuple(m,s,a,b) for (General) beta distribution</span>
-<span class="sd">                             m: mean, s: standard deviation a,b : lower, upper bound</span>
-<span class="sd">             R_distrib_type=&#39;normal&#39; -&gt; array: for not-determined distribution, will be treated numerically(R S integral is not applied )</span>
+<span class="sd">    R_info : tuple, numpy array</span>
+<span class="sd">        distribution of Resistance, e.g. cover thickness, critical chloride content, tensile strength</span>
+<span class="sd">        can be array or distribution parameters</span>
+
+<span class="sd">        R_distrib_type=&#39;normal&#39; -&gt; tuple(m,s) for normal m: mean s: standard deviation</span>
+<span class="sd">        </span>
+<span class="sd">        R_distrib_type=&#39;beta&#39; -&gt; tuple(m,s,a,b) for (General) beta distribution</span>
+<span class="sd">        m: mean, s: standard deviation a,b : lower, upper bound</span>
+<span class="sd">        </span>
+<span class="sd">        R_distrib_type=&#39;array&#39; -&gt; array: for not-determined distribution, will be treated numerically(R S integral is not applied )</span>
 
 <span class="sd">    S : numpy array</span>
 <span class="sd">        distribution of load, e.g. carbonation depth, chloride content, tensile stress</span>
 <span class="sd">        the distribution type is calculated S is usually not determined, can vary a lot in different cases, therefore fitted with kernel</span>
 
-<span class="sd">    R_distrib_type : string</span>
-<span class="sd">        &#39;normal&#39;, &#39;beta&#39;, &#39;array&#39;</span>
+<span class="sd">    R_distrib_type : str, optional</span>
+<span class="sd">                &#39;normal&#39;, &#39;beta&#39;, &#39;array&#39;, by default &#39;normal&#39;</span>
+
+<span class="sd">    plot : bool, optional</span>
+<span class="sd">        plot distribution, by default False</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    out = tuple</span>
+<span class="sd">    tuple</span>
 <span class="sd">        (probability of failure, reliability index)</span>
 
-<span class="sd">    Notes</span>
-<span class="sd">    -----</span>
-<span class="sd">    For R as arrays R S integral is not applied</span>
-<span class="sd">    R S integration method: $P_f = P(R-S&lt;=0)=\int\limits_{-\infty}^{\infty}f_S(y) \int\limits_{-\infty}^{y}f_R(x)dxdy$</span>
-<span class="sd">    the dual numerical integration seems too computationally expensive, so consider fit R to analytical distribution in the future versions</span>
+<span class="sd">    Note</span>
+<span class="sd">    ----</span>
+<span class="sd">        For R as arrays R S integral is not applied</span>
+<span class="sd">        R S integration method: $P_f = P(R-S&lt;=0)=\int\limits_{-\infty}^{\infty}f_S(y) \int\limits_{-\infty}^{y}f_R(x)dxdy$</span>
+<span class="sd">        the dual numerical integration seems too computationally expensive, so consider fit R to analytical distribution in the future versions[TODO]</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">integrate</span>
@@ -736,7 +786,8 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    mean : mean value of the unknown distribution</span>
+<span class="sd">    float</span>
+<span class="sd">        mean value of the unknown normal distribution</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">confidence_one_tailed</span><span class="p">):</span>

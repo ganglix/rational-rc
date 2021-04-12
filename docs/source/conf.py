@@ -24,10 +24,10 @@ copyright = '2021, Gang Li'
 author = 'Gang Li'
 
 # The short X.Y version
-version = ''
+version = '0.2.2'
 
 # The full version, including alpha/beta/rc tags
-release = '0.2.2'
+release = 'alpha'
 
 # -- General configuration ---------------------------------------------------
 
@@ -40,6 +40,9 @@ extensions = [
     'sphinx.ext.viewcode',
     'sphinx_rtd_theme',
     'recommonmark',
+    'sphinx.ext.mathjax',
+    'sphinx_math_dollar',
+    'sphinx.ext.todo',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -57,6 +60,8 @@ exclude_patterns = []
 # a list of builtin themes.
 #
 html_theme = 'sphinx_rtd_theme'
+
+
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

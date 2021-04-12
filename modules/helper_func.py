@@ -1,3 +1,17 @@
+""" 
+Summary
+-------
+The helper module is designed to handle the repeated math operations that are not directly related to the mechanistic model calculation. These operations include the following
+
++ distribution sampling from a distribution (uniform, beta)
++ distribution curve fitting to data with an analytical or a numerical method
++ interpolation function for data tables
++ numerical integration for probability density functions
++ reliability probability calculation 
++ statistical calculation to find mean and standard distribution ignoring not-a-number (nan).
++ figure sub-plotting
+"""
+
 import numpy as np
 from scipy import stats
 import matplotlib.pyplot as plt
@@ -26,6 +40,7 @@ logger.setLevel(
 
 # Helper function
 def dropna(x):
+    """removes nans"""
     return x[~np.isnan(x)]
 
 
@@ -69,7 +84,8 @@ def Normal_custom(m, s, n_sample=N_SAMPLE, non_negative=False, plot=False):
 
     Returns
     -------
-    out : numpy array
+    numpy array
+        sample array from the distribution
     """
     x = np.random.normal(loc=m, scale=s, size=n_sample)
     if non_negative:
@@ -84,12 +100,12 @@ def Normal_custom(m, s, n_sample=N_SAMPLE, non_negative=False, plot=False):
 
 
 def Beta_custom(m, s, a, b, n_sample=N_SAMPLE, plot=False):
-    """ draw samples from a general beta distribution described by mean, std and lower and upper   bounds
+    """ Beta_custom draws samples from a general beta distribution described by mean, std and lower and upper   bounds
     X~General Beta(a,b, loc = c, scale = d)
     Z~std Beta(alpha, beta)
 
-    X = c + d*Z
-    E(X) = c + d * E(Z)
+    X = c + d*Z \n
+    E(X) = c + d * E(Z) \n
     var(X) = d^2 * var(Z)
 
     Parameters
@@ -105,7 +121,8 @@ def Beta_custom(m, s, a, b, n_sample=N_SAMPLE, plot=False):
 
     Returns
     -------
-    out : numpy array
+    numpy array
+        sample array from the distribution
     """
     # location:c and scale:d for General Beta (standard Beta range [0,1])
     c = a
@@ -202,7 +219,20 @@ def interp_extrap_f(x, y, x_find, plot=False):
 
 
 def find_similar_group(item_list, similar_group_size=2):
-    """find similar sublist of similar_group_size from a item_list"""
+    """find_similar_group finds most alike values in a list
+
+    Parameters
+    ----------
+    item_list : list
+        a list to choose from
+    similar_group_size : int, optional
+        number of the alike values, by default 2
+
+    Returns
+    -------
+    list
+        a sublist with alike values
+    """
     from itertools import combinations
 
     combos = np.array(list(combinations(item_list, similar_group_size)))
@@ -212,20 +242,27 @@ def find_similar_group(item_list, similar_group_size=2):
 
 
 def sample_integral(Y, x):
-    """integrate Y over x, where every Y point is a bunch of distribution samples,
+    """integrate Y over x, where every Y data point is a bunch of distribution samples,
 
     Parameters
     ----------
     Y : numpy array
-        2D
-        column: y data points
-        row: samples for y point
+        2D \n
+        column: y data point\n
+        row: samples for each y data point
     x : numpy array
+        1D
 
     Returns
     -------
-    int_y_x : numpy array
-            integral of y over x for all sampled data
+    numpy array
+            int_y_x : integral of y over x for all sampled data
+    
+    Examples
+    --------
+    [y0_sample1, y0_sample2\n
+     y1_sample1, y1_sample2]
+
     """
     from scipy.integrate import simps
 
@@ -237,6 +274,8 @@ def sample_integral(Y, x):
 
 
 def f_solve_poly2(a, b, c):
+    """find the two roots of $ax^2+bx+c=0$
+    """
     r1 = (-b + (b ** 2 - 4 * a * c) ** 0.5) / (2 * a)
     r2 = (-b - (b ** 2 - 4 * a * c) ** 0.5) / (2 * a)
     return r1, r2
@@ -256,14 +295,15 @@ def Fit_distrib(s, fit_type="kernel", plot=False, xlabel="", title="", axn=None)
     fit_type : string
         fit type keywords, 'kernel', 'normal'
     plot : bool
-        create a plot with histogram and fitted pdf curve
+        when True, create a plot with histogram and fitted pdf curve
 
     Returns
     -------
-    out : continuous random variable : stats.norm(loc = mu, scale = sigma)
-              when parametric normal is used
-          Gaussian kernel random variable : (stats.gaussian_kde)
-              when kernel is used
+    instance of random varible 
+        when parametric normal is used
+            continuous random variable : stats.norm(loc = mu, scale = sigma)
+        when kernel is used
+            Gaussian kernel random variable : (stats.gaussian_kde)
     """
     mu = None
     sigma = None
@@ -313,40 +353,46 @@ def Fit_distrib(s, fit_type="kernel", plot=False, xlabel="", title="", axn=None)
 
 
 def Pf_RS(R_info, S, R_distrib_type="normal", plot=False):  # updated!
-    """Calculate the probability of failure  Pf = P(R-S<0), given the R(resistance) and S(load)
-       with three three methods and use method 3) if checked OK with the other two
-           1) crude monte carlo
-           2) numerical integral of g kernel fit
-           3) R S integral: ('$\int\limits_{-\infty}^{\infty} F_R(x)f_S(x)dx$')
-       reliability index(beta factor) is calculated with simple 1st order g.mean()/g.std()
+    """Pf_RS calculates the probability of failure  Pf = P(R-S<0), given the R(resistance) and S(load)
+    with three three methods and use method 3 if it is checked "OK" with the other two
+
+    1. crude monte carlo  
+    2. numerical integral of g kernel fit
+    3. R S integral: $\int\limits_{-\infty}^{\infty} F_R(x)f_S(x)dx$, reliability index(beta factor) is calculated with simple 1st order g.mean()/g.std()
 
     Parameters
     ----------
-    R_info : tuple or numpy array
-             distribution of Resistance, e.g. cover thickness, critical chloride content, tensile strength
-             can be array or distribution parameters
-             R_distrib_type='normal' -> tuple(m,s) for normal m: mean s: standard deviation
-             R_distrib_type='normal' -> tuple(m,s,a,b) for (General) beta distribution
-                             m: mean, s: standard deviation a,b : lower, upper bound
-             R_distrib_type='normal' -> array: for not-determined distribution, will be treated numerically(R S integral is not applied )
+    R_info : tuple, numpy array
+        distribution of Resistance, e.g. cover thickness, critical chloride content, tensile strength
+        can be array or distribution parameters
+
+        R_distrib_type='normal' -> tuple(m,s) for normal m: mean s: standard deviation
+        
+        R_distrib_type='beta' -> tuple(m,s,a,b) for (General) beta distribution
+        m: mean, s: standard deviation a,b : lower, upper bound
+        
+        R_distrib_type='array' -> array: for not-determined distribution, will be treated numerically(R S integral is not applied )
 
     S : numpy array
         distribution of load, e.g. carbonation depth, chloride content, tensile stress
         the distribution type is calculated S is usually not determined, can vary a lot in different cases, therefore fitted with kernel
 
-    R_distrib_type : string
-        'normal', 'beta', 'array'
+    R_distrib_type : str, optional
+                'normal', 'beta', 'array', by default 'normal'
+
+    plot : bool, optional
+        plot distribution, by default False
 
     Returns
     -------
-    out = tuple
+    tuple
         (probability of failure, reliability index)
 
-    Notes
-    -----
-    For R as arrays R S integral is not applied
-    R S integration method: $P_f = P(R-S<=0)=\int\limits_{-\infty}^{\infty}f_S(y) \int\limits_{-\infty}^{y}f_R(x)dxdy$
-    the dual numerical integration seems too computationally expensive, so consider fit R to analytical distribution in the future versions
+    Note
+    ----
+        For R as arrays R S integral is not applied
+        R S integration method: $P_f = P(R-S<=0)=\int\limits_{-\infty}^{\infty}f_S(y) \int\limits_{-\infty}^{y}f_R(x)dxdy$
+        the dual numerical integration seems too computationally expensive, so consider fit R to analytical distribution in the future versions[TODO]
 
     """
     from scipy import integrate
@@ -582,7 +628,8 @@ def find_mean(val, s, confidence_one_tailed=0.95):
 
     Returns
     -------
-    mean : mean value of the unknown distribution
+    float
+        mean value of the unknown normal distribution
     """
 
     def func(m, s, val, confidence_one_tailed):
