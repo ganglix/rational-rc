@@ -1,3 +1,6 @@
+"""
+"""
+
 import matplotlib.pyplot as plt
 from copy import deepcopy
 from scipy import stats
@@ -8,7 +11,38 @@ import helper_func as hf
 
 
 def Pf_RS_special(R_info, S, R_distrib_type="normal", plot=False):
-    """special case where S is a number"""
+    """special case of helper_fuc.Pf_RS, here the "load" S is a number and it calculates the probability of failure  Pf = P(R-S<0), given the R(resistance) and S(load)
+    with three three methods and use method 3 if it is checked "OK" with the other two
+
+    1. crude monte carlo  
+    2. numerical integral of g kernel fit
+    3. R S integral: $F_R(S)$, reliability index(beta factor) is calculated with simple 1st order g.mean()/g.std()
+    
+    Parameters
+    ----------
+    R_info : tuple
+        distribution of Resistance, for this specicial case, the membrane service life.
+        R_distrib_type='normal' -> tuple(m,s) for normal m: mean s: standard deviation
+        other distribution form will be ignored.
+
+    S : numpy array
+        distribution of load, for this special case, the membrane age.
+
+    R_distrib_type : str, optional
+        by default 'normal'
+
+    plot : bool, optional
+        plot distribution, by default False
+
+    Returns
+    -------
+    tuple
+        (probability of failure, beta factor)
+
+    Note
+    ----
+    R_info only supports two-parameter normal distribution.
+    """
     from scipy import integrate
 
     if isinstance(int(S), int):
@@ -86,8 +120,7 @@ def Pf_RS_special(R_info, S, R_distrib_type="normal", plot=False):
             alpha=0.5,
             label="g=R-S",
         )
-        ax2.vlines(x=0, ymin=0, ymax=g_kde_fit(0)[
-                   0], linestyles="--", alpha=0.5)
+        ax2.vlines(x=0, ymin=0, ymax=g_kde_fit(0)[0], linestyles="--", alpha=0.5)
         ax2.vlines(
             x=g.mean(), ymin=0, ymax=g_kde_fit(g.mean())[0], linestyles="--", alpha=0.5
         )
@@ -107,18 +140,23 @@ def Pf_RS_special(R_info, S, R_distrib_type="normal", plot=False):
 
 
 def RS_plot_special(model, ax=None, t_offset=0, amplify=1):  # updated!
-    """plot R S distribution vertically at a time to an axis
+    """plot R S distribution vertically at a time to an axis special case: S is a number.
 
     Parameters
     ----------
-    model : model object
-    model.R_distrib : scipy.stats._continuous_distns, normal or beta
-                      calculated in Pf_RS() through model.postproc()
-    model.S : single number for this special case
+    model : model object instance
+        
+        + model.R_distrib : scipy.stats._continuous_distns, normal or beta [calculated in Pf_RS() through model.postproc()]
+        + model.S : single number for this special case
 
-    ax : axis
-    t_offset : time offset to move the plot along the t-axis. default is zero
-    amplify : scale the height of the pdf plot
+    ax : axes
+        subplot axis
+
+    t_offset : int, float
+        time offset to move the plot along the t-axis. default is zero
+    
+    amplify : int
+        scale the height of the pdf plot
     """
 
     R_distrib = model.R_distrib
@@ -154,12 +192,43 @@ def RS_plot_special(model, ax=None, t_offset=0, amplify=1):  # updated!
 
 
 # model function
-def current_age(t):
+def membrane_age(t):
+    """return the membrane age as the "resistance"
+
+    Parameters
+    ----------
+    t : int, float
+        membrane age
+
+    Returns
+    -------
+    int, float
+        membrane age
+    
+    Note
+    ----
+        This function is a placeholder for more complex age input
+    """
     return t
 
 
 def membrane_life(pars):
-    """calculate mean value of the membrane with assumed std"""
+    """calculate the mean value of the service life from the manufacture's service life label(eg. 30 years with 95% confidence)
+    with the given standard deviation
+
+    Parameters
+    ----------
+    pars : pamameter object instance
+        raw pamameters
+        pars.life_product_label_life
+        pars.life_confidence
+        pars.life_std
+
+    Returns
+    -------
+    float
+        service life mean value
+    """
     life_mean = hf.find_mean(
         # find_mean is a helper function in helper_func.py
         val=pars.life_product_label_life,
@@ -173,7 +242,7 @@ def membrane_life(pars):
 def calbrate_f(
     model_raw, t, membrane_failure_ratio_field, tol=1e-6, max_count=100, print_out=True
 ):
-    """find corresponding membrane service life std that matches the failure ratio in the field"""
+    """find the corresponding membrane service life std that matches the failure ratio in the field"""
     model = model_raw.copy()
     std_min = 0.0
     std_max = 100.0  # year, unrealistic large safe ceiling
@@ -206,7 +275,24 @@ def calbrate_f(
 
 
 def membrane_failure_year(model, year_lis, plot=True, amplify=80):
-    """run model over time"""
+    """membrane_failure_year: run model over a list of time steps
+
+    Parameters
+    ----------
+    model : class instance
+        Membrane_model class instance
+    year_lis : list, array-like
+        a list of time steps
+    plot : bool, optional
+        if True, plot the Pf, beta, R S distribtuion, by default True
+    amplify : int, optional
+        the arbitray comparable size of the distribution curve, by default 80
+
+    Returns
+    -------
+    tuple
+        (pf list , beta list)
+    """
     t_lis = year_lis
     M_cal = model
 
@@ -228,8 +314,7 @@ def membrane_failure_year(model, year_lis, plot=True, amplify=80):
         ]
         M_sel = [M_lis[i] for i in indx]
 
-        ax1.plot([this_M.t for this_M in M_lis], [
-                 this_M.pf for this_M in M_lis], "k--")
+        ax1.plot([this_M.t for this_M in M_lis], [this_M.pf for this_M in M_lis], "k--")
         ax1.plot(
             [this_M.t for this_M in M_sel],
             [this_M.pf for this_M in M_sel],
@@ -260,8 +345,7 @@ def membrane_failure_year(model, year_lis, plot=True, amplify=80):
 
         import matplotlib.patches as mpatches
 
-        R_patch = mpatches.Patch(
-            color="C0", label="R: membrane life", alpha=0.8)
+        R_patch = mpatches.Patch(color="C0", label="R: membrane life", alpha=0.8)
         S_patch = mpatches.Patch(color="C1", label="S: age", alpha=0.8)
 
         ax3.set_xlabel("Time[year]")
@@ -274,14 +358,17 @@ def membrane_failure_year(model, year_lis, plot=True, amplify=80):
 
 class Membrane_Model:
     def __init__(self, pars):
+        """initialize the object with raw parameter object (pars) and mean membrane life"""
         self.pars = pars
         self.pars.life_mean = membrane_life(self.pars)
 
     def run(self, t):
+        """attach the resistance: membrane age"""
         self.t = t
-        self.age = current_age(t)
+        self.age = membrane_age(t)
 
     def postproc(self, plot=False):
+        """solve pf, beta, attach R distribution with plot option"""
         sol = Pf_RS_special(
             (self.pars.life_mean, self.pars.life_std),
             self.age,
@@ -294,10 +381,12 @@ class Membrane_Model:
         self.S = self.age
 
     def membrane_failure_with_year(self, year_lis, plot=True, amplify=80):
+        """solve pf, beta at a list of time steps with plot option"""
         pf_lis, beta_lis = membrane_failure_year(
             self, year_lis, plot=plot, amplify=amplify
         )
         return np.array(pf_lis), np.array(beta_lis)
 
     def copy(self):
+        """create a deepcopy"""
         return deepcopy(self)
