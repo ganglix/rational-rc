@@ -1,7 +1,7 @@
 """
 Summary
 -------
-a statistical model is used to predict the probability of failure for the membrane. 
+A statistical model is used to predict the probability of failure for the membrane. 
 
 + The resistance is the service life of the membrane, and the load is the age in service. 
 + The limit-state is when the ago is greater than the service life. 
@@ -308,7 +308,7 @@ def calibrate_f(
     return model
 
 
-def membrane_failure_year(model, year_lis, plot=True, amplify=80):
+def membrane_failure_year(model, year_lis, plot=True, amplify=30):
     """membrane_failure_year: run model over a list of time steps
 
     Parameters
