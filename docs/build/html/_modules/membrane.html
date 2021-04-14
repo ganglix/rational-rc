@@ -163,6 +163,7 @@
 
 <span class="sd">+ The resistance is the service life of the membrane, and the load is the age in service. </span>
 <span class="sd">+ The limit-state is when the ago is greater than the service life. </span>
+
 <span class="sd">The initial estimation of the service life is assumed to follow the normal distribution with a mean and standard deviation such that the manufacture-labelled service life is 95% guaranteed. </span>
 <span class="sd">The estimated distribution of service life is then calibrated to the field survey results, </span>
 <span class="sd">where the failure rate of the membrane is reported through the half-cell test. </span>
@@ -466,7 +467,7 @@
     <span class="k">return</span> <span class="n">model</span></div>
 
 
-<div class="viewcode-block" id="membrane_failure_year"><a class="viewcode-back" href="../membrane.html#membrane.membrane_failure_year">[docs]</a><span class="k">def</span> <span class="nf">membrane_failure_year</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">year_lis</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">80</span><span class="p">):</span>
+<div class="viewcode-block" id="membrane_failure_year"><a class="viewcode-back" href="../membrane.html#membrane.membrane_failure_year">[docs]</a><span class="k">def</span> <span class="nf">membrane_failure_year</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">year_lis</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;membrane_failure_year: run model over a list of time steps</span>
 
 <span class="sd">    Parameters</span>

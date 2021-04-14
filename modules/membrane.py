@@ -5,6 +5,7 @@ A statistical model is used to predict the probability of failure for the membra
 
 + The resistance is the service life of the membrane, and the load is the age in service. 
 + The limit-state is when the ago is greater than the service life. 
+
 The initial estimation of the service life is assumed to follow the normal distribution with a mean and standard deviation such that the manufacture-labelled service life is 95% guaranteed. 
 The estimated distribution of service life is then calibrated to the field survey results, 
 where the failure rate of the membrane is reported through the half-cell test. 

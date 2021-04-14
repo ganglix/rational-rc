@@ -114,7 +114,7 @@ def load_df_R_ACC():
 
 
 def k_e(pars):
-    """ Calcualte k_e[-], envrionmental factor, effect of relative humidity
+    """ Calculate k_e[-], environmental factor, effect of relative humidity
 
     Parameters
     ----------
@@ -253,7 +253,7 @@ def C_S(C_S_emi=0):
 
 # weather function
 def W_t(t, pars):
-    """ Calcuate weather function W_t, a parameter considering the meso-climatic conditions due to wetting events of concrete surface
+    """ Calculate weather function W_t, a parameter considering the meso-climatic conditions due to wetting events of concrete surface
 
     Parameters
     ----------
@@ -286,7 +286,7 @@ def W_t(t, pars):
 def calibrate_f(model_raw, t, carb_depth_field, tol=1e-6, max_count=50, print_out=True):
     """carb_depth_field[mm]-> find corresponding x_c(accelerated test carb depth[m])
     Calibrate the carbonation model with field carbonation test data and return the new calibrated model object/instance
-    Optimization metheod: searching for the best accelerated test carbonation depth x_c[m] so the model matches field data
+    Optimization method: searching for the best accelerated test carbonation depth x_c[m] so the model matches field data
     on the mean value of the carbonation depth)
 
     Parameters
@@ -369,7 +369,7 @@ def carb_year(model, year_lis, plot=True, amplify=80):
             sharex=True,
             gridspec_kw={"height_ratios": [1, 1, 3]},
         )
-        # plot a few distrubtion
+        # plot a few distribution
         indx = np.linspace(0, len(year_lis) - 1, min(6, len(year_lis))).astype("int")[
             1:
         ]

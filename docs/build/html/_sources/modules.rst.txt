@@ -4,6 +4,8 @@ Modules
 .. toctree::
    :maxdepth: 4
 
-   carbonation
-   helper_func
    membrane
+   carbonation
+   chloride
+   helper_func
+   test_helper_func

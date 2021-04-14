@@ -1,0 +1,354 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>test_helper_func &mdash; Tinkrete alpha documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Tinkrete
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Modules</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Tinkrete</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>test_helper_func</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for test_helper_func</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">import</span> <span class="nn">helper_func</span> <span class="k">as</span> <span class="nn">hf</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+
+
+<div class="viewcode-block" id="TestHelperFunc"><a class="viewcode-back" href="../test_helper_func.html#test_helper_func.TestHelperFunc">[docs]</a><span class="k">class</span> <span class="nc">TestHelperFunc</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="c1"># setup reusable materials to test</span>
+<div class="viewcode-block" id="TestHelperFunc.setUp"><a class="viewcode-back" href="../test_helper_func.html#test_helper_func.TestHelperFunc.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">arr_mix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="TestHelperFunc.tearDown"><a class="viewcode-back" href="../test_helper_func.html#test_helper_func.TestHelperFunc.tearDown">[docs]</a>    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+    <span class="c1"># tester</span>
+<div class="viewcode-block" id="TestHelperFunc.test_dropna"><a class="viewcode-back" href="../test_helper_func.html#test_helper_func.TestHelperFunc.test_dropna">[docs]</a>    <span class="k">def</span> <span class="nf">test_dropna</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># compare array</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertCountEqual</span><span class="p">(</span><span class="n">hf</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">arr_mix</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]))</span></div>
+
+<div class="viewcode-block" id="TestHelperFunc.test_Get_mean"><a class="viewcode-back" href="../test_helper_func.html#test_helper_func.TestHelperFunc.test_Get_mean">[docs]</a>    <span class="k">def</span> <span class="nf">test_Get_mean</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">hf</span><span class="o">.</span><span class="n">Get_mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">arr_mix</span><span class="p">),</span> <span class="mi">10</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestHelperFunc.test_Get_std"><a class="viewcode-back" href="../test_helper_func.html#test_helper_func.TestHelperFunc.test_Get_std">[docs]</a>    <span class="k">def</span> <span class="nf">test_Get_std</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">hf</span><span class="o">.</span><span class="n">Get_std</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">arr_mix</span><span class="p">),</span> <span class="mf">1.118033988749895</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestHelperFunc.test_Normal_custom"><a class="viewcode-back" href="../test_helper_func.html#test_helper_func.TestHelperFunc.test_Normal_custom">[docs]</a>    <span class="k">def</span> <span class="nf">test_Normal_custom</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">res1</span> <span class="o">=</span> <span class="n">hf</span><span class="o">.</span><span class="n">Normal_custom</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">res1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="o">*</span> <span class="mf">0.95</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">res1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">*</span> <span class="mf">1.05</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">res1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="mf">0.95</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">res1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="mf">1.05</span><span class="p">)</span>
+
+        <span class="n">res2</span> <span class="o">=</span> <span class="n">hf</span><span class="o">.</span><span class="n">Normal_custom</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">((</span><span class="n">res2</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">res2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">**</span> <span class="mf">0.5</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">**</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="mf">0.95</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">res2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">**</span> <span class="mf">0.5</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">**</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="mf">1.05</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">res2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="p">((</span><span class="mi">1</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span> <span class="o">**</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="mf">0.95</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">res2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="p">((</span><span class="mi">1</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span> <span class="o">**</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="mf">1.05</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="TestHelperFunc.test_Beta_custom"><a class="viewcode-back" href="../test_helper_func.html#test_helper_func.TestHelperFunc.test_Beta_custom">[docs]</a>    <span class="k">def</span> <span class="nf">test_Beta_custom</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">res1</span> <span class="o">=</span> <span class="n">hf</span><span class="o">.</span><span class="n">Beta_custom</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">res1</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">res1</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">())</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">res1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="o">*</span> <span class="mf">0.95</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">res1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">*</span> <span class="mf">1.05</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">res1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="mf">0.95</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">res1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="mf">1.05</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestHelperFunc.test_interp_extrap_f"><a class="viewcode-back" href="../test_helper_func.html#test_helper_func.TestHelperFunc.test_interp_extrap_f">[docs]</a>    <span class="k">def</span> <span class="nf">test_interp_extrap_f</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="n">y1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="n">xfind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">])</span>
+        <span class="n">res1</span> <span class="o">=</span> <span class="n">hf</span><span class="o">.</span><span class="n">interp_extrap_f</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">xfind</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_almost_equal</span><span class="p">(</span><span class="n">res1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">]))</span>
+
+        <span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="n">y2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="n">res2</span> <span class="o">=</span> <span class="n">hf</span><span class="o">.</span><span class="n">interp_extrap_f</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">xfind</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_almost_equal</span><span class="p">(</span><span class="n">res2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">]))</span></div>
+
+<div class="viewcode-block" id="TestHelperFunc.test_find_similar_group"><a class="viewcode-back" href="../test_helper_func.html#test_helper_func.TestHelperFunc.test_find_similar_group">[docs]</a>    <span class="k">def</span> <span class="nf">test_find_similar_group</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">lis</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertCountEqual</span><span class="p">(</span>
+            <span class="n">hf</span><span class="o">.</span><span class="n">find_similar_group</span><span class="p">(</span><span class="n">lis</span><span class="p">,</span> <span class="n">similar_group_size</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">]</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestHelperFunc.test_sample_integral"><a class="viewcode-back" href="../test_helper_func.html#test_helper_func.TestHelperFunc.test_sample_integral">[docs]</a>    <span class="k">def</span> <span class="nf">test_sample_integral</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">Y35</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.01</span><span class="p">,</span> <span class="mf">1.001</span><span class="p">,</span> <span class="mf">1.0001</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">,</span> <span class="mf">2.01</span><span class="p">,</span> <span class="mf">2.001</span><span class="p">,</span> <span class="mf">2.0001</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mf">3.1</span><span class="p">,</span> <span class="mf">3.01</span><span class="p">,</span> <span class="mf">3.001</span><span class="p">,</span> <span class="mf">3.0001</span><span class="p">],</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">x5</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+            <span class="n">hf</span><span class="o">.</span><span class="n">sample_integral</span><span class="p">(</span><span class="n">Y35</span><span class="p">,</span> <span class="n">x5</span><span class="p">)</span>
+
+        <span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_almost_equal</span><span class="p">(</span>
+            <span class="n">hf</span><span class="o">.</span><span class="n">sample_integral</span><span class="p">(</span><span class="n">Y35</span><span class="p">,</span> <span class="n">x2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.2</span><span class="p">,</span> <span class="mf">4.02</span><span class="p">,</span> <span class="mf">4.002</span><span class="p">,</span> <span class="mf">4.0002</span><span class="p">])</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestHelperFunc.test_f_solve_poly2"><a class="viewcode-back" href="../test_helper_func.html#test_helper_func.TestHelperFunc.test_f_solve_poly2">[docs]</a>    <span class="k">def</span> <span class="nf">test_f_solve_poly2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="mf">1.0</span> <span class="ow">in</span> <span class="n">hf</span><span class="o">.</span><span class="n">f_solve_poly2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="TestHelperFunc.test_Fit_distrib"><a class="viewcode-back" href="../test_helper_func.html#test_helper_func.TestHelperFunc.test_Fit_distrib">[docs]</a>    <span class="k">def</span> <span class="nf">test_Fit_distrib</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="n">sample</span> <span class="o">=</span> <span class="n">hf</span><span class="o">.</span><span class="n">Normal_custom</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+
+        <span class="n">fit_normal</span> <span class="o">=</span> <span class="n">hf</span><span class="o">.</span><span class="n">Fit_distrib</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">fit_type</span><span class="o">=</span><span class="s2">&quot;normal&quot;</span><span class="p">)</span>
+        <span class="c1"># is stats.normal instance</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">fit_normal</span><span class="p">,</span> <span class="n">stats</span><span class="o">.</span><span class="n">_distn_infrastructure</span><span class="o">.</span><span class="n">rv_frozen</span><span class="p">)</span>
+        <span class="c1"># value is restored</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">fit_normal</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">places</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">fit_normal</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">places</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+        <span class="n">fit_kde</span> <span class="o">=</span> <span class="n">hf</span><span class="o">.</span><span class="n">Fit_distrib</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="n">fit_type</span><span class="o">=</span><span class="s2">&quot;kernel&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">fit_kde</span><span class="p">)</span>
+        <span class="c1"># is kde instance</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">fit_kde</span><span class="p">,</span> <span class="n">stats</span><span class="o">.</span><span class="n">kde</span><span class="o">.</span><span class="n">gaussian_kde</span><span class="p">)</span>
+        <span class="c1"># value is restored</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">fit_kde</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">places</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">fit_kde</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">places</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestHelperFunc.test_Pf_RS"><a class="viewcode-back" href="../test_helper_func.html#test_helper_func.TestHelperFunc.test_Pf_RS">[docs]</a>    <span class="k">def</span> <span class="nf">test_Pf_RS</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">sample</span> <span class="o">=</span> <span class="n">hf</span><span class="o">.</span><span class="n">Normal_custom</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+        <span class="n">pf_RS</span><span class="p">,</span> <span class="n">beta_factor</span><span class="p">,</span> <span class="n">R_distrib</span><span class="p">,</span> <span class="n">S_kde_fit</span> <span class="o">=</span> <span class="n">hf</span><span class="o">.</span><span class="n">Pf_RS</span><span class="p">(</span>
+            <span class="n">R_info</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span> <span class="n">S</span><span class="o">=</span><span class="n">sample</span><span class="p">,</span> <span class="n">R_distrib_type</span><span class="o">=</span><span class="s2">&quot;normal&quot;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">pf_RS</span><span class="p">,</span> <span class="mf">0.0008761213723265322</span><span class="p">,</span> <span class="n">places</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">beta_factor</span><span class="p">,</span> <span class="mf">3.153227215906705</span><span class="p">,</span> <span class="n">places</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">R_distrib</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">2</span><span class="p">,</span> <span class="n">places</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span>
+            <span class="n">S_kde_fit</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">sample</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">places</span><span class="o">=</span><span class="mi">2</span>
+        <span class="p">)</span>
+
+        <span class="n">pf_RS</span><span class="p">,</span> <span class="n">beta_factor</span><span class="p">,</span> <span class="n">R_distrib</span><span class="p">,</span> <span class="n">S_kde_fit</span> <span class="o">=</span> <span class="n">hf</span><span class="o">.</span><span class="n">Pf_RS</span><span class="p">(</span>
+            <span class="n">R_info</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">S</span><span class="o">=</span><span class="n">sample</span><span class="p">,</span> <span class="n">R_distrib_type</span><span class="o">=</span><span class="s2">&quot;beta&quot;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">pf_RS</span><span class="p">,</span> <span class="mf">0.036970274667017286</span><span class="p">,</span> <span class="n">places</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">beta_factor</span><span class="p">,</span> <span class="mf">1.7094971728697723</span><span class="p">,</span> <span class="n">places</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">R_distrib</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">2</span><span class="p">,</span> <span class="n">places</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span>
+            <span class="n">S_kde_fit</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">sample</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">places</span><span class="o">=</span><span class="mi">2</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestHelperFunc.test_RS_plot"><a class="viewcode-back" href="../test_helper_func.html#test_helper_func.TestHelperFunc.test_RS_plot">[docs]</a>    <span class="k">def</span> <span class="nf">test_RS_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># how to test the plot function?</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="TestHelperFunc.test_find_mean"><a class="viewcode-back" href="../test_helper_func.html#test_helper_func.TestHelperFunc.test_find_mean">[docs]</a>    <span class="k">def</span> <span class="nf">test_find_mean</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">std</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">/</span> <span class="mf">1.64</span>
+        <span class="n">cutoff</span> <span class="o">=</span> <span class="mi">30</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span>
+            <span class="n">hf</span><span class="o">.</span><span class="n">find_mean</span><span class="p">(</span><span class="n">cutoff</span><span class="p">,</span> <span class="n">std</span><span class="p">,</span> <span class="n">confidence_one_tailed</span><span class="o">=</span><span class="mf">0.95</span><span class="p">),</span>
+            <span class="mf">40.029595286288796</span><span class="p">,</span>
+            <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;95</span><span class="si">% o</span><span class="s2">ne tailed&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span>
+            <span class="n">hf</span><span class="o">.</span><span class="n">find_mean</span><span class="p">(</span><span class="n">cutoff</span><span class="p">,</span> <span class="n">std</span><span class="p">,</span> <span class="n">confidence_one_tailed</span><span class="o">=</span><span class="mf">0.90</span><span class="p">),</span>
+            <span class="mf">37.81433881429602</span><span class="p">,</span>
+            <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;90</span><span class="si">% o</span><span class="s2">ne tailed&quot;</span><span class="p">,</span>
+        <span class="p">)</span></div></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Gang Li.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

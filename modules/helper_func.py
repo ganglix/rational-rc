@@ -154,7 +154,7 @@ def interp_extrap_f(x, y, x_find, plot=False):
     Parameters
     ----------
     x : array-like
-        varible
+        variable
     y : array-like
         function value
     x_find : int or float or array-like
@@ -299,7 +299,7 @@ def Fit_distrib(s, fit_type="kernel", plot=False, xlabel="", title="", axn=None)
 
     Returns
     -------
-    instance of random varible 
+    instance of random variable 
         when parametric normal is used
             continuous random variable : stats.norm(loc = mu, scale = sigma)
         when kernel is used
@@ -571,7 +571,7 @@ def RS_plot(model, ax=None, t_offset=0, amplify=1):  # updated!
                       calculated in Pf_RS() through model.postproc()
     model.S_kde_fit : stats.gaussian_kde
                       calculated in Pf_RS() through model.postproc()
-                      distribution of load, e.g. carbonation depth, chlride content, tensile     stress. The distrubtion type is calculated S is usually not determined, can vary a lot in different cases, therefore fitted with kernel
+                      distribution of load, e.g. carbonation depth, chloride content, tensile     stress. The distrubtion type is calculated S is usually not determined, can vary a lot in different cases, therefore fitted with kernel
 
     model.S : numpy array
               load, e.g. carbonation depth, chloride content, tensile stress
