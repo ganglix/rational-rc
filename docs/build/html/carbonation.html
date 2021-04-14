@@ -96,6 +96,7 @@
 <li class="toctree-l2"><a class="reference internal" href="membrane.html">membrane module</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">carbonation module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chloride.html">chloride module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="corrosion.html">corrosion module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="helper_func.html">helper_func module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_helper_func.html">test_helper_func module</a></li>
 </ul>
@@ -280,7 +281,7 @@ test condition: duration time = 56 days CO2 = 2.0 vol%, T =25 degC RH_ref =65</p
 <dl class="py function">
 <dt id="carbonation.W_t">
 <code class="sig-prename descclassname"><span class="pre">carbonation.</span></code><code class="sig-name descname"><span class="pre">W_t</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/carbonation.html#W_t"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#carbonation.W_t" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calcuate weather function W_t, a parameter considering the meso-climatic conditions due to wetting events of concrete surface</p>
+<dd><p>Calculate weather function W_t, a parameter considering the meso-climatic conditions due to wetting events of concrete surface</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -307,7 +308,7 @@ Interior 0.0</p></li>
 <code class="sig-prename descclassname"><span class="pre">carbonation.</span></code><code class="sig-name descname"><span class="pre">calibrate_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_raw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">carb_depth_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/carbonation.html#calibrate_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#carbonation.calibrate_f" title="Permalink to this definition">¶</a></dt>
 <dd><p>carb_depth_field[mm]-&gt; find corresponding x_c(accelerated test carb depth[m])
 Calibrate the carbonation model with field carbonation test data and return the new calibrated model object/instance
-Optimization metheod: searching for the best accelerated test carbonation depth x_c[m] so the model matches field data
+Optimization method: searching for the best accelerated test carbonation depth x_c[m] so the model matches field data
 on the mean value of the carbonation depth)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -364,7 +365,7 @@ considering inaccuracies which occur conditionally when using the ACC test metho
 <dl class="py function">
 <dt id="carbonation.k_e">
 <code class="sig-prename descclassname"><span class="pre">carbonation.</span></code><code class="sig-name descname"><span class="pre">k_e</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/carbonation.html#k_e"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#carbonation.k_e" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calcualte k_e[-], envrionmental factor, effect of relative humidity</p>
+<dd><p>Calculate k_e[-], environmental factor, effect of relative humidity</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">

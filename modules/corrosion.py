@@ -15,7 +15,18 @@ import helper_func as hf
 
 
 def icorr_to_mmpy(icorr):
-    """icorr(A/m^2) to mm/year"""
+    """icorr_to_mmpy converts icorr [A/m^2] to corrosion rate[mm/year] using Faraday's laws
+
+    Parameters
+    ----------
+    icorr : float
+        corrosion current density [A/m^2]
+
+    Returns
+    -------
+    float
+        corrosion rate, section loss [mm/year]
+    """
     M_Fe = 55.8e-3  # kg/mol
     rho_Fe = 7.874e3  # kg/m^3
     n = 2.
@@ -25,7 +36,18 @@ def icorr_to_mmpy(icorr):
 
 
 def mmpy_to_icorr(rate):
-    """mm/year to icorr(A/m^2)"""
+    """mmpy_to_icorr converts corrosion rate[mm/year] to icorr [A/m^2] using Faraday's laws
+
+    Parameters
+    ----------
+    rate : float
+        corrosion rate, section loss [mm/year]
+
+    Returns
+    -------
+    float
+        corrosion current density [A/m^2]
+    """
     M_Fe = 55.8e-3  # kg/mol
     rho_Fe = 7.874e3  # kg/m^3
     n = 2.
@@ -37,16 +59,22 @@ def icorr_base(rho, T, iL, d):  # SI units # regressed model for the ref
     """ calculate averaged corrosion current density over the rebar-concrete surface from resistivity, temperature, limiting current and cover thickness
     Parameters
     ----------
-    rho : resistivity [ohm.m]
-    T : temperature [K]
-    iL : limiting current, oxygen diffusion [ A/m^2]
-    d : concrete cover depth [m]
+    rho : float, numpy array
+        resistivity [ohm.m]
+    T : float, numpy array
+        temperature [K]
+    iL : float, numpy array 
+        limiting current, oxygen diffusion [ A/m^2]
+    d : float, numpy array
+        concrete cover depth [m]
 
     Returns
     -------
-    icorr : corrosion current density, treated as uniform corrosion [A/m^2]
-    Notes
-    -----
+    float array
+        icorr : corrosion current density, treated as uniform corrosion [A/m^2]
+    
+    Note
+    ----
     reference: Pour-Ghaz, M., Isgor, O. B., & Ghods, P. (2009)The effect of temperature on the corrosion of steel in concrete. Part 1: Simulated polarization resistance tests and model development. Corrosion Science, 51(2), 415–425. https://doi.org/10.1016/j.corsci.2008.10.034
     parameters from ref
     SI units
@@ -77,22 +105,24 @@ def theta2rho_fun(theta_water, a, b):
 
 
 def icorr_f(pars):
-    ''' A wrapper of the icorr_base() with modified parameters (resistivity rho->volumetric water content, theta_water)
+    ''' A wrapper of the icorr_base() with modified parameters (resistivity rho -> volumetric water content, theta_water)
     by theta2rho_fun().
 
     Parameters
     ----------
-    pars : parameter class
-            pars.theta_water,
-            pars.T,
-            pars.iL,
-            pars.d,
-            pars.a,
-            pars.b
+    pars : instance of Param class
+
+            + pars.theta_water,
+            + pars.T,
+            + pars.iL,
+            + pars.d,
+            + pars.a,
+            + pars.b
 
     Returns
     -------
-    icorr : corrosion current density [A/m^2]
+    float, numpy array
+        icorr : corrosion current density [A/m^2]
     '''
     # previously calibrated to carbonated concrete
     pars.iL = iL_f(pars)
@@ -105,18 +135,28 @@ def iL_f(pars):
     """calculate O2 limiting current density
     Parameters
     ----------
-    pars : object
-    Notes
-    -----
-    z : number of charge, 4 for oxygen
-    D : diffusivity [m^2/s]
-    Cs : bulk concentration [mol/m^3]
-    delta : thickness of diffusion layer [m]
-    pars.epsilon_g : gas phase fraction
+    pars : instance of Param object
+        parameter object that contains the material properties
+
+    Returns
+    -------
+    float, numpy array
+        O2 limiting current density [A/m^2]
+
+    Note
+    ----
+    intermidiate parameters
+    
+    + z : number of charge, 4 for oxygen
+    + delta : thickness of diffusion layer [m]
+    + pars.De_O2 : diffusivity [m^2/s]
+    + pars.Cs_g : bulk concentration [mol/m^3]
+    + pars.epsilon_g : gas phase fraction
 
     returns
     -------
-    iL : current density over the steel concrete interface [A/m^2]
+    float, numpy array
+        iL : current density over the steel concrete interface [A/m^2]
     """
     F = 96485.3329  # s*A/mol
     z = 4
@@ -136,7 +176,7 @@ def iL_f(pars):
 
 
 def Cs_g_f():
-    """O2 concentration in gas phase on the boundary [mol/m^3]"""
+    """atmospheric O2 concentration in gas phase on the boundary [mol/m^3], converted from 20.95% by volume"""
     O2_fraction = 20.95/100
     air_molar_vol = 22.4 # [L/mol]
     Cs_g =  1 /air_molar_vol * O2_fraction * 1000  # mol/m^3
@@ -145,23 +185,31 @@ def Cs_g_f():
 
 
 def De_O2_f(pars):
-    """O2 effective diffusivity [TODO: add temperature dependence]
+    """calculate the O2 effective diffusivity of concrete
     Parameters
     ----------
-    pars : object
+    pars : instance of Param object
+
+    Returns
+    -------
+    float, numpy array
+        O2 effective diffusivity of concrete
 
     Notes
     -----
-    epsilon_p : porosity of hardened cement paste,
-    RH : relative humidity [-%]
+    important intermediate Parameters
 
-    because diffusion along the aggregate-paste interface makes up for the lack of diffusion through the aggregate particles themselves.
-    Therefore, the value of effective diffusivity is considered herein as a function of the porosity of hardened ce- ment paste
+    + epsilon_p : porosity of hardened cement paste,
+    + RH : relative humidity [-%]
+
+    Gas diffusion along the aggregate-paste interface makes up for the lack of diffusion through the aggregate particles themselves.
+    Therefore, the value of effective diffusivity is considered herein as a function of the porosity of hardened cement paste. 
+    [TODO: add temperature dependence]
     """
     epsilon_p = epsilon_p_f(pars)
     pars.epsilon_p = epsilon_p
 
-    # calcualte internal RH with retension curve/ adsoption curve
+    # calculate internal RH with retension curve/ adsoption curve
     WaterbyMassHCP = theta_water_to_WaterbyMassHCP(
         pars)  # water content g/g hardened cement paste
     pars.WaterbyMassHCP = WaterbyMassHCP
@@ -175,7 +223,21 @@ def De_O2_f(pars):
 
 
 def epsilon_p_f(pars):
-    """calculate the porosity of the hardened cement paste from the concrete porosity"""
+    """calculate the porosity of the hardened cement paste from the concrete porosity
+    
+    Paramters
+    ---------
+    pars : instance of Param object
+
+    Returns
+    -------
+    float, numpy array
+
+    Note
+    ----
+    [TODO: when the concrete porosity is not known, the calculated porosity is time dependent at young age, a function of concrete mix and t]
+
+    """
 
     if isinstance(int(pars.epsilon), int):  # concrete porosity, epsilon is given
         a_c = pars.a_c  # aggregate cement ratio
@@ -186,7 +248,7 @@ def epsilon_p_f(pars):
         epsilon_p = pars.epsilon * \
             (1 + (a_c * rho_c / rho_a) / (1 + w_c * rho_c / rho_w))
     elif 1 == 0:
-        # use calculation
+        # use calculation from mix proportioning
 
         # [TODO: epsilon is time dependent, a function of concrete mix and t]
         epsilon_p = None
@@ -202,14 +264,12 @@ def calibrate_f(raw_model, field_data):  # [TODO]
     model = raw_model.copy()
     return model
 
-# RH and water theta is related!!!! use theretical model adsorption isotherm or Van-Genutchten model
-
-
+# RH and water theta is related. Use theretical model adsorption isotherm or empirical Van-Genutchten model
 def RH_to_WaterbyMassHCP(pars):
-    """return water content(g/g hardended cement paste) from RH in pores/environment based on w_c, cement_type, Temperature
+    """return water content(g/g hardended cement paste) from RH in pores/environment based on w_c, cement_type, Temperature by using modified BET model
 
-    Notes
-    -----
+    Note
+    ----
     Ref:Xi, Y., Bazant, Z. P., & Jennings, H. M. (1993). Moisture Diffusion in Cementitious Materials Adsorption Isotherms.
     """
     V_m = V_m_f(pars.t, pars.w_c, pars.cement_type)
@@ -218,7 +278,7 @@ def RH_to_WaterbyMassHCP(pars):
     C_mean, C = C_f(pars.T)  # mean, distribution sample
     pars.C = C
 
-    k = k_f(pars.T, C_mean, pars.w_c, pars.t, pars.cement_type)
+    k = k_f(C_mean, pars.w_c, pars.t, pars.cement_type)
     pars.k = k
 
     RH_devided_by_100 = pars.RH / 100
@@ -238,7 +298,7 @@ def WaterbyMassHCP_to_RH(pars):
     C_mean, C = C_f(pars.T)  # mean, distribution sample
     pars.C = C
 
-    k = k_f(pars.T, C_mean, pars.w_c, pars.t, pars.cement_type)
+    k = k_f(C_mean, pars.w_c, pars.t, pars.cement_type)
     pars.k = k
 
     WaterbyMassHCP = pars.WaterbyMassHCP
@@ -256,7 +316,7 @@ def WaterbyMassHCP_to_RH(pars):
 
 
 def V_m_f(t, w_c, cement_type):
-    """ Calcuate V_m, a BET model parameter
+    """ Calculate V_m, a BET model parameter
 
     Parameters
     ----------
@@ -265,18 +325,19 @@ def V_m_f(t, w_c, cement_type):
 
     Returns
     -------
-    V_m : BET model parameter
+    numpy array
+        V_m : BET model parameter
 
-    Notes
-    -----
-    ASTM C150 describes:
-    Cement Type          Description
-    Type I               Normal
-    Type II              Moderate Sulfate Resistance
-    Type II (MH)         Moderate Heat of Hydration (and Moderate Sulfate Resistance)
-    Type III             High Early Strength
-    Type IV              Low Heat Hydration
-    Type V               High Sulfate Resistance
+    Note
+    ----
+    ASTM C150 cement type:\n
+    Cement Type          Description\n
+    Type I            :   Normal\n
+    Type II           :   Moderate Sulfate Resistance\n
+    Type II (MH)      :   Moderate Heat of Hydration (and Moderate Sulfate Resistance)\n
+    Type III          :   High Early Strength\n
+    Type IV           :   Low Heat Hydration\n
+    Type V            :   High Sulfate Resistance
     """
     if t < 5:
         t = 5
@@ -298,7 +359,17 @@ def V_m_f(t, w_c, cement_type):
 
 
 def C_f(T):
-    """ returns BET model paramter C, which varies from 10 to 50, not applicable for high temperatures"""
+    """C_f returns BET model parameter C sampled from a normal distribution
+
+    Parameters
+    ----------
+    T : float
+        temperature [K]
+
+    Note
+    ----
+    C varies from 10 to 50. This function is not applicable for elevated temperatures
+    """
     C_0 = 855
     C_mean = np.e**(C_0 / T)
     C_std = C_mean * 0.12  # COV 0.12
@@ -306,7 +377,7 @@ def C_f(T):
     return C_mean, C
 
 
-def k_f(T, C_mean, w_c, t, cement_type):
+def k_f(C_mean, w_c, t, cement_type):
     """ returns BET model parameter k"""
     if t < 5:
         t = 5
@@ -329,8 +400,6 @@ def k_f(T, C_mean, w_c, t, cement_type):
     return k
 
     # convert theta_water to W or W to theta_water
-
-
 def WaterbyMassHCP_to_theta_water(pars):
     """g/g HCP to volumetric by HCP to volumetric by concrete"""
     rho_w = 1000

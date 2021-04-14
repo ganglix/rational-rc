@@ -1,0 +1,503 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>corrosion module &mdash; Tinkrete alpha documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="helper_func module" href="helper_func.html" />
+    <link rel="prev" title="chloride module" href="chloride.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Tinkrete
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="membrane.html">membrane module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="carbonation.html">carbonation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chloride.html">chloride module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">corrosion module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helper_func.html">helper_func module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_helper_func.html">test_helper_func module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Tinkrete</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">Modules</a> &raquo;</li>
+        
+      <li>corrosion module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/corrosion.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-corrosion">
+<span id="corrosion-module"></span><h1>corrosion module<a class="headerlink" href="#module-corrosion" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="corrosion.C_f">
+<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">C_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#C_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.C_f" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns BET model paramter C, which varies from 10 to 50, not applicable for high temperatures</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="corrosion.Corrosion_Model">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">Corrosion_Model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#Corrosion_Model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.Corrosion_Model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="corrosion.Corrosion_Model.calibrate">
+<code class="sig-name descname"><span class="pre">calibrate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#Corrosion_Model.calibrate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.Corrosion_Model.calibrate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="corrosion.Corrosion_Model.copy">
+<code class="sig-name descname"><span class="pre">copy</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#Corrosion_Model.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.Corrosion_Model.copy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="corrosion.Corrosion_Model.run">
+<code class="sig-name descname"><span class="pre">run</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#Corrosion_Model.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.Corrosion_Model.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="corrosion.Cs_g_f">
+<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">Cs_g_f</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#Cs_g_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.Cs_g_f" title="Permalink to this definition">¶</a></dt>
+<dd><p>atmospheric O2 concentration in gas phase on the boundary [mol/m^3], converted from 20.95% by volume</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="corrosion.De_O2_f">
+<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">De_O2_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#De_O2_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.De_O2_f" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculate the O2 effective diffusivity of concrete
+:param pars:
+:type pars: instance of Param object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>O2 effective diffusivity of concrete</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float, numpy array</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>important intermediate Parameters</p>
+<ul class="simple">
+<li><p>epsilon_p : porosity of hardened cement paste,</p></li>
+<li><p>RH : relative humidity [-%]</p></li>
+</ul>
+<p>Gas diffusion along the aggregate-paste interface makes up for the lack of diffusion through the aggregate particles themselves.
+Therefore, the value of effective diffusivity is considered herein as a function of the porosity of hardened cement paste.
+[TODO: add temperature dependence]</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="corrosion.RH_to_WaterbyMassHCP">
+<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">RH_to_WaterbyMassHCP</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#RH_to_WaterbyMassHCP"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.RH_to_WaterbyMassHCP" title="Permalink to this definition">¶</a></dt>
+<dd><p>return water content(g/g hardended cement paste) from RH in pores/environment based on w_c, cement_type, Temperature by using modified BET model</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ref:Xi, Y., Bazant, Z. P., &amp; Jennings, H. M. (1993). Moisture Diffusion in Cementitious Materials Adsorption Isotherms.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="corrosion.V_m_f">
+<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">V_m_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cement_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#V_m_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.V_m_f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate V_m, a BET model parameter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> (<em>curing time/concrete age</em><em> [</em><em>day</em><em>]</em>) – </p></li>
+<li><p><strong>w_c</strong> (<em>water-cement ratio</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>V_m : BET model parameter</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy array</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>ASTM C150 cement type:</p>
+<p>Cement Type          Description</p>
+<p>Type I            :   Normal</p>
+<p>Type II           :   Moderate Sulfate Resistance</p>
+<p>Type II (MH)      :   Moderate Heat of Hydration (and Moderate Sulfate Resistance)</p>
+<p>Type III          :   High Early Strength</p>
+<p>Type IV           :   Low Heat Hydration</p>
+<p>Type V            :   High Sulfate Resistance</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="corrosion.WaterbyMassHCP_to_RH">
+<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">WaterbyMassHCP_to_RH</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#WaterbyMassHCP_to_RH"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.WaterbyMassHCP_to_RH" title="Permalink to this definition">¶</a></dt>
+<dd><p>return RH in pores/environment from water content(g/g hardened cement paste) based on w_c, cement_type, Temperature
+a reverse function of RH_to_WaterbyMassHCP()</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="corrosion.WaterbyMassHCP_to_theta_water">
+<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">WaterbyMassHCP_to_theta_water</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#WaterbyMassHCP_to_theta_water"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.WaterbyMassHCP_to_theta_water" title="Permalink to this definition">¶</a></dt>
+<dd><p>g/g HCP to volumetric by HCP to volumetric by concrete</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="corrosion.calibrate_f">
+<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">calibrate_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#calibrate_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.calibrate_f" title="Permalink to this definition">¶</a></dt>
+<dd><p>field_data: temperature, theta_water, icorr_list</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="corrosion.epsilon_p_f">
+<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">epsilon_p_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#epsilon_p_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.epsilon_p_f" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculate the porosity of the hardened cement paste from the concrete porosity</p>
+<p>pars : instance of Param object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float, numpy array</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>[TODO: when the concrete porosity is not known, the calculated porosity is time dependent at young age, a function of concrete mix and t]</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="corrosion.iL_f">
+<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">iL_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#iL_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.iL_f" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculate O2 limiting current density
+:param pars: parameter object that contains the material properties
+:type pars: instance of Param object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>O2 limiting current density [A/m^2]</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float, numpy array</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>intermidiate parameters</p>
+<ul class="simple">
+<li><p>z : number of charge, 4 for oxygen</p></li>
+<li><p>delta : thickness of diffusion layer [m]</p></li>
+<li><p>pars.De_O2 : diffusivity [m^2/s]</p></li>
+<li><p>pars.Cs_g : bulk concentration [mol/m^3]</p></li>
+<li><p>pars.epsilon_g : gas phase fraction</p></li>
+</ul>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>iL : current density over the steel concrete interface [A/m^2]</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float, numpy array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="corrosion.icorr_base">
+<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">icorr_base</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iL</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#icorr_base"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.icorr_base" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculate averaged corrosion current density over the rebar-concrete surface from resistivity, temperature, limiting current and cover thickness
+:param rho: resistivity [ohm.m]
+:type rho: float, numpy array
+:param T: temperature [K]
+:type T: float, numpy array
+:param iL: limiting current, oxygen diffusion [ A/m^2]
+:type iL: float, numpy array
+:param d: concrete cover depth [m]
+:type d: float, numpy array</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>icorr : corrosion current density, treated as uniform corrosion [A/m^2]</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float array</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>reference: Pour-Ghaz, M., Isgor, O. B., &amp; Ghods, P. (2009)The effect of temperature on the corrosion of steel in concrete. Part 1: Simulated polarization resistance tests and model development. Corrosion Science, 51(2), 415–425. <a class="reference external" href="https://doi.org/10.1016/j.corsci.2008.10.034">https://doi.org/10.1016/j.corsci.2008.10.034</a>
+parameters from ref
+SI units</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="corrosion.icorr_f">
+<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">icorr_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#icorr_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.icorr_f" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper of the icorr_base() with modified parameters (resistivity rho -&gt; volumetric water content, theta_water)
+by theta2rho_fun().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pars</strong> (<em>instance of Param class</em>) – <ul class="simple">
+<li><p>pars.theta_water,</p></li>
+<li><p>pars.T,</p></li>
+<li><p>pars.iL,</p></li>
+<li><p>pars.d,</p></li>
+<li><p>pars.a,</p></li>
+<li><p>pars.b</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>icorr : corrosion current density [A/m^2]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float, numpy array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="corrosion.icorr_to_mmpy">
+<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">icorr_to_mmpy</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">icorr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#icorr_to_mmpy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.icorr_to_mmpy" title="Permalink to this definition">¶</a></dt>
+<dd><p>icorr_to_mmpy converts icorr [A/m^2] to corrosion rate[mm/year] using Faraday’s laws</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>icorr</strong> (<em>float</em>) – corrosion current density [A/m^2]</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>corrosion rate, section loss [mm/year]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="corrosion.k_f">
+<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">k_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C_mean</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cement_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#k_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.k_f" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns BET model parameter k</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="corrosion.mmpy_to_icorr">
+<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">mmpy_to_icorr</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rate</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#mmpy_to_icorr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.mmpy_to_icorr" title="Permalink to this definition">¶</a></dt>
+<dd><p>mmpy_to_icorr converts corrosion rate[mm/year] to icorr [A/m^2] using Faraday’s laws</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rate</strong> (<em>float</em>) – corrosion rate, section loss [mm/year]</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>corrosion current density [A/m^2]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="corrosion.theta2rho_fun">
+<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">theta2rho_fun</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta_water</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#theta2rho_fun"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.theta2rho_fun" title="Permalink to this definition">¶</a></dt>
+<dd><p>volumetric water content to resistivity, index fun used</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="corrosion.theta_water_to_WaterbyMassHCP">
+<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">theta_water_to_WaterbyMassHCP</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#theta_water_to_WaterbyMassHCP"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.theta_water_to_WaterbyMassHCP" title="Permalink to this definition">¶</a></dt>
+<dd><p>volumetric by concrete to volumetric by HCP  to g/g HCP
+a reverse function of WaterbyMassHCP_to_theta_water()</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="helper_func.html" class="btn btn-neutral float-right" title="helper_func module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="chloride.html" class="btn btn-neutral float-left" title="chloride module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Gang Li.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -272,7 +272,7 @@
 
 
 <div class="viewcode-block" id="k_e"><a class="viewcode-back" href="../carbonation.html#carbonation.k_e">[docs]</a><span class="k">def</span> <span class="nf">k_e</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Calcualte k_e[-], envrionmental factor, effect of relative humidity</span>
+    <span class="sd">&quot;&quot;&quot; Calculate k_e[-], environmental factor, effect of relative humidity</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -411,7 +411,7 @@
 
 <span class="c1"># weather function</span>
 <div class="viewcode-block" id="W_t"><a class="viewcode-back" href="../carbonation.html#carbonation.W_t">[docs]</a><span class="k">def</span> <span class="nf">W_t</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">pars</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Calcuate weather function W_t, a parameter considering the meso-climatic conditions due to wetting events of concrete surface</span>
+    <span class="sd">&quot;&quot;&quot; Calculate weather function W_t, a parameter considering the meso-climatic conditions due to wetting events of concrete surface</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -444,7 +444,7 @@
 <div class="viewcode-block" id="calibrate_f"><a class="viewcode-back" href="../carbonation.html#carbonation.calibrate_f">[docs]</a><span class="k">def</span> <span class="nf">calibrate_f</span><span class="p">(</span><span class="n">model_raw</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">carb_depth_field</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">max_count</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">print_out</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;carb_depth_field[mm]-&gt; find corresponding x_c(accelerated test carb depth[m])</span>
 <span class="sd">    Calibrate the carbonation model with field carbonation test data and return the new calibrated model object/instance</span>
-<span class="sd">    Optimization metheod: searching for the best accelerated test carbonation depth x_c[m] so the model matches field data</span>
+<span class="sd">    Optimization method: searching for the best accelerated test carbonation depth x_c[m] so the model matches field data</span>
 <span class="sd">    on the mean value of the carbonation depth)</span>
 
 <span class="sd">    Parameters</span>
@@ -527,7 +527,7 @@
             <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;height_ratios&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]},</span>
         <span class="p">)</span>
-        <span class="c1"># plot a few distrubtion</span>
+        <span class="c1"># plot a few distribution</span>
         <span class="n">indx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">year_lis</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">year_lis</span><span class="p">)))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;int&quot;</span><span class="p">)[</span>
             <span class="mi">1</span><span class="p">:</span>
         <span class="p">]</span>

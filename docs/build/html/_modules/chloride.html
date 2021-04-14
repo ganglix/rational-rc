@@ -202,7 +202,7 @@
 <span class="sd">    t : float, int</span>
 <span class="sd">        time [year]</span>
 <span class="sd">    pars : instance of param object</span>
-<span class="sd">        a wrapper of all material and evironmental parameters deep-copied from the raw data</span>
+<span class="sd">        a wrapper of all material and environmental parameters deep-copied from the raw data</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -216,7 +216,7 @@
 <span class="sd">    + C_0    : initial chloride content of the concrete [wt-.%/cement]</span>
 <span class="sd">    + C_S_dx : chloride content at a depth dx and a certain point of time t [wt-.%/cement]</span>
 <span class="sd">    + dx     : depth of the convection zone (concrete layer, up to which the process of chloride penetration differs from Fick’s 2nd law of diffusion) [mm]</span>
-<span class="sd">    + D_app  : apparent coefficient of chloride diffusion through concxrete [mm^2/year]</span>
+<span class="sd">    + D_app  : apparent coefficient of chloride diffusion through concrete [mm^2/year]</span>
 <span class="sd">    + erf    : imported error function</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">pars</span><span class="o">.</span><span class="n">D_app</span> <span class="o">=</span> <span class="n">D_app</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">pars</span><span class="p">)</span>
@@ -227,14 +227,14 @@
 
 
 <div class="viewcode-block" id="D_app"><a class="viewcode-back" href="../chloride.html#chloride.D_app">[docs]</a><span class="k">def</span> <span class="nf">D_app</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">pars</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Calculate the apparent coefficient of chloride diffusion through concxrete D_app[mm^2/year]</span>
+    <span class="sd">&quot;&quot;&quot; Calculate the apparent coefficient of chloride diffusion through concrete D_app[mm^2/year]</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    t : float, int</span>
 <span class="sd">        time [year]</span>
 <span class="sd">    pars : instance of param object</span>
-<span class="sd">        a wrapper of all material and evironmental parameters deep-copied from the raw data</span>
+<span class="sd">        a wrapper of all material and environmental parameters deep-copied from the raw data</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -243,7 +243,7 @@
 
 <span class="sd">    Note</span>
 <span class="sd">    ----</span>
-<span class="sd">    intermediate parameters calcualted and attached to pars</span>
+<span class="sd">    intermediate parameters calculated and attached to pars</span>
 <span class="sd">    </span>
 <span class="sd">    + k_e     : environmental transfer variable [-]</span>
 <span class="sd">    + D_RCM_0 : chloride migration coefficient [mm^2/year]</span>
@@ -264,16 +264,16 @@
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    pars : instance of param object</span>
-<span class="sd">        a wrapper of all material and evironmental parameters deep-copied from the raw data</span>
+<span class="sd">        a wrapper of all material and environmental parameters deep-copied from the raw data</span>
 
-<span class="sd">        + pars.T_ref  : standard test temperatrure 293 [K]</span>
+<span class="sd">        + pars.T_ref  : standard test temperatrue 293 [K]</span>
 <span class="sd">        + pars.T_real : temperature of the structural element [K]</span>
-<span class="sd">        + pars.b_e    : regression varible [K]</span>
+<span class="sd">        + pars.b_e    : regression variable [K]</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    numpy array</span>
-<span class="sd">        large sample of the distrubtion of k_e</span>
+<span class="sd">        large sample of the distribution of k_e</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">pars</span><span class="o">.</span><span class="n">T_ref</span> <span class="o">=</span> <span class="mi">293</span>  <span class="c1"># K (20°C)</span>
     <span class="n">pars</span><span class="o">.</span><span class="n">b_e</span> <span class="o">=</span> <span class="n">b_e</span><span class="p">()</span>
@@ -282,20 +282,20 @@
 
 
 <div class="viewcode-block" id="b_e"><a class="viewcode-back" href="../chloride.html#chloride.b_e">[docs]</a><span class="k">def</span> <span class="nf">b_e</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;provide the large sample array of b_e : regression varible [K]&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;provide the large sample array of b_e : regression variable [K]&quot;&quot;&quot;</span>
     <span class="n">b_e</span> <span class="o">=</span> <span class="n">hf</span><span class="o">.</span><span class="n">Normal_custom</span><span class="p">(</span><span class="mi">4800</span><span class="p">,</span> <span class="mi">700</span><span class="p">)</span>  <span class="c1"># K</span>
     <span class="k">return</span> <span class="n">b_e</span></div>
 
 
 <div class="viewcode-block" id="A_t"><a class="viewcode-back" href="../chloride.html#chloride.A_t">[docs]</a><span class="k">def</span> <span class="nf">A_t</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">pars</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;calcuate A_t considering the ageing effect</span>
+    <span class="sd">&quot;&quot;&quot;calculate A_t considering the ageing effect</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    t : int, float</span>
 <span class="sd">        time [year]</span>
 <span class="sd">    pars : instance of param object</span>
-<span class="sd">        a wrapper of all material and evironmental parameters deep-copied from the raw data</span>
+<span class="sd">        a wrapper of all material and environmental parameters deep-copied from the raw data</span>
 <span class="sd">        </span>
 <span class="sd">        + pars.concrete_type : string</span>
 <span class="sd">            Option:</span>
@@ -321,14 +321,14 @@
     <span class="n">pars</span><span class="o">.</span><span class="n">t_0</span> <span class="o">=</span> <span class="mf">0.0767</span>  <span class="c1"># reference point of time [year]</span>
     <span class="c1"># To carry out the quantification of a, the transfer variable k_t was set to k_t = 1:</span>
     <span class="n">pars</span><span class="o">.</span><span class="n">k_t</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="c1"># a: agieng exponent</span>
+    <span class="c1"># a: aging exponent</span>
     <span class="n">a</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">if</span> <span class="n">pars</span><span class="o">.</span><span class="n">concrete_type</span> <span class="o">==</span> <span class="s2">&quot;Portland cement concrete&quot;</span><span class="p">:</span>
         <span class="c1"># CEM I; 0.40 ≤ w/c ≤ 0.60</span>
         <span class="n">a</span> <span class="o">=</span> <span class="n">hf</span><span class="o">.</span><span class="n">Beta_custom</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">pars</span><span class="o">.</span><span class="n">concrete_type</span> <span class="o">==</span> <span class="s2">&quot;Portland fly ash cement concrete&quot;</span><span class="p">:</span>
-        <span class="c1"># f≥0.20·z;k=0.50; 0.40≤w/ceqv. ≤0.62</span>
+        <span class="c1"># f≥0.20·z;k=0.50; 0.40≤w/c_eqv. ≤0.62</span>
         <span class="n">a</span> <span class="o">=</span> <span class="n">hf</span><span class="o">.</span><span class="n">Beta_custom</span><span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">pars</span><span class="o">.</span><span class="n">concrete_type</span> <span class="o">==</span> <span class="s2">&quot;Blast furnace slag cement concrete&quot;</span><span class="p">:</span>
@@ -341,20 +341,20 @@
 
 <div class="viewcode-block" id="D_RCM_0"><a class="viewcode-back" href="../chloride.html#chloride.D_RCM_0">[docs]</a><span class="k">def</span> <span class="nf">D_RCM_0</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Return the chloride migration coefficient from Rapid chloride migration test [m^2/s] see NT Build 492</span>
-<span class="sd">    if the test data is not available from pars, use intepolation of existion empirical data for orientation purpose</span>
+<span class="sd">    if the test data is not available from pars, use interpolation of existion empirical data for orientation purpose</span>
 <span class="sd">    Pay attention to the units output [mm^2/year], used for the model</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    pars : instance of param object</span>
-<span class="sd">        a wrapper of all material and evironmental parameters deep-copied from the raw data</span>
+<span class="sd">        a wrapper of all material and environmental parameters deep-copied from the raw data</span>
 
 <span class="sd">    pars.D_RCM_test    : int or float</span>
 <span class="sd">                            RCM test results[m^2/s], the mean value from the test is used, and standard deviation is estimated based on mean</span>
 <span class="sd">    pars.option.choose : bool</span>
-<span class="sd">                            if true intepolation from existing data table is used</span>
+<span class="sd">                            if true interpolation from existing data table is used</span>
 <span class="sd">    pars.option.df_D_RCM_0  : pandas dataframe</span>
-<span class="sd">                            experimental data table(cement type, and w/c eqv) for intepolation</span>
+<span class="sd">                            experimental data table(cement type, and w/c eqv) for interpolation</span>
 <span class="sd">    pars.option.cement_type : string</span>
 <span class="sd">                            select cement type for data interpolation of the df_D_RCM_0,</span>
 <span class="sd">                            Options:</span>
@@ -363,7 +363,7 @@
 <span class="sd">                            &#39;CEM_I_42.5_R+SF&#39;\n</span>
 <span class="sd">                            &#39;CEM_III/B_42.5&#39;</span>
 <span class="sd">    pars.option.wc_eqv : float</span>
-<span class="sd">                        equivalent water cement ratio considering supplimentary cementitious materials</span>
+<span class="sd">                        equivalent water cement ratio considering supplementary cementitious materials</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -400,7 +400,7 @@
 
 <span class="c1"># Built-in Data Table for data interpolation</span>
 
-<span class="c1"># Data table to intepolate/extrapolate</span>
+<span class="c1"># Data table to interpolate/extrapolate</span>
 <div class="viewcode-block" id="load_df_D_RCM"><a class="viewcode-back" href="../chloride.html#chloride.load_df_D_RCM">[docs]</a><span class="k">def</span> <span class="nf">load_df_D_RCM</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;load the data table of the Rapid Chloride Migration(RCM) test</span>
 <span class="sd">    for D_RCM interpolation.</span>
@@ -432,7 +432,7 @@
 
 <div class="viewcode-block" id="C_eqv_to_C_S_0"><a class="viewcode-back" href="../chloride.html#chloride.C_eqv_to_C_S_0">[docs]</a><span class="k">def</span> <span class="nf">C_eqv_to_C_S_0</span><span class="p">(</span><span class="n">C_eqv</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Convert solution chloride content to saturated chloride content in concrete</span>
-<span class="sd">    intepolate function for 300kg cement w/c=0.5 OPC. Other empirical function should be used if available</span>
+<span class="sd">    interpolate function for 300kg cement w/c=0.5 OPC. Other empirical function should be used if available</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -474,7 +474,7 @@
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    pars : instance of the param object</span>
-<span class="sd">        a wrapper of all material and evironmental parameters deep-copied from the raw data</span>
+<span class="sd">        a wrapper of all material and environmental parameters deep-copied from the raw data</span>
 <span class="sd">        See Note for details</span>
 
 
@@ -487,7 +487,7 @@
 <span class="sd">    ----</span>
 <span class="sd">    1. marine or coastal</span>
 
-<span class="sd">    + pars.C_0_M : natural chloirde content of sea water [g/l]</span>
+<span class="sd">    + pars.C_0_M : natural chloride content of sea water [g/l]</span>
 
 <span class="sd">    2. de-icing salt (hard to quantify)</span>
 
@@ -518,7 +518,7 @@
 
 <span class="c1"># exposure condition</span>
 <div class="viewcode-block" id="C_S_0"><a class="viewcode-back" href="../chloride.html#chloride.C_S_0">[docs]</a><span class="k">def</span> <span class="nf">C_S_0</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return (surface) chloride satuation concentration C_S_0 [wt.-%/cement] caused by  C_eqv [g/l]</span>
+    <span class="sd">&quot;&quot;&quot;Return (surface) chloride saturation concentration C_S_0 [wt.-%/cement] caused by  C_eqv [g/l]</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -534,7 +534,7 @@
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    float</span>
-<span class="sd">        chloride satuation concentration C_S_0 [wt.-%/cement]</span>
+<span class="sd">        chloride saturation concentration C_S_0 [wt.-%/cement]</span>
 
 <span class="sd">    Note</span>
 <span class="sd">    ----</span>
@@ -553,7 +553,7 @@
 <span class="sd">    </span>
 <span class="sd">    Fick&#39;s 2nd law applies below the advection zone(depth=dx). No advection effect when dx = 0</span>
 <span class="sd">    condition considered: continuous/intermittent expsure - &#39;submerged&#39;,&#39;leakage&#39;, &#39;spray&#39;, &#39;splash&#39; where C_S_dx = C_S_0.</span>
-<span class="sd">    The advection depth dx is calucated in the dx() function externally.</span>
+<span class="sd">    The advection depth dx is calculated in the dx() function externally.</span>
 
 <span class="sd">    if exposure_condition_geom_sensitive is True: the observed/empirical highest chloride content in concrete C_max is used, C_max is calculated by C_max()</span>
 
@@ -588,7 +588,7 @@
 
     <span class="k">elif</span> <span class="n">pars</span><span class="o">.</span><span class="n">exposure_condition</span> <span class="o">==</span> <span class="s2">&quot;splash&quot;</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">pars</span><span class="o">.</span><span class="n">exposure_condition_geom_sensitive</span><span class="p">:</span>
-            <span class="c1"># gelometry-sensitive road splash use C_max</span>
+            <span class="c1"># geometry-sensitive road splash use C_max</span>
             <span class="n">pars</span><span class="o">.</span><span class="n">C_max</span> <span class="o">=</span> <span class="n">C_max</span><span class="p">(</span><span class="n">pars</span><span class="p">)</span>
             <span class="n">C_S_dx_mean</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">C_max</span>
             <span class="n">C_S_dx_std</span> <span class="o">=</span> <span class="mf">0.75</span> <span class="o">*</span> <span class="n">C_S_dx_mean</span>
@@ -636,7 +636,7 @@
 <span class="sd">                      cement/concrete weight ratio, used to convert [wt.-%/concrete] -&gt; [wt.-%/cement]</span>
 
 <span class="sd">    pars.C_max_option : string</span>
-<span class="sd">                        &quot;empirical&quot; - use empiricial equation</span>
+<span class="sd">                        &quot;empirical&quot; - use empirical equation</span>
 <span class="sd">                        &quot;user_input&quot; - use user input, from test</span>
 <span class="sd">    pars.x_a : </span>
 <span class="sd">        &quot;empirical&quot; option: horizontal distance from the roadside [cm]</span>
@@ -695,7 +695,7 @@
     <span class="k">return</span> <span class="n">C_crit_param</span></div>
 
 
-<span class="c1"># calibration fucntion</span>
+<span class="c1"># calibration function</span>
 <div class="viewcode-block" id="calibrate_chloride_f"><a class="viewcode-back" href="../chloride.html#chloride.calibrate_chloride_f">[docs]</a><span class="k">def</span> <span class="nf">calibrate_chloride_f</span><span class="p">(</span>
     <span class="n">model_raw</span><span class="p">,</span>
     <span class="n">x</span><span class="p">,</span>
@@ -708,7 +708,7 @@
 <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;calibrate chloride model to field data at one depth at one time.</span>
 <span class="sd">    Calibrate the chloride model with field chloride test data and return the new calibrated model object/instance</span>
-<span class="sd">    Optimization metheod:  Field chloirde content at depth x and time t -&gt; find corresponding D_RCM_0(repaid chloride migration diffusivity[m^2/s])</span>
+<span class="sd">    Optimization method:  Field chloride content at depth x and time t -&gt; find corresponding D_RCM_0(repaid chloride migration diffusivity[m^2/s])</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -867,7 +867,7 @@
             <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;height_ratios&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]},</span>
         <span class="p">)</span>
-        <span class="c1"># plot a few distrubtion</span>
+        <span class="c1"># plot a few distribution</span>
         <span class="n">indx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">year_lis</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">year_lis</span><span class="p">)))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;int&quot;</span><span class="p">)[</span>
             <span class="mi">1</span><span class="p">:</span>
         <span class="p">]</span>
@@ -991,22 +991,17 @@
         <span class="k">return</span> <span class="n">model_cal</span></div>
 
 <div class="viewcode-block" id="Chloride_Model.copy"><a class="viewcode-back" href="../chloride.html#chloride.Chloride_Model.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;create a deepcopy of the instance</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        model object instance</span>
-<span class="sd">    </span>
+        <span class="sd">&quot;&quot;&quot;create a deepcopy of the instance, to preserve the mutable object             </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Chloride_Model.chloride_with_year"><a class="viewcode-back" href="../chloride.html#chloride.Chloride_Model.chloride_with_year">[docs]</a>    <span class="k">def</span> <span class="nf">chloride_with_year</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">year_lis</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">80</span><span class="p">):</span>
+<div class="viewcode-block" id="Chloride_Model.chloride_with_year"><a class="viewcode-back" href="../chloride.html#chloride.Chloride_Model.chloride_with_year">[docs]</a>    <span class="k">def</span> <span class="nf">chloride_with_year</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">year_lis</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;chloride_with_year runs the model for a list of time steps</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        depth : float</span>
-<span class="sd">            depth at which the chloride concrete is calucated, x[mm]</span>
+<span class="sd">            depth at which the chloride concrete is calculated, x[mm]</span>
 <span class="sd">        year_lis : list</span>
 <span class="sd">            a list of time steps [year]</span>
 <span class="sd">        plot : bool, optional</span>

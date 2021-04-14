@@ -837,7 +837,7 @@ class Chloride_Model:
         """
         return deepcopy(self)
 
-    def chloride_with_year(self, depth, year_lis, plot=True, amplify=80):
+    def chloride_with_year(self, depth, year_lis, plot=True, amplify=1):
         """chloride_with_year runs the model for a list of time steps
 
         Parameters
