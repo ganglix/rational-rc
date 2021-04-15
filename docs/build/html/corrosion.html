@@ -95,7 +95,10 @@
 <li class="toctree-l2"><a class="reference internal" href="membrane.html">membrane module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="carbonation.html">carbonation module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chloride.html">chloride module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">corrosion module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">corrosion module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#summary">Summary</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="helper_func.html">helper_func module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_helper_func.html">test_helper_func module</a></li>
 </ul>
@@ -171,10 +174,21 @@
             
   <div class="section" id="module-corrosion">
 <span id="corrosion-module"></span><h1>corrosion module<a class="headerlink" href="#module-corrosion" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt id="corrosion.C_f">
 <code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">C_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#C_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.C_f" title="Permalink to this definition">¶</a></dt>
-<dd><p>returns BET model paramter C, which varies from 10 to 50, not applicable for high temperatures</p>
+<dd><p>C_f returns BET model parameter C sampled from a normal distribution</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>T</strong> (<em>float</em>) – temperature [K]</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>C varies from 10 to 50. This function is not applicable for elevated temperatures</p>
+</div>
 </dd></dl>
 
 <dl class="py class">
@@ -235,8 +249,64 @@ Therefore, the value of effective diffusivity is considered herein as a function
 <dd><p>return water content(g/g hardended cement paste) from RH in pores/environment based on w_c, cement_type, Temperature by using modified BET model</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Ref:Xi, Y., Bazant, Z. P., &amp; Jennings, H. M. (1993). Moisture Diffusion in Cementitious Materials Adsorption Isotherms.</p>
+<p>Refernce: Xi, Y., Bazant, Z. P., &amp; Jennings, H. M. (1993). Moisture Diffusion in Cementitious Materials Adsorption Isotherms.</p>
 </div>
+</dd></dl>
+
+<dl class="py class">
+<dt id="corrosion.Section_loss">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">Section_loss</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#Section_loss"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.Section_loss" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="corrosion.Section_loss.copy">
+<code class="sig-name descname"><span class="pre">copy</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#Section_loss.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.Section_loss.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>copy return a deep copy</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="corrosion.Section_loss.postproc">
+<code class="sig-name descname"><span class="pre">postproc</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#Section_loss.postproc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.Section_loss.postproc" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculate the Pf and beta from accumulated section loss and section loss limit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>plot</strong> (<em>bool</em><em>, </em><em>optional</em>) – if true plot the R S curve, by default False</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="corrosion.Section_loss.run">
+<code class="sig-name descname"><span class="pre">run</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_end</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#Section_loss.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.Section_loss.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>run model to solve the accumulated section loss at t_end by using x_loss_t_fun()</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>t_end</strong> (<em>int</em><em>, </em><em>float</em>) – year</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="corrosion.Section_loss.section_loss_with_year">
+<code class="sig-name descname"><span class="pre">section_loss_with_year</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year_lis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#Section_loss.section_loss_with_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.Section_loss.section_loss_with_year" title="Permalink to this definition">¶</a></dt>
+<dd><p>use x_loss_year() to report the accumulated section loss at each time step and
+the corresponding Pf and beta.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>year_lis</strong> (<em>list</em>) – a list of time step [year]</p></li>
+<li><p><strong>plot</strong> (<em>bool</em><em>, </em><em>optional</em>) – if true plot the RS pf beta with time, by default True</p></li>
+<li><p><strong>amplify</strong> (<em>int</em><em>, </em><em>optional</em>) – scale factor to adjust the height of the distribution curve, by default 1</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(pf_list, beta_list)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py function">
@@ -280,13 +350,14 @@ a reverse function of RH_to_WaterbyMassHCP()</p>
 <dl class="py function">
 <dt id="corrosion.WaterbyMassHCP_to_theta_water">
 <code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">WaterbyMassHCP_to_theta_water</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#WaterbyMassHCP_to_theta_water"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.WaterbyMassHCP_to_theta_water" title="Permalink to this definition">¶</a></dt>
-<dd><p>g/g HCP to volumetric by HCP to volumetric by concrete</p>
+<dd><p>convert water content from g/g hardened cement paste(HCP)
+to volumetric in HCP to volumetric in concrete</p>
 </dd></dl>
 
 <dl class="py function">
 <dt id="corrosion.calibrate_f">
 <code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">calibrate_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#calibrate_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.calibrate_f" title="Permalink to this definition">¶</a></dt>
-<dd><p>field_data: temperature, theta_water, icorr_list</p>
+<dd><p>A placeholder function for future use. field_data: temperature, theta_water, icorr_list</p>
 </dd></dl>
 
 <dl class="py function">
@@ -416,7 +487,7 @@ by theta2rho_fun().</p>
 
 <dl class="py function">
 <dt id="corrosion.k_f">
-<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">k_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C_mean</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cement_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#k_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.k_f" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">k_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">C_mean</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cement_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#k_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.k_f" title="Permalink to this definition">¶</a></dt>
 <dd><p>returns BET model parameter k</p>
 </dd></dl>
 
@@ -440,16 +511,46 @@ by theta2rho_fun().</p>
 <dl class="py function">
 <dt id="corrosion.theta2rho_fun">
 <code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">theta2rho_fun</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta_water</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#theta2rho_fun"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.theta2rho_fun" title="Permalink to this definition">¶</a></dt>
-<dd><p>volumetric water content to resistivity, index fun used</p>
+<dd><p>volumetric water content to resistivity, index regression function used</p>
 </dd></dl>
 
 <dl class="py function">
 <dt id="corrosion.theta_water_to_WaterbyMassHCP">
 <code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">theta_water_to_WaterbyMassHCP</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#theta_water_to_WaterbyMassHCP"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.theta_water_to_WaterbyMassHCP" title="Permalink to this definition">¶</a></dt>
-<dd><p>volumetric by concrete to volumetric by HCP  to g/g HCP
+<dd><p>convert water content from volumetric by concrete to volumetric in HCP  to g/g  inHCP
 a reverse function of WaterbyMassHCP_to_theta_water()</p>
 </dd></dl>
 
+<dl class="py function">
+<dt id="corrosion.x_loss_t_fun">
+<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">x_loss_t_fun</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_corr_mean</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p_active_t_curve</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#x_loss_t_fun"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.x_loss_t_fun" title="Permalink to this definition">¶</a></dt>
+<dd><p>x_loss_t_fun returns x_loss samples at a SINGLE given time t_tend. the samples represents distribution of all possible x_loss with
+different corrosion history</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t_end</strong> (<em>int</em><em>, </em><em>float</em>) – year in which the x_loss is reported</p></li>
+<li><p><strong>n_step</strong> (<em>int</em>) – number of time steps</p></li>
+<li><p><strong>r_corr_mean</strong> (<em>float</em>) – averaged corrosion rate i.e. x-loss rate</p></li>
+<li><p><strong>p_active_t_curve</strong> (<em>tuple</em>) – (t_lis_curve, pf_lis_curve)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>section loss at t_end year, a large sample from the distribution</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="corrosion.x_loss_year">
+<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">x_loss_year</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year_lis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">80</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#x_loss_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.x_loss_year" title="Permalink to this definition">¶</a></dt>
+<dd><p>run x_loss_t_fun() function over time</p>
+</dd></dl>
+
+</div>
 </div>
 
 
