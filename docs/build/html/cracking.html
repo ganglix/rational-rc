@@ -185,15 +185,14 @@ internal stress strain through the concrete cover and the location of the crack 
 critical section loss to cause crack on the cover surface</p>
 <p>### [update]</p>
 <ul class="simple">
-<li><p>fully vectorizedd func with direct masking method</p></li>
-<li><p>numpy func instead of vectorize to run faster</p></li>
+<li><p>fully vectorized func with direct masking method</p></li>
+<li><p>numpy func instead of “numpy.vectorize” to run faster</p></li>
 <li><p>random variable</p></li>
 <li><p>object</p></li>
 <li><p>open crack width</p></li>
 <li><p>u_p as a function of w/c</p></li>
 <li><p>random r_v</p></li>
-<li><p>P of f is not consistent between P_RS and crack_condition count. Because the R and S here are dependent: S.max() = R</p></li>
-<li><p>Currently use crack_condition count. for example if 100% fully cracked, then R==S, Pf = 50%, wrong answer</p></li>
+<li><p>P of f is not consistent between P_RS and crack_condition count. Because the R and S here are dependent: S.max() = R. Currently use crack_condition count. for example if 100% fully cracked, then R==S, Pf = 50%, wrong answer</p></li>
 </ul>
 <p>### [TODO]</p>
 <ul class="simple">
@@ -206,85 +205,197 @@ critical section loss to cause crack on the cover surface</p>
 <dl class="py method">
 <dt id="cracking.Cracking_Model.copy">
 <code class="sig-name descname"><span class="pre">copy</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cracking.html#Cracking_Model.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cracking.Cracking_Model.copy" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>create a deepcopy</p>
+</dd></dl>
 
 <dl class="py method">
 <dt id="cracking.Cracking_Model.postproc">
 <code class="sig-name descname"><span class="pre">postproc</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cracking.html#Cracking_Model.postproc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cracking.Cracking_Model.postproc" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>calculate the crack length and surface crack rate</p>
+</dd></dl>
 
 <dl class="py method">
 <dt id="cracking.Cracking_Model.run">
 <code class="sig-name descname"><span class="pre">run</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stochastic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cracking.html#Cracking_Model.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cracking.Cracking_Model.run" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Solve stress and strain and crack tip location in concrete cover</p>
+</dd></dl>
 
 </dd></dl>
 
 <dl class="py function">
 <dt id="cracking.bilinear_stress_strain">
 <code class="sig-prename descclassname"><span class="pre">cracking.</span></code><code class="sig-name descname"><span class="pre">bilinear_stress_strain</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epsilon_theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">E_0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cracking.html#bilinear_stress_strain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cracking.bilinear_stress_strain" title="Permalink to this definition">¶</a></dt>
-<dd><p>returns the stress in concrete from strain
-epsilon_thetan: numpy array, strain
-f_t : numpy array cracking tensile strength
-E_0 : numpy array modulus of elasticity [TODO: reduction due to creep]</p>
-<p class="rubric">Notes</p>
+<dd><p>returns the stress in concrete from strain using the bilinear stress-strain curve</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>epsilon_theta</strong> (<em>numpy array</em>) – strain[-]</p></li>
+<li><p><strong>f_t</strong> (<em>numpy array</em>) – cracking tensile strength[MPa]</p></li>
+<li><p><strong>E_0</strong> (<em>numpy array</em>) – modulus of elasticity[MPa]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>stress[MPa]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy array</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>TODO: modulus of elasticity reduction due to creep</p>
+</div>
 </dd></dl>
 
 <dl class="py function">
 <dt id="cracking.crack_width_open">
 <code class="sig-prename descclassname"><span class="pre">cracking.</span></code><code class="sig-name descname"><span class="pre">crack_width_open</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_st</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">E_0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cracking.html#crack_width_open"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cracking.crack_width_open" title="Permalink to this definition">¶</a></dt>
-<dd><p>calculate crack opening on the concret cover surface
-:param a: inner radius boundary of the rust (center of rebar to rust-concrete) [m]
-:type a: np array
-:param b: outer radius boundary of the concrete (center of rebar to cover surface) [m]
-:type b: np array
-:param u_st: rust expansion(to original rebar surface) beyond the porous zone [m]
-:type u_st: array
-:param f_t: ultimate tensile strength [MPa]
-:type f_t: array
-:param E_0: modulus of elasticity [MPa]
-:type E_0: array</p>
+<dd><p>calculate crack opening on the concret cover surface</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>numpy array</em>) – inner radius boundary of the rust (center of rebar to rust-concrete) [m]</p></li>
+<li><p><strong>b</strong> (<em>numpy array</em>) – outer radius boundary of the concrete (center of rebar to cover surface) [m]</p></li>
+<li><p><strong>u_st</strong> (<em>numpy array</em>) – rust expansion(to original rebar surface) beyond the porous zone [m]</p></li>
+<li><p><strong>f_t</strong> (<em>numpy array</em>) – ultimate tensile strength [MPa]</p></li>
+<li><p><strong>E_0</strong> (<em>numpy array</em>) – modulus of elasticity [MPa]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>sample of crack opening on the concret cover surface</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy array</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt id="cracking.solve_stress_strain_crack_deterministic">
 <code class="sig-prename descclassname"><span class="pre">cracking.</span></code><code class="sig-name descname"><span class="pre">solve_stress_strain_crack_deterministic</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cracking.html#solve_stress_strain_crack_deterministic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cracking.solve_stress_strain_crack_deterministic" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>solve the stress and strain along the polar axis using strain_stress_crack_f().
+One deterministic solution is returned by the means of all input variables.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pars</strong> (<em>Param object instance</em>) – an object instance containing material properties</p></li>
+<li><p><strong>number_of_points</strong> (<em>int</em><em>, </em><em>optional</em>) – number of points where the stress and strain is reported along
+the polar axis, by default 100</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>(epsilon_theta, sigma_theta, rust_thickness,
+crack_condition, R_c, w_open)</p>
+<p>(strain, stress, rust thickness,
+crack condition code, crack front cooridnate, open crack width)</p>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="cracking.solve_stress_strain_crack_stochastic">
 <code class="sig-prename descclassname"><span class="pre">cracking.</span></code><code class="sig-name descname"><span class="pre">solve_stress_strain_crack_stochastic</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cracking.html#solve_stress_strain_crack_stochastic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cracking.solve_stress_strain_crack_stochastic" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>solve the stress and strain along the polar axis using strain_stress_crack_f().
+the stochastic solution matrix is returned, where each row represents a deterministic solution</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pars</strong> (<em>Param object instance</em>) – an object instance containing material properties</p></li>
+<li><p><strong>number_of_points</strong> (<em>int</em><em>, </em><em>optional</em>) – number of points where the stress and strain is reported along
+the polar axis, by default 100</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>(epsilon_theta, sigma_theta, rust_thickness,
+crack_condition, R_c, w_open)</p>
+<p>(strain, stress, rust thickness,
+crack condition code, crack front cooridnate, open crack width)</p>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="cracking.strain_f">
 <code class="sig-prename descclassname"><span class="pre">cracking.</span></code><code class="sig-name descname"><span class="pre">strain_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_st</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">E_0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crack_condition</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cracking.html#strain_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cracking.strain_f" title="Permalink to this definition">¶</a></dt>
-<dd><p>returns the strain along the polar axis r, a&lt;=r&lt;=b
-non-vectorized :single value to single value</p>
-<dl class="simple">
-<dt>x_loss<span class="classifier">array , column vector when passed through strain_stress_crack_f()</span></dt><dd><p>section loss [m]</p>
+<dd><p>strain_f returns the strain along the polar axis r, a&lt;=r&lt;=b,
+fully vectorized with numpy funcions</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>r</strong> (<em>2D numpy array</em>) – coordinate along the polar axis, a matrix with rows representing each r grid,
+column number is repeated values [m]</p></li>
+<li><p><strong>a</strong> (<em>numpy array</em>) – inner radius boundary of the rust
+(center of rebar to rust-concrete interface) [m]</p></li>
+<li><p><strong>b</strong> (<em>numpy array</em>) – outer radius boundary of the concrete
+(center of rebar to cover surface) [m]</p></li>
+<li><p><strong>u_st</strong> (<em>numpy array</em>) – rust expansion(to original rebar surface) beyond the porous zone [m]</p></li>
+<li><p><strong>f_t</strong> (<em>array</em>) – ultimate tensile strength [MPa]</p></li>
+<li><p><strong>E_0</strong> (<em>array</em>) – modulus of elasticity [MPa]</p></li>
+<li><p><strong>crack_condition</strong> (<em>array</em>) – <p>crack_condition array [int]. Each element corresponds to the condition of each row of the matrix</p>
+<ul>
+<li><p>0 ‘sound cover’</p></li>
+<li><p>1 ‘partially cracked’</p></li>
+<li><p>2 ‘fully cracked’</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>strain, epsilon_theta matrix, row is the strain along the polar axis</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>2D numpy array</p>
 </dd>
 </dl>
-<p>everything is array
-r : is matrix with rows representing each r grid, column number is repeated values
-a: array</p>
-<blockquote>
-<div><p>inner radius boundary of the rust (center of rebar to rust-concrete) [m]</p>
-</div></blockquote>
-<dl class="simple">
-<dt>b<span class="classifier">array</span></dt><dd><p>outer radius boundary of the concrete (center of rebar to cover surface) [m]</p>
-</dd>
-</dl>
-<p>crack_condition: vector array 0 ‘sound cover’, 1 ‘partially cracked’, 2’fully cracked’</p>
-<p>output: epsilon_theta matrix</p>
 </dd></dl>
 
 <dl class="py function">
 <dt id="cracking.strain_stress_crack_f">
 <code class="sig-prename descclassname"><span class="pre">cracking.</span></code><code class="sig-name descname"><span class="pre">strain_stress_crack_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r0_bar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_loss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cover</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">E_0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cracking.html#strain_stress_crack_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cracking.strain_stress_crack_f" title="Permalink to this definition">¶</a></dt>
-<dd><p>crack_condition for the whole concrete cover
-r is a matrix
-other scalar like are all array (to be converted to column vector in the calculation)</p>
+<dd><dl class="simple">
+<dt>calculate the stress, strain, crack_condition for the whole concrete cover</dt><dd><p>(fully vectorized with numpy matrix funcions)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>r</strong> (<em>2D numpy array</em>) – coordinate along the polar axis, a matrix with rows representing each r grid,
+column number is repeated values [m]</p></li>
+<li><p><strong>r0_bar</strong> (<em>numpy array</em>) – original rebar radius [m]</p></li>
+<li><p><strong>x_loss</strong> (<em>numpy array</em>) – section loss of the steel due to corrosion</p></li>
+<li><p><strong>cover</strong> (<em>numpy array</em>) – concrete cover depth [m]</p></li>
+<li><p><strong>f_t</strong> (<em>array</em>) – ultimate tensile strength [MPa]</p></li>
+<li><p><strong>E_0</strong> (<em>array</em>) – modulus of elasticity [MPa]</p></li>
+<li><p><strong>w_c</strong> (<em>float</em><em>, </em><em>array</em>) – water cement ratio</p></li>
+<li><p><strong>r_v</strong> (<em>numpy array</em>) – expansion rate r_v ranges from 2 to 6.5 times</p></li>
+<li><p><strong>plot</strong> (<em>bool</em><em>, </em><em>optional</em>) – if true, plot the stress and strain along r, by default False</p></li>
+<li><p><strong>ax</strong> (<em>axis instance</em>) – subplot axis, by default None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>(epsilon_theta, sigma_theta, rust_thickness,
+crack_condition, R_c, w_open)</p>
+<p>(strain, stress, rust thickness,
+crack condition code, crack front cooridnate, open crack width)</p>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Vectorization:
+r is a matrix. Other material property parameters(such as E) are 1-D arrays (to be converted to column vector in the calculation)</p>
+</div>
 </dd></dl>
 
 </div>
