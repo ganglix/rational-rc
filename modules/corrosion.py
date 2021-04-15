@@ -472,7 +472,7 @@ class Corrosion_Model:
         self.pars = pars
 
     def run(self):
-        """solve for icorr and the correspoinding section loss rate
+        """solve for icorr and the corresponding section loss rate
         """
         self.icorr = icorr_f(self.pars)
         self.x_loss_rate = icorr_to_mmpy(self.icorr)  # [mm/year]
@@ -488,7 +488,7 @@ class Corrosion_Model:
 ###### section loss ##########
 
 # output section loss distribution at time t
-def x_loss_t_fun(t_end, n_step, r_corr_mean, p_active_t_curve):
+def x_loss_t_fun(t_end, n_step, x_loss_rate, p_active_t_curve):
     """x_loss_t_fun returns x_loss samples at a SINGLE given time t_tend. the samples represents distribution of all possible x_loss with 
     different corrosion history
 
@@ -517,7 +517,7 @@ def x_loss_t_fun(t_end, n_step, r_corr_mean, p_active_t_curve):
     # at this_year, (t_end), calculate the accumulated section loss for each time step
     age_lis = t_end - t
     age_lis = age_lis[age_lis>=0]
-    x_loss_lis = age_lis * r_corr_mean
+    x_loss_lis = age_lis * x_loss_rate
 
     # probability of newly active corrosion onset for each time step
     pf_lis = np.interp(t,t_lis_curve, pf_lis_curve)
@@ -576,7 +576,7 @@ def x_loss_year(model, year_lis, plot=True, amplify=80):
     return [this_M.pf for this_M in M_lis], [this_M.beta_factor for this_M in M_lis]
 
 
-class Section_loss:
+class Section_loss_Model:
     def __init__(self, pars):
         self.pars = pars  # pars with user-input
 
@@ -589,7 +589,7 @@ class Section_loss:
             year
         """
         self.t = t_end
-        self.x_loss_t = x_loss_t_fun(t_end, hf.N_SAMPLE, self.pars.r_corr_mean, self.pars.p_carbonation_t_curve)
+        self.x_loss_t = x_loss_t_fun(t_end, hf.N_SAMPLE, self.pars.x_loss_rate, self.pars.p_active_t_curve)
 
     def postproc(self, plot=False):
         """calculate the Pf and beta from accumulated section loss and section loss limit
