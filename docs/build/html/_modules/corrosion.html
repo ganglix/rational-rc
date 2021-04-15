@@ -623,14 +623,17 @@
 
 <div class="viewcode-block" id="Corrosion_Model"><a class="viewcode-back" href="../corrosion.html#corrosion.Corrosion_Model">[docs]</a><span class="k">class</span> <span class="nc">Corrosion_Model</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">):</span>
-        <span class="c1"># default</span>
+        <span class="sd">&quot;&quot;&quot;initialize the model with Param object and built-in coefficient</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">pars</span><span class="o">.</span><span class="n">theta2rho_coeff_a</span> <span class="o">=</span> <span class="mf">18.71810174</span>  <span class="c1"># [TODO: uncertainty for a and b]</span>
         <span class="n">pars</span><span class="o">.</span><span class="n">theta2rho_coeff_b</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.37938931</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pars</span> <span class="o">=</span> <span class="n">pars</span>
 
 <div class="viewcode-block" id="Corrosion_Model.run"><a class="viewcode-back" href="../corrosion.html#corrosion.Corrosion_Model.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;solve for icorr and the corresponding section loss rate</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">icorr</span> <span class="o">=</span> <span class="n">icorr_f</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">x_loss</span> <span class="o">=</span> <span class="n">icorr_to_mmpy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">icorr</span><span class="p">)</span>  <span class="c1"># [mm/year]</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x_loss_rate</span> <span class="o">=</span> <span class="n">icorr_to_mmpy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">icorr</span><span class="p">)</span>  <span class="c1"># [mm/year]</span></div>
 
 <div class="viewcode-block" id="Corrosion_Model.calibrate"><a class="viewcode-back" href="../corrosion.html#corrosion.Corrosion_Model.calibrate">[docs]</a>    <span class="k">def</span> <span class="nf">calibrate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field_data</span><span class="p">):</span>
         <span class="c1"># update parameters a and b</span>
@@ -643,8 +646,7 @@
 <span class="c1">###### section loss ##########</span>
 
 <span class="c1"># output section loss distribution at time t</span>
-<span class="c1"># p_crack_t = f(p_carbonation_t, p_surface crack_x_loss)</span>
-<div class="viewcode-block" id="x_loss_t_fun"><a class="viewcode-back" href="../corrosion.html#corrosion.x_loss_t_fun">[docs]</a><span class="k">def</span> <span class="nf">x_loss_t_fun</span><span class="p">(</span><span class="n">t_end</span><span class="p">,</span> <span class="n">n_step</span><span class="p">,</span> <span class="n">r_corr_mean</span><span class="p">,</span> <span class="n">p_active_t_curve</span><span class="p">):</span>
+<div class="viewcode-block" id="x_loss_t_fun"><a class="viewcode-back" href="../corrosion.html#corrosion.x_loss_t_fun">[docs]</a><span class="k">def</span> <span class="nf">x_loss_t_fun</span><span class="p">(</span><span class="n">t_end</span><span class="p">,</span> <span class="n">n_step</span><span class="p">,</span> <span class="n">x_loss_rate</span><span class="p">,</span> <span class="n">p_active_t_curve</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;x_loss_t_fun returns x_loss samples at a SINGLE given time t_tend. the samples represents distribution of all possible x_loss with </span>
 <span class="sd">    different corrosion history</span>
 
@@ -673,7 +675,7 @@
     <span class="c1"># at this_year, (t_end), calculate the accumulated section loss for each time step</span>
     <span class="n">age_lis</span> <span class="o">=</span> <span class="n">t_end</span> <span class="o">-</span> <span class="n">t</span>
     <span class="n">age_lis</span> <span class="o">=</span> <span class="n">age_lis</span><span class="p">[</span><span class="n">age_lis</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">x_loss_lis</span> <span class="o">=</span> <span class="n">age_lis</span> <span class="o">*</span> <span class="n">r_corr_mean</span>
+    <span class="n">x_loss_lis</span> <span class="o">=</span> <span class="n">age_lis</span> <span class="o">*</span> <span class="n">x_loss_rate</span>
 
     <span class="c1"># probability of newly active corrosion onset for each time step</span>
     <span class="n">pf_lis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">t_lis_curve</span><span class="p">,</span> <span class="n">pf_lis_curve</span><span class="p">)</span>
@@ -732,11 +734,11 @@
     <span class="k">return</span> <span class="p">[</span><span class="n">this_M</span><span class="o">.</span><span class="n">pf</span> <span class="k">for</span> <span class="n">this_M</span> <span class="ow">in</span> <span class="n">M_lis</span><span class="p">],</span> <span class="p">[</span><span class="n">this_M</span><span class="o">.</span><span class="n">beta_factor</span> <span class="k">for</span> <span class="n">this_M</span> <span class="ow">in</span> <span class="n">M_lis</span><span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="Section_loss"><a class="viewcode-back" href="../corrosion.html#corrosion.Section_loss">[docs]</a><span class="k">class</span> <span class="nc">Section_loss</span><span class="p">:</span>
+<div class="viewcode-block" id="Section_loss_Model"><a class="viewcode-back" href="../corrosion.html#corrosion.Section_loss_Model">[docs]</a><span class="k">class</span> <span class="nc">Section_loss_Model</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pars</span> <span class="o">=</span> <span class="n">pars</span>  <span class="c1"># pars with user-input</span>
 
-<div class="viewcode-block" id="Section_loss.run"><a class="viewcode-back" href="../corrosion.html#corrosion.Section_loss.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t_end</span><span class="p">):</span>
+<div class="viewcode-block" id="Section_loss_Model.run"><a class="viewcode-back" href="../corrosion.html#corrosion.Section_loss_Model.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t_end</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;run model to solve the accumulated section loss at t_end by using x_loss_t_fun()</span>
 
 <span class="sd">        Parameters</span>
@@ -745,9 +747,9 @@
 <span class="sd">            year</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="n">t_end</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">x_loss_t</span> <span class="o">=</span> <span class="n">x_loss_t_fun</span><span class="p">(</span><span class="n">t_end</span><span class="p">,</span> <span class="n">hf</span><span class="o">.</span><span class="n">N_SAMPLE</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">r_corr_mean</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">p_carbonation_t_curve</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x_loss_t</span> <span class="o">=</span> <span class="n">x_loss_t_fun</span><span class="p">(</span><span class="n">t_end</span><span class="p">,</span> <span class="n">hf</span><span class="o">.</span><span class="n">N_SAMPLE</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">x_loss_rate</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">p_active_t_curve</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Section_loss.postproc"><a class="viewcode-back" href="../corrosion.html#corrosion.Section_loss.postproc">[docs]</a>    <span class="k">def</span> <span class="nf">postproc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="Section_loss_Model.postproc"><a class="viewcode-back" href="../corrosion.html#corrosion.Section_loss_Model.postproc">[docs]</a>    <span class="k">def</span> <span class="nf">postproc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;calculate the Pf and beta from accumulated section loss and section loss limit</span>
 
 <span class="sd">        Parameters</span>
@@ -762,12 +764,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">S_kde_fit</span> <span class="o">=</span> <span class="n">sol</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">S</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_loss_t</span></div>
     
-<div class="viewcode-block" id="Section_loss.copy"><a class="viewcode-back" href="../corrosion.html#corrosion.Section_loss.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Section_loss_Model.copy"><a class="viewcode-back" href="../corrosion.html#corrosion.Section_loss_Model.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;copy return a deep copy</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
     
-<div class="viewcode-block" id="Section_loss.section_loss_with_year"><a class="viewcode-back" href="../corrosion.html#corrosion.Section_loss.section_loss_with_year">[docs]</a>    <span class="k">def</span> <span class="nf">section_loss_with_year</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">year_lis</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="Section_loss_Model.section_loss_with_year"><a class="viewcode-back" href="../corrosion.html#corrosion.Section_loss_Model.section_loss_with_year">[docs]</a>    <span class="k">def</span> <span class="nf">section_loss_with_year</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">year_lis</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;use x_loss_year() to report the accumulated section loss at each time step and</span>
 <span class="sd">        the corresponding Pf and beta.</span>
 

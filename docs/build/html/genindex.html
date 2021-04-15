@@ -198,6 +198,8 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="helper_func.html#helper_func.Beta_custom">Beta_custom() (in module helper_func)</a>
 </li>
+      <li><a href="cracking.html#cracking.bilinear_stress_strain">bilinear_stress_strain() (in module cracking)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -246,8 +248,6 @@
 </li>
       <li><a href="carbonation.html#carbonation.Carbonation_Model.carb_with_year">carb_with_year() (carbonation.Carbonation_Model method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="carbonation.html#carbonation.carb_year">carb_year() (in module carbonation)</a>
 </li>
       <li>
@@ -257,6 +257,8 @@
         <li><a href="carbonation.html#module-carbonation">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="carbonation.html#carbonation.Carbonation_Model">Carbonation_Model (class in carbonation)</a>
 </li>
       <li>
@@ -281,7 +283,9 @@
 </li>
         <li><a href="corrosion.html#corrosion.Corrosion_Model.copy">(corrosion.Corrosion_Model method)</a>
 </li>
-        <li><a href="corrosion.html#corrosion.Section_loss.copy">(corrosion.Section_loss method)</a>
+        <li><a href="corrosion.html#corrosion.Section_loss_Model.copy">(corrosion.Section_loss_Model method)</a>
+</li>
+        <li><a href="cracking.html#cracking.Cracking_Model.copy">(cracking.Cracking_Model method)</a>
 </li>
         <li><a href="membrane.html#membrane.Membrane_Model.copy">(membrane.Membrane_Model method)</a>
 </li>
@@ -294,6 +298,17 @@
 </li>
       </ul></li>
       <li><a href="corrosion.html#corrosion.Corrosion_Model">Corrosion_Model (class in corrosion)</a>
+</li>
+      <li><a href="cracking.html#cracking.crack_width_open">crack_width_open() (in module cracking)</a>
+</li>
+      <li>
+    cracking
+
+      <ul>
+        <li><a href="cracking.html#module-cracking">module</a>
+</li>
+      </ul></li>
+      <li><a href="cracking.html#cracking.Cracking_Model">Cracking_Model (class in cracking)</a>
 </li>
       <li><a href="corrosion.html#corrosion.Cs_g_f">Cs_g_f() (in module corrosion)</a>
 </li>
@@ -445,10 +460,10 @@
 </li>
       <li><a href="membrane.html#membrane.Membrane_Model">Membrane_Model (class in membrane)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="corrosion.html#corrosion.mmpy_to_icorr">mmpy_to_icorr() (in module corrosion)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     module
 
@@ -458,6 +473,8 @@
         <li><a href="chloride.html#module-chloride">chloride</a>
 </li>
         <li><a href="corrosion.html#module-corrosion">corrosion</a>
+</li>
+        <li><a href="cracking.html#module-cracking">cracking</a>
 </li>
         <li><a href="helper_func.html#module-helper_func">helper_func</a>
 </li>
@@ -489,7 +506,9 @@
       <ul>
         <li><a href="chloride.html#chloride.Chloride_Model.postproc">(chloride.Chloride_Model method)</a>
 </li>
-        <li><a href="corrosion.html#corrosion.Section_loss.postproc">(corrosion.Section_loss method)</a>
+        <li><a href="corrosion.html#corrosion.Section_loss_Model.postproc">(corrosion.Section_loss_Model method)</a>
+</li>
+        <li><a href="cracking.html#cracking.Cracking_Model.postproc">(cracking.Cracking_Model method)</a>
 </li>
         <li><a href="membrane.html#membrane.Membrane_Model.postproc">(membrane.Membrane_Model method)</a>
 </li>
@@ -508,8 +527,6 @@
 </li>
       <li><a href="membrane.html#membrane.RS_plot_special">RS_plot_special() (in module membrane)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="carbonation.html#carbonation.Carbonation_Model.run">run() (carbonation.Carbonation_Model method)</a>
 
       <ul>
@@ -517,7 +534,9 @@
 </li>
         <li><a href="corrosion.html#corrosion.Corrosion_Model.run">(corrosion.Corrosion_Model method)</a>
 </li>
-        <li><a href="corrosion.html#corrosion.Section_loss.run">(corrosion.Section_loss method)</a>
+        <li><a href="corrosion.html#corrosion.Section_loss_Model.run">(corrosion.Section_loss_Model method)</a>
+</li>
+        <li><a href="cracking.html#cracking.Cracking_Model.run">(cracking.Cracking_Model method)</a>
 </li>
         <li><a href="membrane.html#membrane.Membrane_Model.run">(membrane.Membrane_Model method)</a>
 </li>
@@ -530,13 +549,21 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="helper_func.html#helper_func.sample_integral">sample_integral() (in module helper_func)</a>
 </li>
-      <li><a href="corrosion.html#corrosion.Section_loss">Section_loss (class in corrosion)</a>
+      <li><a href="corrosion.html#corrosion.Section_loss_Model">Section_loss_Model (class in corrosion)</a>
+</li>
+      <li><a href="corrosion.html#corrosion.Section_loss_Model.section_loss_with_year">section_loss_with_year() (corrosion.Section_loss_Model method)</a>
+</li>
+      <li><a href="test_helper_func.html#test_helper_func.TestHelperFunc.setUp">setUp() (test_helper_func.TestHelperFunc method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="corrosion.html#corrosion.Section_loss.section_loss_with_year">section_loss_with_year() (corrosion.Section_loss method)</a>
+      <li><a href="cracking.html#cracking.solve_stress_strain_crack_deterministic">solve_stress_strain_crack_deterministic() (in module cracking)</a>
 </li>
-      <li><a href="test_helper_func.html#test_helper_func.TestHelperFunc.setUp">setUp() (test_helper_func.TestHelperFunc method)</a>
+      <li><a href="cracking.html#cracking.solve_stress_strain_crack_stochastic">solve_stress_strain_crack_stochastic() (in module cracking)</a>
+</li>
+      <li><a href="cracking.html#cracking.strain_f">strain_f() (in module cracking)</a>
+</li>
+      <li><a href="cracking.html#cracking.strain_stress_crack_f">strain_stress_crack_f() (in module cracking)</a>
 </li>
   </ul></td>
 </tr></table>

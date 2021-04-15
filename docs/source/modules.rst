@@ -8,5 +8,6 @@ Modules
    carbonation
    chloride
    corrosion
+   cracking
    helper_func
    test_helper_func

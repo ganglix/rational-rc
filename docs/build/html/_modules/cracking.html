@@ -1,0 +1,478 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>cracking &mdash; Tinkrete alpha documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Tinkrete
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Modules</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Tinkrete</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>cracking</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for cracking</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Cracking V0.2.3</span>
+<span class="sd">---------------</span>
+<span class="sd">## Input</span>
+<span class="sd">+ raw</span>
+<span class="sd">section loss</span>
+
+<span class="sd">## Output</span>
+<span class="sd">internal stress strain through the concrete cover and the location of the crack tip</span>
+<span class="sd">critical section loss to cause crack on the cover surface</span>
+
+<span class="sd">### [update]</span>
+
+<span class="sd">+ fully vectorizedd func with direct masking method</span>
+<span class="sd">+ numpy func instead of vectorize to run faster</span>
+<span class="sd">+ random variable</span>
+<span class="sd">+ object</span>
+<span class="sd">+ open crack width</span>
+<span class="sd">+ u_p as a function of w/c</span>
+<span class="sd">+ random r_v</span>
+<span class="sd">+ P of f is not consistent between P_RS and crack_condition count. Because the R and S here are dependent: S.max() = R</span>
+<span class="sd">+ Currently use crack_condition count. for example if 100% fully cracked, then R==S, Pf = 50%, wrong answer</span>
+
+
+<span class="sd">### [TODO]</span>
+
+<span class="sd">+ fix negative w_open (surface crack width)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># model function</span>
+
+
+<div class="viewcode-block" id="bilinear_stress_strain"><a class="viewcode-back" href="../cracking.html#cracking.bilinear_stress_strain">[docs]</a><span class="k">def</span> <span class="nf">bilinear_stress_strain</span><span class="p">(</span><span class="n">epsilon_theta</span><span class="p">,</span> <span class="n">f_t</span><span class="p">,</span> <span class="n">E_0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;returns the stress in concrete from strain</span>
+<span class="sd">    epsilon_thetan: numpy array, strain</span>
+<span class="sd">    f_t : numpy array cracking tensile strength</span>
+<span class="sd">    E_0 : numpy array modulus of elasticity [TODO: reduction due to creep]</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># parameters defining the bilinear curve</span>
+    <span class="c1"># critical cracking strain</span>
+    <span class="n">epsilon_cr</span> <span class="o">=</span> <span class="n">f_t</span> <span class="o">/</span> <span class="n">E_0</span>
+    <span class="c1"># strain correspoing to stress = 0.15*f_t</span>
+    <span class="n">epsilon_1</span> <span class="o">=</span> <span class="mf">0.0003</span>
+    <span class="c1"># strain correspoing to zero residual tensile strength</span>
+    <span class="n">epsilon_u</span> <span class="o">=</span> <span class="mf">0.002</span>
+
+    <span class="c1"># numpy func for speed, use np.where instead of &quot;if elif else&quot;</span>
+    <span class="n">sigma_theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">epsilon_theta</span><span class="p">)</span>
+
+    <span class="n">sigma_theta</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+    <span class="n">mask_0</span> <span class="o">=</span> <span class="p">(</span><span class="n">epsilon_theta</span> <span class="o">&lt;=</span> <span class="n">epsilon_cr</span><span class="p">)</span>
+    <span class="n">sigma_theta</span><span class="p">[</span><span class="n">mask_0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">E_0</span> <span class="o">*</span> <span class="n">epsilon_theta</span><span class="p">)[</span><span class="n">mask_0</span><span class="p">]</span>
+
+    <span class="n">mask_1</span> <span class="o">=</span> <span class="p">((</span><span class="n">epsilon_theta</span> <span class="o">&gt;</span> <span class="n">epsilon_cr</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">epsilon_theta</span> <span class="o">&lt;=</span> <span class="n">epsilon_1</span><span class="p">))</span>
+    <span class="n">sigma_theta</span><span class="p">[</span><span class="n">mask_1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">f_t</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">-</span> <span class="mf">0.85</span> <span class="o">*</span> <span class="p">(</span><span class="n">epsilon_theta</span> <span class="o">-</span> <span class="n">epsilon_cr</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">epsilon_1</span> <span class="o">-</span> <span class="n">epsilon_cr</span><span class="p">)))[</span><span class="n">mask_1</span><span class="p">]</span>
+
+    <span class="n">mask_2</span> <span class="o">=</span> <span class="p">((</span><span class="n">epsilon_theta</span> <span class="o">&gt;</span> <span class="n">epsilon_1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">epsilon_theta</span> <span class="o">&lt;=</span> <span class="n">epsilon_u</span><span class="p">))</span>
+    <span class="n">sigma_theta</span><span class="p">[</span><span class="n">mask_2</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.15</span> <span class="o">*</span> <span class="n">f_t</span> <span class="o">*</span> <span class="p">(</span><span class="n">epsilon_u</span> <span class="o">-</span> <span class="n">epsilon_theta</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">epsilon_u</span> <span class="o">-</span> <span class="n">epsilon_1</span><span class="p">))[</span><span class="n">mask_2</span><span class="p">]</span>
+
+    <span class="c1"># sigma_theta[idx_rest] were set as np.nan</span>
+
+    <span class="k">return</span> <span class="n">sigma_theta</span></div>
+
+
+<div class="viewcode-block" id="crack_width_open"><a class="viewcode-back" href="../cracking.html#cracking.crack_width_open">[docs]</a><span class="k">def</span> <span class="nf">crack_width_open</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">u_st</span><span class="p">,</span> <span class="n">f_t</span><span class="p">,</span> <span class="n">E_0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; calculate crack opening on the concret cover surface</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    a: np array</span>
+<span class="sd">        inner radius boundary of the rust (center of rebar to rust-concrete) [m]</span>
+<span class="sd">    b : np array</span>
+<span class="sd">        outer radius boundary of the concrete (center of rebar to cover surface) [m]</span>
+<span class="sd">    u_st : array</span>
+<span class="sd">        rust expansion(to original rebar surface) beyond the porous zone [m]</span>
+<span class="sd">    f_t : array</span>
+<span class="sd">        ultimate tensile strength [MPa]</span>
+<span class="sd">    E_0 : array</span>
+<span class="sd">        modulus of elasticity [MPa]&quot;&quot;&quot;</span>
+    <span class="n">epsilon_cr</span> <span class="o">=</span> <span class="n">f_t</span> <span class="o">/</span> <span class="n">E_0</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">b</span> <span class="o">*</span> <span class="p">(</span><span class="mf">2.</span> <span class="o">/</span> <span class="p">((</span><span class="n">b</span> <span class="o">/</span> <span class="n">a</span><span class="p">)</span><span class="o">**</span><span class="mf">2.</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">u_st</span> <span class="o">/</span> <span class="n">a</span> <span class="o">-</span> <span class="n">epsilon_cr</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">w</span></div>
+
+
+<div class="viewcode-block" id="strain_f"><a class="viewcode-back" href="../cracking.html#cracking.strain_f">[docs]</a><span class="k">def</span> <span class="nf">strain_f</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">u_st</span><span class="p">,</span> <span class="n">f_t</span><span class="p">,</span> <span class="n">E_0</span><span class="p">,</span> <span class="n">crack_condition</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;returns the strain along the polar axis r, a&lt;=r&lt;=b</span>
+<span class="sd">    non-vectorized :single value to single value</span>
+
+<span class="sd">    x_loss : array , column vector when passed through strain_stress_crack_f()</span>
+<span class="sd">        section loss [m]</span>
+<span class="sd">    everything is array</span>
+<span class="sd">    r : is matrix with rows representing each r grid, column number is repeated values</span>
+<span class="sd">    a: array</span>
+<span class="sd">        inner radius boundary of the rust (center of rebar to rust-concrete) [m]</span>
+<span class="sd">    b : array</span>
+<span class="sd">        outer radius boundary of the concrete (center of rebar to cover surface) [m]</span>
+<span class="sd">    crack_condition: vector array 0 &#39;sound cover&#39;, 1 &#39;partially cracked&#39;, 2&#39;fully cracked&#39;</span>
+
+<span class="sd">    output: epsilon_theta matrix</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># numpy func for speed</span>
+    <span class="n">epsilon_theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>  <span class="c1"># initalize</span>
+
+    <span class="c1"># sound cover</span>
+    <span class="n">row_mask_0</span> <span class="o">=</span> <span class="p">(</span><span class="n">crack_condition</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># &#39;sound cover&#39;:</span>
+    <span class="n">elem_mask</span> <span class="o">=</span> <span class="p">((</span><span class="n">r</span> <span class="o">&gt;=</span> <span class="n">a</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">r</span> <span class="o">&lt;=</span> <span class="n">b</span><span class="p">))</span>
+    <span class="n">epsilon_theta</span><span class="p">[</span><span class="n">row_mask_0</span> <span class="o">&amp;</span> <span class="n">elem_mask</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">u_st</span> <span class="o">/</span> <span class="n">a</span> <span class="o">*</span> <span class="p">((</span><span class="n">b</span> <span class="o">/</span> <span class="n">r</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mf">1.</span><span class="p">)</span> <span class="o">/</span> <span class="p">((</span><span class="n">b</span> <span class="o">/</span> <span class="n">a</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))[</span><span class="n">row_mask_0</span> <span class="o">&amp;</span> <span class="n">elem_mask</span><span class="p">]</span>
+
+    <span class="c1"># partially cracked cover</span>
+    <span class="n">row_mask_1</span> <span class="o">=</span> <span class="p">(</span><span class="n">crack_condition</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># &#39;partially cracked cover&#39;:</span>
+    <span class="n">R_c</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span> <span class="o">/</span> <span class="p">(</span><span class="n">f_t</span> <span class="o">*</span> <span class="n">a</span> <span class="o">/</span> <span class="p">(</span><span class="n">E_0</span> <span class="o">*</span> <span class="n">u_st</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="n">b</span> <span class="o">/</span> <span class="n">a</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">epsilon_theta</span><span class="p">[</span><span class="n">row_mask_1</span> <span class="o">&amp;</span> <span class="n">elem_mask</span><span class="p">]</span> <span class="o">=</span> <span class="p">(((</span><span class="n">b</span> <span class="o">/</span> <span class="n">r</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">((</span><span class="n">b</span> <span class="o">/</span> <span class="n">R_c</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">f_t</span> <span class="o">/</span> <span class="n">E_0</span><span class="p">)[</span><span class="n">row_mask_1</span> <span class="o">&amp;</span> <span class="n">elem_mask</span><span class="p">]</span>
+
+    <span class="c1"># fully cracked cover</span>
+    <span class="n">row_mask_2</span> <span class="o">=</span> <span class="p">(</span><span class="n">crack_condition</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># &#39;fully cracked cover&#39;:</span>
+    <span class="n">epsilon_theta</span><span class="p">[</span><span class="n">row_mask_2</span> <span class="o">&amp;</span> <span class="n">elem_mask</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">u_st</span> <span class="o">/</span> <span class="n">a</span> <span class="o">*</span> <span class="p">((</span><span class="n">b</span> <span class="o">/</span> <span class="n">r</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mf">1.</span><span class="p">)</span> <span class="o">/</span> <span class="p">((</span><span class="n">b</span> <span class="o">/</span> <span class="n">a</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))[</span><span class="n">row_mask_2</span> <span class="o">&amp;</span> <span class="n">elem_mask</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">epsilon_theta</span></div>
+
+
+<div class="viewcode-block" id="strain_stress_crack_f"><a class="viewcode-back" href="../cracking.html#cracking.strain_stress_crack_f">[docs]</a><span class="k">def</span> <span class="nf">strain_stress_crack_f</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">r0_bar</span><span class="p">,</span> <span class="n">x_loss</span><span class="p">,</span> <span class="n">cover</span><span class="p">,</span> <span class="n">f_t</span><span class="p">,</span> <span class="n">E_0</span><span class="p">,</span> <span class="n">w_c</span><span class="p">,</span> <span class="n">r_v</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;crack_condition for the whole concrete cover</span>
+<span class="sd">    r is a matrix</span>
+<span class="sd">    other scalar like are all array (to be converted to column vector in the calculation)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">epsilon_cr</span> <span class="o">=</span> <span class="n">f_t</span> <span class="o">/</span> <span class="n">E_0</span>
+<span class="c1">#     r_v = Beta_custom(2.96, 2.96*0.05, 3.3, 2.6)  # volumetric expansion rate  2.96 lower 2.6  upper: 3.3</span>
+    <span class="n">u_r</span> <span class="o">=</span> <span class="p">(</span><span class="n">r_v</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">x_loss</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">r0_bar</span> <span class="o">+</span> <span class="n">u_r</span>  <span class="c1"># Rust meets cover, rust-concrete interface</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">cover</span> <span class="o">+</span> <span class="n">r0_bar</span>
+    <span class="n">rust_thickness</span> <span class="o">=</span> <span class="n">u_r</span> <span class="o">-</span> <span class="n">x_loss</span>
+    <span class="n">u_p</span> <span class="o">=</span> <span class="mf">12.5e-6</span> <span class="o">*</span> <span class="n">w_c</span> <span class="o">/</span> <span class="mf">0.5</span>  <span class="c1"># m</span>
+    <span class="n">u_st</span> <span class="o">=</span> <span class="n">u_r</span> <span class="o">-</span> <span class="n">u_p</span>
+    <span class="n">u_st</span><span class="p">[</span><span class="n">u_st</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">a</span> <span class="o">=</span> <span class="n">r0_bar</span> <span class="o">+</span> <span class="n">u_r</span>  <span class="c1"># Rust meets cover, rust-concrte interface</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">cover</span> <span class="o">+</span> <span class="n">r0_bar</span>
+
+    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>  <span class="c1"># to column vector</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
+    <span class="n">u_st</span> <span class="o">=</span> <span class="n">u_st</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
+    <span class="n">E_0</span> <span class="o">=</span> <span class="n">E_0</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
+    <span class="n">f_t</span> <span class="o">=</span> <span class="n">f_t</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
+    <span class="n">epsilon_cr</span> <span class="o">=</span> <span class="n">epsilon_cr</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
+
+    <span class="c1"># sound crack</span>
+    <span class="n">crack_condition</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">E_0</span><span class="p">)</span>  <span class="c1"># 0: &#39;sound cover&#39;   initial crack condition guess</span>
+    <span class="n">R_c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">E_0</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="n">w_open</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">E_0</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>  <span class="c1"># crack width on cover</span>
+
+    <span class="n">epsilon_theta</span> <span class="o">=</span> <span class="n">strain_f</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">u_st</span><span class="p">,</span> <span class="n">f_t</span><span class="p">,</span> <span class="n">E_0</span><span class="p">,</span> <span class="n">crack_condition</span><span class="p">)</span>
+
+    <span class="c1"># partially cracked</span>
+    <span class="n">row_mask_1</span> <span class="o">=</span> <span class="p">((</span><span class="n">epsilon_theta</span> <span class="o">&gt;=</span> <span class="n">epsilon_cr</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">epsilon_theta</span> <span class="o">&lt;=</span> <span class="n">epsilon_cr</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))[:,</span> <span class="kc">None</span><span class="p">]</span>
+
+    <span class="n">crack_condition</span><span class="p">[</span><span class="n">row_mask_1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># 1 &#39;partially cracked&#39;</span>
+    <span class="n">elem_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>  <span class="c1"># all True</span>
+
+    <span class="n">epsilon_theta</span><span class="p">[</span><span class="n">row_mask_1</span> <span class="o">&amp;</span> <span class="n">elem_mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">strain_f</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">u_st</span><span class="p">,</span> <span class="n">f_t</span><span class="p">,</span> <span class="n">E_0</span><span class="p">,</span> <span class="n">crack_condition</span><span class="p">)[</span><span class="n">row_mask_1</span> <span class="o">&amp;</span> <span class="n">elem_mask</span><span class="p">]</span>
+
+    <span class="n">R_c</span><span class="p">[</span><span class="n">row_mask_1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span> <span class="o">/</span> <span class="p">(</span><span class="n">f_t</span> <span class="o">*</span> <span class="n">a</span> <span class="o">/</span> <span class="p">(</span><span class="n">E_0</span> <span class="o">*</span> <span class="n">u_st</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="n">b</span> <span class="o">/</span> <span class="n">a</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)[</span><span class="n">row_mask_1</span><span class="p">]</span>  <span class="c1"># crack tip</span>
+
+    <span class="c1"># fully cracked</span>
+    <span class="c1"># there could be nans in epsilon_theta, compare with Nan is always False</span>
+    <span class="n">row_mask_2_inverse</span> <span class="o">=</span> <span class="p">((</span><span class="n">epsilon_theta</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">epsilon_cr</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
+    <span class="n">row_mask_2</span> <span class="o">=</span> <span class="o">~</span><span class="n">row_mask_2_inverse</span>
+    <span class="n">crack_condition</span><span class="p">[</span><span class="n">row_mask_2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># 2 &#39;fully cracked&#39;</span>
+    <span class="n">epsilon_theta</span><span class="p">[</span><span class="n">row_mask_2</span> <span class="o">&amp;</span> <span class="n">elem_mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">strain_f</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">u_st</span><span class="p">,</span> <span class="n">f_t</span><span class="p">,</span> <span class="n">E_0</span><span class="p">,</span> <span class="n">crack_condition</span><span class="p">)[</span><span class="n">row_mask_2</span> <span class="o">&amp;</span> <span class="n">elem_mask</span><span class="p">]</span>
+    <span class="n">R_c</span><span class="p">[</span><span class="n">row_mask_2</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="n">row_mask_2</span><span class="p">]</span>
+    <span class="n">w_open</span> <span class="o">=</span> <span class="n">crack_width_open</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">u_st</span><span class="p">,</span> <span class="n">f_t</span><span class="p">,</span> <span class="n">E_0</span><span class="p">)</span>
+
+    <span class="c1"># calculate stress</span>
+    <span class="n">sigma_theta</span> <span class="o">=</span> <span class="n">bilinear_stress_strain</span><span class="p">(</span><span class="n">epsilon_theta</span><span class="p">,</span> <span class="n">f_t</span><span class="p">,</span> <span class="n">E_0</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="n">epsilon_theta</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C0&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;strain $\epsilon_{\theta}$&#39;</span><span class="p">)</span>
+
+        <span class="c1"># epsilon_1 = 0.0003</span>
+        <span class="n">epsilon_u</span> <span class="o">=</span> <span class="mf">0.002</span>
+<span class="c1">#         ax.hlines(epsilon_cr, r.min(), r.max(),&#39;r&#39;, label=r&#39;critical strain $\epsilon_{cr}$&#39;)</span>
+<span class="c1">#         ax.hlines(epsilon_1, r.min(), r.max(),&#39;C1&#39;, label=r&#39;$\epsilon_1$&#39;)</span>
+<span class="c1">#         ax.hlines(epsilon_u, r.min(), r.max(), &#39;b&#39;, label=r&#39;zero residual stress strain $\epsilon_u$&#39;)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="n">epsilon_u</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;rust-concrete boundary&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">R_c</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="n">epsilon_u</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;crack tip&#39;</span><span class="p">)</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;crack condition: </span><span class="si">{}</span><span class="s1">, 0-sound, 1-partial, 2-fully cracked&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">crack_condition</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Radial distance from the center of the rebar,[m]&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Strain perpend to radial axis&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+        <span class="n">ax1</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="n">sigma_theta</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;stress $\sigma_{\theta}$&#39;</span><span class="p">)</span>
+
+        <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Stress perpend to radial axis,[MPa]&#39;</span><span class="p">)</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center right&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">epsilon_theta</span><span class="p">,</span> <span class="n">sigma_theta</span><span class="p">,</span> <span class="n">rust_thickness</span><span class="p">,</span> <span class="n">crack_condition</span><span class="p">,</span> <span class="n">R_c</span><span class="p">,</span> <span class="n">w_open</span></div>
+
+
+<div class="viewcode-block" id="solve_stress_strain_crack_deterministic"><a class="viewcode-back" href="../cracking.html#cracking.solve_stress_strain_crack_deterministic">[docs]</a><span class="k">def</span> <span class="nf">solve_stress_strain_crack_deterministic</span><span class="p">(</span><span class="n">pars</span><span class="p">,</span> <span class="n">number_of_points</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="c1"># deterministic with the mean values</span>
+    <span class="n">r0_bar_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">pars</span><span class="o">.</span><span class="n">r0_bar</span><span class="o">.</span><span class="n">mean</span><span class="p">()])</span>
+    <span class="n">x_loss_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">pars</span><span class="o">.</span><span class="n">x_loss</span><span class="o">.</span><span class="n">mean</span><span class="p">()])</span>
+    <span class="n">cover_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">pars</span><span class="o">.</span><span class="n">cover</span><span class="o">.</span><span class="n">mean</span><span class="p">()])</span>
+    <span class="n">f_t_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">pars</span><span class="o">.</span><span class="n">f_t</span><span class="o">.</span><span class="n">mean</span><span class="p">()])</span>
+    <span class="n">E_0_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">pars</span><span class="o">.</span><span class="n">E_0</span><span class="o">.</span><span class="n">mean</span><span class="p">()])</span>
+    <span class="n">w_c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">pars</span><span class="o">.</span><span class="n">w_c</span><span class="o">.</span><span class="n">mean</span><span class="p">()])</span>
+    <span class="n">r_v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">pars</span><span class="o">.</span><span class="n">r_v</span><span class="o">.</span><span class="n">mean</span><span class="p">()])</span>
+
+    <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">number_of_points</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">r0_bar_mean</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cover_mean</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">number_of_points</span><span class="p">))</span>  <span class="c1"># solution point</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+    <span class="n">epsilon_theta</span><span class="p">,</span> <span class="n">sigma_theta</span><span class="p">,</span> <span class="n">rust_thickness</span><span class="p">,</span> <span class="n">crack_condition</span><span class="p">,</span> <span class="n">R_c</span><span class="p">,</span> <span class="n">w_open</span> <span class="o">=</span> <span class="n">strain_stress_crack_f</span><span class="p">(</span>
+        <span class="n">r</span><span class="p">,</span> <span class="n">r0_bar_mean</span><span class="p">,</span> <span class="n">x_loss_mean</span><span class="p">,</span> <span class="n">cover_mean</span><span class="p">,</span> <span class="n">f_t_mean</span><span class="p">,</span> <span class="n">E_0_mean</span><span class="p">,</span> <span class="n">w_c</span><span class="p">,</span> <span class="n">r_v</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">epsilon_theta</span><span class="p">,</span> <span class="n">sigma_theta</span><span class="p">,</span> <span class="n">rust_thickness</span><span class="p">,</span> <span class="n">crack_condition</span><span class="p">,</span> <span class="n">R_c</span><span class="p">,</span> <span class="n">w_open</span></div>
+
+
+<div class="viewcode-block" id="solve_stress_strain_crack_stochastic"><a class="viewcode-back" href="../cracking.html#cracking.solve_stress_strain_crack_stochastic">[docs]</a><span class="k">def</span> <span class="nf">solve_stress_strain_crack_stochastic</span><span class="p">(</span><span class="n">pars</span><span class="p">,</span> <span class="n">number_of_points</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="c1"># Stochastic with random variables</span>
+    <span class="n">r0_bar</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">r0_bar</span>
+    <span class="n">x_loss</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">x_loss</span>
+    <span class="n">cover</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">cover</span>
+    <span class="n">f_t</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">f_t</span>
+    <span class="n">E_0</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">E_0</span>
+    <span class="n">w_c</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">w_c</span>
+    <span class="n">r_v</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">r_v</span>
+
+    <span class="c1"># every row is a sample of r</span>
+    <span class="n">r_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">this_r0_bar</span><span class="p">,</span> <span class="n">this_cover</span><span class="p">,</span> <span class="n">number_of_points</span><span class="p">)</span>
+                      <span class="k">for</span> <span class="p">(</span><span class="n">this_r0_bar</span><span class="p">,</span> <span class="n">this_cover</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">r0_bar</span><span class="p">,</span> <span class="n">cover</span><span class="p">)])</span>  <span class="c1"># solution point</span>
+
+    <span class="p">(</span><span class="n">epsilon_theta</span><span class="p">,</span> <span class="n">sigma_theta</span><span class="p">,</span> <span class="n">rust_thickness</span><span class="p">,</span> <span class="n">crack_condition</span><span class="p">,</span> <span class="n">R_c</span><span class="p">,</span> <span class="n">w_open</span><span class="p">)</span> <span class="o">=</span> <span class="n">strain_stress_crack_f</span><span class="p">(</span>
+        <span class="n">r_mat</span><span class="p">,</span> <span class="n">r0_bar</span><span class="p">,</span> <span class="n">x_loss</span><span class="p">,</span> <span class="n">cover</span><span class="p">,</span> <span class="n">f_t</span><span class="p">,</span> <span class="n">E_0</span><span class="p">,</span> <span class="n">w_c</span><span class="p">,</span> <span class="n">r_v</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">epsilon_theta</span><span class="p">,</span> <span class="n">sigma_theta</span><span class="p">,</span> <span class="n">rust_thickness</span><span class="p">,</span> <span class="n">crack_condition</span><span class="o">.</span><span class="n">transpose</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">R_c</span><span class="o">.</span><span class="n">transpose</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">w_open</span><span class="o">.</span><span class="n">transpose</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="Cracking_Model"><a class="viewcode-back" href="../cracking.html#cracking.Cracking_Model">[docs]</a><span class="k">class</span> <span class="nc">Cracking_Model</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pars</span> <span class="o">=</span> <span class="n">pars</span>
+
+<div class="viewcode-block" id="Cracking_Model.run"><a class="viewcode-back" href="../cracking.html#cracking.Cracking_Model.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stochastic</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">stochastic</span><span class="p">:</span>
+            <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_stress_strain_crack_stochastic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="p">)</span>  <span class="c1"># no plot</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;deterministic&#39;</span><span class="p">)</span>
+            <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_stress_strain_crack_deterministic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="p">)</span>  <span class="c1"># plot to plt.gca()</span>
+            <span class="c1"># fig.save()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">epsilon_theta</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma_theta</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rust_thickness</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">crack_condition</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">R_c</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_open</span> <span class="o">=</span> <span class="n">sol</span></div>
+
+<div class="viewcode-block" id="Cracking_Model.postproc"><a class="viewcode-back" href="../cracking.html#cracking.Cracking_Model.postproc">[docs]</a>    <span class="k">def</span> <span class="nf">postproc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;for stochastic solution only&#39;</span><span class="p">)</span>
+        <span class="n">crack_length_over_cover</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">R_c</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">r0_bar</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">cover</span>
+        <span class="n">crack_length_over_cover</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">crack_length_over_cover</span><span class="p">)]</span> <span class="o">=</span> <span class="mf">0.0</span>  <span class="c1"># crack length=0 for no crack</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">crack_length_over_cover</span> <span class="o">=</span> <span class="n">crack_length_over_cover</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">crack_visible_rate_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">crack_condition</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">crack_condition</span> <span class="o">==</span> <span class="mi">2</span><span class="p">])</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">crack_condition</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Cracking_Model.copy"><a class="viewcode-back" href="../cracking.html#cracking.Cracking_Model.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Gang Li.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
