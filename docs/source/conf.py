@@ -38,10 +38,13 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
+    'nbsphinx',
+    'nbsphinx_link',
     'sphinx_rtd_theme',
     'recommonmark',
     'sphinx.ext.mathjax',
     'sphinx_math_dollar',
+    # 'sphinx_copybutton',
     'sphinx.ext.todo',
 ]
 

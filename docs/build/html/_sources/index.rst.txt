@@ -15,8 +15,7 @@ Version:
 
    intro
    modules
-
-   
+   examples
 
 Indices and tables
 ==================

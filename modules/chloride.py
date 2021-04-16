@@ -1,4 +1,6 @@
 """
+Summary
+-------
 TODO: make t input vectorized 
 """
 
