@@ -97,12 +97,7 @@
 <li class="toctree-l2"><a class="reference internal" href="membrane_example.html">membrane module example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="carbonation_example.html">carbonation module example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chloride_example.html">chloride module example</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">corrosion module example</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Input">Input</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Output">Output</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Accumulated-section-loss-with-the-increasing-probability-of-active-corrosion">Accumulated section loss with the increasing probability of active corrosion</a></li>
-</ul>
-</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">corrosion module example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cracking_example.html">cracking model example</a></li>
 </ul>
 </li>
@@ -447,17 +442,12 @@ div.rendered_html tbody tr:hover {
 </style>
 <div class="section" id="corrosion-module-example">
 <h1>corrosion module example<a class="headerlink" href="#corrosion-module-example" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="Input">
-<h2>Input<a class="headerlink" href="#Input" title="Permalink to this headline">¶</a></h2>
-<p>Raw data + moisture</p>
 <ul class="simple">
+<li><p>Input Raw data</p></li>
+<li><p>moisture</p></li>
 <li><p>temperature</p></li>
 <li><p>corrosion state determined by chloride and carbonation from other modules</p></li>
-</ul>
-</div>
-<div class="section" id="Output">
-<h2>Output<a class="headerlink" href="#Output" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
+<li><p>Output</p></li>
 <li><p>icorr and corrosion rate</p></li>
 <li><p>accumulated sectionloss with time</p></li>
 </ul>
@@ -534,9 +524,9 @@ icorr [A/m^2]: 0.006407370834095256
 section loss rate [mm/year]: 0.007420513570849189
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="Accumulated-section-loss-with-the-increasing-probability-of-active-corrosion">
-<h2>Accumulated section loss with the increasing probability of active corrosion<a class="headerlink" href="#Accumulated-section-loss-with-the-increasing-probability-of-active-corrosion" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Accumulated section loss with the increasing probability of active corrosion</p></li>
+</ul>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
@@ -652,7 +642,6 @@ warning: very small Pf
 
 <span></span>
 </pre></div>
-</div>
 </div>
 </div>
 </div>
