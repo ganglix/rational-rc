@@ -215,7 +215,7 @@
 
 
 \title{Tinkrete}
-\date{Apr 16, 2021}
+\date{Apr 23, 2021}
 \release{alpha}
 \author{Gang Li}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -250,29 +250,25 @@ It covers various deterioration mechanisms such as membrane deterioration, concr
 
 \section{membrane module}
 \label{\detokenize{membrane:module-membrane}}\label{\detokenize{membrane:membrane-module}}\label{\detokenize{membrane::doc}}\index{module@\spxentry{module}!membrane@\spxentry{membrane}}\index{membrane@\spxentry{membrane}!module@\spxentry{module}}
+\sphinxAtStartPar
+\sphinxstylestrong{Summary}
 
-\subsection{Summary}
-\label{\detokenize{membrane:summary}}
 \sphinxAtStartPar
 A statistical model is used to predict the probability of failure for the membrane.
 \begin{itemize}
 \item {} 
 \sphinxAtStartPar
-The resistance is the service life of the membrane, and the load is the age in service.
+\sphinxstylestrong{Resistance}: membrane service life
 
 \item {} 
 \sphinxAtStartPar
-The limit\sphinxhyphen{}state is when the ago is greater than the service life.
+\sphinxstylestrong{Load}: age
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{limit\sphinxhyphen{}state}: age \textgreater{}= service life.
 
 \end{itemize}
-
-\sphinxAtStartPar
-The initial estimation of the service life is assumed to follow the normal distribution with a mean and standard deviation such that the manufacture\sphinxhyphen{}labelled service life is 95\% guaranteed.
-The estimated distribution of service life is then calibrated to the field survey results,
-where the failure rate of the membrane is reported through the half\sphinxhyphen{}cell test.
-So that the model matches the field observation at a given time by the updated standard deviation.
-This process captures the varied uncertainty of the field service life by adjusting the service life distribution.
-Then, the calibrated model is used to project future deterioration. The accuracy of the calibrated model is improved when more historical data is available.
 \index{Membrane\_Model (class in membrane)@\spxentry{Membrane\_Model}\spxextra{class in membrane}}
 
 \begin{fulllineitems}
@@ -293,7 +289,7 @@ calibrate membrane model to field condition
 
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{membrane\_failure\_ratio\_field}} (\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} falure rate e.g. 0.1 for 10\%
+\sphinxstyleliteralstrong{\sphinxupquote{membrane\_failure\_ratio\_field}} (\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} failure rate e.g. 0.1 for 10\%
 
 \end{itemize}
 
@@ -303,7 +299,7 @@ calibrated model
 
 \item[{Return type}] \leavevmode
 \sphinxAtStartPar
-memebrane model object instance
+membrane model object instance
 
 \end{description}\end{quote}
 
@@ -467,7 +463,7 @@ calibrate membrane model to field condition by finding the corresponding membran
 
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{membrane\_failure\_ratio\_field}} (\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} falure rate e.g. 0.1 for 10\%
+\sphinxstyleliteralstrong{\sphinxupquote{membrane\_failure\_ratio\_field}} (\sphinxstyleliteralemphasis{\sphinxupquote{float}}) \textendash{} failure rate e.g. 0.1 for 10\%
 
 \item {} 
 \sphinxAtStartPar
@@ -489,7 +485,7 @@ calibrated model
 
 \item[{Return type}] \leavevmode
 \sphinxAtStartPar
-memebrane model object instance
+membrane model object instance
 
 \end{description}\end{quote}
 
@@ -541,11 +537,11 @@ membrane\_failure\_year: run model over a list of time steps
 
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{plot}} (\sphinxstyleliteralemphasis{\sphinxupquote{bool}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{optional}}) \textendash{} if True, plot the Pf, beta, R S distribtuion, by default True
+\sphinxstyleliteralstrong{\sphinxupquote{plot}} (\sphinxstyleliteralemphasis{\sphinxupquote{bool}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{optional}}) \textendash{} if True, plot the Pf, beta, R S distribution, by default True
 
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{amplify}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{optional}}) \textendash{} the arbitray comparable size of the distribution curve, by default 80
+\sphinxstyleliteralstrong{\sphinxupquote{amplify}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{optional}}) \textendash{} the arbitrary comparable size of the distribution curve, by default 80
 
 \end{itemize}
 
@@ -571,7 +567,7 @@ with the given standard deviation
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{pars}} (\sphinxstyleliteralemphasis{\sphinxupquote{pamameter object instance}}) \textendash{} raw pamameters
+\sphinxstyleliteralstrong{\sphinxupquote{pars}} (\sphinxstyleliteralemphasis{\sphinxupquote{parameter object instance}}) \textendash{} raw parameters
 pars.life\_product\_label\_life
 pars.life\_confidence
 pars.life\_std
@@ -592,9 +588,33 @@ float
 
 \section{carbonation module}
 \label{\detokenize{carbonation:module-carbonation}}\label{\detokenize{carbonation:carbonation-module}}\label{\detokenize{carbonation::doc}}\index{module@\spxentry{module}!carbonation@\spxentry{carbonation}}\index{carbonation@\spxentry{carbonation}!module@\spxentry{module}}
+\sphinxAtStartPar
+\sphinxstylestrong{Summary}
 
-\subsection{Summary}
-\label{\detokenize{carbonation:summary}}\index{C\_S() (in module carbonation)@\spxentry{C\_S()}\spxextra{in module carbonation}}
+\sphinxAtStartPar
+Modified analytical solution of Fick’s law (square root of time)
+
+\sphinxAtStartPar
+Proportional constant is modified by material properties and exposure environments
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{Resistance}:       cover depth
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{Load}:             carbonation depth
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{limit\sphinxhyphen{}state}:      carbonation depth \textgreater{}= cover depth
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{Field data}:       carbonation depths (repeated measurements)
+
+\end{itemize}
+\index{C\_S() (in module carbonation)@\spxentry{C\_S()}\spxextra{in module carbonation}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{carbonation:carbonation.C_S}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{carbonation.}}\sphinxbfcode{\sphinxupquote{C\_S}}}{\emph{\DUrole{n}{C\_S\_emi}\DUrole{o}{=}\DUrole{default_value}{0}}}{}
@@ -965,9 +985,33 @@ w/c 0.45 cemI is comparable to ACC of 3 mm.
 
 \section{chloride module}
 \label{\detokenize{chloride:module-chloride}}\label{\detokenize{chloride:chloride-module}}\label{\detokenize{chloride::doc}}\index{module@\spxentry{module}!chloride@\spxentry{chloride}}\index{chloride@\spxentry{chloride}!module@\spxentry{module}}
+\sphinxAtStartPar
+\sphinxstylestrong{Summary}
 
-\subsection{Summary}
-\label{\detokenize{chloride:summary}}
+\sphinxAtStartPar
+Analytical solution of Fick’s second law under advection zone
+
+\sphinxAtStartPar
+Modified with material property and exposure environment
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{Resistance}:       critical chloride content
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{Load}:             chloride content at rebar depth
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{limit\sphinxhyphen{}state}:      chloride content at rebar depth \textgreater{}= critical chloride content
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstylestrong{Field data}:       chloride content profile
+
+\end{itemize}
+
 \sphinxAtStartPar
 TODO: make t input vectorized
 \index{A\_t() (in module chloride)@\spxentry{A\_t()}\spxextra{in module chloride}}
@@ -1838,9 +1882,28 @@ Pandas Dataframe
 
 \section{corrosion module}
 \label{\detokenize{corrosion:module-corrosion}}\label{\detokenize{corrosion:corrosion-module}}\label{\detokenize{corrosion::doc}}\index{module@\spxentry{module}!corrosion@\spxentry{corrosion}}\index{corrosion@\spxentry{corrosion}!module@\spxentry{module}}
+\sphinxAtStartPar
+\sphinxstylestrong{Summary}
 
-\subsection{Summary}
-\label{\detokenize{corrosion:summary}}\index{C\_f() (in module corrosion)@\spxentry{C\_f()}\spxextra{in module corrosion}}
+\sphinxAtStartPar
+2D electrochemical model and its regressed solution
+
+\sphinxAtStartPar
+icorr = f(moisture, temperature, oxygen availability)
+
+\sphinxAtStartPar
+\sphinxstylestrong{Field data}
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Volumetric water content (TDR moisture sensor)
+
+\item {} 
+\sphinxAtStartPar
+corrosion rate (LPR, corrosion sensor) to validate the model
+
+\end{itemize}
+\index{C\_f() (in module corrosion)@\spxentry{C\_f()}\spxextra{in module corrosion}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{corrosion:corrosion.C_f}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{corrosion.}}\sphinxbfcode{\sphinxupquote{C\_f}}}{\emph{\DUrole{n}{T}}}{}
@@ -2369,7 +2432,7 @@ a reverse function of WaterbyMassHCP\_to\_theta\_water()
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{corrosion:corrosion.x_loss_t_fun}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{corrosion.}}\sphinxbfcode{\sphinxupquote{x\_loss\_t\_fun}}}{\emph{\DUrole{n}{t\_end}}, \emph{\DUrole{n}{n\_step}}, \emph{\DUrole{n}{x\_loss\_rate}}, \emph{\DUrole{n}{p\_active\_t\_curve}}}{}
 \sphinxAtStartPar
-x\_loss\_t\_fun returns x\_loss samples at a SINGLE given time t\_tend. the samples represents distribution of all possible x\_loss with
+x\_loss\_t\_fun returns x\_loss samples at a SINGLE given time t\_end. the samples represents distribution of all possible x\_loss with
 different corrosion history
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode\begin{itemize}
@@ -2416,62 +2479,32 @@ run x\_loss\_t\_fun() function over time
 
 \section{cracking module}
 \label{\detokenize{cracking:module-cracking}}\label{\detokenize{cracking:cracking-module}}\label{\detokenize{cracking::doc}}\index{module@\spxentry{module}!cracking@\spxentry{cracking}}\index{cracking@\spxentry{cracking}!module@\spxentry{module}}
-
-\subsection{Summary}
-\label{\detokenize{cracking:summary}}
 \sphinxAtStartPar
-\#\# Input
-+ raw
-section loss
+\sphinxstylestrong{Summary}
 
 \sphinxAtStartPar
-\#\# Output
-internal stress strain through the concrete cover and the location of the crack tip
-critical section loss to cause crack on the cover surface
-
-\sphinxAtStartPar
-\#\#\# {[}update{]}
+Thick\sphinxhyphen{}walled expansive cylinder model to calculate internal
+stress strain through the concrete cover and the location of the crack tip
 \begin{itemize}
 \item {} 
 \sphinxAtStartPar
-fully vectorized func with direct masking method
+\sphinxstylestrong{Resistance}:       cover depth
 
 \item {} 
 \sphinxAtStartPar
-numpy func instead of “numpy.vectorize” to run faster
+\sphinxstylestrong{Load}:             crack length
 
 \item {} 
 \sphinxAtStartPar
-random variable
+\sphinxstylestrong{limit\sphinxhyphen{}state}:      crack length = cover depth
 
-\item {} 
+\item {} \begin{description}
+\item[{\sphinxstylestrong{Field data}:       concrete mechanical properties}] \leavevmode
 \sphinxAtStartPar
-object
+(compressive, tensile strength Young’s modulus)
+delamination, visible crack ratio
 
-\item {} 
-\sphinxAtStartPar
-open crack width
-
-\item {} 
-\sphinxAtStartPar
-u\_p as a function of w/c
-
-\item {} 
-\sphinxAtStartPar
-random r\_v
-
-\item {} 
-\sphinxAtStartPar
-P of f is not consistent between P\_RS and crack\_condition count. Because the R and S here are dependent: S.max() = R. Currently use crack\_condition count. for example if 100\% fully cracked, then R==S, Pf = 50\%, wrong answer
-
-\end{itemize}
-
-\sphinxAtStartPar
-\#\#\# {[}TODO{]}
-\begin{itemize}
-\item {} 
-\sphinxAtStartPar
-fix negative w\_open (surface crack width)
+\end{description}
 
 \end{itemize}
 \index{Cracking\_Model (class in cracking)@\spxentry{Cracking\_Model}\spxextra{class in cracking}}
@@ -2826,9 +2859,9 @@ r is a matrix. Other material property parameters(such as E) are 1\sphinxhyphen{
 
 \section{helper\_func module}
 \label{\detokenize{helper_func:module-helper_func}}\label{\detokenize{helper_func:helper-func-module}}\label{\detokenize{helper_func::doc}}\index{module@\spxentry{module}!helper\_func@\spxentry{helper\_func}}\index{helper\_func@\spxentry{helper\_func}!module@\spxentry{module}}
+\sphinxAtStartPar
+\sphinxstylestrong{Summary}
 
-\subsection{Summary}
-\label{\detokenize{helper_func:summary}}
 \sphinxAtStartPar
 The helper module is designed to handle the repeated math operations that are not directly related to the mechanistic model calculation. These operations include the following
 \begin{itemize}
@@ -3472,7 +3505,7 @@ calibrate model
 
 \PYG{c+c1}{\PYGZsh{} product information}
 \PYG{n}{raw\PYGZus{}pars}\PYG{o}{.}\PYG{n}{life\PYGZus{}product\PYGZus{}label\PYGZus{}life} \PYG{o}{=} \PYG{l+m+mi}{10}  \PYG{c+c1}{\PYGZsh{} year, defined as 95\PYGZpc{} confident non\PYGZhy{}failure}
-\PYG{n}{raw\PYGZus{}pars}\PYG{o}{.}\PYG{n}{life\PYGZus{}std} \PYG{o}{=} \PYG{l+m+mf}{0.2} \PYG{o}{*} \PYG{n}{raw\PYGZus{}pars}\PYG{o}{.}\PYG{n}{life\PYGZus{}product\PYGZus{}label\PYGZus{}life} \PYG{c+c1}{\PYGZsh{} assume, calibrate later}
+\PYG{n}{raw\PYGZus{}pars}\PYG{o}{.}\PYG{n}{life\PYGZus{}std} \PYG{o}{=} \PYG{l+m+mf}{0.2} \PYG{o}{*} \PYG{n}{raw\PYGZus{}pars}\PYG{o}{.}\PYG{n}{life\PYGZus{}product\PYGZus{}label\PYGZus{}life} \PYG{c+c1}{\PYGZsh{} assume if not known, calibrate later for real service conditions}
 \PYG{n}{raw\PYGZus{}pars}\PYG{o}{.}\PYG{n}{life\PYGZus{}confidence} \PYG{o}{=} \PYG{l+m+mf}{0.95}
 
 \PYG{c+c1}{\PYGZsh{} calibration data (if available)}
@@ -3942,7 +3975,7 @@ Pf(g = R-S < 0) from various methods
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \llap{\color{nbsphinxin}[11]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{}calibrate model to the field chloride content}
-\PYG{n}{model\PYGZus{}cl\PYGZus{}cal} \PYG{o}{=} \PYG{n}{M}\PYG{o}{.}\PYG{n}{calibrate}\PYG{p}{(}\PYG{l+m+mi}{40}\PYG{p}{,} \PYG{n}{chloride\PYGZus{}content\PYGZus{}field}\PYG{p}{,}\PYG{n}{print\PYGZus{}proc}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{,} \PYG{n}{plot}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+\PYG{n}{model\PYGZus{}cl\PYGZus{}cal} \PYG{o}{=} \PYG{n}{model\PYGZus{}cl}\PYG{o}{.}\PYG{n}{calibrate}\PYG{p}{(}\PYG{l+m+mi}{40}\PYG{p}{,} \PYG{n}{chloride\PYGZus{}content\PYGZus{}field}\PYG{p}{,}\PYG{n}{print\PYGZus{}proc}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{,} \PYG{n}{plot}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
 

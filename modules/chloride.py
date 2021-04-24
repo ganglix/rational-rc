@@ -1,6 +1,14 @@
 """
-Summary
--------
+**Summary**
+
+Analytical solution of Fick’s second law under advection zone\n
+Modified with material property and exposure environment
+
++ **Resistance**: 	critical chloride content
++ **Load**: 		chloride content at rebar depth
++ **limit-state**: 	chloride content at rebar depth >= critical chloride content
++ **Field data**: 	chloride content profile
+
 TODO: make t input vectorized 
 """
 

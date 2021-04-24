@@ -159,8 +159,19 @@
             
   <h1>Source code for carbonation</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Summary</span>
-<span class="sd">-------</span>
+<span class="sd">**Summary**</span>
+
+<span class="sd">Modified analytical solution of Fick’s law (square root of time)\n</span>
+<span class="sd">Proportional constant is modified by material properties and exposure environments</span>
+
+<span class="sd">+ **Resistance**: 	cover depth</span>
+
+<span class="sd">+ **Load**: 		carbonation depth</span>
+
+<span class="sd">+ **limit-state**: 	carbonation depth &gt;= cover depth</span>
+
+<span class="sd">+ **Field data**: 	carbonation depths (repeated measurements)</span>
+
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  16 APR 2021 15:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  23 APR 2021 23:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1218,72 +1218,72 @@ LaTeX Font Info:    Try loading font information for TS1+ptm on input line 259.
 (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 279.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 275.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <10> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 279.
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 275.
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <10> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 292.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 288.
  [5] [6]
-Underfull \hbox (badness 10000) in paragraph at lines 572--578
-[]\T1/pcr/b/n/10 pars \T1/ptm/m/n/10 (\T1/pcr/m/sl/10 pamameter object instance
-\T1/ptm/m/n/10 ) ^^U raw pa-mame-ters
+Underfull \hbox (badness 10000) in paragraph at lines 568--574
+[]\T1/pcr/b/n/10 pars \T1/ptm/m/n/10 (\T1/pcr/m/sl/10 parameter object instance
+\T1/ptm/m/n/10 ) ^^U raw pa-ram-e-ters
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 604--607
+Underfull \hbox (badness 10000) in paragraph at lines 624--627
 []\T1/pcr/b/n/10 C_S_emi \T1/ptm/m/n/10 (\T1/pcr/m/sl/10 additional emission, p
 ositive or negative(sink),
  []
 
 [7]
-Overfull \hbox (60.4503pt too wide) in paragraph at lines 723--727
+Overfull \hbox (60.4503pt too wide) in paragraph at lines 743--747
 []
  []
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 808--808
+Underfull \hbox (badness 10000) in paragraph at lines 828--828
 []\T1/ptm/m/it/10 model_raw\T1/ptm/m/n/10 , \T1/ptm/m/it/10 t\T1/ptm/m/n/10 , \
 T1/ptm/m/it/10 carb_depth_field\T1/ptm/m/n/10 , \T1/ptm/m/it/10 tol=1e-06\T1/pt
 m/m/n/10 , \T1/ptm/m/it/10 max_count=50\T1/ptm/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 817--819
+Underfull \hbox (badness 10000) in paragraph at lines 837--839
 []\T1/pcr/b/n/10 model_raw \T1/ptm/m/n/10 (\T1/pcr/m/sl/10 object/instance of C
 arbonation_Model class,
  []
 
 [9] [10] [11] [12] [13] [14]
-Underfull \hbox (badness 10000) in paragraph at lines 1548--1550
+Underfull \hbox (badness 10000) in paragraph at lines 1592--1594
 []\T1/pcr/b/n/10 pars.option.df_D_RCM_0 \T1/ptm/m/n/10 (\T1/pcr/m/sl/10 pandas 
 dataframe\T1/ptm/m/n/10 ) ^^U ex-per-i-men-tal data ta-
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 1660--1662
+[15]
+Underfull \hbox (badness 10000) in paragraph at lines 1704--1706
 []\T1/pcr/b/n/10 model_raw \T1/ptm/m/n/10 (\T1/pcr/m/sl/10 object/instance of C
 hloride_model class (to be
  []
 
-[15]
-Underfull \hbox (badness 10000) in paragraph at lines 1728--1728
+
+Underfull \hbox (badness 10000) in paragraph at lines 1772--1772
 []\T1/ptm/m/it/10 model_raw\T1/ptm/m/n/10 , \T1/ptm/m/it/10 t\T1/ptm/m/n/10 , \
 T1/ptm/m/it/10 chlo-ride_content_field\T1/ptm/m/n/10 , \T1/ptm/m/it/10 plot=Tru
 e\T1/ptm/m/n/10 ,
  []
 
 [16] [17] [18] [19] [20] [21] [22] [23] [24] [25]
-Underfull \hbox (badness 10000) in paragraph at lines 3122--3124
+Underfull \hbox (badness 10000) in paragraph at lines 3155--3157
 []\T1/pcr/b/n/10 model.R_distrib \T1/ptm/m/n/10 (\T1/pcr/m/sl/10 scipy.stats._c
 ontinuous_distns, normal or
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3139--3141
+Underfull \hbox (badness 10000) in paragraph at lines 3172--3174
 []\T1/pcr/b/n/10 t_offset \T1/ptm/m/n/10 (\T1/pcr/m/sl/10 time offset to move t
 he plot along the t-axis.
  []
@@ -1291,162 +1291,162 @@ he plot along the t-axis.
 [26] [27] [28]
 Chapter 3.
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <9> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 3458.
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 3491.
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <9> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 3468.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 3501.
 [29
 
-] <membrane_example_3_1.png, id=394, 717.68124pt x 208.78pt>
+] <membrane_example_3_1.png, id=389, 717.68124pt x 208.78pt>
 File: membrane_example_3_1.png Graphic file (type png)
 
 <use membrane_example_3_1.png>
-Package pdftex.def Info: membrane_example_3_1.png used on input line 3524.
+Package pdftex.def Info: membrane_example_3_1.png used on input line 3557.
 (pdftex.def)             Requested size: 469.76161pt x 136.6579pt.
 
-<membrane_example_5_1.png, id=396, 706.64pt x 208.78pt>
+<membrane_example_5_1.png, id=391, 706.64pt x 208.78pt>
 File: membrane_example_5_1.png Graphic file (type png)
 
 <use membrane_example_5_1.png>
-Package pdftex.def Info: membrane_example_5_1.png used on input line 3588.
+Package pdftex.def Info: membrane_example_5_1.png used on input line 3621.
 (pdftex.def)             Requested size: 469.75874pt x 138.79233pt.
 
-<membrane_example_6_0.png, id=397, 570.13pt x 566.115pt>
+<membrane_example_6_0.png, id=392, 570.13pt x 566.115pt>
 File: membrane_example_6_0.png Graphic file (type png)
 
 <use membrane_example_6_0.png>
-Package pdftex.def Info: membrane_example_6_0.png used on input line 3609.
+Package pdftex.def Info: membrane_example_6_0.png used on input line 3642.
 (pdftex.def)             Requested size: 427.59645pt x 424.59384pt.
 
-Underfull \vbox (badness 10000) detected at line 3611
+Underfull \vbox (badness 10000) detected at line 3644
  []
 
 [30 <./membrane_example_3_1.png> <./membrane_example_5_1.png>]
-LaTeX Font Info:    Try loading font information for TS1+pcr on input line 3667
+LaTeX Font Info:    Try loading font information for TS1+pcr on input line 3700
 .
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/ts1pcr.fd
 File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
-) [31 <./membrane_example_6_0.png>] <carbonation_example_2_1.png, id=411, 706.6
+) [31 <./membrane_example_6_0.png>] <carbonation_example_2_1.png, id=405, 706.6
 4pt x 208.78pt>
 File: carbonation_example_2_1.png Graphic file (type png)
 
 <use carbonation_example_2_1.png>
-Package pdftex.def Info: carbonation_example_2_1.png used on input line 3709.
+Package pdftex.def Info: carbonation_example_2_1.png used on input line 3742.
 (pdftex.def)             Requested size: 469.75874pt x 138.79233pt.
 
-Underfull \vbox (badness 3240) detected at line 3723
+Underfull \vbox (badness 3240) detected at line 3756
  []
 
 [32 <./carbonation_example_2_1.png>]
-<carbonation_example_4_1.png, id=417, 570.13pt x 566.115pt>
+<carbonation_example_4_1.png, id=411, 570.13pt x 566.115pt>
 File: carbonation_example_4_1.png Graphic file (type png)
 
 <use carbonation_example_4_1.png>
-Package pdftex.def Info: carbonation_example_4_1.png used on input line 3786.
+Package pdftex.def Info: carbonation_example_4_1.png used on input line 3819.
 (pdftex.def)             Requested size: 427.59645pt x 424.59384pt.
 
-Underfull \vbox (badness 10000) detected at line 3788
+Underfull \vbox (badness 10000) detected at line 3821
  []
 
 [33]
 LaTeX Font Info:    Font shape `TS1/pcr/m/it' in size <9> not available
-(Font)              Font shape `TS1/pcr/m/sl' tried instead on input line 3794.
+(Font)              Font shape `TS1/pcr/m/sl' tried instead on input line 3827.
 
  [34 <./carbonation_example_4_1.png>]
-Overfull \vbox (1.28166pt too high) detected at line 3897
+Overfull \vbox (1.28166pt too high) detected at line 3930
  []
 
-[35] <chloride_example_3_1.png, id=432, 706.64pt x 208.78pt>
+[35] <chloride_example_3_1.png, id=426, 706.64pt x 208.78pt>
 File: chloride_example_3_1.png Graphic file (type png)
 
 <use chloride_example_3_1.png>
-Package pdftex.def Info: chloride_example_3_1.png used on input line 3907.
+Package pdftex.def Info: chloride_example_3_1.png used on input line 3940.
 (pdftex.def)             Requested size: 469.75874pt x 138.79233pt.
 
-<chloride_example_5_1.png, id=433, 373.395pt x 248.93pt>
+<chloride_example_5_1.png, id=427, 373.395pt x 248.93pt>
 File: chloride_example_5_1.png Graphic file (type png)
 
 <use chloride_example_5_1.png>
-Package pdftex.def Info: chloride_example_5_1.png used on input line 3973.
+Package pdftex.def Info: chloride_example_5_1.png used on input line 4006.
 (pdftex.def)             Requested size: 280.05696pt x 186.70082pt.
  [36 <./chloride_example_3_1.png> <./chloride_example_5_1.png>] <chloride_examp
-le_6_1.png, id=440, 706.64pt x 208.78pt>
+le_6_1.png, id=434, 706.64pt x 208.78pt>
 File: chloride_example_6_1.png Graphic file (type png)
 
 <use chloride_example_6_1.png>
-Package pdftex.def Info: chloride_example_6_1.png used on input line 4012.
+Package pdftex.def Info: chloride_example_6_1.png used on input line 4045.
 (pdftex.def)             Requested size: 469.75874pt x 138.79233pt.
 
-<chloride_example_7_1.png, id=441, 570.13pt x 566.115pt>
+<chloride_example_7_1.png, id=435, 570.13pt x 566.115pt>
 File: chloride_example_7_1.png Graphic file (type png)
 
 <use chloride_example_7_1.png>
-Package pdftex.def Info: chloride_example_7_1.png used on input line 4057.
+Package pdftex.def Info: chloride_example_7_1.png used on input line 4090.
 (pdftex.def)             Requested size: 427.59645pt x 424.59384pt.
 
-Underfull \vbox (badness 10000) detected at line 4059
+Underfull \vbox (badness 10000) detected at line 4092
  []
 
 [37 <./chloride_example_6_1.png>] [38 <./chloride_example_7_1.png>] [39]
-<corrosion_example_5_1.png, id=457, 387.4475pt x 279.0425pt>
+<corrosion_example_5_1.png, id=451, 387.4475pt x 279.0425pt>
 File: corrosion_example_5_1.png Graphic file (type png)
 
 <use corrosion_example_5_1.png>
-Package pdftex.def Info: corrosion_example_5_1.png used on input line 4221.
+Package pdftex.def Info: corrosion_example_5_1.png used on input line 4254.
 (pdftex.def)             Requested size: 290.5849pt x 209.28561pt.
 
-<corrosion_example_6_1.png, id=458, 706.64pt x 208.78pt>
+<corrosion_example_6_1.png, id=452, 706.64pt x 208.78pt>
 File: corrosion_example_6_1.png Graphic file (type png)
 
 <use corrosion_example_6_1.png>
-Package pdftex.def Info: corrosion_example_6_1.png used on input line 4273.
+Package pdftex.def Info: corrosion_example_6_1.png used on input line 4306.
 (pdftex.def)             Requested size: 469.75874pt x 138.79233pt.
 
-Underfull \vbox (badness 10000) detected at line 4275
+Underfull \vbox (badness 10000) detected at line 4308
  []
 
 [40 <./corrosion_example_5_1.png>]
-<corrosion_example_7_1.png, id=464, 570.13pt x 566.115pt>
+<corrosion_example_7_1.png, id=458, 570.13pt x 566.115pt>
 File: corrosion_example_7_1.png Graphic file (type png)
 
 <use corrosion_example_7_1.png>
-Package pdftex.def Info: corrosion_example_7_1.png used on input line 4312.
+Package pdftex.def Info: corrosion_example_7_1.png used on input line 4345.
 (pdftex.def)             Requested size: 427.59645pt x 424.59384pt.
 
-Underfull \vbox (badness 10000) detected at line 4314
+Underfull \vbox (badness 10000) detected at line 4347
  []
 
 [41 <./corrosion_example_6_1.png>] [42 <./corrosion_example_7_1.png>]
-<cracking_example_3_1.png, id=475, 425.59pt x 281.05pt>
+<cracking_example_3_1.png, id=469, 425.59pt x 281.05pt>
 File: cracking_example_3_1.png Graphic file (type png)
 
 <use cracking_example_3_1.png>
-Package pdftex.def Info: cracking_example_3_1.png used on input line 4415.
+Package pdftex.def Info: cracking_example_3_1.png used on input line 4448.
 (pdftex.def)             Requested size: 319.20468pt x 210.78697pt.
 
-Underfull \vbox (badness 10000) detected at line 4417
+Underfull \vbox (badness 10000) detected at line 4450
  []
 
 [43]
-Underfull \vbox (badness 10000) detected at line 4466
+Underfull \vbox (badness 10000) detected at line 4499
  []
 
 [44 <./cracking_example_3_1.png>]
-<cracking_example_5_1.png, id=485, 388.45125pt x 248.93pt>
+<cracking_example_5_1.png, id=479, 388.45125pt x 248.93pt>
 File: cracking_example_5_1.png Graphic file (type png)
 
 <use cracking_example_5_1.png>
-Package pdftex.def Info: cracking_example_5_1.png used on input line 4501.
+Package pdftex.def Info: cracking_example_5_1.png used on input line 4534.
 (pdftex.def)             Requested size: 291.34363pt x 186.70082pt.
 
-<cracking_example_6_1.png, id=486, 363.3575pt x 262.9825pt>
+<cracking_example_6_1.png, id=480, 363.3575pt x 262.9825pt>
 File: cracking_example_6_1.png Graphic file (type png)
 
 <use cracking_example_6_1.png>
-Package pdftex.def Info: cracking_example_6_1.png used on input line 4535.
+Package pdftex.def Info: cracking_example_6_1.png used on input line 4568.
 (pdftex.def)             Requested size: 272.52298pt x 197.2444pt.
 
-Underfull \vbox (badness 10000) detected at line 4537
+Underfull \vbox (badness 10000) detected at line 4570
  []
 
 [45 <./cracking_example_5_1.png>] [46 <./cracking_example_6_1.png>]
@@ -1588,24 +1588,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 205--207
 [53
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 4586.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 4586.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 4619.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 4619.
  (./tinkrete.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 4586.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 4586.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 4619.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 4619.
 
 Package rerunfilecheck Info: File `tinkrete.out' has not changed.
 (rerunfilecheck)             Checksum: 5EF9DD32F70AE2DBDBD44D6339A619F7;2528.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 4586.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 4619.
  ) 
 Here is how much of TeX's memory you used:
- 14277 strings out of 493014
- 203056 string characters out of 6133351
- 348716 words of memory out of 5000000
- 17270 multiletter control sequences out of 15000+600000
- 55316 words of font info for 80 fonts, out of 8000000 for 9000
+ 14256 strings out of 493014
+ 202702 string characters out of 6133351
+ 349211 words of memory out of 5000000
+ 17257 multiletter control sequences out of 15000+600000
+ 51936 words of font info for 78 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
- 37i,12n,45p,691b,693s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,12n,45p,691b,605s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -1624,10 +1624,10 @@ c/uhvbo8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/helvetic/uhvr
 8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></u
 sr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/t
 exlive/2016/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on tinkrete.pdf (57 pages, 586706 bytes).
+Output written on tinkrete.pdf (57 pages, 586825 bytes).
 PDF statistics:
- 777 PDF objects out of 1000 (max. 8388607)
- 658 compressed objects within 7 object streams
- 212 named destinations out of 1000 (max. 500000)
+ 770 PDF objects out of 1000 (max. 8388607)
+ 651 compressed objects within 7 object streams
+ 206 named destinations out of 1000 (max. 500000)
  240 words of extra memory for PDF output out of 10000 (max. 10000000)
 

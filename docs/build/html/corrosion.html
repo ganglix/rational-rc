@@ -96,10 +96,7 @@
 <li class="toctree-l2"><a class="reference internal" href="membrane.html">membrane module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="carbonation.html">carbonation module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chloride.html">chloride module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">corrosion module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#summary">Summary</a></li>
-</ul>
-</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">corrosion module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cracking.html">cracking module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="helper_func.html">helper_func module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_helper_func.html">test_helper_func module</a></li>
@@ -201,8 +198,14 @@
 </style>
 <div class="section" id="module-corrosion">
 <span id="corrosion-module"></span><h1>corrosion module<a class="headerlink" href="#module-corrosion" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p><strong>Summary</strong></p>
+<p>2D electrochemical model and its regressed solution</p>
+<p>icorr = f(moisture, temperature, oxygen availability)</p>
+<p><strong>Field data</strong></p>
+<ul class="simple">
+<li><p>Volumetric water content (TDR moisture sensor)</p></li>
+<li><p>corrosion rate (LPR, corrosion sensor) to validate the model</p></li>
+</ul>
 <dl class="py function">
 <dt id="corrosion.C_f">
 <code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">C_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#C_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.C_f" title="Permalink to this definition">¶</a></dt>
@@ -552,7 +555,7 @@ a reverse function of WaterbyMassHCP_to_theta_water()</p>
 <dl class="py function">
 <dt id="corrosion.x_loss_t_fun">
 <code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">x_loss_t_fun</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_loss_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p_active_t_curve</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#x_loss_t_fun"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.x_loss_t_fun" title="Permalink to this definition">¶</a></dt>
-<dd><p>x_loss_t_fun returns x_loss samples at a SINGLE given time t_tend. the samples represents distribution of all possible x_loss with
+<dd><p>x_loss_t_fun returns x_loss samples at a SINGLE given time t_end. the samples represents distribution of all possible x_loss with
 different corrosion history</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -578,7 +581,6 @@ different corrosion history</p>
 <dd><p>run x_loss_t_fun() function over time</p>
 </dd></dl>
 
-</div>
 </div>
 
 

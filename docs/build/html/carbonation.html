@@ -96,10 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="membrane.html">membrane module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">carbonation module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#summary">Summary</a></li>
-</ul>
-</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">carbonation module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chloride.html">chloride module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="corrosion.html">corrosion module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cracking.html">cracking module</a></li>
@@ -203,8 +200,15 @@
 </style>
 <div class="section" id="module-carbonation">
 <span id="carbonation-module"></span><h1>carbonation module<a class="headerlink" href="#module-carbonation" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p><strong>Summary</strong></p>
+<p>Modified analytical solution of Fick’s law (square root of time)</p>
+<p>Proportional constant is modified by material properties and exposure environments</p>
+<ul class="simple">
+<li><p><strong>Resistance</strong>:       cover depth</p></li>
+<li><p><strong>Load</strong>:             carbonation depth</p></li>
+<li><p><strong>limit-state</strong>:      carbonation depth &gt;= cover depth</p></li>
+<li><p><strong>Field data</strong>:       carbonation depths (repeated measurements)</p></li>
+</ul>
 <dl class="py function">
 <dt id="carbonation.C_S">
 <code class="sig-prename descclassname"><span class="pre">carbonation.</span></code><code class="sig-name descname"><span class="pre">C_S</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">C_S_emi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/carbonation.html#C_S"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#carbonation.C_S" title="Permalink to this definition">¶</a></dt>
@@ -435,7 +439,6 @@ for R_ACC interpolation.</p>
 <p>w/c 0.45 cemI is comparable to ACC of 3 mm.</p>
 </dd></dl>
 
-</div>
 </div>
 
 

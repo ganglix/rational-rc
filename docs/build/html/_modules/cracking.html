@@ -159,31 +159,21 @@
             
   <h1>Source code for cracking</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Summary</span>
-<span class="sd">-------</span>
-<span class="sd">## Input</span>
-<span class="sd">+ raw</span>
-<span class="sd">section loss</span>
+<span class="sd">**Summary**</span>
 
-<span class="sd">## Output</span>
-<span class="sd">internal stress strain through the concrete cover and the location of the crack tip</span>
-<span class="sd">critical section loss to cause crack on the cover surface</span>
+<span class="sd">Thick-walled expansive cylinder model to calculate internal </span>
+<span class="sd">stress strain through the concrete cover and the location of the crack tip</span>
 
-<span class="sd">### [update]</span>
+<span class="sd">+ **Resistance**: 	cover depth</span>
 
-<span class="sd">+ fully vectorized func with direct masking method</span>
-<span class="sd">+ numpy func instead of &quot;numpy.vectorize&quot; to run faster</span>
-<span class="sd">+ random variable</span>
-<span class="sd">+ object</span>
-<span class="sd">+ open crack width</span>
-<span class="sd">+ u_p as a function of w/c</span>
-<span class="sd">+ random r_v</span>
-<span class="sd">+ P of f is not consistent between P_RS and crack_condition count. Because the R and S here are dependent: S.max() = R. Currently use crack_condition count. for example if 100% fully cracked, then R==S, Pf = 50%, wrong answer</span>
+<span class="sd">+ **Load**: 		crack length</span>
 
+<span class="sd">+ **limit-state**: 	crack length = cover depth</span>
 
-<span class="sd">### [TODO]</span>
+<span class="sd">+ **Field data**: 	concrete mechanical properties</span>
+<span class="sd">		(compressive, tensile strength Young’s modulus) </span>
+<span class="sd">		delamination, visible crack ratio</span>
 
-<span class="sd">+ fix negative w_open (surface crack width)</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 

@@ -159,8 +159,16 @@
             
   <h1>Source code for corrosion</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Summary</span>
-<span class="sd">-------</span>
+<span class="sd">**Summary**</span>
+
+<span class="sd">2D electrochemical model and its regressed solution \n</span>
+<span class="sd">icorr = f(moisture, temperature, oxygen availability)</span>
+
+<span class="sd">**Field data**</span>
+
+<span class="sd">+ Volumetric water content (TDR moisture sensor)</span>
+
+<span class="sd">+ corrosion rate (LPR, corrosion sensor) to validate the model</span>
 
 
 <span class="sd">&quot;&quot;&quot;</span>
@@ -649,7 +657,7 @@
 
 <span class="c1"># output section loss distribution at time t</span>
 <div class="viewcode-block" id="x_loss_t_fun"><a class="viewcode-back" href="../corrosion.html#corrosion.x_loss_t_fun">[docs]</a><span class="k">def</span> <span class="nf">x_loss_t_fun</span><span class="p">(</span><span class="n">t_end</span><span class="p">,</span> <span class="n">n_step</span><span class="p">,</span> <span class="n">x_loss_rate</span><span class="p">,</span> <span class="n">p_active_t_curve</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;x_loss_t_fun returns x_loss samples at a SINGLE given time t_tend. the samples represents distribution of all possible x_loss with </span>
+    <span class="sd">&quot;&quot;&quot;x_loss_t_fun returns x_loss samples at a SINGLE given time t_end. the samples represents distribution of all possible x_loss with </span>
 <span class="sd">    different corrosion history</span>
 
 <span class="sd">    Parameters</span>

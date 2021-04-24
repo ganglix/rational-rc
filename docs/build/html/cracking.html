@@ -97,10 +97,7 @@
 <li class="toctree-l2"><a class="reference internal" href="carbonation.html">carbonation module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chloride.html">chloride module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="corrosion.html">corrosion module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">cracking module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#summary">Summary</a></li>
-</ul>
-</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">cracking module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="helper_func.html">helper_func module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_helper_func.html">test_helper_func module</a></li>
 </ul>
@@ -201,28 +198,19 @@
 </style>
 <div class="section" id="module-cracking">
 <span id="cracking-module"></span><h1>cracking module<a class="headerlink" href="#module-cracking" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<p>## Input
-+ raw
-section loss</p>
-<p>## Output
-internal stress strain through the concrete cover and the location of the crack tip
-critical section loss to cause crack on the cover surface</p>
-<p>### [update]</p>
+<p><strong>Summary</strong></p>
+<p>Thick-walled expansive cylinder model to calculate internal
+stress strain through the concrete cover and the location of the crack tip</p>
 <ul class="simple">
-<li><p>fully vectorized func with direct masking method</p></li>
-<li><p>numpy func instead of “numpy.vectorize” to run faster</p></li>
-<li><p>random variable</p></li>
-<li><p>object</p></li>
-<li><p>open crack width</p></li>
-<li><p>u_p as a function of w/c</p></li>
-<li><p>random r_v</p></li>
-<li><p>P of f is not consistent between P_RS and crack_condition count. Because the R and S here are dependent: S.max() = R. Currently use crack_condition count. for example if 100% fully cracked, then R==S, Pf = 50%, wrong answer</p></li>
-</ul>
-<p>### [TODO]</p>
-<ul class="simple">
-<li><p>fix negative w_open (surface crack width)</p></li>
+<li><p><strong>Resistance</strong>:       cover depth</p></li>
+<li><p><strong>Load</strong>:             crack length</p></li>
+<li><p><strong>limit-state</strong>:      crack length = cover depth</p></li>
+<li><dl class="simple">
+<dt><strong>Field data</strong>:       concrete mechanical properties</dt><dd><p>(compressive, tensile strength Young’s modulus)
+delamination, visible crack ratio</p>
+</dd>
+</dl>
+</li>
 </ul>
 <dl class="py class">
 <dt id="cracking.Cracking_Model">
@@ -424,7 +412,6 @@ r is a matrix. Other material property parameters(such as E) are 1-D arrays (to 
 </div>
 </dd></dl>
 
-</div>
 </div>
 
 

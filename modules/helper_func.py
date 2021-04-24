@@ -1,6 +1,6 @@
 """ 
-Summary
--------
+**Summary**
+
 The helper module is designed to handle the repeated math operations that are not directly related to the mechanistic model calculation. These operations include the following
 
 + distribution sampling from a distribution (uniform, beta)

@@ -95,10 +95,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">membrane module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#summary">Summary</a></li>
-</ul>
-</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">membrane module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="carbonation.html">carbonation module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chloride.html">chloride module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="corrosion.html">corrosion module</a></li>
@@ -203,19 +200,13 @@
 </style>
 <div class="section" id="module-membrane">
 <span id="membrane-module"></span><h1>membrane module<a class="headerlink" href="#module-membrane" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p><strong>Summary</strong></p>
 <p>A statistical model is used to predict the probability of failure for the membrane.</p>
 <ul class="simple">
-<li><p>The resistance is the service life of the membrane, and the load is the age in service.</p></li>
-<li><p>The limit-state is when the ago is greater than the service life.</p></li>
+<li><p><strong>Resistance</strong>: membrane service life</p></li>
+<li><p><strong>Load</strong>: age</p></li>
+<li><p><strong>limit-state</strong>: age &gt;= service life.</p></li>
 </ul>
-<p>The initial estimation of the service life is assumed to follow the normal distribution with a mean and standard deviation such that the manufacture-labelled service life is 95% guaranteed.
-The estimated distribution of service life is then calibrated to the field survey results,
-where the failure rate of the membrane is reported through the half-cell test.
-So that the model matches the field observation at a given time by the updated standard deviation.
-This process captures the varied uncertainty of the field service life by adjusting the service life distribution.
-Then, the calibrated model is used to project future deterioration. The accuracy of the calibrated model is improved when more historical data is available.</p>
 <dl class="py class">
 <dt id="membrane.Membrane_Model">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">membrane.</span></code><code class="sig-name descname"><span class="pre">Membrane_Model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/membrane.html#Membrane_Model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#membrane.Membrane_Model" title="Permalink to this definition">¶</a></dt>
@@ -228,14 +219,14 @@ Then, the calibrated model is used to project future deterioration. The accuracy
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>membrane_age_field</strong> (<em>float</em><em>, </em><em>int</em>) – membrane age when membrane failure rate is surveyed</p></li>
-<li><p><strong>membrane_failure_ratio_field</strong> (<em>float</em>) – falure rate e.g. 0.1 for 10%</p></li>
+<li><p><strong>membrane_failure_ratio_field</strong> (<em>float</em>) – failure rate e.g. 0.1 for 10%</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>calibrated model</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>memebrane model object instance</p>
+<dd class="field-odd"><p>membrane model object instance</p>
 </dd>
 </dl>
 </dd></dl>
@@ -329,7 +320,7 @@ other distribution form will be ignored.</p></li>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>model_raw</strong> (<em>model instance</em>) – model to be calibrated</p></li>
 <li><p><strong>t</strong> (<em>int</em><em>, </em><em>float</em>) – membrane age when membrane failure rate is surveyed [year]</p></li>
-<li><p><strong>membrane_failure_ratio_field</strong> (<em>float</em>) – falure rate e.g. 0.1 for 10%</p></li>
+<li><p><strong>membrane_failure_ratio_field</strong> (<em>float</em>) – failure rate e.g. 0.1 for 10%</p></li>
 <li><p><strong>tol</strong> (<em>float</em><em>, </em><em>optional</em>) – optimization tolerance, by default 1e-6</p></li>
 <li><p><strong>max_count</strong> (<em>int</em><em>, </em><em>optional</em>) – optimization max iteration number, by default 100</p></li>
 <li><p><strong>print_out</strong> (<em>bool</em><em>, </em><em>optional</em>) – if True print out model vs field compare, by default True</p></li>
@@ -339,7 +330,7 @@ other distribution form will be ignored.</p></li>
 <dd class="field-even"><p>calibrated model</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>memebrane model object instance</p>
+<dd class="field-odd"><p>membrane model object instance</p>
 </dd>
 </dl>
 </dd></dl>
@@ -374,8 +365,8 @@ other distribution form will be ignored.</p></li>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>model</strong> (<em>class instance</em>) – Membrane_model class instance</p></li>
 <li><p><strong>year_lis</strong> (<em>list</em><em>, </em><em>array-like</em>) – a list of time steps</p></li>
-<li><p><strong>plot</strong> (<em>bool</em><em>, </em><em>optional</em>) – if True, plot the Pf, beta, R S distribtuion, by default True</p></li>
-<li><p><strong>amplify</strong> (<em>int</em><em>, </em><em>optional</em>) – the arbitray comparable size of the distribution curve, by default 80</p></li>
+<li><p><strong>plot</strong> (<em>bool</em><em>, </em><em>optional</em>) – if True, plot the Pf, beta, R S distribution, by default True</p></li>
+<li><p><strong>amplify</strong> (<em>int</em><em>, </em><em>optional</em>) – the arbitrary comparable size of the distribution curve, by default 80</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -394,7 +385,7 @@ other distribution form will be ignored.</p></li>
 with the given standard deviation</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>pars</strong> (<em>pamameter object instance</em>) – raw pamameters
+<dd class="field-odd"><p><strong>pars</strong> (<em>parameter object instance</em>) – raw parameters
 pars.life_product_label_life
 pars.life_confidence
 pars.life_std</p>
@@ -408,7 +399,6 @@ pars.life_std</p>
 </dl>
 </dd></dl>
 
-</div>
 </div>
 
 

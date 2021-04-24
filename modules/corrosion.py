@@ -1,6 +1,14 @@
 """
-Summary
--------
+**Summary**
+
+2D electrochemical model and its regressed solution \n
+icorr = f(moisture, temperature, oxygen availability)
+
+**Field data**
+
++ Volumetric water content (TDR moisture sensor)
+
++ corrosion rate (LPR, corrosion sensor) to validate the model
 
 
 """
@@ -489,7 +497,7 @@ class Corrosion_Model:
 
 # output section loss distribution at time t
 def x_loss_t_fun(t_end, n_step, x_loss_rate, p_active_t_curve):
-    """x_loss_t_fun returns x_loss samples at a SINGLE given time t_tend. the samples represents distribution of all possible x_loss with 
+    """x_loss_t_fun returns x_loss samples at a SINGLE given time t_end. the samples represents distribution of all possible x_loss with 
     different corrosion history
 
     Parameters

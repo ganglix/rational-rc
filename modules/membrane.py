@@ -1,17 +1,14 @@
 """
-Summary
--------
+**Summary**
+
 A statistical model is used to predict the probability of failure for the membrane. 
 
-+ The resistance is the service life of the membrane, and the load is the age in service. 
-+ The limit-state is when the ago is greater than the service life. 
++ **Resistance**: membrane service life
 
-The initial estimation of the service life is assumed to follow the normal distribution with a mean and standard deviation such that the manufacture-labelled service life is 95% guaranteed. 
-The estimated distribution of service life is then calibrated to the field survey results, 
-where the failure rate of the membrane is reported through the half-cell test. 
-So that the model matches the field observation at a given time by the updated standard deviation. 
-This process captures the varied uncertainty of the field service life by adjusting the service life distribution. 
-Then, the calibrated model is used to project future deterioration. The accuracy of the calibrated model is improved when more historical data is available.
++ **Load**: age 
+
++ **limit-state**: age >= service life. 
+
 """
 
 import matplotlib.pyplot as plt
@@ -231,8 +228,8 @@ def membrane_life(pars):
 
     Parameters
     ----------
-    pars : pamameter object instance
-        raw pamameters
+    pars : parameter object instance
+        raw parameters
         pars.life_product_label_life
         pars.life_confidence
         pars.life_std
@@ -264,7 +261,7 @@ def calibrate_f(
     t : int, float
         membrane age when membrane failure rate is surveyed [year]
     membrane_failure_ratio_field : float
-        falure rate e.g. 0.1 for 10%
+        failure rate e.g. 0.1 for 10%
     tol : float, optional
         optimization tolerance, by default 1e-6
     max_count : int, optional
@@ -274,7 +271,7 @@ def calibrate_f(
 
     Returns
     -------
-    memebrane model object instance
+    membrane model object instance
         calibrated model
     """
     
@@ -319,9 +316,9 @@ def membrane_failure_year(model, year_lis, plot=True, amplify=30):
     year_lis : list, array-like
         a list of time steps
     plot : bool, optional
-        if True, plot the Pf, beta, R S distribtuion, by default True
+        if True, plot the Pf, beta, R S distribution, by default True
     amplify : int, optional
-        the arbitray comparable size of the distribution curve, by default 80
+        the arbitrary comparable size of the distribution curve, by default 80
 
     Returns
     -------
@@ -434,11 +431,11 @@ class Membrane_Model:
         membrane_age_field : float, int
             membrane age when membrane failure rate is surveyed
         membrane_failure_ratio_field : float
-            falure rate e.g. 0.1 for 10%
+            failure rate e.g. 0.1 for 10%
 
         Returns
         -------
-        memebrane model object instance
+        membrane model object instance
             calibrated model
         """
         M_cal = calibrate_f(self,membrane_age_field, membrane_failure_ratio_field)

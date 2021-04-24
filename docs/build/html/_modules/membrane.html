@@ -159,19 +159,16 @@
             
   <h1>Source code for membrane</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Summary</span>
-<span class="sd">-------</span>
+<span class="sd">**Summary**</span>
+
 <span class="sd">A statistical model is used to predict the probability of failure for the membrane. </span>
 
-<span class="sd">+ The resistance is the service life of the membrane, and the load is the age in service. </span>
-<span class="sd">+ The limit-state is when the ago is greater than the service life. </span>
+<span class="sd">+ **Resistance**: membrane service life</span>
 
-<span class="sd">The initial estimation of the service life is assumed to follow the normal distribution with a mean and standard deviation such that the manufacture-labelled service life is 95% guaranteed. </span>
-<span class="sd">The estimated distribution of service life is then calibrated to the field survey results, </span>
-<span class="sd">where the failure rate of the membrane is reported through the half-cell test. </span>
-<span class="sd">So that the model matches the field observation at a given time by the updated standard deviation. </span>
-<span class="sd">This process captures the varied uncertainty of the field service life by adjusting the service life distribution. </span>
-<span class="sd">Then, the calibrated model is used to project future deterioration. The accuracy of the calibrated model is improved when more historical data is available.</span>
+<span class="sd">+ **Load**: age </span>
+
+<span class="sd">+ **limit-state**: age &gt;= service life. </span>
+
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -391,8 +388,8 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    pars : pamameter object instance</span>
-<span class="sd">        raw pamameters</span>
+<span class="sd">    pars : parameter object instance</span>
+<span class="sd">        raw parameters</span>
 <span class="sd">        pars.life_product_label_life</span>
 <span class="sd">        pars.life_confidence</span>
 <span class="sd">        pars.life_std</span>
@@ -424,7 +421,7 @@
 <span class="sd">    t : int, float</span>
 <span class="sd">        membrane age when membrane failure rate is surveyed [year]</span>
 <span class="sd">    membrane_failure_ratio_field : float</span>
-<span class="sd">        falure rate e.g. 0.1 for 10%</span>
+<span class="sd">        failure rate e.g. 0.1 for 10%</span>
 <span class="sd">    tol : float, optional</span>
 <span class="sd">        optimization tolerance, by default 1e-6</span>
 <span class="sd">    max_count : int, optional</span>
@@ -434,7 +431,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    memebrane model object instance</span>
+<span class="sd">    membrane model object instance</span>
 <span class="sd">        calibrated model</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
@@ -479,9 +476,9 @@
 <span class="sd">    year_lis : list, array-like</span>
 <span class="sd">        a list of time steps</span>
 <span class="sd">    plot : bool, optional</span>
-<span class="sd">        if True, plot the Pf, beta, R S distribtuion, by default True</span>
+<span class="sd">        if True, plot the Pf, beta, R S distribution, by default True</span>
 <span class="sd">    amplify : int, optional</span>
-<span class="sd">        the arbitray comparable size of the distribution curve, by default 80</span>
+<span class="sd">        the arbitrary comparable size of the distribution curve, by default 80</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -594,11 +591,11 @@
 <span class="sd">        membrane_age_field : float, int</span>
 <span class="sd">            membrane age when membrane failure rate is surveyed</span>
 <span class="sd">        membrane_failure_ratio_field : float</span>
-<span class="sd">            falure rate e.g. 0.1 for 10%</span>
+<span class="sd">            failure rate e.g. 0.1 for 10%</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        memebrane model object instance</span>
+<span class="sd">        membrane model object instance</span>
 <span class="sd">            calibrated model</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">M_cal</span> <span class="o">=</span> <span class="n">calibrate_f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">membrane_age_field</span><span class="p">,</span> <span class="n">membrane_failure_ratio_field</span><span class="p">)</span>

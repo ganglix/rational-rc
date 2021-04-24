@@ -1,6 +1,17 @@
 """
-Summary
--------
+**Summary**
+
+Modified analytical solution of Fick’s law (square root of time)\n
+Proportional constant is modified by material properties and exposure environments
+
++ **Resistance**: 	cover depth
+
++ **Load**: 		carbonation depth
+
++ **limit-state**: 	carbonation depth >= cover depth
+
++ **Field data**: 	carbonation depths (repeated measurements)
+
 """
 import numpy as np
 import pandas as pd

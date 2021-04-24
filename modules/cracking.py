@@ -1,29 +1,19 @@
 """
-Summary
--------
-## Input
-+ raw
-section loss
+**Summary**
 
-## Output
-internal stress strain through the concrete cover and the location of the crack tip
-critical section loss to cause crack on the cover surface
+Thick-walled expansive cylinder model to calculate internal 
+stress strain through the concrete cover and the location of the crack tip
 
-### [update]
++ **Resistance**: 	cover depth
 
-+ fully vectorized func with direct masking method
-+ numpy func instead of "numpy.vectorize" to run faster
-+ random variable
-+ object
-+ open crack width
-+ u_p as a function of w/c
-+ random r_v
-+ P of f is not consistent between P_RS and crack_condition count. Because the R and S here are dependent: S.max() = R. Currently use crack_condition count. for example if 100% fully cracked, then R==S, Pf = 50%, wrong answer
++ **Load**: 		crack length
 
++ **limit-state**: 	crack length = cover depth
 
-### [TODO]
++ **Field data**: 	concrete mechanical properties
+		(compressive, tensile strength Young’s modulus) 
+		delamination, visible crack ratio
 
-+ fix negative w_open (surface crack width)
 
 """
 
