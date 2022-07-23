@@ -1,6 +1,0 @@
-
-
-{
-    "path": "../../modules/carbonation_example.ipynb"
-
-} 
