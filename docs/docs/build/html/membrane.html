@@ -1,0 +1,452 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>membrane module &mdash; Tinkrete alpha documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="carbonation module" href="carbonation.html" />
+    <link rel="prev" title="Modules" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Tinkrete
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">membrane module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="carbonation.html">carbonation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chloride.html">chloride module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="corrosion.html">corrosion module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cracking.html">cracking module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helper_func.html">helper_func module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_helper_func.html">test_helper_func module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Tinkrete</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">Modules</a> &raquo;</li>
+        
+      <li>membrane module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/membrane.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="module-membrane">
+<span id="membrane-module"></span><h1>membrane module<a class="headerlink" href="#module-membrane" title="Permalink to this headline">¶</a></h1>
+<p><strong>Summary</strong></p>
+<p>A statistical model is used to predict the probability of failure for the membrane.</p>
+<ul class="simple">
+<li><p><strong>Resistance</strong>: membrane service life</p></li>
+<li><p><strong>Load</strong>: age</p></li>
+<li><p><strong>limit-state</strong>: age &gt;= service life.</p></li>
+</ul>
+<dl class="py class">
+<dt id="membrane.Membrane_Model">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">membrane.</span></code><code class="sig-name descname"><span class="pre">Membrane_Model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/membrane.html#Membrane_Model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#membrane.Membrane_Model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="membrane.Membrane_Model.calibrate">
+<code class="sig-name descname"><span class="pre">calibrate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">membrane_age_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">membrane_failure_ratio_field</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/membrane.html#Membrane_Model.calibrate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#membrane.Membrane_Model.calibrate" title="Permalink to this definition">¶</a></dt>
+<dd><p>calibrate membrane model to field condition</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>membrane_age_field</strong> (<em>float</em><em>, </em><em>int</em>) – membrane age when membrane failure rate is surveyed</p></li>
+<li><p><strong>membrane_failure_ratio_field</strong> (<em>float</em>) – failure rate e.g. 0.1 for 10%</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>calibrated model</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>membrane model object instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="membrane.Membrane_Model.copy">
+<code class="sig-name descname"><span class="pre">copy</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/membrane.html#Membrane_Model.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#membrane.Membrane_Model.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>create a deepcopy</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="membrane.Membrane_Model.membrane_failure_with_year">
+<code class="sig-name descname"><span class="pre">membrane_failure_with_year</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year_lis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">80</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/membrane.html#Membrane_Model.membrane_failure_with_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#membrane.Membrane_Model.membrane_failure_with_year" title="Permalink to this definition">¶</a></dt>
+<dd><p>solve pf, beta at a list of time steps with plot option</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="membrane.Membrane_Model.postproc">
+<code class="sig-name descname"><span class="pre">postproc</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/membrane.html#Membrane_Model.postproc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#membrane.Membrane_Model.postproc" title="Permalink to this definition">¶</a></dt>
+<dd><p>solve pf, beta, attach R distribution with plot option</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="membrane.Membrane_Model.run">
+<code class="sig-name descname"><span class="pre">run</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/membrane.html#Membrane_Model.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#membrane.Membrane_Model.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>attach the resistance: membrane age</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="membrane.Pf_RS_special">
+<code class="sig-prename descclassname"><span class="pre">membrane.</span></code><code class="sig-name descname"><span class="pre">Pf_RS_special</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R_distrib_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'normal'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/membrane.html#Pf_RS_special"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#membrane.Pf_RS_special" title="Permalink to this definition">¶</a></dt>
+<dd><p>special case of helper_fuc.Pf_RS, here the “load” S is a number and it calculates the probability of failure  Pf = P(R-S&lt;0), given the R(resistance) and S(load)
+with three three methods and use method 3 if it is checked “OK” with the other two</p>
+<ol class="arabic simple">
+<li><p>crude monte carlo</p></li>
+<li><p>numerical integral of g kernel fit</p></li>
+<li><p>R S integral: <span class="math notranslate nohighlight">\(F_R(S)\)</span>, reliability index(beta factor) is calculated with simple 1st order g.mean()/g.std()</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>R_info</strong> (<em>tuple</em>) – distribution of Resistance, for this specicial case, the membrane service life.
+R_distrib_type=’normal’ -&gt; tuple(m,s) for normal m: mean s: standard deviation
+other distribution form will be ignored.</p></li>
+<li><p><strong>S</strong> (<em>numpy array</em>) – distribution of load, for this special case, the membrane age.</p></li>
+<li><p><strong>R_distrib_type</strong> (<em>str</em><em>, </em><em>optional</em>) – by default ‘normal’</p></li>
+<li><p><strong>plot</strong> (<em>bool</em><em>, </em><em>optional</em>) – plot distribution, by default False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(probability of failure, beta factor)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>R_info only supports two-parameter normal distribution.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="membrane.RS_plot_special">
+<code class="sig-prename descclassname"><span class="pre">membrane.</span></code><code class="sig-name descname"><span class="pre">RS_plot_special</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/membrane.html#RS_plot_special"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#membrane.RS_plot_special" title="Permalink to this definition">¶</a></dt>
+<dd><p>plot R S distribution vertically at a time to an axis special case: S is a number.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<em>model object instance</em>) – <ul>
+<li><p>model.R_distrib : scipy.stats._continuous_distns, normal or beta [calculated in Pf_RS() through model.postproc()]</p></li>
+<li><p>model.S : single number for this special case</p></li>
+</ul>
+</p></li>
+<li><p><strong>ax</strong> (<em>axes</em>) – subplot axis</p></li>
+<li><p><strong>t_offset</strong> (<em>int</em><em>, </em><em>float</em>) – time offset to move the plot along the t-axis. default is zero</p></li>
+<li><p><strong>amplify</strong> (<em>int</em>) – scale the height of the pdf plot</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="membrane.calibrate_f">
+<code class="sig-prename descclassname"><span class="pre">membrane.</span></code><code class="sig-name descname"><span class="pre">calibrate_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_raw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">membrane_failure_ratio_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/membrane.html#calibrate_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#membrane.calibrate_f" title="Permalink to this definition">¶</a></dt>
+<dd><p>calibrate membrane model to field condition by finding the corresponding membrane service life std that matches the failure ratio in the field</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model_raw</strong> (<em>model instance</em>) – model to be calibrated</p></li>
+<li><p><strong>t</strong> (<em>int</em><em>, </em><em>float</em>) – membrane age when membrane failure rate is surveyed [year]</p></li>
+<li><p><strong>membrane_failure_ratio_field</strong> (<em>float</em>) – failure rate e.g. 0.1 for 10%</p></li>
+<li><p><strong>tol</strong> (<em>float</em><em>, </em><em>optional</em>) – optimization tolerance, by default 1e-6</p></li>
+<li><p><strong>max_count</strong> (<em>int</em><em>, </em><em>optional</em>) – optimization max iteration number, by default 100</p></li>
+<li><p><strong>print_out</strong> (<em>bool</em><em>, </em><em>optional</em>) – if True print out model vs field compare, by default True</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>calibrated model</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>membrane model object instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="membrane.membrane_age">
+<code class="sig-prename descclassname"><span class="pre">membrane.</span></code><code class="sig-name descname"><span class="pre">membrane_age</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/membrane.html#membrane_age"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#membrane.membrane_age" title="Permalink to this definition">¶</a></dt>
+<dd><p>return the membrane age as the “resistance”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>t</strong> (<em>int</em><em>, </em><em>float</em>) – membrane age</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>membrane age</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int, float</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function is a placeholder for more complex age input</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="membrane.membrane_failure_year">
+<code class="sig-prename descclassname"><span class="pre">membrane.</span></code><code class="sig-name descname"><span class="pre">membrane_failure_year</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year_lis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/membrane.html#membrane_failure_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#membrane.membrane_failure_year" title="Permalink to this definition">¶</a></dt>
+<dd><p>membrane_failure_year: run model over a list of time steps</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<em>class instance</em>) – Membrane_model class instance</p></li>
+<li><p><strong>year_lis</strong> (<em>list</em><em>, </em><em>array-like</em>) – a list of time steps</p></li>
+<li><p><strong>plot</strong> (<em>bool</em><em>, </em><em>optional</em>) – if True, plot the Pf, beta, R S distribution, by default True</p></li>
+<li><p><strong>amplify</strong> (<em>int</em><em>, </em><em>optional</em>) – the arbitrary comparable size of the distribution curve, by default 80</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(pf list , beta list)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="membrane.membrane_life">
+<code class="sig-prename descclassname"><span class="pre">membrane.</span></code><code class="sig-name descname"><span class="pre">membrane_life</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/membrane.html#membrane_life"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#membrane.membrane_life" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculate the mean value of the service life from the manufacture’s service life label(eg. 30 years with 95% confidence)
+with the given standard deviation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pars</strong> (<em>parameter object instance</em>) – raw parameters
+pars.life_product_label_life
+pars.life_confidence
+pars.life_std</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>service life mean value</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="carbonation.html" class="btn btn-neutral float-right" title="carbonation module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="modules.html" class="btn btn-neutral float-left" title="Modules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Gang Li.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

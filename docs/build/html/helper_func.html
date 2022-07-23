@@ -4,15 +4,18 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>helper_func module &mdash; Tinkrete alpha documentation</title>
+  <title>helper_func module &mdash; Tinkrete beta documentation</title>
   
 
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,11 +32,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -198,7 +202,7 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="module-helper_func">
+<section id="module-helper_func">
 <span id="helper-func-module"></span><h1>helper_func module<a class="headerlink" href="#module-helper_func" title="Permalink to this headline">¶</a></h1>
 <p><strong>Summary</strong></p>
 <p>The helper module is designed to handle the repeated math operations that are not directly related to the mechanistic model calculation. These operations include the following</p>
@@ -212,8 +216,8 @@
 <li><p>figure sub-plotting</p></li>
 </ul>
 <dl class="py function">
-<dt id="helper_func.Beta_custom">
-<code class="sig-prename descclassname"><span class="pre">helper_func.</span></code><code class="sig-name descname"><span class="pre">Beta_custom</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_sample</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helper_func.html#Beta_custom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#helper_func.Beta_custom" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="helper_func.Beta_custom">
+<span class="sig-prename descclassname"><span class="pre">helper_func.</span></span><span class="sig-name descname"><span class="pre">Beta_custom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_sample</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#helper_func.Beta_custom" title="Permalink to this definition">¶</a></dt>
 <dd><p>Beta_custom draws samples from a general beta distribution described by mean, std and lower and upper   bounds
 X~General Beta(a,b, loc = c, scale = d)
 Z~std Beta(alpha, beta)</p>
@@ -241,8 +245,8 @@ Z~std Beta(alpha, beta)</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="helper_func.Fit_distrib">
-<code class="sig-prename descclassname"><span class="pre">helper_func.</span></code><code class="sig-name descname"><span class="pre">Fit_distrib</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'kernel'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helper_func.html#Fit_distrib"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#helper_func.Fit_distrib" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="helper_func.Fit_distrib">
+<span class="sig-prename descclassname"><span class="pre">helper_func.</span></span><span class="sig-name descname"><span class="pre">Fit_distrib</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'kernel'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#helper_func.Fit_distrib" title="Permalink to this definition">¶</a></dt>
 <dd><p>fit data to a probability distribution function(parametric or numerical)
 and return a continuous random variable or a random variable represented by Gaussian kernels
 parametric : normal
@@ -271,26 +275,26 @@ numerical : Gaussian kernels</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="helper_func.Get_mean">
-<code class="sig-prename descclassname"><span class="pre">helper_func.</span></code><code class="sig-name descname"><span class="pre">Get_mean</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helper_func.html#Get_mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#helper_func.Get_mean" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="helper_func.Get_mean">
+<span class="sig-prename descclassname"><span class="pre">helper_func.</span></span><span class="sig-name descname"><span class="pre">Get_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#helper_func.Get_mean" title="Permalink to this definition">¶</a></dt>
 <dd><p>get mean ignoring nans</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="helper_func.Get_std">
-<code class="sig-prename descclassname"><span class="pre">helper_func.</span></code><code class="sig-name descname"><span class="pre">Get_std</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helper_func.html#Get_std"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#helper_func.Get_std" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="helper_func.Get_std">
+<span class="sig-prename descclassname"><span class="pre">helper_func.</span></span><span class="sig-name descname"><span class="pre">Get_std</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#helper_func.Get_std" title="Permalink to this definition">¶</a></dt>
 <dd><p>get standard deviation ignoring nans</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="helper_func.Hist_custom">
-<code class="sig-prename descclassname"><span class="pre">helper_func.</span></code><code class="sig-name descname"><span class="pre">Hist_custom</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helper_func.html#Hist_custom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#helper_func.Hist_custom" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="helper_func.Hist_custom">
+<span class="sig-prename descclassname"><span class="pre">helper_func.</span></span><span class="sig-name descname"><span class="pre">Hist_custom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#helper_func.Hist_custom" title="Permalink to this definition">¶</a></dt>
 <dd><p>plot histogram with N_SAMPLE//100 bins ignoring nans</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="helper_func.Normal_custom">
-<code class="sig-prename descclassname"><span class="pre">helper_func.</span></code><code class="sig-name descname"><span class="pre">Normal_custom</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_sample</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_negative</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helper_func.html#Normal_custom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#helper_func.Normal_custom" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="helper_func.Normal_custom">
+<span class="sig-prename descclassname"><span class="pre">helper_func.</span></span><span class="sig-name descname"><span class="pre">Normal_custom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_sample</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_negative</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#helper_func.Normal_custom" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sampling from a normal distribution</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -312,8 +316,8 @@ numerical : Gaussian kernels</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="helper_func.Pf_RS">
-<code class="sig-prename descclassname"><span class="pre">helper_func.</span></code><code class="sig-name descname"><span class="pre">Pf_RS</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R_distrib_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'normal'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helper_func.html#Pf_RS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#helper_func.Pf_RS" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="helper_func.Pf_RS">
+<span class="sig-prename descclassname"><span class="pre">helper_func.</span></span><span class="sig-name descname"><span class="pre">Pf_RS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R_distrib_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'normal'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#helper_func.Pf_RS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pf_RS calculates the probability of failure  Pf = P(R-S&lt;0), given the R(resistance) and S(load)
 with three three methods and use method 3 if it is checked “OK” with the other two</p>
 <ol class="arabic simple">
@@ -353,8 +357,8 @@ the dual numerical integration seems too computationally expensive, so consider 
 </dd></dl>
 
 <dl class="py function">
-<dt id="helper_func.RS_plot">
-<code class="sig-prename descclassname"><span class="pre">helper_func.</span></code><code class="sig-name descname"><span class="pre">RS_plot</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helper_func.html#RS_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#helper_func.RS_plot" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="helper_func.RS_plot">
+<span class="sig-prename descclassname"><span class="pre">helper_func.</span></span><span class="sig-name descname"><span class="pre">RS_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#helper_func.RS_plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>plot R S distribution vertically at a time to an axis</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -372,20 +376,20 @@ distribution of load, e.g. carbonation depth, chloride content, tensile     stre
 </dd></dl>
 
 <dl class="py function">
-<dt id="helper_func.dropna">
-<code class="sig-prename descclassname"><span class="pre">helper_func.</span></code><code class="sig-name descname"><span class="pre">dropna</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helper_func.html#dropna"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#helper_func.dropna" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="helper_func.dropna">
+<span class="sig-prename descclassname"><span class="pre">helper_func.</span></span><span class="sig-name descname"><span class="pre">dropna</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#helper_func.dropna" title="Permalink to this definition">¶</a></dt>
 <dd><p>removes nans</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="helper_func.f_solve_poly2">
-<code class="sig-prename descclassname"><span class="pre">helper_func.</span></code><code class="sig-name descname"><span class="pre">f_solve_poly2</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helper_func.html#f_solve_poly2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#helper_func.f_solve_poly2" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="helper_func.f_solve_poly2">
+<span class="sig-prename descclassname"><span class="pre">helper_func.</span></span><span class="sig-name descname"><span class="pre">f_solve_poly2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#helper_func.f_solve_poly2" title="Permalink to this definition">¶</a></dt>
 <dd><p>find the two roots of <span class="math notranslate nohighlight">\(ax^2+bx+c=0\)</span></p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="helper_func.find_mean">
-<code class="sig-prename descclassname"><span class="pre">helper_func.</span></code><code class="sig-name descname"><span class="pre">find_mean</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confidence_one_tailed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helper_func.html#find_mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#helper_func.find_mean" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="helper_func.find_mean">
+<span class="sig-prename descclassname"><span class="pre">helper_func.</span></span><span class="sig-name descname"><span class="pre">find_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confidence_one_tailed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#helper_func.find_mean" title="Permalink to this definition">¶</a></dt>
 <dd><p>return the mean value of a unknown normal distribution
 based on the given value at a known one-tailed confidence level(default 95%)</p>
 <dl class="field-list simple">
@@ -406,8 +410,8 @@ based on the given value at a known one-tailed confidence level(default 95%)</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="helper_func.find_similar_group">
-<code class="sig-prename descclassname"><span class="pre">helper_func.</span></code><code class="sig-name descname"><span class="pre">find_similar_group</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">similar_group_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helper_func.html#find_similar_group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#helper_func.find_similar_group" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="helper_func.find_similar_group">
+<span class="sig-prename descclassname"><span class="pre">helper_func.</span></span><span class="sig-name descname"><span class="pre">find_similar_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">similar_group_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#helper_func.find_similar_group" title="Permalink to this definition">¶</a></dt>
 <dd><p>find_similar_group finds most alike values in a list</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -426,8 +430,8 @@ based on the given value at a known one-tailed confidence level(default 95%)</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="helper_func.interp_extrap_f">
-<code class="sig-prename descclassname"><span class="pre">helper_func.</span></code><code class="sig-name descname"><span class="pre">interp_extrap_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_find</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helper_func.html#interp_extrap_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#helper_func.interp_extrap_f" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="helper_func.interp_extrap_f">
+<span class="sig-prename descclassname"><span class="pre">helper_func.</span></span><span class="sig-name descname"><span class="pre">interp_extrap_f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_find</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#helper_func.interp_extrap_f" title="Permalink to this definition">¶</a></dt>
 <dd><p>interpolate or extrapolate value from an array with fitted2-deg or 3-deg polynomial</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -448,8 +452,8 @@ based on the given value at a known one-tailed confidence level(default 95%)</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="helper_func.sample_integral">
-<code class="sig-prename descclassname"><span class="pre">helper_func.</span></code><code class="sig-name descname"><span class="pre">sample_integral</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helper_func.html#sample_integral"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#helper_func.sample_integral" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="helper_func.sample_integral">
+<span class="sig-prename descclassname"><span class="pre">helper_func.</span></span><span class="sig-name descname"><span class="pre">sample_integral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#helper_func.sample_integral" title="Permalink to this definition">¶</a></dt>
 <dd><p>integrate Y over x, where every Y data point is a bunch of distribution samples,</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -475,7 +479,7 @@ based on the given value at a known one-tailed confidence level(default 95%)</p>
 </div></blockquote>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>

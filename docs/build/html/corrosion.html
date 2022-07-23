@@ -4,15 +4,18 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>corrosion module &mdash; Tinkrete alpha documentation</title>
+  <title>corrosion module &mdash; Tinkrete beta documentation</title>
   
 
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,6 +32,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
@@ -196,7 +200,7 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="module-corrosion">
+<section id="module-corrosion">
 <span id="corrosion-module"></span><h1>corrosion module<a class="headerlink" href="#module-corrosion" title="Permalink to this headline">¶</a></h1>
 <p><strong>Summary</strong></p>
 <p>2D electrochemical model and its regressed solution</p>
@@ -207,8 +211,8 @@
 <li><p>corrosion rate (LPR, corrosion sensor) to validate the model</p></li>
 </ul>
 <dl class="py function">
-<dt id="corrosion.C_f">
-<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">C_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#C_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.C_f" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="corrosion.C_f">
+<span class="sig-prename descclassname"><span class="pre">corrosion.</span></span><span class="sig-name descname"><span class="pre">C_f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.C_f" title="Permalink to this definition">¶</a></dt>
 <dd><p>C_f returns BET model parameter C sampled from a normal distribution</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -222,36 +226,36 @@
 </dd></dl>
 
 <dl class="py class">
-<dt id="corrosion.Corrosion_Model">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">Corrosion_Model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#Corrosion_Model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.Corrosion_Model" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="corrosion.Corrosion_Model">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">corrosion.</span></span><span class="sig-name descname"><span class="pre">Corrosion_Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.Corrosion_Model" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
-<dt id="corrosion.Corrosion_Model.calibrate">
-<code class="sig-name descname"><span class="pre">calibrate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#Corrosion_Model.calibrate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.Corrosion_Model.calibrate" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="corrosion.Corrosion_Model.calibrate">
+<span class="sig-name descname"><span class="pre">calibrate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.Corrosion_Model.calibrate" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="corrosion.Corrosion_Model.copy">
-<code class="sig-name descname"><span class="pre">copy</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#Corrosion_Model.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.Corrosion_Model.copy" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="corrosion.Corrosion_Model.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.Corrosion_Model.copy" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="corrosion.Corrosion_Model.run">
-<code class="sig-name descname"><span class="pre">run</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#Corrosion_Model.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.Corrosion_Model.run" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="corrosion.Corrosion_Model.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.Corrosion_Model.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>solve for icorr and the corresponding section loss rate</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py function">
-<dt id="corrosion.Cs_g_f">
-<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">Cs_g_f</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#Cs_g_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.Cs_g_f" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="corrosion.Cs_g_f">
+<span class="sig-prename descclassname"><span class="pre">corrosion.</span></span><span class="sig-name descname"><span class="pre">Cs_g_f</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.Cs_g_f" title="Permalink to this definition">¶</a></dt>
 <dd><p>atmospheric O2 concentration in gas phase on the boundary [mol/m^3], converted from 20.95% by volume</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="corrosion.De_O2_f">
-<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">De_O2_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#De_O2_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.De_O2_f" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="corrosion.De_O2_f">
+<span class="sig-prename descclassname"><span class="pre">corrosion.</span></span><span class="sig-name descname"><span class="pre">De_O2_f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.De_O2_f" title="Permalink to this definition">¶</a></dt>
 <dd><p>calculate the O2 effective diffusivity of concrete
 :param pars:
 :type pars: instance of Param object</p>
@@ -275,8 +279,8 @@ Therefore, the value of effective diffusivity is considered herein as a function
 </dd></dl>
 
 <dl class="py function">
-<dt id="corrosion.RH_to_WaterbyMassHCP">
-<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">RH_to_WaterbyMassHCP</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#RH_to_WaterbyMassHCP"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.RH_to_WaterbyMassHCP" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="corrosion.RH_to_WaterbyMassHCP">
+<span class="sig-prename descclassname"><span class="pre">corrosion.</span></span><span class="sig-name descname"><span class="pre">RH_to_WaterbyMassHCP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.RH_to_WaterbyMassHCP" title="Permalink to this definition">¶</a></dt>
 <dd><p>return water content(g/g hardended cement paste) from RH in pores/environment based on w_c, cement_type, Temperature by using modified BET model</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -285,18 +289,18 @@ Therefore, the value of effective diffusivity is considered herein as a function
 </dd></dl>
 
 <dl class="py class">
-<dt id="corrosion.Section_loss_Model">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">Section_loss_Model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#Section_loss_Model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.Section_loss_Model" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="corrosion.Section_loss_Model">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">corrosion.</span></span><span class="sig-name descname"><span class="pre">Section_loss_Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.Section_loss_Model" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
-<dt id="corrosion.Section_loss_Model.copy">
-<code class="sig-name descname"><span class="pre">copy</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#Section_loss_Model.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.Section_loss_Model.copy" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="corrosion.Section_loss_Model.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.Section_loss_Model.copy" title="Permalink to this definition">¶</a></dt>
 <dd><p>copy return a deep copy</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="corrosion.Section_loss_Model.postproc">
-<code class="sig-name descname"><span class="pre">postproc</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#Section_loss_Model.postproc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.Section_loss_Model.postproc" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="corrosion.Section_loss_Model.postproc">
+<span class="sig-name descname"><span class="pre">postproc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.Section_loss_Model.postproc" title="Permalink to this definition">¶</a></dt>
 <dd><p>calculate the Pf and beta from accumulated section loss and section loss limit</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -306,8 +310,8 @@ Therefore, the value of effective diffusivity is considered herein as a function
 </dd></dl>
 
 <dl class="py method">
-<dt id="corrosion.Section_loss_Model.run">
-<code class="sig-name descname"><span class="pre">run</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_end</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#Section_loss_Model.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.Section_loss_Model.run" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="corrosion.Section_loss_Model.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_end</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.Section_loss_Model.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>run model to solve the accumulated section loss at t_end by using x_loss_t_fun()</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -317,8 +321,8 @@ Therefore, the value of effective diffusivity is considered herein as a function
 </dd></dl>
 
 <dl class="py method">
-<dt id="corrosion.Section_loss_Model.section_loss_with_year">
-<code class="sig-name descname"><span class="pre">section_loss_with_year</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year_lis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#Section_loss_Model.section_loss_with_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.Section_loss_Model.section_loss_with_year" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="corrosion.Section_loss_Model.section_loss_with_year">
+<span class="sig-name descname"><span class="pre">section_loss_with_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year_lis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.Section_loss_Model.section_loss_with_year" title="Permalink to this definition">¶</a></dt>
 <dd><p>use x_loss_year() to report the accumulated section loss at each time step and
 the corresponding Pf and beta.</p>
 <dl class="field-list simple">
@@ -341,8 +345,8 @@ the corresponding Pf and beta.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="corrosion.V_m_f">
-<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">V_m_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cement_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#V_m_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.V_m_f" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="corrosion.V_m_f">
+<span class="sig-prename descclassname"><span class="pre">corrosion.</span></span><span class="sig-name descname"><span class="pre">V_m_f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cement_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.V_m_f" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate V_m, a BET model parameter</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -372,28 +376,28 @@ the corresponding Pf and beta.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="corrosion.WaterbyMassHCP_to_RH">
-<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">WaterbyMassHCP_to_RH</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#WaterbyMassHCP_to_RH"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.WaterbyMassHCP_to_RH" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="corrosion.WaterbyMassHCP_to_RH">
+<span class="sig-prename descclassname"><span class="pre">corrosion.</span></span><span class="sig-name descname"><span class="pre">WaterbyMassHCP_to_RH</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.WaterbyMassHCP_to_RH" title="Permalink to this definition">¶</a></dt>
 <dd><p>return RH in pores/environment from water content(g/g hardened cement paste) based on w_c, cement_type, Temperature
 a reverse function of RH_to_WaterbyMassHCP()</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="corrosion.WaterbyMassHCP_to_theta_water">
-<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">WaterbyMassHCP_to_theta_water</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#WaterbyMassHCP_to_theta_water"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.WaterbyMassHCP_to_theta_water" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="corrosion.WaterbyMassHCP_to_theta_water">
+<span class="sig-prename descclassname"><span class="pre">corrosion.</span></span><span class="sig-name descname"><span class="pre">WaterbyMassHCP_to_theta_water</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.WaterbyMassHCP_to_theta_water" title="Permalink to this definition">¶</a></dt>
 <dd><p>convert water content from g/g hardened cement paste(HCP)
 to volumetric in HCP to volumetric in concrete</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="corrosion.calibrate_f">
-<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">calibrate_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#calibrate_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.calibrate_f" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="corrosion.calibrate_f">
+<span class="sig-prename descclassname"><span class="pre">corrosion.</span></span><span class="sig-name descname"><span class="pre">calibrate_f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.calibrate_f" title="Permalink to this definition">¶</a></dt>
 <dd><p>A placeholder function for future use. field_data: temperature, theta_water, icorr_list</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="corrosion.epsilon_p_f">
-<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">epsilon_p_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#epsilon_p_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.epsilon_p_f" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="corrosion.epsilon_p_f">
+<span class="sig-prename descclassname"><span class="pre">corrosion.</span></span><span class="sig-name descname"><span class="pre">epsilon_p_f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.epsilon_p_f" title="Permalink to this definition">¶</a></dt>
 <dd><p>calculate the porosity of the hardened cement paste from the concrete porosity</p>
 <p>pars : instance of Param object</p>
 <dl class="field-list simple">
@@ -411,8 +415,8 @@ to volumetric in HCP to volumetric in concrete</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="corrosion.iL_f">
-<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">iL_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#iL_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.iL_f" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="corrosion.iL_f">
+<span class="sig-prename descclassname"><span class="pre">corrosion.</span></span><span class="sig-name descname"><span class="pre">iL_f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.iL_f" title="Permalink to this definition">¶</a></dt>
 <dd><p>calculate O2 limiting current density
 :param pars: parameter object that contains the material properties
 :type pars: instance of Param object</p>
@@ -446,8 +450,8 @@ to volumetric in HCP to volumetric in concrete</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="corrosion.icorr_base">
-<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">icorr_base</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iL</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#icorr_base"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.icorr_base" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="corrosion.icorr_base">
+<span class="sig-prename descclassname"><span class="pre">corrosion.</span></span><span class="sig-name descname"><span class="pre">icorr_base</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iL</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.icorr_base" title="Permalink to this definition">¶</a></dt>
 <dd><p>calculate averaged corrosion current density over the rebar-concrete surface from resistivity, temperature, limiting current and cover thickness
 :param rho: resistivity [ohm.m]
 :type rho: float, numpy array
@@ -474,8 +478,8 @@ SI units</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="corrosion.icorr_f">
-<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">icorr_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#icorr_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.icorr_f" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="corrosion.icorr_f">
+<span class="sig-prename descclassname"><span class="pre">corrosion.</span></span><span class="sig-name descname"><span class="pre">icorr_f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.icorr_f" title="Permalink to this definition">¶</a></dt>
 <dd><p>A wrapper of the icorr_base() with modified parameters (resistivity rho -&gt; volumetric water content, theta_water)
 by theta2rho_fun().</p>
 <dl class="field-list simple">
@@ -500,8 +504,8 @@ by theta2rho_fun().</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="corrosion.icorr_to_mmpy">
-<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">icorr_to_mmpy</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">icorr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#icorr_to_mmpy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.icorr_to_mmpy" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="corrosion.icorr_to_mmpy">
+<span class="sig-prename descclassname"><span class="pre">corrosion.</span></span><span class="sig-name descname"><span class="pre">icorr_to_mmpy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">icorr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.icorr_to_mmpy" title="Permalink to this definition">¶</a></dt>
 <dd><p>icorr_to_mmpy converts icorr [A/m^2] to corrosion rate[mm/year] using Faraday’s laws</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -517,14 +521,14 @@ by theta2rho_fun().</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="corrosion.k_f">
-<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">k_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">C_mean</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cement_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#k_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.k_f" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="corrosion.k_f">
+<span class="sig-prename descclassname"><span class="pre">corrosion.</span></span><span class="sig-name descname"><span class="pre">k_f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">C_mean</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cement_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.k_f" title="Permalink to this definition">¶</a></dt>
 <dd><p>returns BET model parameter k</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="corrosion.mmpy_to_icorr">
-<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">mmpy_to_icorr</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rate</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#mmpy_to_icorr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.mmpy_to_icorr" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="corrosion.mmpy_to_icorr">
+<span class="sig-prename descclassname"><span class="pre">corrosion.</span></span><span class="sig-name descname"><span class="pre">mmpy_to_icorr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.mmpy_to_icorr" title="Permalink to this definition">¶</a></dt>
 <dd><p>mmpy_to_icorr converts corrosion rate[mm/year] to icorr [A/m^2] using Faraday’s laws</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -540,21 +544,21 @@ by theta2rho_fun().</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="corrosion.theta2rho_fun">
-<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">theta2rho_fun</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta_water</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#theta2rho_fun"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.theta2rho_fun" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="corrosion.theta2rho_fun">
+<span class="sig-prename descclassname"><span class="pre">corrosion.</span></span><span class="sig-name descname"><span class="pre">theta2rho_fun</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta_water</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.theta2rho_fun" title="Permalink to this definition">¶</a></dt>
 <dd><p>volumetric water content to resistivity, index regression function used</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="corrosion.theta_water_to_WaterbyMassHCP">
-<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">theta_water_to_WaterbyMassHCP</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#theta_water_to_WaterbyMassHCP"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.theta_water_to_WaterbyMassHCP" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="corrosion.theta_water_to_WaterbyMassHCP">
+<span class="sig-prename descclassname"><span class="pre">corrosion.</span></span><span class="sig-name descname"><span class="pre">theta_water_to_WaterbyMassHCP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.theta_water_to_WaterbyMassHCP" title="Permalink to this definition">¶</a></dt>
 <dd><p>convert water content from volumetric by concrete to volumetric in HCP  to g/g  inHCP
 a reverse function of WaterbyMassHCP_to_theta_water()</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="corrosion.x_loss_t_fun">
-<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">x_loss_t_fun</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_loss_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p_active_t_curve</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#x_loss_t_fun"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.x_loss_t_fun" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="corrosion.x_loss_t_fun">
+<span class="sig-prename descclassname"><span class="pre">corrosion.</span></span><span class="sig-name descname"><span class="pre">x_loss_t_fun</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_loss_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p_active_t_curve</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.x_loss_t_fun" title="Permalink to this definition">¶</a></dt>
 <dd><p>x_loss_t_fun returns x_loss samples at a SINGLE given time t_end. the samples represents distribution of all possible x_loss with
 different corrosion history</p>
 <dl class="field-list simple">
@@ -576,12 +580,12 @@ different corrosion history</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="corrosion.x_loss_year">
-<code class="sig-prename descclassname"><span class="pre">corrosion.</span></code><code class="sig-name descname"><span class="pre">x_loss_year</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year_lis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">80</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/corrosion.html#x_loss_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.x_loss_year" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="corrosion.x_loss_year">
+<span class="sig-prename descclassname"><span class="pre">corrosion.</span></span><span class="sig-name descname"><span class="pre">x_loss_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year_lis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">80</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.x_loss_year" title="Permalink to this definition">¶</a></dt>
 <dd><p>run x_loss_t_fun() function over time</p>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>

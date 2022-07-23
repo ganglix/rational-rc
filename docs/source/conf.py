@@ -27,7 +27,7 @@ author = 'Gang Li'
 version = '0.2.2'
 
 # The full version, including alpha/beta/rc tags
-release = 'alpha'
+release = 'beta'
 
 # -- General configuration ---------------------------------------------------
 
@@ -37,7 +37,7 @@ release = 'alpha'
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
-    'sphinx.ext.viewcode',
+    # 'sphinx.ext.viewcode',
     'nbsphinx',
     'nbsphinx_link',
     'sphinx_rtd_theme',

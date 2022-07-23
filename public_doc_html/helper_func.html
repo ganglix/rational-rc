@@ -1,0 +1,528 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>helper_func module &mdash; Tinkrete alpha documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="test_helper_func module" href="test_helper_func.html" />
+    <link rel="prev" title="cracking module" href="cracking.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Tinkrete
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="membrane.html">membrane module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="carbonation.html">carbonation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chloride.html">chloride module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="corrosion.html">corrosion module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cracking.html">cracking module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">helper_func module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_helper_func.html">test_helper_func module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Tinkrete</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">Modules</a> &raquo;</li>
+        
+      <li>helper_func module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/helper_func.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="module-helper_func">
+<span id="helper-func-module"></span><h1>helper_func module<a class="headerlink" href="#module-helper_func" title="Permalink to this headline">¶</a></h1>
+<p><strong>Summary</strong></p>
+<p>The helper module is designed to handle the repeated math operations that are not directly related to the mechanistic model calculation. These operations include the following</p>
+<ul class="simple">
+<li><p>distribution sampling from a distribution (uniform, beta)</p></li>
+<li><p>distribution curve fitting to data with an analytical or a numerical method</p></li>
+<li><p>interpolation function for data tables</p></li>
+<li><p>numerical integration for probability density functions</p></li>
+<li><p>reliability probability calculation</p></li>
+<li><p>statistical calculation to find mean and standard distribution ignoring not-a-number (nan).</p></li>
+<li><p>figure sub-plotting</p></li>
+</ul>
+<dl class="py function">
+<dt id="helper_func.Beta_custom">
+<code class="sig-prename descclassname"><span class="pre">helper_func.</span></code><code class="sig-name descname"><span class="pre">Beta_custom</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_sample</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helper_func.html#Beta_custom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#helper_func.Beta_custom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Beta_custom draws samples from a general beta distribution described by mean, std and lower and upper   bounds
+X~General Beta(a,b, loc = c, scale = d)
+Z~std Beta(alpha, beta)</p>
+<p>X = c + d*Z</p>
+<p>E(X) = c + d * E(Z)</p>
+<p>var(X) = d^2 * var(Z)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>mean</em>) – </p></li>
+<li><p><strong>s</strong> (<em>standard deviation</em>) – </p></li>
+<li><p><strong>a</strong> (<em>lower bound</em><em>, </em><em>not shape param a</em><em>(</em><em>alpha</em><em>)</em>) – </p></li>
+<li><p><strong>b</strong> (<em>upper bound</em><em>, </em><em>not shape param b</em><em>(</em><em>beta</em><em>)</em>) – </p></li>
+<li><p><strong>n_sample</strong> (<em>int</em>) – sample number</p></li>
+<li><p><strong>plot</strong> (<em>bool</em>) – default is False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>sample array from the distribution</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="helper_func.Fit_distrib">
+<code class="sig-prename descclassname"><span class="pre">helper_func.</span></code><code class="sig-name descname"><span class="pre">Fit_distrib</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'kernel'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helper_func.html#Fit_distrib"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#helper_func.Fit_distrib" title="Permalink to this definition">¶</a></dt>
+<dd><p>fit data to a probability distribution function(parametric or numerical)
+and return a continuous random variable or a random variable represented by Gaussian kernels
+parametric : normal
+numerical : Gaussian kernels</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>s</strong> (<em>array-like</em>) – sample data</p></li>
+<li><p><strong>fit_type</strong> (<em>string</em>) – fit type keywords, ‘kernel’, ‘normal’</p></li>
+<li><p><strong>plot</strong> (<em>bool</em>) – when True, create a plot with histogram and fitted pdf curve</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>when parametric normal is used</dt><dd><p>continuous random variable : stats.norm(loc = mu, scale = sigma)</p>
+</dd>
+<dt>when kernel is used</dt><dd><p>Gaussian kernel random variable : (stats.gaussian_kde)</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>instance of random variable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="helper_func.Get_mean">
+<code class="sig-prename descclassname"><span class="pre">helper_func.</span></code><code class="sig-name descname"><span class="pre">Get_mean</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helper_func.html#Get_mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#helper_func.Get_mean" title="Permalink to this definition">¶</a></dt>
+<dd><p>get mean ignoring nans</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="helper_func.Get_std">
+<code class="sig-prename descclassname"><span class="pre">helper_func.</span></code><code class="sig-name descname"><span class="pre">Get_std</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helper_func.html#Get_std"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#helper_func.Get_std" title="Permalink to this definition">¶</a></dt>
+<dd><p>get standard deviation ignoring nans</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="helper_func.Hist_custom">
+<code class="sig-prename descclassname"><span class="pre">helper_func.</span></code><code class="sig-name descname"><span class="pre">Hist_custom</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helper_func.html#Hist_custom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#helper_func.Hist_custom" title="Permalink to this definition">¶</a></dt>
+<dd><p>plot histogram with N_SAMPLE//100 bins ignoring nans</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="helper_func.Normal_custom">
+<code class="sig-prename descclassname"><span class="pre">helper_func.</span></code><code class="sig-name descname"><span class="pre">Normal_custom</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_sample</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_negative</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helper_func.html#Normal_custom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#helper_func.Normal_custom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sampling from a normal distribution</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>int</em><em> or </em><em>float</em>) – mean</p></li>
+<li><p><strong>s</strong> (<em>int</em><em> or </em><em>float</em>) – standard deviation</p></li>
+<li><p><strong>n_sample</strong> (<em>int</em>) – sample number, default is a Global var N_SAMPLE</p></li>
+<li><p><strong>non_negative</strong> (<em>bool</em>) – if true, return truncated distribution with no negatives, default is False</p></li>
+<li><p><strong>plot</strong> (<em>bool</em>) – default is False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>sample array from the distribution</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="helper_func.Pf_RS">
+<code class="sig-prename descclassname"><span class="pre">helper_func.</span></code><code class="sig-name descname"><span class="pre">Pf_RS</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R_distrib_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'normal'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helper_func.html#Pf_RS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#helper_func.Pf_RS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pf_RS calculates the probability of failure  Pf = P(R-S&lt;0), given the R(resistance) and S(load)
+with three three methods and use method 3 if it is checked “OK” with the other two</p>
+<ol class="arabic simple">
+<li><p>crude monte carlo</p></li>
+<li><p>numerical integral of g kernel fit</p></li>
+<li><p>R S integral: <span class="math notranslate nohighlight">\(\int\limits_{-\infty}^{\infty} F_R(x)f_S(x)dx\)</span>, reliability index(beta factor) is calculated with simple 1st order g.mean()/g.std()</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>R_info</strong> (<em>tuple</em><em>, </em><em>numpy array</em>) – <p>distribution of Resistance, e.g. cover thickness, critical chloride content, tensile strength
+can be array or distribution parameters</p>
+<p>R_distrib_type=’normal’ -&gt; tuple(m,s) for normal m: mean s: standard deviation</p>
+<p>R_distrib_type=’beta’ -&gt; tuple(m,s,a,b) for (General) beta distribution
+m: mean, s: standard deviation a,b : lower, upper bound</p>
+<p>R_distrib_type=’array’ -&gt; array: for not-determined distribution, will be treated numerically(R S integral is not applied )</p>
+</p></li>
+<li><p><strong>S</strong> (<em>numpy array</em>) – distribution of load, e.g. carbonation depth, chloride content, tensile stress
+the distribution type is calculated S is usually not determined, can vary a lot in different cases, therefore fitted with kernel</p></li>
+<li><p><strong>R_distrib_type</strong> (<em>str</em><em>, </em><em>optional</em>) – ‘normal’, ‘beta’, ‘array’, by default ‘normal’</p></li>
+<li><p><strong>plot</strong> (<em>bool</em><em>, </em><em>optional</em>) – plot distribution, by default False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(probability of failure, reliability index)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For R as arrays R S integral is not applied
+R S integration method: <span class="math notranslate nohighlight">\(P_f = P(R-S&lt;=0)=\int\limits_{-\infty}^{\infty}f_S(y) \int\limits_{-\infty}^{y}f_R(x)dxdy\)</span>
+the dual numerical integration seems too computationally expensive, so consider fit R to analytical distribution in the future versions[TODO]</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="helper_func.RS_plot">
+<code class="sig-prename descclassname"><span class="pre">helper_func.</span></code><code class="sig-name descname"><span class="pre">RS_plot</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helper_func.html#RS_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#helper_func.RS_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>plot R S distribution vertically at a time to an axis</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model.R_distrib</strong> (<em>scipy.stats._continuous_distns</em><em>, </em><em>normal</em><em> or </em><em>beta</em>) – calculated in Pf_RS() through model.postproc()</p></li>
+<li><p><strong>model.S_kde_fit</strong> (<em>stats.gaussian_kde</em>) – calculated in Pf_RS() through model.postproc()
+distribution of load, e.g. carbonation depth, chloride content, tensile     stress. The distrubtion type is calculated S is usually not determined, can vary a lot in different cases, therefore fitted with kernel</p></li>
+<li><p><strong>model.S</strong> (<em>numpy array</em>) – load, e.g. carbonation depth, chloride content, tensile stress</p></li>
+<li><p><strong>ax</strong> (<em>axis</em>) – </p></li>
+<li><p><strong>t_offset</strong> (<em>time offset to move the plot along the t-axis. default is zero</em>) – </p></li>
+<li><p><strong>amplify</strong> (<em>scale the height of the pdf plot</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="helper_func.dropna">
+<code class="sig-prename descclassname"><span class="pre">helper_func.</span></code><code class="sig-name descname"><span class="pre">dropna</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helper_func.html#dropna"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#helper_func.dropna" title="Permalink to this definition">¶</a></dt>
+<dd><p>removes nans</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="helper_func.f_solve_poly2">
+<code class="sig-prename descclassname"><span class="pre">helper_func.</span></code><code class="sig-name descname"><span class="pre">f_solve_poly2</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helper_func.html#f_solve_poly2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#helper_func.f_solve_poly2" title="Permalink to this definition">¶</a></dt>
+<dd><p>find the two roots of <span class="math notranslate nohighlight">\(ax^2+bx+c=0\)</span></p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="helper_func.find_mean">
+<code class="sig-prename descclassname"><span class="pre">helper_func.</span></code><code class="sig-name descname"><span class="pre">find_mean</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confidence_one_tailed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helper_func.html#find_mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#helper_func.find_mean" title="Permalink to this definition">¶</a></dt>
+<dd><p>return the mean value of a unknown normal distribution
+based on the given value at a known one-tailed confidence level(default 95%)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>val</strong> (<em>float</em>) – cut-off value</p></li>
+<li><p><strong>s</strong> (<em>standard deviation</em>) – </p></li>
+<li><p><strong>confidence_one_tailed</strong> (<em>confidence level</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>mean value of the unknown normal distribution</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="helper_func.find_similar_group">
+<code class="sig-prename descclassname"><span class="pre">helper_func.</span></code><code class="sig-name descname"><span class="pre">find_similar_group</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">similar_group_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helper_func.html#find_similar_group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#helper_func.find_similar_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>find_similar_group finds most alike values in a list</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>item_list</strong> (<em>list</em>) – a list to choose from</p></li>
+<li><p><strong>similar_group_size</strong> (<em>int</em><em>, </em><em>optional</em>) – number of the alike values, by default 2</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a sublist with alike values</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="helper_func.interp_extrap_f">
+<code class="sig-prename descclassname"><span class="pre">helper_func.</span></code><code class="sig-name descname"><span class="pre">interp_extrap_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_find</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helper_func.html#interp_extrap_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#helper_func.interp_extrap_f" title="Permalink to this definition">¶</a></dt>
+<dd><p>interpolate or extrapolate value from an array with fitted2-deg or 3-deg polynomial</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>array-like</em>) – variable</p></li>
+<li><p><strong>y</strong> (<em>array-like</em>) – function value</p></li>
+<li><p><strong>x_find</strong> (<em>int</em><em> or </em><em>float</em><em> or </em><em>array-like</em>) – look-up x</p></li>
+<li><p><strong>plot</strong> (<em>bool</em>) – plot curve fit and data points, default if false</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>inter/extrapolated value(s), raise warning when extrapolation is used</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int or float or array-like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="helper_func.sample_integral">
+<code class="sig-prename descclassname"><span class="pre">helper_func.</span></code><code class="sig-name descname"><span class="pre">sample_integral</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/helper_func.html#sample_integral"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#helper_func.sample_integral" title="Permalink to this definition">¶</a></dt>
+<dd><p>integrate Y over x, where every Y data point is a bunch of distribution samples,</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Y</strong> (<em>numpy array</em>) – <p>2D</p>
+<p>column: y data point</p>
+<p>row: samples for each y data point</p>
+</p></li>
+<li><p><strong>x</strong> (<em>numpy array</em>) – 1D</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>int_y_x : integral of y over x for all sampled data</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy array</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>[y0_sample1, y0_sample2</p>
+<blockquote>
+<div><p>y1_sample1, y1_sample2]</p>
+</div></blockquote>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="test_helper_func.html" class="btn btn-neutral float-right" title="test_helper_func module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cracking.html" class="btn btn-neutral float-left" title="cracking module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Gang Li.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

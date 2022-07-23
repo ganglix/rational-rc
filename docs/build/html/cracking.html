@@ -4,15 +4,18 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>cracking module &mdash; Tinkrete alpha documentation</title>
+  <title>cracking module &mdash; Tinkrete beta documentation</title>
   
 
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,6 +32,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
@@ -196,7 +200,7 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="module-cracking">
+<section id="module-cracking">
 <span id="cracking-module"></span><h1>cracking module<a class="headerlink" href="#module-cracking" title="Permalink to this headline">¶</a></h1>
 <p><strong>Summary</strong></p>
 <p>Thick-walled expansive cylinder model to calculate internal
@@ -213,32 +217,32 @@ delamination, visible crack ratio</p>
 </li>
 </ul>
 <dl class="py class">
-<dt id="cracking.Cracking_Model">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cracking.</span></code><code class="sig-name descname"><span class="pre">Cracking_Model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cracking.html#Cracking_Model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cracking.Cracking_Model" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="cracking.Cracking_Model">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">cracking.</span></span><span class="sig-name descname"><span class="pre">Cracking_Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cracking.Cracking_Model" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
-<dt id="cracking.Cracking_Model.copy">
-<code class="sig-name descname"><span class="pre">copy</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cracking.html#Cracking_Model.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cracking.Cracking_Model.copy" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="cracking.Cracking_Model.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cracking.Cracking_Model.copy" title="Permalink to this definition">¶</a></dt>
 <dd><p>create a deepcopy</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="cracking.Cracking_Model.postproc">
-<code class="sig-name descname"><span class="pre">postproc</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cracking.html#Cracking_Model.postproc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cracking.Cracking_Model.postproc" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="cracking.Cracking_Model.postproc">
+<span class="sig-name descname"><span class="pre">postproc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cracking.Cracking_Model.postproc" title="Permalink to this definition">¶</a></dt>
 <dd><p>calculate the crack length and surface crack rate</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="cracking.Cracking_Model.run">
-<code class="sig-name descname"><span class="pre">run</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stochastic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cracking.html#Cracking_Model.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cracking.Cracking_Model.run" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="cracking.Cracking_Model.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stochastic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cracking.Cracking_Model.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Solve stress and strain and crack tip location in concrete cover</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py function">
-<dt id="cracking.bilinear_stress_strain">
-<code class="sig-prename descclassname"><span class="pre">cracking.</span></code><code class="sig-name descname"><span class="pre">bilinear_stress_strain</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epsilon_theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">E_0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cracking.html#bilinear_stress_strain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cracking.bilinear_stress_strain" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="cracking.bilinear_stress_strain">
+<span class="sig-prename descclassname"><span class="pre">cracking.</span></span><span class="sig-name descname"><span class="pre">bilinear_stress_strain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epsilon_theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">E_0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cracking.bilinear_stress_strain" title="Permalink to this definition">¶</a></dt>
 <dd><p>returns the stress in concrete from strain using the bilinear stress-strain curve</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -262,8 +266,8 @@ delamination, visible crack ratio</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="cracking.crack_width_open">
-<code class="sig-prename descclassname"><span class="pre">cracking.</span></code><code class="sig-name descname"><span class="pre">crack_width_open</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_st</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">E_0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cracking.html#crack_width_open"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cracking.crack_width_open" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="cracking.crack_width_open">
+<span class="sig-prename descclassname"><span class="pre">cracking.</span></span><span class="sig-name descname"><span class="pre">crack_width_open</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_st</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">E_0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cracking.crack_width_open" title="Permalink to this definition">¶</a></dt>
 <dd><p>calculate crack opening on the concret cover surface</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -285,8 +289,8 @@ delamination, visible crack ratio</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="cracking.solve_stress_strain_crack_deterministic">
-<code class="sig-prename descclassname"><span class="pre">cracking.</span></code><code class="sig-name descname"><span class="pre">solve_stress_strain_crack_deterministic</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cracking.html#solve_stress_strain_crack_deterministic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cracking.solve_stress_strain_crack_deterministic" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="cracking.solve_stress_strain_crack_deterministic">
+<span class="sig-prename descclassname"><span class="pre">cracking.</span></span><span class="sig-name descname"><span class="pre">solve_stress_strain_crack_deterministic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cracking.solve_stress_strain_crack_deterministic" title="Permalink to this definition">¶</a></dt>
 <dd><p>solve the stress and strain along the polar axis using strain_stress_crack_f().
 One deterministic solution is returned by the means of all input variables.</p>
 <dl class="field-list simple">
@@ -311,8 +315,8 @@ crack condition code, crack front cooridnate, open crack width)</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="cracking.solve_stress_strain_crack_stochastic">
-<code class="sig-prename descclassname"><span class="pre">cracking.</span></code><code class="sig-name descname"><span class="pre">solve_stress_strain_crack_stochastic</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cracking.html#solve_stress_strain_crack_stochastic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cracking.solve_stress_strain_crack_stochastic" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="cracking.solve_stress_strain_crack_stochastic">
+<span class="sig-prename descclassname"><span class="pre">cracking.</span></span><span class="sig-name descname"><span class="pre">solve_stress_strain_crack_stochastic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cracking.solve_stress_strain_crack_stochastic" title="Permalink to this definition">¶</a></dt>
 <dd><p>solve the stress and strain along the polar axis using strain_stress_crack_f().
 the stochastic solution matrix is returned, where each row represents a deterministic solution</p>
 <dl class="field-list simple">
@@ -337,8 +341,8 @@ crack condition code, crack front cooridnate, open crack width)</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="cracking.strain_f">
-<code class="sig-prename descclassname"><span class="pre">cracking.</span></code><code class="sig-name descname"><span class="pre">strain_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_st</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">E_0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crack_condition</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cracking.html#strain_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cracking.strain_f" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="cracking.strain_f">
+<span class="sig-prename descclassname"><span class="pre">cracking.</span></span><span class="sig-name descname"><span class="pre">strain_f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_st</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">E_0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crack_condition</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cracking.strain_f" title="Permalink to this definition">¶</a></dt>
 <dd><p>strain_f returns the strain along the polar axis r, a&lt;=r&lt;=b,
 fully vectorized with numpy funcions</p>
 <dl class="field-list simple">
@@ -372,8 +376,8 @@ column number is repeated values [m]</p></li>
 </dd></dl>
 
 <dl class="py function">
-<dt id="cracking.strain_stress_crack_f">
-<code class="sig-prename descclassname"><span class="pre">cracking.</span></code><code class="sig-name descname"><span class="pre">strain_stress_crack_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r0_bar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_loss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cover</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">E_0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cracking.html#strain_stress_crack_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cracking.strain_stress_crack_f" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="cracking.strain_stress_crack_f">
+<span class="sig-prename descclassname"><span class="pre">cracking.</span></span><span class="sig-name descname"><span class="pre">strain_stress_crack_f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r0_bar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_loss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cover</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">E_0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cracking.strain_stress_crack_f" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
 <dt>calculate the stress, strain, crack_condition for the whole concrete cover</dt><dd><p>(fully vectorized with numpy matrix funcions)</p>
 </dd>
@@ -412,7 +416,7 @@ r is a matrix. Other material property parameters(such as E) are 1-D arrays (to 
 </div>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>

@@ -4,15 +4,18 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>chloride module &mdash; Tinkrete alpha documentation</title>
+  <title>chloride module &mdash; Tinkrete beta documentation</title>
   
 
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,6 +32,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
@@ -196,7 +200,7 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="module-chloride">
+<section id="module-chloride">
 <span id="chloride-module"></span><h1>chloride module<a class="headerlink" href="#module-chloride" title="Permalink to this headline">¶</a></h1>
 <p><strong>Summary</strong></p>
 <p>Analytical solution of Fick’s second law under advection zone</p>
@@ -209,8 +213,8 @@
 </ul>
 <p>TODO: make t input vectorized</p>
 <dl class="py function">
-<dt id="chloride.A_t">
-<code class="sig-prename descclassname"><span class="pre">chloride.</span></code><code class="sig-name descname"><span class="pre">A_t</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#A_t"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.A_t" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chloride.A_t">
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">A_t</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.A_t" title="Permalink to this definition">¶</a></dt>
 <dd><p>calculate A_t considering the ageing effect</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -250,8 +254,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt id="chloride.C_S_0">
-<code class="sig-prename descclassname"><span class="pre">chloride.</span></code><code class="sig-name descname"><span class="pre">C_S_0</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#C_S_0"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.C_S_0" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chloride.C_S_0">
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">C_S_0</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.C_S_0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return (surface) chloride saturation concentration C_S_0 [wt.-%/cement] caused by  C_eqv [g/l]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -281,8 +285,8 @@ TODO: update to a conversion function dependent on the proportioning and cementi
 </dd></dl>
 
 <dl class="py function">
-<dt id="chloride.C_S_dx">
-<code class="sig-prename descclassname"><span class="pre">chloride.</span></code><code class="sig-name descname"><span class="pre">C_S_dx</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#C_S_dx"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.C_S_dx" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chloride.C_S_dx">
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">C_S_dx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.C_S_dx" title="Permalink to this definition">¶</a></dt>
 <dd><p>return the substitute chloride surface concentration, i.e. chloride content just below the advection zone.</p>
 <p>Fick’s 2nd law applies below the advection zone(depth=dx). No advection effect when dx = 0
 condition considered: continuous/intermittent expsure - ‘submerged’,’leakage’, ‘spray’, ‘splash’ where C_S_dx = C_S_0.
@@ -310,8 +314,8 @@ built-in calculation with C_max(pars)</p></li>
 </dd></dl>
 
 <dl class="py function">
-<dt id="chloride.C_crit_param">
-<code class="sig-prename descclassname"><span class="pre">chloride.</span></code><code class="sig-name descname"><span class="pre">C_crit_param</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#C_crit_param"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.C_crit_param" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chloride.C_crit_param">
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">C_crit_param</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chloride.C_crit_param" title="Permalink to this definition">¶</a></dt>
 <dd><p>return the beta distribution parameters for the critical chloride content(total chloride), C_crit [wt.-%/cement]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -324,8 +328,8 @@ built-in calculation with C_max(pars)</p></li>
 </dd></dl>
 
 <dl class="py function">
-<dt id="chloride.C_eqv">
-<code class="sig-prename descclassname"><span class="pre">chloride.</span></code><code class="sig-name descname"><span class="pre">C_eqv</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#C_eqv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.C_eqv" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chloride.C_eqv">
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">C_eqv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.C_eqv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluate the Potential chloride impact -&gt; equivalent chloride solution concentration, C_eqv[g/L]
 from the source of</p>
 <ol class="arabic simple">
@@ -368,8 +372,8 @@ For geometry-sensitive condition(road side splash) the tested C_max() should be 
 </dd></dl>
 
 <dl class="py function">
-<dt id="chloride.C_eqv_to_C_S_0">
-<code class="sig-prename descclassname"><span class="pre">chloride.</span></code><code class="sig-name descname"><span class="pre">C_eqv_to_C_S_0</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">C_eqv</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#C_eqv_to_C_S_0"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.C_eqv_to_C_S_0" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chloride.C_eqv_to_C_S_0">
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">C_eqv_to_C_S_0</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">C_eqv</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.C_eqv_to_C_S_0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert solution chloride content to saturated chloride content in concrete
 interpolate function for 300kg cement w/c=0.5 OPC. Other empirical function should be used if available</p>
 <dl class="field-list simple">
@@ -386,8 +390,8 @@ interpolate function for 300kg cement w/c=0.5 OPC. Other empirical function shou
 </dd></dl>
 
 <dl class="py function">
-<dt id="chloride.C_max">
-<code class="sig-prename descclassname"><span class="pre">chloride.</span></code><code class="sig-name descname"><span class="pre">C_max</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#C_max"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.C_max" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chloride.C_max">
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">C_max</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.C_max" title="Permalink to this definition">¶</a></dt>
 <dd><p>C_max: maximum content of chlorides within the chloride profile [wt.-%/cement]
 calculate from empirical equations or from test data [wt.-%/concrete]</p>
 <dl class="field-list simple">
@@ -421,12 +425,12 @@ A typical C_max used by default in this function is from</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="chloride.Chloride_Model">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">chloride.</span></code><code class="sig-name descname"><span class="pre">Chloride_Model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars_raw</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#Chloride_Model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.Chloride_Model" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chloride.Chloride_Model">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">Chloride_Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars_raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.Chloride_Model" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
-<dt id="chloride.Chloride_Model.calibrate">
-<code class="sig-name descname"><span class="pre">calibrate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chloride_content_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_proc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#Chloride_Model.calibrate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.Chloride_Model.calibrate" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chloride.Chloride_Model.calibrate">
+<span class="sig-name descname"><span class="pre">calibrate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chloride_content_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_proc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.Chloride_Model.calibrate" title="Permalink to this definition">¶</a></dt>
 <dd><p>return a calibrated model with calibrate_chloride_f_group() function</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -447,8 +451,8 @@ A typical C_max used by default in this function is from</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="chloride.Chloride_Model.chloride_with_year">
-<code class="sig-name descname"><span class="pre">chloride_with_year</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">depth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year_lis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#Chloride_Model.chloride_with_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.Chloride_Model.chloride_with_year" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chloride.Chloride_Model.chloride_with_year">
+<span class="sig-name descname"><span class="pre">chloride_with_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">depth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year_lis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.Chloride_Model.chloride_with_year" title="Permalink to this definition">¶</a></dt>
 <dd><p>chloride_with_year runs the model for a list of time steps</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -469,14 +473,14 @@ A typical C_max used by default in this function is from</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="chloride.Chloride_Model.copy">
-<code class="sig-name descname"><span class="pre">copy</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#Chloride_Model.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.Chloride_Model.copy" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chloride.Chloride_Model.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chloride.Chloride_Model.copy" title="Permalink to this definition">¶</a></dt>
 <dd><p>create a deepcopy of the instance, to preserve the mutable object</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="chloride.Chloride_Model.postproc">
-<code class="sig-name descname"><span class="pre">postproc</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#Chloride_Model.postproc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.Chloride_Model.postproc" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chloride.Chloride_Model.postproc">
+<span class="sig-name descname"><span class="pre">postproc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.Chloride_Model.postproc" title="Permalink to this definition">¶</a></dt>
 <dd><p>postproc the solved model and attach the Pf and beta to the model object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -486,8 +490,8 @@ A typical C_max used by default in this function is from</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="chloride.Chloride_Model.run">
-<code class="sig-name descname"><span class="pre">run</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#Chloride_Model.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.Chloride_Model.run" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chloride.Chloride_Model.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.Chloride_Model.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>solve the chloride content at depth x and time t
 :param x: depth x[mm]
 :type x: int, float
@@ -498,8 +502,8 @@ A typical C_max used by default in this function is from</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="chloride.Chloride_content">
-<code class="sig-prename descclassname"><span class="pre">chloride.</span></code><code class="sig-name descname"><span class="pre">Chloride_content</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#Chloride_content"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.Chloride_content" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chloride.Chloride_content">
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">Chloride_content</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.Chloride_content" title="Permalink to this definition">¶</a></dt>
 <dd><p>Chloride_content is the master model function, calculate chloride content at depth x and time t with Fick’s 2nd law below the convection zone (x &gt; dx)
 The derived parameters is also calculated within this funcion.</p>
 <ul class="simple">
@@ -534,8 +538,8 @@ The derived parameters is also calculated within this funcion.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="chloride.D_RCM_0">
-<code class="sig-prename descclassname"><span class="pre">chloride.</span></code><code class="sig-name descname"><span class="pre">D_RCM_0</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#D_RCM_0"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.D_RCM_0" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chloride.D_RCM_0">
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">D_RCM_0</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.D_RCM_0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the chloride migration coefficient from Rapid chloride migration test [m^2/s] see NT Build 492
 if the test data is not available from pars, use interpolation of existion empirical data for orientation purpose
 Pay attention to the units output [mm^2/year], used for the model</p>
@@ -566,8 +570,8 @@ Options:
 </dd></dl>
 
 <dl class="py function">
-<dt id="chloride.D_app">
-<code class="sig-prename descclassname"><span class="pre">chloride.</span></code><code class="sig-name descname"><span class="pre">D_app</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#D_app"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.D_app" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chloride.D_app">
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">D_app</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.D_app" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the apparent coefficient of chloride diffusion through concrete D_app[mm^2/year]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -596,14 +600,14 @@ Options:
 </dd></dl>
 
 <dl class="py function">
-<dt id="chloride.b_e">
-<code class="sig-prename descclassname"><span class="pre">chloride.</span></code><code class="sig-name descname"><span class="pre">b_e</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#b_e"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.b_e" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chloride.b_e">
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">b_e</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chloride.b_e" title="Permalink to this definition">¶</a></dt>
 <dd><p>provide the large sample array of b_e : regression variable [K]</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="chloride.calibrate_chloride_f">
-<code class="sig-prename descclassname"><span class="pre">chloride.</span></code><code class="sig-name descname"><span class="pre">calibrate_chloride_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_raw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chloride_content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_proc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#calibrate_chloride_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.calibrate_chloride_f" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chloride.calibrate_chloride_f">
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">calibrate_chloride_f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_raw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chloride_content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_proc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.calibrate_chloride_f" title="Permalink to this definition">¶</a></dt>
 <dd><p>calibrate chloride model to field data at one depth at one time.
 Calibrate the chloride model with field chloride test data and return the new calibrated model object/instance
 Optimization method:  Field chloride content at depth x and time t -&gt; find corresponding D_RCM_0(repaid chloride migration diffusivity[m^2/s])</p>
@@ -642,8 +646,8 @@ chloride_content_field[wt.-%/cement] at time t</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="chloride.calibrate_chloride_f_group">
-<code class="sig-prename descclassname"><span class="pre">chloride.</span></code><code class="sig-name descname"><span class="pre">calibrate_chloride_f_group</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_raw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chloride_content_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_proc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#calibrate_chloride_f_group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.calibrate_chloride_f_group" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chloride.calibrate_chloride_f_group">
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">calibrate_chloride_f_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_raw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chloride_content_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_proc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.calibrate_chloride_f_group" title="Permalink to this definition">¶</a></dt>
 <dd><p>use calibrate_chloride_f() to calibrate model to field chloride content at three or more depths, and return the new calibrated model with the averaged D_RCM_0</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -663,20 +667,20 @@ chloride_content_field[wt.-%/cement] at time t</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="chloride.chloride_year">
-<code class="sig-prename descclassname"><span class="pre">chloride.</span></code><code class="sig-name descname"><span class="pre">chloride_year</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year_lis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">80</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#chloride_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.chloride_year" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chloride.chloride_year">
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">chloride_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year_lis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">80</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.chloride_year" title="Permalink to this definition">¶</a></dt>
 <dd><p>run model over a list of time steps</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="chloride.dx">
-<code class="sig-prename descclassname"><span class="pre">chloride.</span></code><code class="sig-name descname"><span class="pre">dx</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#dx"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.dx" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chloride.dx">
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">dx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.dx" title="Permalink to this definition">¶</a></dt>
 <dd><p>return dx : advection depth [mm] dependent on the exposure conditions</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="chloride.k_e">
-<code class="sig-prename descclassname"><span class="pre">chloride.</span></code><code class="sig-name descname"><span class="pre">k_e</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#k_e"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.k_e" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chloride.k_e">
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">k_e</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.k_e" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate k_e: environmental transfer variable [-]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -698,8 +702,8 @@ chloride_content_field[wt.-%/cement] at time t</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="chloride.load_df_D_RCM">
-<code class="sig-prename descclassname"><span class="pre">chloride.</span></code><code class="sig-name descname"><span class="pre">load_df_D_RCM</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#load_df_D_RCM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.load_df_D_RCM" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chloride.load_df_D_RCM">
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">load_df_D_RCM</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chloride.load_df_D_RCM" title="Permalink to this definition">¶</a></dt>
 <dd><p>load the data table of the Rapid Chloride Migration(RCM) test
 for D_RCM interpolation.</p>
 <dl class="field-list simple">
@@ -712,7 +716,7 @@ for D_RCM interpolation.</p>
 </dl>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>

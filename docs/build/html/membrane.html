@@ -4,15 +4,18 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>membrane module &mdash; Tinkrete alpha documentation</title>
+  <title>membrane module &mdash; Tinkrete beta documentation</title>
   
 
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,11 +32,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -198,7 +202,7 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="module-membrane">
+<section id="module-membrane">
 <span id="membrane-module"></span><h1>membrane module<a class="headerlink" href="#module-membrane" title="Permalink to this headline">¶</a></h1>
 <p><strong>Summary</strong></p>
 <p>A statistical model is used to predict the probability of failure for the membrane.</p>
@@ -208,12 +212,12 @@
 <li><p><strong>limit-state</strong>: age &gt;= service life.</p></li>
 </ul>
 <dl class="py class">
-<dt id="membrane.Membrane_Model">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">membrane.</span></code><code class="sig-name descname"><span class="pre">Membrane_Model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/membrane.html#Membrane_Model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#membrane.Membrane_Model" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="membrane.Membrane_Model">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">membrane.</span></span><span class="sig-name descname"><span class="pre">Membrane_Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#membrane.Membrane_Model" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
-<dt id="membrane.Membrane_Model.calibrate">
-<code class="sig-name descname"><span class="pre">calibrate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">membrane_age_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">membrane_failure_ratio_field</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/membrane.html#Membrane_Model.calibrate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#membrane.Membrane_Model.calibrate" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="membrane.Membrane_Model.calibrate">
+<span class="sig-name descname"><span class="pre">calibrate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">membrane_age_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">membrane_failure_ratio_field</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#membrane.Membrane_Model.calibrate" title="Permalink to this definition">¶</a></dt>
 <dd><p>calibrate membrane model to field condition</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -232,34 +236,34 @@
 </dd></dl>
 
 <dl class="py method">
-<dt id="membrane.Membrane_Model.copy">
-<code class="sig-name descname"><span class="pre">copy</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/membrane.html#Membrane_Model.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#membrane.Membrane_Model.copy" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="membrane.Membrane_Model.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#membrane.Membrane_Model.copy" title="Permalink to this definition">¶</a></dt>
 <dd><p>create a deepcopy</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="membrane.Membrane_Model.membrane_failure_with_year">
-<code class="sig-name descname"><span class="pre">membrane_failure_with_year</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year_lis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">80</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/membrane.html#Membrane_Model.membrane_failure_with_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#membrane.Membrane_Model.membrane_failure_with_year" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="membrane.Membrane_Model.membrane_failure_with_year">
+<span class="sig-name descname"><span class="pre">membrane_failure_with_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year_lis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">80</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#membrane.Membrane_Model.membrane_failure_with_year" title="Permalink to this definition">¶</a></dt>
 <dd><p>solve pf, beta at a list of time steps with plot option</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="membrane.Membrane_Model.postproc">
-<code class="sig-name descname"><span class="pre">postproc</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/membrane.html#Membrane_Model.postproc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#membrane.Membrane_Model.postproc" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="membrane.Membrane_Model.postproc">
+<span class="sig-name descname"><span class="pre">postproc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#membrane.Membrane_Model.postproc" title="Permalink to this definition">¶</a></dt>
 <dd><p>solve pf, beta, attach R distribution with plot option</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="membrane.Membrane_Model.run">
-<code class="sig-name descname"><span class="pre">run</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/membrane.html#Membrane_Model.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#membrane.Membrane_Model.run" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="membrane.Membrane_Model.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#membrane.Membrane_Model.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>attach the resistance: membrane age</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py function">
-<dt id="membrane.Pf_RS_special">
-<code class="sig-prename descclassname"><span class="pre">membrane.</span></code><code class="sig-name descname"><span class="pre">Pf_RS_special</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R_distrib_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'normal'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/membrane.html#Pf_RS_special"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#membrane.Pf_RS_special" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="membrane.Pf_RS_special">
+<span class="sig-prename descclassname"><span class="pre">membrane.</span></span><span class="sig-name descname"><span class="pre">Pf_RS_special</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R_distrib_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'normal'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#membrane.Pf_RS_special" title="Permalink to this definition">¶</a></dt>
 <dd><p>special case of helper_fuc.Pf_RS, here the “load” S is a number and it calculates the probability of failure  Pf = P(R-S&lt;0), given the R(resistance) and S(load)
 with three three methods and use method 3 if it is checked “OK” with the other two</p>
 <ol class="arabic simple">
@@ -292,8 +296,8 @@ other distribution form will be ignored.</p></li>
 </dd></dl>
 
 <dl class="py function">
-<dt id="membrane.RS_plot_special">
-<code class="sig-prename descclassname"><span class="pre">membrane.</span></code><code class="sig-name descname"><span class="pre">RS_plot_special</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/membrane.html#RS_plot_special"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#membrane.RS_plot_special" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="membrane.RS_plot_special">
+<span class="sig-prename descclassname"><span class="pre">membrane.</span></span><span class="sig-name descname"><span class="pre">RS_plot_special</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#membrane.RS_plot_special" title="Permalink to this definition">¶</a></dt>
 <dd><p>plot R S distribution vertically at a time to an axis special case: S is a number.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -312,8 +316,8 @@ other distribution form will be ignored.</p></li>
 </dd></dl>
 
 <dl class="py function">
-<dt id="membrane.calibrate_f">
-<code class="sig-prename descclassname"><span class="pre">membrane.</span></code><code class="sig-name descname"><span class="pre">calibrate_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_raw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">membrane_failure_ratio_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/membrane.html#calibrate_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#membrane.calibrate_f" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="membrane.calibrate_f">
+<span class="sig-prename descclassname"><span class="pre">membrane.</span></span><span class="sig-name descname"><span class="pre">calibrate_f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_raw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">membrane_failure_ratio_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#membrane.calibrate_f" title="Permalink to this definition">¶</a></dt>
 <dd><p>calibrate membrane model to field condition by finding the corresponding membrane service life std that matches the failure ratio in the field</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -336,8 +340,8 @@ other distribution form will be ignored.</p></li>
 </dd></dl>
 
 <dl class="py function">
-<dt id="membrane.membrane_age">
-<code class="sig-prename descclassname"><span class="pre">membrane.</span></code><code class="sig-name descname"><span class="pre">membrane_age</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/membrane.html#membrane_age"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#membrane.membrane_age" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="membrane.membrane_age">
+<span class="sig-prename descclassname"><span class="pre">membrane.</span></span><span class="sig-name descname"><span class="pre">membrane_age</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#membrane.membrane_age" title="Permalink to this definition">¶</a></dt>
 <dd><p>return the membrane age as the “resistance”</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -357,8 +361,8 @@ other distribution form will be ignored.</p></li>
 </dd></dl>
 
 <dl class="py function">
-<dt id="membrane.membrane_failure_year">
-<code class="sig-prename descclassname"><span class="pre">membrane.</span></code><code class="sig-name descname"><span class="pre">membrane_failure_year</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year_lis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/membrane.html#membrane_failure_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#membrane.membrane_failure_year" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="membrane.membrane_failure_year">
+<span class="sig-prename descclassname"><span class="pre">membrane.</span></span><span class="sig-name descname"><span class="pre">membrane_failure_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year_lis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#membrane.membrane_failure_year" title="Permalink to this definition">¶</a></dt>
 <dd><p>membrane_failure_year: run model over a list of time steps</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -379,8 +383,8 @@ other distribution form will be ignored.</p></li>
 </dd></dl>
 
 <dl class="py function">
-<dt id="membrane.membrane_life">
-<code class="sig-prename descclassname"><span class="pre">membrane.</span></code><code class="sig-name descname"><span class="pre">membrane_life</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/membrane.html#membrane_life"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#membrane.membrane_life" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="membrane.membrane_life">
+<span class="sig-prename descclassname"><span class="pre">membrane.</span></span><span class="sig-name descname"><span class="pre">membrane_life</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#membrane.membrane_life" title="Permalink to this definition">¶</a></dt>
 <dd><p>calculate the mean value of the service life from the manufacture’s service life label(eg. 30 years with 95% confidence)
 with the given standard deviation</p>
 <dl class="field-list simple">
@@ -399,7 +403,7 @@ pars.life_std</p>
 </dl>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>

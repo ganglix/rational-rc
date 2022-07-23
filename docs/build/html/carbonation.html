@@ -4,15 +4,18 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>carbonation module &mdash; Tinkrete alpha documentation</title>
+  <title>carbonation module &mdash; Tinkrete beta documentation</title>
   
 
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,11 +32,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -198,7 +202,7 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="module-carbonation">
+<section id="module-carbonation">
 <span id="carbonation-module"></span><h1>carbonation module<a class="headerlink" href="#module-carbonation" title="Permalink to this headline">¶</a></h1>
 <p><strong>Summary</strong></p>
 <p>Modified analytical solution of Fick’s law (square root of time)</p>
@@ -210,8 +214,8 @@
 <li><p><strong>Field data</strong>:       carbonation depths (repeated measurements)</p></li>
 </ul>
 <dl class="py function">
-<dt id="carbonation.C_S">
-<code class="sig-prename descclassname"><span class="pre">carbonation.</span></code><code class="sig-name descname"><span class="pre">C_S</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">C_S_emi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/carbonation.html#C_S"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#carbonation.C_S" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="carbonation.C_S">
+<span class="sig-prename descclassname"><span class="pre">carbonation.</span></span><span class="sig-name descname"><span class="pre">C_S</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">C_S_emi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#carbonation.C_S" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate CO2 density[kg/m^3] in the environment, it is about 350-380 ppm in the atm plus other source or sink</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -221,8 +225,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt id="carbonation.Carb_depth">
-<code class="sig-prename descclassname"><span class="pre">carbonation.</span></code><code class="sig-name descname"><span class="pre">Carb_depth</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/carbonation.html#Carb_depth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#carbonation.Carb_depth" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="carbonation.Carb_depth">
+<span class="sig-prename descclassname"><span class="pre">carbonation.</span></span><span class="sig-name descname"><span class="pre">Carb_depth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#carbonation.Carb_depth" title="Permalink to this definition">¶</a></dt>
 <dd><p>Master model function, calculate carbonation depth and the k constant of sqrt of time from all the
 parameters. The derived parameters is also calculated within this funcion. Caution: The pars instance is mutable,
 so a deepcopy of the original instance should be used if the calculation is not intended for “inplace”.</p>
@@ -256,41 +260,41 @@ typical value of k =3~4 for unit mm,year [<a class="reference external" href="ht
 </dd></dl>
 
 <dl class="py class">
-<dt id="carbonation.Carbonation_Model">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">carbonation.</span></code><code class="sig-name descname"><span class="pre">Carbonation_Model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/carbonation.html#Carbonation_Model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#carbonation.Carbonation_Model" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="carbonation.Carbonation_Model">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">carbonation.</span></span><span class="sig-name descname"><span class="pre">Carbonation_Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#carbonation.Carbonation_Model" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
-<dt id="carbonation.Carbonation_Model.calibrate">
-<code class="sig-name descname"><span class="pre">calibrate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">carb_depth_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/carbonation.html#Carbonation_Model.calibrate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#carbonation.Carbonation_Model.calibrate" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="carbonation.Carbonation_Model.calibrate">
+<span class="sig-name descname"><span class="pre">calibrate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">carb_depth_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#carbonation.Carbonation_Model.calibrate" title="Permalink to this definition">¶</a></dt>
 <dd><p>return a new model instance with calibrated param</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="carbonation.Carbonation_Model.carb_with_year">
-<code class="sig-name descname"><span class="pre">carb_with_year</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year_lis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">80</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/carbonation.html#Carbonation_Model.carb_with_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#carbonation.Carbonation_Model.carb_with_year" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="carbonation.Carbonation_Model.carb_with_year">
+<span class="sig-name descname"><span class="pre">carb_with_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year_lis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">80</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#carbonation.Carbonation_Model.carb_with_year" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="carbonation.Carbonation_Model.copy">
-<code class="sig-name descname"><span class="pre">copy</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/carbonation.html#Carbonation_Model.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#carbonation.Carbonation_Model.copy" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="carbonation.Carbonation_Model.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#carbonation.Carbonation_Model.copy" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="carbonation.Carbonation_Model.postproc">
-<code class="sig-name descname"><span class="pre">postproc</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/carbonation.html#Carbonation_Model.postproc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#carbonation.Carbonation_Model.postproc" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="carbonation.Carbonation_Model.postproc">
+<span class="sig-name descname"><span class="pre">postproc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#carbonation.Carbonation_Model.postproc" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="carbonation.Carbonation_Model.run">
-<code class="sig-name descname"><span class="pre">run</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/carbonation.html#Carbonation_Model.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#carbonation.Carbonation_Model.run" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="carbonation.Carbonation_Model.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#carbonation.Carbonation_Model.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>t[year]</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py function">
-<dt id="carbonation.R_ACC_0_inv">
-<code class="sig-prename descclassname"><span class="pre">carbonation.</span></code><code class="sig-name descname"><span class="pre">R_ACC_0_inv</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/carbonation.html#R_ACC_0_inv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#carbonation.R_ACC_0_inv" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="carbonation.R_ACC_0_inv">
+<span class="sig-prename descclassname"><span class="pre">carbonation.</span></span><span class="sig-name descname"><span class="pre">R_ACC_0_inv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#carbonation.R_ACC_0_inv" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
 <dt>Calculate R_ACC_0_inv[(mm^2/year)/(kg/m^3)], the inverse effective carbonation resistance of concrete(accelerated)</dt><dd><p>From ACC test or from existion empirical data interpolation for orientation purpose
 test condition: duration time = 56 days CO2 = 2.0 vol%, T =25 degC RH_ref =65</p>
@@ -316,8 +320,8 @@ test condition: duration time = 56 days CO2 = 2.0 vol%, T =25 degC RH_ref =65</p
 </dd></dl>
 
 <dl class="py function">
-<dt id="carbonation.W_t">
-<code class="sig-prename descclassname"><span class="pre">carbonation.</span></code><code class="sig-name descname"><span class="pre">W_t</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/carbonation.html#W_t"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#carbonation.W_t" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="carbonation.W_t">
+<span class="sig-prename descclassname"><span class="pre">carbonation.</span></span><span class="sig-name descname"><span class="pre">W_t</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#carbonation.W_t" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate weather function W_t, a parameter considering the meso-climatic conditions due to wetting events of concrete surface</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -341,8 +345,8 @@ Interior 0.0</p></li>
 </dd></dl>
 
 <dl class="py function">
-<dt id="carbonation.calibrate_f">
-<code class="sig-prename descclassname"><span class="pre">carbonation.</span></code><code class="sig-name descname"><span class="pre">calibrate_f</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_raw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">carb_depth_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/carbonation.html#calibrate_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#carbonation.calibrate_f" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="carbonation.calibrate_f">
+<span class="sig-prename descclassname"><span class="pre">carbonation.</span></span><span class="sig-name descname"><span class="pre">calibrate_f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_raw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">carb_depth_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#carbonation.calibrate_f" title="Permalink to this definition">¶</a></dt>
 <dd><p>carb_depth_field[mm]-&gt; find corresponding x_c(accelerated test carb depth[m])
 Calibrate the carbonation model with field carbonation test data and return the new calibrated model object/instance
 Optimization method: searching for the best accelerated test carbonation depth x_c[m] so the model matches field data
@@ -367,14 +371,14 @@ on the mean value of the carbonation depth)</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="carbonation.carb_year">
-<code class="sig-prename descclassname"><span class="pre">carbonation.</span></code><code class="sig-name descname"><span class="pre">carb_year</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year_lis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">80</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/carbonation.html#carb_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#carbonation.carb_year" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="carbonation.carb_year">
+<span class="sig-prename descclassname"><span class="pre">carbonation.</span></span><span class="sig-name descname"><span class="pre">carb_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year_lis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">80</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#carbonation.carb_year" title="Permalink to this definition">¶</a></dt>
 <dd><p>run model over time</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="carbonation.eps_t">
-<code class="sig-prename descclassname"><span class="pre">carbonation.</span></code><code class="sig-name descname"><span class="pre">eps_t</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/carbonation.html#eps_t"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#carbonation.eps_t" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="carbonation.eps_t">
+<span class="sig-prename descclassname"><span class="pre">carbonation.</span></span><span class="sig-name descname"><span class="pre">eps_t</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#carbonation.eps_t" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate error term, eps_t[(mm^2/years)/(kg/m^3)],
 considering inaccuracies which occur conditionally when using the ACC test method  k_t[-]</p>
 <p class="rubric">Notes</p>
@@ -382,8 +386,8 @@ considering inaccuracies which occur conditionally when using the ACC test metho
 </dd></dl>
 
 <dl class="py function">
-<dt id="carbonation.k_c">
-<code class="sig-prename descclassname"><span class="pre">carbonation.</span></code><code class="sig-name descname"><span class="pre">k_c</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/carbonation.html#k_c"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#carbonation.k_c" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="carbonation.k_c">
+<span class="sig-prename descclassname"><span class="pre">carbonation.</span></span><span class="sig-name descname"><span class="pre">k_c</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#carbonation.k_c" title="Permalink to this definition">¶</a></dt>
 <dd><p>calculate k_c: execution transfer parameter [-], effect of period of curing for the accelerated carbonation test</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -400,8 +404,8 @@ considering inaccuracies which occur conditionally when using the ACC test metho
 </dd></dl>
 
 <dl class="py function">
-<dt id="carbonation.k_e">
-<code class="sig-prename descclassname"><span class="pre">carbonation.</span></code><code class="sig-name descname"><span class="pre">k_e</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/carbonation.html#k_e"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#carbonation.k_e" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="carbonation.k_e">
+<span class="sig-prename descclassname"><span class="pre">carbonation.</span></span><span class="sig-name descname"><span class="pre">k_e</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#carbonation.k_e" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate k_e[-], environmental factor, effect of relative humidity</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -415,16 +419,16 @@ considering inaccuracies which occur conditionally when using the ACC test metho
 </dd></dl>
 
 <dl class="py function">
-<dt id="carbonation.k_t">
-<code class="sig-prename descclassname"><span class="pre">carbonation.</span></code><code class="sig-name descname"><span class="pre">k_t</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/carbonation.html#k_t"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#carbonation.k_t" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="carbonation.k_t">
+<span class="sig-prename descclassname"><span class="pre">carbonation.</span></span><span class="sig-name descname"><span class="pre">k_t</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#carbonation.k_t" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate test method regression parameter k_t[-]</p>
 <p class="rubric">Notes</p>
 <p>for R_ACC_0_inv[(mm^2/years)/(kg/m^3)]</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="carbonation.load_df_R_ACC">
-<code class="sig-prename descclassname"><span class="pre">carbonation.</span></code><code class="sig-name descname"><span class="pre">load_df_R_ACC</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/carbonation.html#load_df_R_ACC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#carbonation.load_df_R_ACC" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="carbonation.load_df_R_ACC">
+<span class="sig-prename descclassname"><span class="pre">carbonation.</span></span><span class="sig-name descname"><span class="pre">load_df_R_ACC</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#carbonation.load_df_R_ACC" title="Permalink to this definition">¶</a></dt>
 <dd><p>load the data table of the accelerated carbonation test
 for R_ACC interpolation.</p>
 <dl class="field-list simple">
@@ -439,7 +443,7 @@ for R_ACC interpolation.</p>
 <p>w/c 0.45 cemI is comparable to ACC of 3 mm.</p>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
