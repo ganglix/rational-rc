@@ -171,7 +171,7 @@ def strain_stress_crack_f(
     r, r0_bar, x_loss, cover, f_t, E_0, w_c, r_v, plot=False, ax=None
 ):
     """calculate the stress, strain, crack_condition for the whole concrete cover
-        (fully vectorized with numpy matrix funcions)
+        (fully vectorized with numpy matrix functions)
 
     Parameters
     ----------
@@ -222,7 +222,7 @@ def strain_stress_crack_f(
     u_st = u_r - u_p
     u_st[u_st < 0] = 0
 
-    a = r0_bar + u_r  # Rust meets cover, rust-concrte interface
+    a = r0_bar + u_r  # Rust meets cover, rust-concrete interface
     b = cover + r0_bar
 
     a = a[:, None]  # to column vector

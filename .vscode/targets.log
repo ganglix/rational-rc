@@ -6,8 +6,9 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
+ 
 
-# Make data base, printed on Sat Jul 23 15:46:53 2022
+# Make data base, printed on Tue Feb  7 11:54:02 2023
 
 # Variables
 
@@ -48,11 +49,11 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.ZM7eC9HRCv/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.cdhkiBxlG8/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
-DISPLAY = /private/tmp/com.apple.launchd.O0GspEwEJZ/org.macosforge.xquartz:0
+DISPLAY = /private/tmp/com.apple.launchd.SRACzmVjX7/org.macosforge.xquartz:0
 # environment
 CONDA_EXE = /Users/gangli/anaconda3/bin/conda
 # environment
@@ -66,13 +67,15 @@ HOME = /Users/gangli
 # default
 MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/gangli/Library/Application Support/Code/CachedData/3b889b090b5ad5793f524b5d1d39fda662b96a2a
+VSCODE_CODE_CACHE_PATH = /Users/gangli/Library/Application Support/Code/CachedData/d045a5eda657f4d7b676dedbfa7aab8207f8a075
 # environment
 LOGNAME = gangli
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # environment
 CONDA_PROMPT_MODIFIER = (base) 
+# environment
+TEXINPUTS = ~/Users/gangli/Library/CloudStorage/OneDrive-UniversityofSaskatchewan/CMPT141_big_folder/CMPT141/latex
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
@@ -108,7 +111,7 @@ TMPDIR = /var/folders/wz/mjt7177d5wnbly_gm674jspc0000gn/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/gangli/Library/Application Support/Code/1.69.2-main.sock
+VSCODE_IPC_HOOK = /Users/gangli/Library/Application Support/Code/1.72.2-main.sock
 # environment
 MallocNanoZone = 0
 # makefile
@@ -118,7 +121,7 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.68696775.68696781
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.76358380.76358386
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
@@ -150,13 +153,13 @@ MAKELEVEL := 0
 # environment
 CONDA_PREFIX = /Users/gangli/anaconda3
 # environment
-VSCODE_PID = 94279
+VSCODE_PID = 70339
 # environment
 _CE_CONDA = 
 # environment
 LANG = C
 # variable set hash-table stats:
-# Load=72/1024=7%, Rehash=0, Collisions=2/93=2%
+# Load=73/1024=7%, Rehash=0, Collisions=2/94=2%
 
 # Pattern-specific Variable Values
 
@@ -238,7 +241,7 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Sat Jul 23 15:46:53 2022
+# Finished Make data base on Tue Feb  7 11:54:02 2023
 
  
 make: *** No rule to make target `all'.  Stop.
