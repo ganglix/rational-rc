@@ -1,3 +1,9 @@
 {
-    "makefile.extensionOutputFolder": "./.vscode"
+    "makefile.extensionOutputFolder": "./.vscode",
+    "cSpell.words": [
+        "Fick’s",
+        "levelname",
+        "matplotlib",
+        "pyplot"
+    ]
 }

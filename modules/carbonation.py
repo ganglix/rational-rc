@@ -40,7 +40,7 @@ logger.setLevel(
 # model functions
 def Carb_depth(t, pars):
     """ Master model function, calculate carbonation depth and the k constant of sqrt of time from all the
-    parameters. The derived parameters is also calculated within this funcion. Caution: The pars instance is mutable,
+    parameters. The derived parameters is also calculated within this function. Caution: The pars instance is mutable,
     so a deepcopy of the original instance should be used if the calculation is not intended for "inplace".
 
     Parameters
@@ -51,7 +51,7 @@ def Carb_depth(t, pars):
 
     Returns
     -------
-    out : carbionation depth at the time t [mm]
+    out : carbonation depth at the time t [mm]
 
     Note
     ----
@@ -100,7 +100,7 @@ def load_df_R_ACC():
 
     Returns
     -------
-    Pandas Dataframe
+    pandas dataframe
 
     Notes
     -----
@@ -161,7 +161,7 @@ def k_c(pars):
 
 def R_ACC_0_inv(pars):
     """ Calculate R_ACC_0_inv[(mm^2/year)/(kg/m^3)], the inverse effective carbonation resistance of concrete(accelerated)
-        From ACC test or from existion empirical data interpolation for orientation purpose
+        From ACC test or from existing empirical data interpolation for orientation purpose
         test condition: duration time = 56 days CO2 = 2.0 vol%, T =25 degC RH_ref =65
 
     Parameters
@@ -170,7 +170,7 @@ def R_ACC_0_inv(pars):
                 measured carbonation depth in the accelerated test[m]
     pars.option.choose : bool
                 if true -> choose to use interpolation method
-    pars.option.df_R_ACC : pd.dataframe
+    pars.option.df_R_ACC : pd dataframe
                 data table for interpolate, loaded by function load_df_R_ACC, interpolated by function interp_extrap_f
 
     Returns
