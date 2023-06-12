@@ -2,3 +2,4 @@ mylog.log
 __pycache__
 plots
 .vscode
+.idea
