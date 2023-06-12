@@ -164,7 +164,7 @@ def iL_f(pars):
 
     Note
     ----
-    intermidiate parameters
+    intermediate parameters
     
     + z : number of charge, 4 for oxygen
     + delta : thickness of diffusion layer [m]
@@ -187,9 +187,9 @@ def iL_f(pars):
     pars.epsilon_g = pars.epsilon - pars.theta_water
 
     # assume quick dissolution between gas and liquid phase
-    # liquid phase diffusion is neglected[TODO], very slow iL = 0 when epsilon_g = 0
+    # liquid phase diffusion is neglected, very slow iL = 0 when epsilon_g = 0
 
-    # pars.epsilon_g * pars.Cs is the concentration of concrte
+    # pars.epsilon_g * pars.Cs is the concentration of concrete
     iL = z * F * (pars.epsilon_g * pars.De_O2 * pars.Cs_g / delta)
     return iL
 
@@ -244,7 +244,7 @@ def De_O2_f(pars):
 def epsilon_p_f(pars):
     """calculate the porosity of the hardened cement paste from the concrete porosity
     
-    Paramters
+    Parameters
     ---------
     pars : instance of Param object
 
@@ -285,13 +285,13 @@ def calibrate_f(raw_model, field_data):  # [TODO]
     return model
 
 
-# RH and water theta is related. Use theretical model adsorption isotherm or empirical Van-Genutchten model
+# RH and water theta is related. Use theoretical model adsorption isotherm or empirical van-Genutchten model
 def RH_to_WaterbyMassHCP(pars):
-    """return water content(g/g hardended cement paste) from RH in pores/environment based on w_c, cement_type, Temperature by using modified BET model
+    """return water content(g/g hardened cement paste) from RH in pores/environment based on w_c, cement_type, Temperature by using modified BET model
 
     Note
     ----
-    Refernce: Xi, Y., Bazant, Z. P., & Jennings, H. M. (1993). Moisture Diffusion in Cementitious Materials Adsorption Isotherms.
+    Reference: Xi, Y., Bazant, Z. P., & Jennings, H. M. (1993). Moisture Diffusion in Cementitious Materials Adsorption Isotherms.
     """
     V_m = V_m_f(pars.t, pars.w_c, pars.cement_type)
     pars.V_m = V_m
@@ -302,14 +302,14 @@ def RH_to_WaterbyMassHCP(pars):
     k = k_f(C_mean, pars.w_c, pars.t, pars.cement_type)
     pars.k = k
 
-    RH_devided_by_100 = pars.RH / 100
+    RH_divided_by_100 = pars.RH / 100
 
     WaterbyMassHCP = (
         V_m
         * C
         * k
-        * RH_devided_by_100
-        / ((1 - k * RH_devided_by_100) * (1 + (C - 1) * k * RH_devided_by_100))
+        * RH_divided_by_100
+        / ((1 - k * RH_divided_by_100) * (1 + (C - 1) * k * RH_divided_by_100))
     )
 
     return WaterbyMassHCP
@@ -334,11 +334,11 @@ def WaterbyMassHCP_to_RH(pars):
     )
 
     if r1.mean() > 0:
-        RH_devided_by_100 = r1
+        RH_divided_by_100 = r1
     else:
-        RH_devided_by_100 = r2
+        RH_divided_by_100 = r2
 
-    RH = RH_devided_by_100 * 100
+    RH = RH_divided_by_100 * 100
     return RH
 
 
@@ -475,7 +475,7 @@ class Corrosion_Model:
     def __init__(self, pars):
         """initialize the model with Param object and built-in coefficient
         """
-        pars.theta2rho_coeff_a = 18.71810174  # [TODO: uncertainty for a and b]
+        pars.theta2rho_coeff_a = 18.71810174  # [TODO: add uncertainty for a and b]
         pars.theta2rho_coeff_b = -1.37938931
         self.pars = pars
 

@@ -33,7 +33,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 logger.setLevel(
     logging.CRITICAL
-)  # set logging level here to work in jupyter notebook where maybe a default setting was there
+)  # set logging level here to work in jupyter notebook to override a possible default setting
 
 
 # master helper functions
@@ -46,13 +46,13 @@ def dropna(x):
 
 def Get_mean(x):
     """get mean ignoring nans"""
-    x = x[~np.isnan(x)]  # remove nans
+    x = x[~np.isnan(x)]
     return x.mean()
 
 
 def Get_std(x):
     """get standard deviation ignoring nans"""
-    x = x[~np.isnan(x)]  # remove nans
+    x = x[~np.isnan(x)]
     return x.std()
 
 
@@ -318,7 +318,7 @@ def Fit_distrib(s, fit_type="kernel", plot=False, xlabel="", title="", axn=None)
     elif fit_type == "kernel":
         # non-parametric, this creates the kernel, given an array it will estimate the probability over that values
         logger.debug("non-parametric kernel fit")
-        s_dropna = s[~np.isnan(s)]  # remove nans
+        s_dropna = s[~np.isnan(s)]
         # bandwidth selection:  gaussian_kde uses a rule of thumb, the default is Scott’s Rule.
         kde = stats.gaussian_kde(s_dropna)
     else:
@@ -408,7 +408,7 @@ def Pf_RS(R_info, S, R_distrib_type="normal", plot=False):  # updated!
         R_distrib = stats.norm(m, s)
         R = R_distrib.rvs(size=N_SAMPLE)
 
-        # Calculate probablility of failure
+        # Calculate probability of failure
         #     $P_f = P(R-S<=0)=\int\limits_{-\infty}^{\infty} F_R(x)f_S(x)dx$
         pf_RS = integrate.quad(
             lambda x: R_distrib.cdf(x) * S_kde_fit(x)[0], 0, S_dropna.max()
@@ -547,11 +547,11 @@ def Pf_RS(R_info, S, R_distrib_type="normal", plot=False):  # updated!
         ax2.vlines(
             x=g.mean(), ymin=0, ymax=g_kde_fit(g.mean())[0], linestyles="--", alpha=0.5
         )
-        #         ax.annotate(s='', xy=(0,g_kde_fit(0)[0]), xytext=(g.mean(),g_kde_fit(0)[0]),
-        #                     arrowprops={'arrowstyle': '<->'},va='center')
+        print(g.mean(), g_kde_fit(0)[0])
+
         ax2.annotate(
-            s=r"${\mu}_g$",
-            xy=(0, g.mean()),
+            text=r"${\mu}_g$",
+            xy=(0, g.mean()), 
             xytext=(g.mean(), g_kde_fit(0)[0]),
             va="center",
         )
@@ -562,7 +562,7 @@ def Pf_RS(R_info, S, R_distrib_type="normal", plot=False):  # updated!
     return pf_RS, beta_factor, R_distrib, S_kde_fit
 
 
-def RS_plot(model, ax=None, t_offset=0, amplify=1):  # updated!
+def RS_plot(model, ax=None, t_offset=0, amplify=1):
     """plot R S distribution vertically at a time to an axis
 
     Parameters
@@ -601,7 +601,7 @@ def RS_plot(model, ax=None, t_offset=0, amplify=1):  # updated!
         alpha=0.5,
         label="R",
     )
-    # S  avoid ploting large S with very small probability
+    # to avoid plotting large S with very small probability
     S_plot = np.linspace(S_dropna.min(), min(5 * S_dropna.mean(), S_dropna.max()), 100)
     ax.plot(S_kde_fit(S_plot) * amplify + t_offset, S_plot, color="C1", alpha=1)
     ax.fill_betweenx(
@@ -614,7 +614,7 @@ def RS_plot(model, ax=None, t_offset=0, amplify=1):  # updated!
     )
 
 
-# helper function
+# additional helper function
 def find_mean(val, s, confidence_one_tailed=0.95):
     """return the mean value of a unknown normal distribution
     based on the given value at a known one-tailed confidence level(default 95%)

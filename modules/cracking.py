@@ -42,7 +42,7 @@ def bilinear_stress_strain(epsilon_theta, f_t, E_0):
 
     Note
     ----
-    TODO: modulus of elasticity reduction due to creep
+    [TODO]: modulus of elasticity reduction due to creep
     """
     # parameters defining the bilinear curve
     # critical cracking strain
@@ -76,7 +76,7 @@ def bilinear_stress_strain(epsilon_theta, f_t, E_0):
 
 
 def crack_width_open(a, b, u_st, f_t, E_0):
-    """ calculate crack opening on the concret cover surface
+    """ calculate crack opening on the concrete cover surface
 
     Parameters
     ----------
@@ -94,7 +94,7 @@ def crack_width_open(a, b, u_st, f_t, E_0):
     Returns
     -------
     numpy array
-        sample of crack opening on the concret cover surface    
+        sample of crack opening on the concrete cover surface    
     """
     epsilon_cr = f_t / E_0
     w = 2 * np.pi * b * (2.0 / ((b / a) ** 2.0 + 1) * u_st / a - epsilon_cr)
@@ -103,7 +103,7 @@ def crack_width_open(a, b, u_st, f_t, E_0):
 
 def strain_f(r, a, b, u_st, f_t, E_0, crack_condition):
     """strain_f returns the strain along the polar axis r, a<=r<=b, 
-    fully vectorized with numpy funcions
+    fully vectorized with numpy functions
 
     Parameters
     ----------
@@ -205,7 +205,7 @@ def strain_stress_crack_f(
         crack_condition, R_c, w_open)
 
         (strain, stress, rust thickness,
-        crack condition code, crack front cooridnate, open crack width)
+        crack condition code, crack front coordinate, open crack width)
 
     Note
     ----
@@ -331,7 +331,7 @@ def solve_stress_strain_crack_deterministic(pars, number_of_points=100):
         crack_condition, R_c, w_open)
 
         (strain, stress, rust thickness,
-        crack condition code, crack front cooridnate, open crack width)
+        crack condition code, crack front coordinate, open crack width)
     """
     # deterministic with the mean values
     r0_bar_mean = np.array([pars.r0_bar.mean()])
@@ -380,7 +380,7 @@ def solve_stress_strain_crack_stochastic(pars, number_of_points=100):
         crack_condition, R_c, w_open)
 
         (strain, stress, rust thickness,
-        crack condition code, crack front cooridnate, open crack width)
+        crack condition code, crack front coordinate, open crack width)
     """
     # Stochastic with random variables
     r0_bar = pars.r0_bar
@@ -456,7 +456,7 @@ class Cracking_Model:
                 self.crack_condition[self.crack_condition == 2]
             ) / len(self.crack_condition)
         else:
-            print("Warnign! postproc for stochastic solution only")
+            print("Warning! Postprocessing for stochastic solution only")
 
     def copy(self):
         """create a deepcopy

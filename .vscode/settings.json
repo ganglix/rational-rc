@@ -4,6 +4,8 @@
         "Fick’s",
         "levelname",
         "matplotlib",
+        "meso",
+        "mylog",
         "pyplot"
     ]
 }

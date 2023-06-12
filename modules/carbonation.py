@@ -100,7 +100,7 @@ def load_df_R_ACC():
 
     Returns
     -------
-    pandas dataframe
+    pandas.DataFrame
 
     Notes
     -----
@@ -170,7 +170,7 @@ def R_ACC_0_inv(pars):
                 measured carbonation depth in the accelerated test[m]
     pars.option.choose : bool
                 if true -> choose to use interpolation method
-    pars.option.df_R_ACC : pd dataframe
+    pars.option.df_R_ACC : pandas.DataFrame
                 data table for interpolate, loaded by function load_df_R_ACC, interpolated by function interp_extrap_f
 
     Returns
@@ -220,7 +220,7 @@ def R_ACC_0_inv(pars):
         )  # [(m^2/s)/(kg/m^3)]
 
     else:
-        logger.error("R_ACC_0_inv calculation failed; application interupted")
+        logger.error("R_ACC_0_inv calculation failed; application interrupted")
 
         sys.exit("Error message")
     # unit change [(m^2/s)/(kg/m^3)] -> [(mm^2/year)/(kg/m^3)]  final model input
@@ -250,7 +250,7 @@ def eps_t():
     return eps_t
 
 
-# Evnironmental impact C_S
+# Environmental impact C_S
 def C_S(C_S_emi=0):
     """Calculate CO2 density[kg/m^3] in the environment, it is about 350-380 ppm in the atm plus other source or sink
 
@@ -294,7 +294,7 @@ def W_t(t, pars):
     return W
 
 
-# helper function: calibration fucntion
+# helper function: calibration function
 def calibrate_f(model_raw, t, carb_depth_field, tol=1e-6, max_count=50, print_out=True):
     """carb_depth_field[mm]-> find corresponding x_c(accelerated test carb depth[m])
     Calibrate the carbonation model with field carbonation test data and return the new calibrated model object/instance
@@ -311,7 +311,7 @@ def calibrate_f(model_raw, t, carb_depth_field, tol=1e-6, max_count=50, print_ou
     tol : float
         accelerated carbonation depth x_c optimization tolerance, default is 1e-5 [mm]
     max_count : int
-                maximun number of searching iteration, default is 50
+                maximum number of searching iteration, default is 50
 
     Returns
     -------
@@ -319,10 +319,10 @@ def calibrate_f(model_raw, t, carb_depth_field, tol=1e-6, max_count=50, print_ou
          new calibrated model
     """
     model = model_raw.copy()
-    # accelrated test
+    # accelerated test
     # cap
     x_c_min = 0.0
-    x_c_max = 0.1  # [m] unrealisticall large safe ceiling
+    x_c_max = 0.1  # [m] unrealistically large safe ceiling
 
     # optimization
     count = 0

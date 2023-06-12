@@ -43,7 +43,7 @@ logger.setLevel(
 # model functions
 def Chloride_content(x, t, pars):
     """Chloride_content is the master model function, calculate chloride content at depth x and time t with Fick's 2nd law below the convection zone (x > dx)
-    The derived parameters is also calculated within this funcion.
+    The derived parameters is also calculated within this function.
     
     + Caution: The pars instance is mutable, so a deepcopy of the original instance should be used if the calculation is not intended for "inplace".
 
@@ -59,7 +59,7 @@ def Chloride_content(x, t, pars):
     Returns
     -------
     numpy array
-        sample of the distribution of the chloride content in concrete at a depth x (suface x=0) at time t [wt-.%/c]
+        sample of the distribution of the chloride content in concrete at a depth x (surface x=0) at time t [wt-.%/c]
     
     Note
     ----
@@ -118,7 +118,7 @@ def k_e(pars):
     pars : instance of param object
         a wrapper of all material and environmental parameters deep-copied from the raw data
 
-        + pars.T_ref  : standard test temperatrue 293 [K]
+        + pars.T_ref  : standard test temperature 293 [K]
         + pars.T_real : temperature of the structural element [K]
         + pars.b_e    : regression variable [K]
 
@@ -161,7 +161,7 @@ def A_t(t, pars):
     Returns
     -------
     out : numpy array
-        subfunction considering the ‘ageing'[-]
+        subfunction considering the "ageing"[-]
 
     Note
     ----
@@ -193,7 +193,7 @@ def A_t(t, pars):
 
 def D_RCM_0(pars):
     """ Return the chloride migration coefficient from Rapid chloride migration test [m^2/s] see NT Build 492
-    if the test data is not available from pars, use interpolation of existion empirical data for orientation purpose
+    if the test data is not available from pars, use interpolation of existing empirical data for orientation purpose
     Pay attention to the units output [mm^2/year], used for the model
 
     Parameters
@@ -205,7 +205,7 @@ def D_RCM_0(pars):
                             RCM test results[m^2/s], the mean value from the test is used, and standard deviation is estimated based on mean
     pars.option.choose : bool
                             if true interpolation from existing data table is used
-    pars.option.df_D_RCM_0  : pandas dataframe
+    pars.option.df_D_RCM_0  : pandas.DataFrame
                             experimental data table(cement type, and w/c eqv) for interpolation
     pars.option.cement_type : string
                             select cement type for data interpolation of the df_D_RCM_0,
@@ -259,7 +259,7 @@ def load_df_D_RCM():
 
     Returns
     -------
-    Pandas Dataframe
+    pandas.DataFrame
         Data table from experiment
     """
     wc_eqv = np.arange(0.35, 0.60 + (0.05 / 2), 0.05)
@@ -404,7 +404,7 @@ def C_S_dx(pars):
     """return the substitute chloride surface concentration, i.e. chloride content just below the advection zone.
     
     Fick's 2nd law applies below the advection zone(depth=dx). No advection effect when dx = 0
-    condition considered: continuous/intermittent expsure - 'submerged','leakage', 'spray', 'splash' where C_S_dx = C_S_0.
+    condition considered: continuous/intermittent exposure - 'submerged','leakage', 'spray', 'splash' where C_S_dx = C_S_0.
     The advection depth dx is calculated in the dx() function externally.
 
     if exposure_condition_geom_sensitive is True: the observed/empirical highest chloride content in concrete C_max is used, C_max is calculated by C_max()
@@ -420,7 +420,7 @@ def C_S_dx(pars):
                  maximum content of chlorides within the chloride profile, [wt.-%/cement]
                  built-in calculation with C_max(pars)
     pars.exposure_condition : string
-                    continuous/intermittent expsure - 'submerged','leakage', 'spray', 'splash'
+                    continuous/intermittent exposure - 'submerged','leakage', 'spray', 'splash'
 
     pars.exposure_condition_geom_sensitive : bool
                  if True, the C_max is used instead of C_S_0
@@ -505,7 +505,7 @@ def C_max(pars):
 
     Note
     ----
-    The empirical expression should be determined for structures of different exposure or concrete mixe.
+    The empirical expression should be determined for structures of different exposure or concrete mix.
     A typical C_max used by default in this function is from
 
     + location: urban and rural areas in Germany
@@ -576,7 +576,7 @@ def calibrate_chloride_f(
          D_RCM_0 optimization absolute tolerance 1e-15 [m^2/s]
 
     max_count : int
-                maximun number of searching iteration, default is 50
+                maximum number of searching iteration, default is 50
     print_out : bool
                 if true, print model and field chloride content
     print_proc: bool
@@ -597,13 +597,13 @@ def calibrate_chloride_f(
         + fixed dx (determined by the original model)
     """
     model = model_raw.copy()
-    # target chloride contnet at depth x
+    # target chloride content at depth x
     cl = chloride_content
 
     # DCM test
     # cap
     D_RCM_test_min = 0.0
-    # [m/s] unrealistically large safe ceiling cooresponding to a D_RCM_0= [94] [mm/year]
+    # [m/s] unrealistically large safe ceiling corresponding to a D_RCM_0= [94] [mm/year]
     D_RCM_test_max = 3e-12
 
     # optimization
@@ -653,8 +653,8 @@ def calibrate_chloride_f_group(
     ----------
     model_raw : object/instance of Chloride_Model class 
                 model object to be calibrated), model_raw.copy() will be used
-    chloride_content_field: pandas dataframe
-                containts field chloride contents at various depths [wt.-%/cement]
+    chloride_content_field: pandas.DataFrame
+                contains field chloride contents at various depths [wt.-%/cement]
     t: int or float
         time [year]
 
@@ -802,7 +802,7 @@ class Chloride_Model:
         return self.C_x_t
 
     def postproc(self, plot=False):
-        """postproc the solved model and attach the Pf and beta to the model object
+        """postprocess the solved model and attach the Pf and beta to the model object
 
         Parameters
         ----------
@@ -825,8 +825,8 @@ class Chloride_Model:
         ----------
         t : int, float
             time [year]
-        chloride_content_field : pandas dataframe
-            containts field chloride contents at various depths [wt.-%/cement]
+        chloride_content_field : pandas.DataFrame
+            contains field chloride contents at various depths [wt.-%/cement]
         print_proc : bool, optional
             if true, print the optimization process, by default False
         plot : bool, optional
