@@ -1,5 +1,5 @@
 import unittest
-import helper_func as hf
+import math_helper as mh
 import numpy as np
 from scipy import stats
 
@@ -15,23 +15,23 @@ class TestHelperFunc(unittest.TestCase):
     # tester
     def test_dropna(self):
         # compare array
-        self.assertCountEqual(hf.dropna(self.arr_mix), np.array([1, 2, 3, 4]))
+        self.assertCountEqual(mh.dropna(self.arr_mix), np.array([1, 2, 3, 4]))
 
     def test_Get_mean(self):
-        self.assertEqual(hf.get_mean(self.arr_mix), 10 / 4)
+        self.assertEqual(mh.get_mean(self.arr_mix), 10 / 4)
 
     def test_Get_std(self):
-        self.assertEqual(hf.get_std(self.arr_mix), 1.118033988749895)
+        self.assertEqual(mh.get_std(self.arr_mix), 1.118033988749895)
 
     def test_Normal_custom(self):
-        res1 = hf.normal_custom(1, 0.1)
+        res1 = mh.normal_custom(1, 0.1)
 
         self.assertTrue(np.mean(res1) > 1 * 0.95)
         self.assertTrue(np.mean(res1) < 1 * 1.05)
         self.assertTrue(np.std(res1) > 0.1 * 0.95)
         self.assertTrue(np.std(res1) < 0.1 * 1.05)
 
-        res2 = hf.normal_custom(0, 1, non_negative=True, plot=False)
+        res2 = mh.normal_custom(0, 1, non_negative=True, plot=False)
         self.assertTrue((res2 >= 0).all())
         self.assertTrue(np.mean(res2) > 1 * 2 ** 0.5 / np.pi ** 0.5 * 0.95)
         self.assertTrue(np.mean(res2) < 1 * 2 ** 0.5 / np.pi ** 0.5 * 1.05)
@@ -39,7 +39,7 @@ class TestHelperFunc(unittest.TestCase):
         self.assertTrue(np.std(res2) < ((1 ** 2 * (1 - 2 / np.pi)) ** 0.5 * 1.05))
 
     def test_Beta_custom(self):
-        res1 = hf.beta_custom(1, 0.1, 0, 2, plot=False)
+        res1 = mh.beta_custom(1, 0.1, 0, 2, plot=False)
         self.assertTrue((np.std(res1) <= 2).all())
         self.assertTrue((np.std(res1) >= -2).all())
 
@@ -52,18 +52,18 @@ class TestHelperFunc(unittest.TestCase):
         x1 = np.linspace(0, 1, 5)
         y1 = np.linspace(0, 2, 5)
         xfind = np.array([0.5, 0.7])
-        res1 = hf.interp_extrap_f(x1, y1, xfind, plot=False)
+        res1 = mh.interp_extrap_f(x1, y1, xfind, plot=False)
         np.testing.assert_almost_equal(res1, np.array([1.0, 1.4]))
 
         x2 = np.linspace(0, 1, 3)
         y2 = np.linspace(0, 2, 3)
-        res2 = hf.interp_extrap_f(x2, y2, xfind, plot=False)
+        res2 = mh.interp_extrap_f(x2, y2, xfind, plot=False)
         np.testing.assert_almost_equal(res2, np.array([1, 1.4]))
 
     def test_find_similar_group(self):
         lis = [1, 1.1, 2, 3]
         self.assertCountEqual(
-            hf.find_similar_group(lis, similar_group_size=2), [1, 1.1]
+            mh.find_similar_group(lis, similar_group_size=2), [1, 1.1]
         )
 
     def test_sample_integral(self):
@@ -76,28 +76,28 @@ class TestHelperFunc(unittest.TestCase):
         )
         x5 = np.array([1, 2, 3, 4, 5])
         with self.assertRaises(Exception):
-            hf.sample_integral(Y35, x5)
+            mh.sample_integral(Y35, x5)
 
         x2 = np.array([1, 2, 3])
         np.testing.assert_almost_equal(
-            hf.sample_integral(Y35, x2), np.array([4.0, 4.2, 4.02, 4.002, 4.0002])
+            mh.sample_integral(Y35, x2), np.array([4.0, 4.2, 4.02, 4.002, 4.0002])
         )
 
     def test_f_solve_poly2(self):
-        self.assertTrue(1.0 in hf.f_solve_poly2(1, -2, 1))
+        self.assertTrue(1.0 in mh.f_solve_poly2(1, -2, 1))
 
     def test_Fit_distrib(self):
 
-        sample = hf.normal_custom(1, 0.1)
+        sample = mh.normal_custom(1, 0.1)
 
-        fit_normal = hf.fit_distribution(sample, fit_type="normal")
+        fit_normal = mh.fit_distribution(sample, fit_type="normal")
         # is stats.normal instance
         self.assertIsInstance(fit_normal, stats._distn_infrastructure.rv_frozen)
         # value is restored
         self.assertAlmostEqual(fit_normal.mean(), 1, places=2)
         self.assertAlmostEqual(fit_normal.std(), 0.1, places=3)
 
-        fit_kde = hf.fit_distribution(sample, fit_type="kernel")
+        fit_kde = mh.fit_distribution(sample, fit_type="kernel")
         print(fit_kde)
         # is kde instance
         self.assertIsInstance(fit_kde, stats.kde.gaussian_kde)
@@ -106,8 +106,8 @@ class TestHelperFunc(unittest.TestCase):
         self.assertAlmostEqual(fit_kde.resample(100000).std(), 0.1, places=2)
 
     def test_Pf_RS(self):
-        sample = hf.normal_custom(1, 0.3)
-        pf_RS, beta_factor, R_distrib, S_kde_fit = hf.pf_RS(
+        sample = mh.normal_custom(1, 0.3)
+        pf_RS, beta_factor, R_distrib, S_kde_fit = mh.pf_RS(
             R_info=(2, 0.1), S=sample, R_distrib_type="normal", plot=False
         )
         self.assertAlmostEqual(pf_RS, 0.0008761213723265322, places=2)
@@ -117,7 +117,7 @@ class TestHelperFunc(unittest.TestCase):
             S_kde_fit.resample(100000).mean(), sample.mean(), places=2
         )
 
-        pf_RS, beta_factor, R_distrib, S_kde_fit = hf.pf_RS(
+        pf_RS, beta_factor, R_distrib, S_kde_fit = mh.pf_RS(
             R_info=(2, 0.5, 0, 8), S=sample, R_distrib_type="beta", plot=False
         )
         self.assertAlmostEqual(pf_RS, 0.036970274667017286, places=2)
@@ -135,12 +135,12 @@ class TestHelperFunc(unittest.TestCase):
         std = 10 / 1.64
         cutoff = 30
         self.assertAlmostEqual(
-            hf.find_mean(cutoff, std, confidence_one_tailed=0.95),
+            mh.find_mean(cutoff, std, confidence_one_tailed=0.95),
             40.029595286288796,
             msg="95% one tailed",
         )
         self.assertAlmostEqual(
-            hf.find_mean(cutoff, std, confidence_one_tailed=0.90),
+            mh.find_mean(cutoff, std, confidence_one_tailed=0.90),
             37.81433881429602,
             msg="90% one tailed",
         )
