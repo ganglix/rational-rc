@@ -134,10 +134,9 @@ def pf_RS_special(R_info, S, R_distrib_type="normal", plot=False):
         ax2.vlines(
             x=g.mean(), ymin=0, ymax=g_kde_fit(g.mean())[0], linestyles="--", alpha=0.5
         )
-        #         ax.annotate(s='', xy=(0,g_kde_fit(0)[0]), xytext=(g.mean(),g_kde_fit(0)[0]),
-        #                     arrowprops={'arrowstyle': '<->'},va='center')
+
         ax2.annotate(
-            s=r"$\{mu}_g$",
+            text=r"$\{mu}_g$",
             xy=(0, g.mean()),
             xytext=(g.mean(), g_kde_fit(0)[0]),
             va="center",
