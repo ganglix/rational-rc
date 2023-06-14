@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 from copy import deepcopy
 from scipy import stats
 import numpy as np
-import helper_func as hf
+import math_helper as mh
 
 # special functions for this module
 
@@ -60,7 +60,7 @@ def pf_RS_special(R_info, S, R_distrib_type="normal", plot=False):
             # R = (mu, std)
             (m, s) = R_info
             R_distrib = stats.norm(m, s)
-            R = R_distrib.rvs(size=hf.N_SAMPLE)
+            R = R_distrib.rvs(size=mh.N_SAMPLE)
 
             # Calculate probablility of failure
             pf_RS = R_distrib.cdf(S)
@@ -81,7 +81,7 @@ def pf_RS_special(R_info, S, R_distrib_type="normal", plot=False):
     g = R - S
     g = g[~np.isnan(g)]
     # numerical kernel fit
-    g_kde_fit = hf.fit_distribution(g, fit_type="kernel", plot=False)
+    g_kde_fit = mh.fit_distribution(g, fit_type="kernel", plot=False)
 
     pf_kde = integrate.quad(g_kde_fit, g.min(), 0)[0]
     pf_sample = len(g[g < 0]) / len(g)
@@ -102,7 +102,7 @@ def pf_RS_special(R_info, S, R_distrib_type="normal", plot=False):
         ax1.plot(R_plot, R_distrib.pdf(R_plot), color="C0")
         ax1.hist(
             R,
-            bins=min(hf.N_SAMPLE // 100, 100),
+            bins=min(mh.N_SAMPLE // 100, 100),
             density=True,
             alpha=0.5,
             color="C0",
@@ -125,7 +125,7 @@ def pf_RS_special(R_info, S, R_distrib_type="normal", plot=False):
         ax2.hist(
             g,
             density=True,
-            bins=min(hf.N_SAMPLE // 100, 100),
+            bins=min(mh.N_SAMPLE // 100, 100),
             color="C2",
             alpha=0.5,
             label="g=R-S",
@@ -173,7 +173,7 @@ def plot_RS_special(model, ax=None, t_offset=0, amplify=1):  # updated!
 
     S_dropna = S[~np.isnan(S)]
     # Plot R S
-    R = R_distrib.rvs(size=hf.N_SAMPLE)
+    R = R_distrib.rvs(size=mh.N_SAMPLE)
 
     if ax == None:
         ax = plt.gca()
@@ -238,7 +238,7 @@ def membrane_life(pars):
     float
         service life mean value
     """
-    life_mean = hf.find_mean(
+    life_mean = mh.find_mean(
         # find_mean is a helper function in helper_func.py
         val=pars.life_product_label_life,
         s=pars.life_std,

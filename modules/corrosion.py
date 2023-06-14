@@ -18,7 +18,7 @@ from copy import deepcopy
 import numpy as np
 import matplotlib.pyplot as plt
 from copy import deepcopy
-import helper_func as hf
+import math_helper as mh
 
 def icorr_to_mmpy(icorr):
     """icorr_to_mmpy converts icorr [A/m^2] to corrosion rate[mm/year] using Faraday's laws
@@ -329,7 +329,7 @@ def WaterbyMassHCP_to_RH(pars):
 
     WaterbyMassHCP = pars.WaterbyMassHCP
 
-    r1, r2 = hf.f_solve_poly2(
+    r1, r2 = mh.f_solve_poly2(
         -(C - 1) * k ** 2, (C - 2 - C * V_m / WaterbyMassHCP) * k, 1
     )
 
@@ -385,7 +385,7 @@ def V_m_f(t, w_c, cement_type):
 
     V_m_mean = (0.068 - 0.22 / t) * (0.85 + 0.45 * w_c) * V_ct
     V_m_std = 0.016 * V_m_mean  # COV
-    V_m = hf.normal_custom(V_m_mean, V_m_std)
+    V_m = mh.normal_custom(V_m_mean, V_m_std)
     return V_m
 
 
@@ -404,7 +404,7 @@ def C_f(T):
     C_0 = 855
     C_mean = np.e ** (C_0 / T)
     C_std = C_mean * 0.12  # COV 0.12
-    C = hf.normal_custom(C_mean, C_std)
+    C = mh.normal_custom(C_mean, C_std)
     return C_mean, C
 
 
@@ -431,7 +431,7 @@ def k_f(C_mean, w_c, t, cement_type):
 
     k_mean = ((1 - 1 / n) * C_mean - 1) / (C_mean - 1)
     k_std = k_mean * 0.007
-    k = hf.normal_custom(k_mean, k_std)
+    k = mh.normal_custom(k_mean, k_std)
     return k
 
     # convert theta_water to W or W to theta_water
@@ -533,7 +533,7 @@ def x_loss_t_fun(t_end, n_step, x_loss_rate, p_active_t_curve):
 
     # sample the accumulated section loss with the the corresponding probability
     from random import choices
-    x_loss_at_t = choices(x_loss_lis , p_corr_onset_lis, k = hf.N_SAMPLE)
+    x_loss_at_t = choices(x_loss_lis , p_corr_onset_lis, k = mh.N_SAMPLE)
         
     return np.array(x_loss_at_t)
 
@@ -565,11 +565,11 @@ def x_loss_year(model, year_lis, plot=True, amplify=80):
 
         # plot mean results
         ax3.plot(t_lis, [M.pars.x_loss_limit_mean for M in M_lis], '--C0')
-        ax3.plot(t_lis, [hf.get_mean(M.x_loss_t) for M in M_lis], '--C1')
+        ax3.plot(t_lis, [mh.get_mean(M.x_loss_t) for M in M_lis], '--C1')
         # plot distribution
         
         for this_M in M_sel:
-            hf.plot_RS(this_M, ax=ax3, t_offset=this_M.t, amplify=amplify)
+            mh.plot_RS(this_M, ax=ax3, t_offset=this_M.t, amplify=amplify)
 
         import matplotlib.patches as mpatches
         R_patch = mpatches.Patch(color='C0', label='R: limit',alpha=0.8)
@@ -597,7 +597,7 @@ class SectionLossModel:
             year
         """
         self.t = t_end
-        self.x_loss_t = x_loss_t_fun(t_end, hf.N_SAMPLE, self.pars.x_loss_rate, self.pars.p_active_t_curve)
+        self.x_loss_t = x_loss_t_fun(t_end, mh.N_SAMPLE, self.pars.x_loss_rate, self.pars.p_active_t_curve)
 
     def postproc(self, plot=False):
         """calculate the Pf and beta from accumulated section loss and section loss limit
@@ -607,7 +607,7 @@ class SectionLossModel:
         plot : bool, optional
             if true plot the R S curve, by default False
         """
-        sol = hf.pf_RS((self.pars.x_loss_limit_mean, self.pars.x_loss_limit_std), self.x_loss_t, plot=plot)
+        sol = mh.pf_RS((self.pars.x_loss_limit_mean, self.pars.x_loss_limit_std), self.x_loss_t, plot=plot)
         self.pf = sol[0]
         self.beta_factor = sol[1]
         self.R_distrib = sol[2]

@@ -20,7 +20,7 @@ import sys
 from copy import deepcopy
 import logging
 
-import helper_func as hf
+import math_helper as mh
 
 # logger
 # log levels: NOTSET, DEBUG, INFO, WARNING, ERROR, and CRITICAL
@@ -154,7 +154,7 @@ def k_c(pars):
                               s: 0.024
     """
     t_c = pars.t_c
-    b_c = hf.normal_custom(m=-0.567, s=0.024)
+    b_c = mh.normal_custom(m=-0.567, s=0.024)
     k_c = (t_c / 7.0) ** b_c
     return k_c
 
@@ -193,7 +193,7 @@ def R_ACC_0_inv(pars):
             1e-11 * 0.69 * (R_ACC_0_inv_mean * 1e11) ** 0.78
         )  # [(m^2/s)/(kg/m^3)]
 
-        R_ACC_0_inv_temp = hf.normal_custom(
+        R_ACC_0_inv_temp = mh.normal_custom(
             R_ACC_0_inv_mean, R_ACC_0_inv_stdev
         )  # [(m^2/s)/(kg/m^3)]
 
@@ -207,7 +207,7 @@ def R_ACC_0_inv(pars):
         x = fit_df.index.astype(float).values
         y = fit_df.values
         R_ACC_0_inv_mean = (
-            hf.interp_extrap_f(x, y, pars.option.wc_eqv, plot=False) * 1e-11
+            mh.interp_extrap_f(x, y, pars.option.wc_eqv, plot=False) * 1e-11
         )  # [(m^2/s)/(kg/m^3)] #interp_extrap_f: defined function
 
         # R_ACC_0_inv[10^-11*(m^2/s)/(kg/m^3)] ND(s = 0.69*m**0.78)
@@ -215,7 +215,7 @@ def R_ACC_0_inv(pars):
             1e-11 * 0.69 * (R_ACC_0_inv_mean * 1e11) ** 0.78
         )  # [(m^2/s)/(kg/m^3)]
 
-        R_ACC_0_inv_temp = hf.normal_custom(
+        R_ACC_0_inv_temp = mh.normal_custom(
             R_ACC_0_inv_mean, R_ACC_0_inv_stdev
         )  # [(m^2/s)/(kg/m^3)]
 
@@ -235,7 +235,7 @@ def k_t():
     Notes
     -----
     for R_ACC_0_inv[(mm^2/years)/(kg/m^3)]"""
-    k_t = hf.normal_custom(1.25, 0.35)
+    k_t = mh.normal_custom(1.25, 0.35)
     return k_t
 
 
@@ -246,7 +246,7 @@ def eps_t():
     Notes
     -----
     for R_ACC_0_inv[(mm^2/years)/(kg/m^3)]"""
-    eps_t = hf.normal_custom(315.5, 48)
+    eps_t = mh.normal_custom(315.5, 48)
     return eps_t
 
 
@@ -258,7 +258,7 @@ def C_S(C_S_emi=0):
     ----------
     C_S_emi : additional emission, positive or negative(sink), default is 0
     """
-    C_S_atm = hf.normal_custom(0.00082, 0.0001)
+    C_S_atm = mh.normal_custom(0.00082, 0.0001)
     C_S = C_S_atm + C_S_emi
     return C_S
 
@@ -288,7 +288,7 @@ def W_t(t, pars):
     p_SR = pars.p_SR
 
     t_0 = 0.0767  # [year]
-    b_w = hf.normal_custom(0.446, 0.163)
+    b_w = mh.normal_custom(0.446, 0.163)
 
     W = (t_0 / t) ** ((p_SR * ToW) ** b_w / 2.0)
     return W
@@ -331,7 +331,7 @@ def calibrate_f(model_raw, t, carb_depth_field, tol=1e-6, max_count=50, print_ou
         x_c_guess = 0.5 * (x_c_min + x_c_max)
         model.pars.x_c = x_c_guess
         model.run(t)
-        carb_depth_mean = hf.get_mean(model.xc_t)
+        carb_depth_mean = mh.get_mean(model.xc_t)
 
         # compare
         if carb_depth_mean < carb_depth_field.mean():
@@ -353,7 +353,7 @@ def calibrate_f(model_raw, t, carb_depth_field, tol=1e-6, max_count=50, print_ou
         print("carb_depth:")
         print(
             "model: \nmean:{}\nstd:{}".format(
-                hf.get_mean(model.xc_t), hf.get_std(model.xc_t)
+                mh.get_mean(model.xc_t), mh.get_std(model.xc_t)
             )
         )
         print(
@@ -411,10 +411,10 @@ def carb_year(model, year_lis, plot=True, amplify=80):
 
         # plot mean results
         ax3.plot(t_lis, [M.pars.cover_mean for M in M_lis], "--C0")
-        ax3.plot(t_lis, [hf.get_mean(M.xc_t) for M in M_lis], "--C1")
+        ax3.plot(t_lis, [mh.get_mean(M.xc_t) for M in M_lis], "--C1")
         # plot distribution
         for this_M in M_sel:
-            hf.plot_RS(this_M, ax=ax3, t_offset=this_M.t, amplify=amplify)
+            mh.plot_RS(this_M, ax=ax3, t_offset=this_M.t, amplify=amplify)
 
         import matplotlib.patches as mpatches
 
@@ -442,7 +442,7 @@ class CarbonationModel:
         logger.info("Carbonation depth, xc_t{} mm".format(self.xc_t))
 
     def postproc(self, plot=False):
-        sol = hf.pf_RS(
+        sol = mh.pf_RS(
             (self.pars.cover_mean, self.pars.cover_std), self.xc_t, plot=plot
         )
         self.pf = sol[0]

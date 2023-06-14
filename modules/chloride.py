@@ -22,7 +22,7 @@ import sys
 from copy import deepcopy
 import logging
 
-import helper_func as hf
+import math_helper as mh
 
 
 # logger
@@ -135,7 +135,7 @@ def k_e(pars):
 
 def b_e():
     """provide the large sample array of b_e : regression variable [K]"""
-    b_e = hf.normal_custom(4800, 700)  # K
+    b_e = mh.normal_custom(4800, 700)  # K
     return b_e
 
 
@@ -177,15 +177,15 @@ def A_t(t, pars):
     a = None
     if pars.concrete_type == "Portland cement concrete":
         # CEM I; 0.40 ≤ w/c ≤ 0.60
-        a = hf.beta_custom(0.3, 0.12, 0.0, 1.0)
+        a = mh.beta_custom(0.3, 0.12, 0.0, 1.0)
 
     if pars.concrete_type == "Portland fly ash cement concrete":
         # f≥0.20·z;k=0.50; 0.40≤w/c_eqv. ≤0.62
-        a = hf.beta_custom(0.6, 0.15, 0.0, 1.0)
+        a = mh.beta_custom(0.6, 0.15, 0.0, 1.0)
 
     if pars.concrete_type == "Blast furnace slag cement concrete":
         # CEM III/B; 0.40 ≤ w/c ≤ 0.60
-        a = hf.beta_custom(0.45, 0.20, 0.0, 1.0)
+        a = mh.beta_custom(0.45, 0.20, 0.0, 1.0)
 
     A = (pars.t_0 / t) ** a
     return A
@@ -226,7 +226,7 @@ def D_RCM_0(pars):
         # though test result [m^2/s]
         D_RCM_0_mean = pars.D_RCM_test  # [m^2/s]
         D_RCM_0_std = 0.2 * D_RCM_0_mean
-        D_RCM_0_temp = hf.normal_custom(D_RCM_0_mean, D_RCM_0_std)  # [m^2/s]
+        D_RCM_0_temp = mh.normal_custom(D_RCM_0_mean, D_RCM_0_std)  # [m^2/s]
     elif pars.option.choose:
         # print 'No test data, interpolate: orientation purpose'
         df = pars.option.df_D_RCM_0
@@ -236,10 +236,10 @@ def D_RCM_0(pars):
         x = fit_df.index.astype(float).values
         y = fit_df.values
         # [m^2/s] #interp_extrap_f: defined function
-        D_RCM_0_mean = hf.interp_extrap_f(x, y, pars.option.wc_eqv, plot=False) * 1e-12
+        D_RCM_0_mean = mh.interp_extrap_f(x, y, pars.option.wc_eqv, plot=False) * 1e-12
         D_RCM_0_std = 0.2 * D_RCM_0_mean  # [m^2/s]
 
-        D_RCM_0_temp = hf.normal_custom(D_RCM_0_mean, D_RCM_0_std)  # [m^2/s]
+        D_RCM_0_temp = mh.normal_custom(D_RCM_0_mean, D_RCM_0_std)  # [m^2/s]
 
     else:
         print("D_RCM_0 calculation failed.")
@@ -306,7 +306,7 @@ def C_eqv_to_C_S_0(C_eqv):
         C_S_0 = f(C_eqv)
     else:
         print("warning: C_eqv_to_C_S_0 extrapolation used!")
-        C_S_0 = hf.interp_extrap_f(x[-5:-1], y[-5:-1], C_eqv, plot=False)
+        C_S_0 = mh.interp_extrap_f(x[-5:-1], y[-5:-1], C_eqv, plot=False)
     return C_S_0
 
 
@@ -444,7 +444,7 @@ def C_S_dx(pars):
             pars.C_max = C_max(pars)
             C_S_dx_mean = pars.C_max
             C_S_dx_std = 0.75 * C_S_dx_mean
-            C_S_dx = hf.normal_custom(C_S_dx_mean, C_S_dx_std, non_negative=True)
+            C_S_dx = mh.normal_custom(C_S_dx_mean, C_S_dx_std, non_negative=True)
         else:
             # intermittent exposure, dx >0, set in dx()
             C_S_dx = pars.C_S_0
@@ -461,7 +461,7 @@ def dx(pars):
     dx = None
     if condition == "splash":
         # - for splash conditions (splash road environment, splash marine environment)
-        dx = hf.beta_custom(5.6, 8.9, 0.0, 50.0)
+        dx = mh.beta_custom(5.6, 8.9, 0.0, 50.0)
 
     if condition in ["submerged", "leakage", "spray"]:
         # - for submerged marine structures
@@ -614,7 +614,7 @@ def calibrate_chloride_f(
         D_RCM_test_guess = 0.5 * (D_RCM_test_min + D_RCM_test_max)
         model.pars.D_RCM_test = D_RCM_test_guess
         model.run(x, t)
-        chloride_mean = hf.get_mean(model.C_x_t)
+        chloride_mean = mh.get_mean(model.C_x_t)
         #         print 'relative tol: ', (D_RCM_test_max - D_RCM_test_min)/ D_RCM_test_guess
 
         # compare
@@ -637,7 +637,7 @@ def calibrate_chloride_f(
         print("chloride_content:")
         print(
             "model: \nmean:{}\nstd:{}".format(
-                hf.get_mean(model.C_x_t), hf.get_std(model.C_x_t)
+                mh.get_mean(model.C_x_t), mh.get_std(model.C_x_t)
             )
         )
         print("field: \nmean:{}\nstd:{}".format(cl.mean(), cl.std()))
@@ -684,7 +684,7 @@ def calibrate_chloride_f_group(
 
     if plot:
         Cl_model = [
-            hf.get_mean(M_cal_new.run(depth, t))
+            mh.get_mean(M_cal_new.run(depth, t))
             for depth in chloride_content_field.depth
         ]
         fig, ax = plt.subplots()
@@ -749,10 +749,10 @@ def chloride_year(model, depth, year_lis, plot=True, amplify=80):
 
         # plot mean results
         ax3.plot(t_lis, [M.pars.C_crit_distrib_param[0] for M in M_lis], "--C0")
-        ax3.plot(t_lis, [hf.get_mean(M.C_x_t) for M in M_lis], "--C1")
+        ax3.plot(t_lis, [mh.get_mean(M.C_x_t) for M in M_lis], "--C1")
         # plot distribution
         for this_M in M_sel:
-            hf.plot_RS(this_M, ax=ax3, t_offset=this_M.t, amplify=amplify)
+            mh.plot_RS(this_M, ax=ax3, t_offset=this_M.t, amplify=amplify)
 
         import matplotlib.patches as mpatches
 
@@ -809,7 +809,7 @@ class ChlorideModel:
         plot : bool, optional
             if true, plot the R S curve, by default False
         """
-        sol = hf.pf_RS(
+        sol = mh.pf_RS(
             self.pars.C_crit_distrib_param, self.C_x_t, R_distrib_type="beta", plot=plot
         )
         self.pf = sol[0]
