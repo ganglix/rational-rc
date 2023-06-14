@@ -259,7 +259,7 @@ def strain_stress_crack_f(
     ]  # crack tip
 
     # fully cracked
-    # there could be nans in epsilon_theta, compare with Nan is always False
+    # there could be Nans in epsilon_theta, compare with Nan is always False
     row_mask_2_inverse = ((epsilon_theta) < epsilon_cr).any(axis=1)[:, None]
     row_mask_2 = ~row_mask_2_inverse
     crack_condition[row_mask_2] = 2  # 2 'fully cracked'

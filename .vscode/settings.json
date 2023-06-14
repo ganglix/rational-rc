@@ -6,7 +6,8 @@
         "matplotlib",
         "meso",
         "mylog",
-        "pyplot"
+        "pyplot",
+        "rebar"
     ],
     "python.testing.unittestArgs": [
         "-v",

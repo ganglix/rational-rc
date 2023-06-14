@@ -62,7 +62,7 @@ def pf_RS_special(R_info, S, R_distrib_type="normal", plot=False):
             R_distrib = stats.norm(m, s)
             R = R_distrib.rvs(size=mh.N_SAMPLE)
 
-            # Calculate probablility of failure
+            # Calculate probability of failure
             pf_RS = R_distrib.cdf(S)
         else:
             R = None
@@ -339,7 +339,7 @@ def membrane_failure_year(model, year_lis, plot=True, amplify=30):
             sharex=True,
             gridspec_kw={"height_ratios": [1, 1, 3]},
         )
-        # plot a few distrubtion
+        # plot a few distribution
         indx = np.linspace(0, len(year_lis) - 1, min(6, len(year_lis))).astype("int")[
             1:
         ]

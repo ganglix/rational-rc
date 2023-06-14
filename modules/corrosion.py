@@ -62,7 +62,7 @@ def mmpy_to_icorr(rate):
 
 
 def icorr_base(rho, T, iL, d):  # SI units # regressed model for the ref
-    """ calculate averaged corrosion current density over the rebar-concrete surface from resistivity, temperature, limiting current and cover thickness
+    """ calculate averaged corrosion current density over the rebar-concrete interface from resistivity, temperature, limiting current and cover thickness
     Parameters
     ----------
     rho : float, numpy array
@@ -227,13 +227,13 @@ def De_O2_f(pars):
     epsilon_p = epsilon_p_f(pars)
     pars.epsilon_p = epsilon_p
 
-    # calculate internal RH with retension curve/ adsoption curve
-    WaterbyMassHCP = theta_water_to_WaterbyMassHCP(
+    # calculate internal RH with retention curve/ adsoption curve
+    waterByMassHCP = theta_water_to_waterByMassHCP(
         pars
     )  # water content g/g hardened cement paste
-    pars.WaterbyMassHCP = WaterbyMassHCP
+    pars.waterByMassHCP = waterByMassHCP
 
-    RH = WaterbyMassHCP_to_RH(pars)
+    RH = waterByMassHCP_to_RH(pars)
     pars.RH = RH
 
     # [TODO] D_O2_T0 * np.e**(dU_D/R*(1/T0-1/T)) Pour-Ghaz, M., Burkan Isgor, O., & Ghods, P. (2009). The effect of temperature on the corrosion of steel in concrete. Part 2: Model verification and parametric study. Corrosion Science, 51(2), 426–433. https://doi.org/10.1016/j.corsci.2008.10.036
@@ -286,7 +286,7 @@ def calibrate_f(raw_model, field_data):  # [TODO]
 
 
 # RH and water theta is related. Use theoretical model adsorption isotherm or empirical van-Genutchten model
-def RH_to_WaterbyMassHCP(pars):
+def RH_to_waterByMassHCP(pars):
     """return water content(g/g hardened cement paste) from RH in pores/environment based on w_c, cement_type, Temperature by using modified BET model
 
     Note
@@ -304,7 +304,7 @@ def RH_to_WaterbyMassHCP(pars):
 
     RH_divided_by_100 = pars.RH / 100
 
-    WaterbyMassHCP = (
+    waterByMassHCP = (
         V_m
         * C
         * k
@@ -312,12 +312,12 @@ def RH_to_WaterbyMassHCP(pars):
         / ((1 - k * RH_divided_by_100) * (1 + (C - 1) * k * RH_divided_by_100))
     )
 
-    return WaterbyMassHCP
+    return waterByMassHCP
 
 
-def WaterbyMassHCP_to_RH(pars):
+def waterByMassHCP_to_RH(pars):
     """return RH in pores/environment from water content(g/g hardened cement paste) based on w_c, cement_type, Temperature
-    a reverse function of RH_to_WaterbyMassHCP()"""
+    a reverse function of RH_to_waterByMassHCP()"""
     V_m = V_m_f(pars.t, pars.w_c, pars.cement_type)
     pars.V_m = V_m
 
@@ -327,10 +327,10 @@ def WaterbyMassHCP_to_RH(pars):
     k = k_f(C_mean, pars.w_c, pars.t, pars.cement_type)
     pars.k = k
 
-    WaterbyMassHCP = pars.WaterbyMassHCP
+    waterByMassHCP = pars.waterByMassHCP
 
     r1, r2 = mh.f_solve_poly2(
-        -(C - 1) * k ** 2, (C - 2 - C * V_m / WaterbyMassHCP) * k, 1
+        -(C - 1) * k ** 2, (C - 2 - C * V_m / waterByMassHCP) * k, 1
     )
 
     if r1.mean() > 0:
@@ -436,17 +436,17 @@ def k_f(C_mean, w_c, t, cement_type):
 
     # convert theta_water to W or W to theta_water
 
-def waterbyMassHCP_to_theta_water(pars):
+def waterByMassHCP_to_theta_water(pars):
     """convert water content from g/g hardened cement paste(HCP) 
     to volumetric in HCP to volumetric in concrete"""
     rho_w = 1000
-    waterbyMassHCP = pars.WaterbyMassHCP
+    waterByMassHCP = pars.waterByMassHCP
 
     rho_c = pars.rho_c
     rho_a = pars.rho_a
     a_c = pars.a_c
     w_c = pars.w_c
-    theta_water_hcp = 1 / (1 + (1 / waterbyMassHCP - 1) * rho_w / rho_c)
+    theta_water_hcp = 1 / (1 + (1 / waterByMassHCP - 1) * rho_w / rho_c)
 
     theta_water = theta_water_hcp / (
         1 + (a_c * rho_c / rho_a) / (1 + w_c * rho_c / rho_w)
@@ -454,9 +454,9 @@ def waterbyMassHCP_to_theta_water(pars):
     return theta_water
 
 
-def theta_water_to_WaterbyMassHCP(pars):
+def theta_water_to_waterByMassHCP(pars):
     """ convert water content from volumetric by concrete to volumetric in HCP  to g/g  inHCP
-    a reverse function of WaterbyMassHCP_to_theta_water()"""
+    a reverse function of waterByMassHCP_to_theta_water()"""
     rho_w = 1000
     theta_water = pars.theta_water
     rho_c = pars.rho_c
@@ -467,8 +467,8 @@ def theta_water_to_WaterbyMassHCP(pars):
     theta_water_hcp = theta_water * (
         1 + (a_c * rho_c / rho_a) / (1 + w_c * rho_c / rho_w)
     )
-    WaterbyMassHCP = 1 / ((1 / theta_water_hcp - 1) * rho_c / rho_w + 1)
-    return WaterbyMassHCP
+    waterByMassHCP = 1 / ((1 / theta_water_hcp - 1) * rho_c / rho_w + 1)
+    return waterByMassHCP
 
 
 class CorrosionModel:
