@@ -3,3 +3,4 @@ __pycache__
 plots
 .vscode
 .idea
+.vscode/settings.json
