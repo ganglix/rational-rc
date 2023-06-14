@@ -38,7 +38,7 @@ logger.setLevel(
 
 
 # model functions
-def Carb_depth(t, pars):
+def carb_depth(t, pars):
     """ Master model function, calculate carbonation depth and the k constant of sqrt of time from all the
     parameters. The derived parameters is also calculated within this function. Caution: The pars instance is mutable,
     so a deepcopy of the original instance should be used if the calculation is not intended for "inplace".
@@ -154,7 +154,7 @@ def k_c(pars):
                               s: 0.024
     """
     t_c = pars.t_c
-    b_c = hf.Normal_custom(m=-0.567, s=0.024)
+    b_c = hf.normal_custom(m=-0.567, s=0.024)
     k_c = (t_c / 7.0) ** b_c
     return k_c
 
@@ -193,7 +193,7 @@ def R_ACC_0_inv(pars):
             1e-11 * 0.69 * (R_ACC_0_inv_mean * 1e11) ** 0.78
         )  # [(m^2/s)/(kg/m^3)]
 
-        R_ACC_0_inv_temp = hf.Normal_custom(
+        R_ACC_0_inv_temp = hf.normal_custom(
             R_ACC_0_inv_mean, R_ACC_0_inv_stdev
         )  # [(m^2/s)/(kg/m^3)]
 
@@ -215,7 +215,7 @@ def R_ACC_0_inv(pars):
             1e-11 * 0.69 * (R_ACC_0_inv_mean * 1e11) ** 0.78
         )  # [(m^2/s)/(kg/m^3)]
 
-        R_ACC_0_inv_temp = hf.Normal_custom(
+        R_ACC_0_inv_temp = hf.normal_custom(
             R_ACC_0_inv_mean, R_ACC_0_inv_stdev
         )  # [(m^2/s)/(kg/m^3)]
 
@@ -235,7 +235,7 @@ def k_t():
     Notes
     -----
     for R_ACC_0_inv[(mm^2/years)/(kg/m^3)]"""
-    k_t = hf.Normal_custom(1.25, 0.35)
+    k_t = hf.normal_custom(1.25, 0.35)
     return k_t
 
 
@@ -246,7 +246,7 @@ def eps_t():
     Notes
     -----
     for R_ACC_0_inv[(mm^2/years)/(kg/m^3)]"""
-    eps_t = hf.Normal_custom(315.5, 48)
+    eps_t = hf.normal_custom(315.5, 48)
     return eps_t
 
 
@@ -258,7 +258,7 @@ def C_S(C_S_emi=0):
     ----------
     C_S_emi : additional emission, positive or negative(sink), default is 0
     """
-    C_S_atm = hf.Normal_custom(0.00082, 0.0001)
+    C_S_atm = hf.normal_custom(0.00082, 0.0001)
     C_S = C_S_atm + C_S_emi
     return C_S
 
@@ -288,7 +288,7 @@ def W_t(t, pars):
     p_SR = pars.p_SR
 
     t_0 = 0.0767  # [year]
-    b_w = hf.Normal_custom(0.446, 0.163)
+    b_w = hf.normal_custom(0.446, 0.163)
 
     W = (t_0 / t) ** ((p_SR * ToW) ** b_w / 2.0)
     return W
@@ -331,7 +331,7 @@ def calibrate_f(model_raw, t, carb_depth_field, tol=1e-6, max_count=50, print_ou
         x_c_guess = 0.5 * (x_c_min + x_c_max)
         model.pars.x_c = x_c_guess
         model.run(t)
-        carb_depth_mean = hf.Get_mean(model.xc_t)
+        carb_depth_mean = hf.get_mean(model.xc_t)
 
         # compare
         if carb_depth_mean < carb_depth_field.mean():
@@ -353,7 +353,7 @@ def calibrate_f(model_raw, t, carb_depth_field, tol=1e-6, max_count=50, print_ou
         print("carb_depth:")
         print(
             "model: \nmean:{}\nstd:{}".format(
-                hf.Get_mean(model.xc_t), hf.Get_std(model.xc_t)
+                hf.get_mean(model.xc_t), hf.get_std(model.xc_t)
             )
         )
         print(
@@ -411,10 +411,10 @@ def carb_year(model, year_lis, plot=True, amplify=80):
 
         # plot mean results
         ax3.plot(t_lis, [M.pars.cover_mean for M in M_lis], "--C0")
-        ax3.plot(t_lis, [hf.Get_mean(M.xc_t) for M in M_lis], "--C1")
+        ax3.plot(t_lis, [hf.get_mean(M.xc_t) for M in M_lis], "--C1")
         # plot distribution
         for this_M in M_sel:
-            hf.RS_plot(this_M, ax=ax3, t_offset=this_M.t, amplify=amplify)
+            hf.plot_RS(this_M, ax=ax3, t_offset=this_M.t, amplify=amplify)
 
         import matplotlib.patches as mpatches
 
@@ -430,19 +430,19 @@ def carb_year(model, year_lis, plot=True, amplify=80):
     return [this_M.pf for this_M in M_lis], [this_M.beta_factor for this_M in M_lis]
 
 
-class Carbonation_Model:
+class CarbonationModel:
     def __init__(self, pars):
         self.pars = pars  # pars with user-input, then updated with derived parameters
         logger.debug("\nRaw pars are {}\n".format(vars(pars)))
 
     def run(self, t):
         """t[year]"""
-        self.xc_t = Carb_depth(t, self.pars)
+        self.xc_t = carb_depth(t, self.pars)
         self.t = t
         logger.info("Carbonation depth, xc_t{} mm".format(self.xc_t))
 
     def postproc(self, plot=False):
-        sol = hf.Pf_RS(
+        sol = hf.pf_RS(
             (self.pars.cover_mean, self.pars.cover_std), self.xc_t, plot=plot
         )
         self.pf = sol[0]

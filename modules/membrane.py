@@ -20,7 +20,7 @@ import helper_func as hf
 # special functions for this module
 
 
-def Pf_RS_special(R_info, S, R_distrib_type="normal", plot=False):
+def pf_RS_special(R_info, S, R_distrib_type="normal", plot=False):
     """special case of helper_fuc.Pf_RS, here the "load" S is a number and it calculates the probability of failure  Pf = P(R-S<0), given the R(resistance) and S(load)
     with three three methods and use method 3 if it is checked "OK" with the other two
 
@@ -81,7 +81,7 @@ def Pf_RS_special(R_info, S, R_distrib_type="normal", plot=False):
     g = R - S
     g = g[~np.isnan(g)]
     # numerical kernel fit
-    g_kde_fit = hf.Fit_distrib(g, fit_type="kernel", plot=False)
+    g_kde_fit = hf.fit_distribution(g, fit_type="kernel", plot=False)
 
     pf_kde = integrate.quad(g_kde_fit, g.min(), 0)[0]
     pf_sample = len(g[g < 0]) / len(g)
@@ -149,7 +149,7 @@ def Pf_RS_special(R_info, S, R_distrib_type="normal", plot=False):
     return pf_RS, beta_factor, R_distrib
 
 
-def RS_plot_special(model, ax=None, t_offset=0, amplify=1):  # updated!
+def plot_RS_special(model, ax=None, t_offset=0, amplify=1):  # updated!
     """plot R S distribution vertically at a time to an axis special case: S is a number.
 
     Parameters
@@ -373,7 +373,7 @@ def membrane_failure_year(model, year_lis, plot=True, amplify=30):
         ax3.plot(t_lis, [M.age for M in M_lis], "--C1")
         # plot distribution
         for this_M in M_sel:
-            RS_plot_special(this_M, ax=ax3, t_offset=this_M.t, amplify=amplify)
+            plot_RS_special(this_M, ax=ax3, t_offset=this_M.t, amplify=amplify)
 
         import matplotlib.patches as mpatches
 
@@ -388,7 +388,7 @@ def membrane_failure_year(model, year_lis, plot=True, amplify=30):
     return [this_M.pf for this_M in M_lis], [this_M.beta_factor for this_M in M_lis]
 
 
-class Membrane_Model:
+class MembraneModel:
     def __init__(self, pars):
         """initialize the object with raw parameter object (pars) and mean membrane life"""
         self.pars = pars
@@ -401,7 +401,7 @@ class Membrane_Model:
 
     def postproc(self, plot=False):
         """solve pf, beta, attach R distribution with plot option"""
-        sol = Pf_RS_special(
+        sol = pf_RS_special(
             (self.pars.life_mean, self.pars.life_std),
             self.age,
             R_distrib_type="normal",

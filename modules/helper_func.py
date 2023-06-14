@@ -44,19 +44,19 @@ def dropna(x):
     return x[~np.isnan(x)]
 
 
-def Get_mean(x):
+def get_mean(x):
     """get mean ignoring nans"""
     x = x[~np.isnan(x)]
     return x.mean()
 
 
-def Get_std(x):
+def get_std(x):
     """get standard deviation ignoring nans"""
     x = x[~np.isnan(x)]
     return x.std()
 
 
-def Hist_custom(S):
+def hist_custom(S):
     """plot histogram with N_SAMPLE//100 bins ignoring nans"""
     S_dropna = S[~np.isnan(S)]
     fig, ax = plt.subplots()
@@ -66,7 +66,7 @@ def Hist_custom(S):
 
 
 # Sampler updated
-def Normal_custom(m, s, n_sample=N_SAMPLE, non_negative=False, plot=False):
+def normal_custom(m, s, n_sample=N_SAMPLE, non_negative=False, plot=False):
     """ Sampling from a normal distribution
 
     Parameters
@@ -99,7 +99,7 @@ def Normal_custom(m, s, n_sample=N_SAMPLE, non_negative=False, plot=False):
     return x
 
 
-def Beta_custom(m, s, a, b, n_sample=N_SAMPLE, plot=False):
+def beta_custom(m, s, a, b, n_sample=N_SAMPLE, plot=False):
     """ Beta_custom draws samples from a general beta distribution described by mean, std and lower and upper   bounds
     X~General Beta(a,b, loc = c, scale = d)
     Z~std Beta(alpha, beta)
@@ -282,7 +282,7 @@ def f_solve_poly2(a, b, c):
 
 
 # helper function
-def Fit_distrib(s, fit_type="kernel", plot=False, xlabel="", title="", axn=None):
+def fit_distribution(s, fit_type="kernel", plot=False, xlabel="", title="", axn=None):
     """fit data to a probability distribution function(parametric or numerical)
     and return a continuous random variable or a random variable represented by Gaussian kernels
     parametric : normal
@@ -352,8 +352,8 @@ def Fit_distrib(s, fit_type="kernel", plot=False, xlabel="", title="", axn=None)
         return kde
 
 
-def Pf_RS(R_info, S, R_distrib_type="normal", plot=False):  # updated!
-    """Pf_RS calculates the probability of failure  Pf = P(R-S<0), given the R(resistance) and S(load)
+def pf_RS(R_info, S, R_distrib_type="normal", plot=False):  # updated!
+    """pf_RS calculates the probability of failure  Pf = P(R-S<0), given the R(resistance) and S(load)
     with three three methods and use method 3 if it is checked "OK" with the other two
 
     1. crude monte carlo  
@@ -399,7 +399,7 @@ def Pf_RS(R_info, S, R_distrib_type="normal", plot=False):  # updated!
 
     R, pf_RS = (None, None)
 
-    S_kde_fit = Fit_distrib(S, fit_type="kernel")
+    S_kde_fit = fit_distribution(S, fit_type="kernel")
     S_dropna = S[~np.isnan(S)]
 
     if R_distrib_type == "normal":
@@ -465,7 +465,7 @@ def Pf_RS(R_info, S, R_distrib_type="normal", plot=False):  # updated!
     g = R - S
     g = g[~np.isnan(g)]
     # numerical kernel fit
-    g_kde_fit = Fit_distrib(g, fit_type="kernel", plot=False)
+    g_kde_fit = fit_distribution(g, fit_type="kernel", plot=False)
     pf_kde = integrate.quad(g_kde_fit, g.min(), 0)[0]
     pf_sample = len(g[g <= 0]) / len(g)
     beta_factor = g.mean() / g.std()  # first order
@@ -562,7 +562,7 @@ def Pf_RS(R_info, S, R_distrib_type="normal", plot=False):  # updated!
     return pf_RS, beta_factor, R_distrib, S_kde_fit
 
 
-def RS_plot(model, ax=None, t_offset=0, amplify=1):
+def plot_RS(model, ax=None, t_offset=0, amplify=1):
     """plot R S distribution vertically at a time to an axis
 
     Parameters

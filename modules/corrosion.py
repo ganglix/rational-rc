@@ -385,7 +385,7 @@ def V_m_f(t, w_c, cement_type):
 
     V_m_mean = (0.068 - 0.22 / t) * (0.85 + 0.45 * w_c) * V_ct
     V_m_std = 0.016 * V_m_mean  # COV
-    V_m = hf.Normal_custom(V_m_mean, V_m_std)
+    V_m = hf.normal_custom(V_m_mean, V_m_std)
     return V_m
 
 
@@ -404,7 +404,7 @@ def C_f(T):
     C_0 = 855
     C_mean = np.e ** (C_0 / T)
     C_std = C_mean * 0.12  # COV 0.12
-    C = hf.Normal_custom(C_mean, C_std)
+    C = hf.normal_custom(C_mean, C_std)
     return C_mean, C
 
 
@@ -431,22 +431,22 @@ def k_f(C_mean, w_c, t, cement_type):
 
     k_mean = ((1 - 1 / n) * C_mean - 1) / (C_mean - 1)
     k_std = k_mean * 0.007
-    k = hf.Normal_custom(k_mean, k_std)
+    k = hf.normal_custom(k_mean, k_std)
     return k
 
     # convert theta_water to W or W to theta_water
 
-def WaterbyMassHCP_to_theta_water(pars):
+def waterbyMassHCP_to_theta_water(pars):
     """convert water content from g/g hardened cement paste(HCP) 
     to volumetric in HCP to volumetric in concrete"""
     rho_w = 1000
-    WaterbyMassHCP = pars.WaterbyMassHCP
+    waterbyMassHCP = pars.WaterbyMassHCP
 
     rho_c = pars.rho_c
     rho_a = pars.rho_a
     a_c = pars.a_c
     w_c = pars.w_c
-    theta_water_hcp = 1 / (1 + (1 / WaterbyMassHCP - 1) * rho_w / rho_c)
+    theta_water_hcp = 1 / (1 + (1 / waterbyMassHCP - 1) * rho_w / rho_c)
 
     theta_water = theta_water_hcp / (
         1 + (a_c * rho_c / rho_a) / (1 + w_c * rho_c / rho_w)
@@ -471,7 +471,7 @@ def theta_water_to_WaterbyMassHCP(pars):
     return WaterbyMassHCP
 
 
-class Corrosion_Model:
+class CorrosionModel:
     def __init__(self, pars):
         """initialize the model with Param object and built-in coefficient
         """
@@ -565,11 +565,11 @@ def x_loss_year(model, year_lis, plot=True, amplify=80):
 
         # plot mean results
         ax3.plot(t_lis, [M.pars.x_loss_limit_mean for M in M_lis], '--C0')
-        ax3.plot(t_lis, [hf.Get_mean(M.x_loss_t) for M in M_lis], '--C1')
+        ax3.plot(t_lis, [hf.get_mean(M.x_loss_t) for M in M_lis], '--C1')
         # plot distribution
         
         for this_M in M_sel:
-            hf.RS_plot(this_M, ax=ax3, t_offset=this_M.t, amplify=amplify)
+            hf.plot_RS(this_M, ax=ax3, t_offset=this_M.t, amplify=amplify)
 
         import matplotlib.patches as mpatches
         R_patch = mpatches.Patch(color='C0', label='R: limit',alpha=0.8)
@@ -584,7 +584,7 @@ def x_loss_year(model, year_lis, plot=True, amplify=80):
     return [this_M.pf for this_M in M_lis], [this_M.beta_factor for this_M in M_lis]
 
 
-class Section_loss_Model:
+class SectionLossModel:
     def __init__(self, pars):
         self.pars = pars  # pars with user-input
 
@@ -607,7 +607,7 @@ class Section_loss_Model:
         plot : bool, optional
             if true plot the R S curve, by default False
         """
-        sol = hf.Pf_RS((self.pars.x_loss_limit_mean, self.pars.x_loss_limit_std), self.x_loss_t, plot=plot)
+        sol = hf.pf_RS((self.pars.x_loss_limit_mean, self.pars.x_loss_limit_std), self.x_loss_t, plot=plot)
         self.pf = sol[0]
         self.beta_factor = sol[1]
         self.R_distrib = sol[2]
