@@ -39,19 +39,20 @@ logger.setLevel(
 
 # model functions
 def carb_depth(t, pars):
-    """ Master model function, calculate carbonation depth and the k constant of sqrt of time from all the
-    parameters. The derived parameters is also calculated within this function. Caution: The pars instance is mutable,
-    so a deepcopy of the original instance should be used if the calculation is not intended for "inplace".
+    """ Calculate carbonation depth at a given time based on the parameters. 
+    The derived parameters (including the k constant of sqrt of time) are also calculated within this function.
+
+    Caution: The pars instance is mutable,so a deepcopy of the original instance should be used if the calculation is not intended for "inplace".
 
     Parameters
     ----------
     t      : time [year]
-    pars   : object/instance of wrapper class(empty class)
+    pars   : object/instance of wrapper class (empty class)
                a wrapper of all material and environmental parameters deep-copied from the raw data
 
     Returns
     -------
-    out : carbonation depth at the time t [mm]
+    xc_t : carbonation depth at time t [mm]
 
     Note
     ----
@@ -74,6 +75,8 @@ def carb_depth(t, pars):
         k      : constant before the sqrt of time(time[year], carbonation depth[mm]) [mm/year^0.5] 
         typical value of k =3~4 for unit mm,year [https://www.researchgate.net/publication/272174090_Carbonation_Coefficient_of_Concrete_in_Dhaka_City]
     """
+    
+    # Calculate intermediate parameters
     pars.t = t
     pars.k_e = k_e(pars)
     pars.k_c = k_c(pars)
@@ -82,7 +85,8 @@ def carb_depth(t, pars):
     pars.eps_t = eps_t()
     pars.C_S = C_S(C_S_emi=pars.C_S_emi)
     pars.W_t = W_t(t, pars)
-
+    
+    # Calculate carbonation depth
     pars.k = (
         2 * pars.k_e * pars.k_c * (pars.k_t * pars.R_ACC_0_inv + pars.eps_t) * pars.C_S
     ) ** 0.5 * pars.W_t
@@ -101,29 +105,26 @@ def load_df_R_ACC():
     Returns
     -------
     pandas.DataFrame
+        Dataframe containing the accelerated carbonation test data.
 
     Notes
     -----
     w/c 0.45 cemI is comparable to ACC of 3 mm.
     """
     wc_eqv = np.arange(0.35, 0.60 + (0.05 / 2), 0.05)
-    df = pd.DataFrame(
-        columns=[
-            "wc_eqv",  # water/cement ratio (equivalent)
-            "CEM_I_42.5_R",  # k=0
-            "CEM_I_42.5_R+FA",  # k=0.5
-            "CEM_I_42.5_R+SF",  # k=2.0
-            "CEM_III/B_42.5",
-        ]
-    )  # k=0
-    df["wc_eqv"] = wc_eqv
-    df["CEM_I_42.5_R"] = np.array([np.nan, 3.1, 5.2, 6.8, 9.8, 13.4])
-    df["CEM_I_42.5_R+FA"] = np.array([np.nan, 0.3, 1.9, 2.4, 6.5, 8.3])
-    df["CEM_I_42.5_R+SF"] = np.array([3.5, 5.5, np.nan, np.nan, 16.5, np.nan])
-    df["CEM_III/B_42.5"] = np.array([np.nan, 8.3, 16.9, 26.6, 44.3, 80.0])
-    df = df.set_index("wc_eqv")
-    return df
 
+    data = {
+        "wc_eqv": wc_eqv,
+        "CEM_I_42.5_R": [np.nan, 3.1, 5.2, 6.8, 9.8, 13.4],
+        "CEM_I_42.5_R+FA": [np.nan, 0.3, 1.9, 2.4, 6.5, 8.3],
+        "CEM_I_42.5_R+SF": [3.5, 5.5, np.nan, np.nan, 16.5, np.nan],
+        "CEM_III/B_42.5": [np.nan, 8.3, 16.9, 26.6, 44.3, 80.0]
+    }
+
+    df = pd.DataFrame(data)
+    df.set_index("wc_eqv", inplace=True)
+
+    return df
 
 def k_e(pars):
     """ Calculate k_e[-], environmental factor, effect of relative humidity
