@@ -40,52 +40,49 @@ logger.setLevel(
 
 # Helper function
 def dropna(x):
-    """removes nans"""
+    """Removes NaN values from the input array."""
     return x[~np.isnan(x)]
 
 
 def get_mean(x):
-    """get mean ignoring nans"""
+    """Calculate the mean of the input array, ignoring NaN values."""
     x = x[~np.isnan(x)]
     return x.mean()
 
 
 def get_std(x):
-    """get standard deviation ignoring nans"""
+    """Calculate the standard deviation of the input array, ignoring NaN values."""
     x = x[~np.isnan(x)]
     return x.std()
 
 
 def hist_custom(S):
-    """plot histogram with N_SAMPLE//100 bins ignoring nans"""
+    """Plot a histogram with N_SAMPLE//100 bins, ignoring NaN values."""
     S_dropna = S[~np.isnan(S)]
     fig, ax = plt.subplots()
-    ax.hist(
-        S_dropna, bins=min(N_SAMPLE // 100, 100), density=True, alpha=0.5, color="C0"
-    )
+    ax.hist(S_dropna, bins=min(len(S_dropna) // 100, 100), density=True, alpha=0.5, color="C0")
 
-
-# Sampler updated
+# Sampler functions
 def normal_custom(m, s, n_sample=N_SAMPLE, non_negative=False, plot=False):
-    """ Sampling from a normal distribution
+    """Sample from a normal distribution.
 
     Parameters
     ----------
     m : int or float
-        mean
+        Mean of the distribution.
     s : int or float
-        standard deviation
+        Standard deviation of the distribution.
     n_sample : int
-        sample number, default is a Global var N_SAMPLE
+        Number of samples to generate. Default is a global variable N_SAMPLE.
     non_negative: bool
-        if true, return truncated distribution with no negatives, default is False
+        If True, return a truncated distribution with no negative values. Default is False.
     plot : bool
-        default is False
+        If True, plot a histogram of the generated samples. Default is False.
 
     Returns
     -------
     numpy array
-        sample array from the distribution
+        Sample array from the normal distribution.
     """
     x = np.random.normal(loc=m, scale=s, size=n_sample)
     if non_negative:
@@ -100,44 +97,50 @@ def normal_custom(m, s, n_sample=N_SAMPLE, non_negative=False, plot=False):
 
 
 def beta_custom(m, s, a, b, n_sample=N_SAMPLE, plot=False):
-    """ Beta_custom draws samples from a general beta distribution described by mean, std and lower and upper   bounds
-    X~General Beta(a,b, loc = c, scale = d)
-    Z~std Beta(alpha, beta)
+    """Draw samples from a general beta distribution.
 
-    X = c + d*Z \n
+    The general beta distribution is described by mean, standard deviation, lower bound, and upper bound.
+    X ~ General Beta(a, b, loc=c, scale=d)
+    Z ~ Standard Beta(alpha, beta)
+    X = c + d * Z \n
     E(X) = c + d * E(Z) \n
-    var(X) = d^2 * var(Z)
+    Var(X) = d^2 * Var(Z)
 
     Parameters
     ----------
-    m : mean
-    s : standard deviation
-    a : lower bound, not shape param a(alpha)
-    b : upper bound, not shape param b(beta)
-    n_sample: int
-        sample number
+    m : float
+        Mean of the distribution.
+    s : float
+        Standard deviation of the distribution.
+    a : float
+        Lower bound (not the shape parameter a/alpha).
+    b : float
+        Upper bound (not the shape parameter b/beta).
+    n_sample : int
+        Number of samples to generate.
     plot : bool
-        default is False
+        If True, plot a histogram of the generated samples. Default is False.
 
     Returns
     -------
     numpy array
-        sample array from the distribution
+        Sample array from the distribution.
     """
-    # location:c and scale:d for General Beta (standard Beta range [0,1])
+    # Location:c and scale:d for General Beta (standard Beta range [0,1])
     c = a
     d = b - a
 
-    # mean and variance for
+    # Mean and variance for Z ~ standard beta
     mu = (m - c) / d
     var = s ** 2 / d ** 2
 
-    # shape params for Z~standard beta
+    # Shape parameters for Z ~ standard beta
     alpha = ((1 - mu) / var - 1 / mu) * mu ** 2
     beta = alpha * (1 / mu - 1)
+
     z = np.random.beta(alpha, beta, size=n_sample)
 
-    # transfer back to General Beta
+    # Transfer back to General Beta
     x = c + d * z
 
     if plot:
@@ -145,45 +148,48 @@ def beta_custom(m, s, a, b, n_sample=N_SAMPLE, plot=False):
         ax.hist(x)
         print(x.mean(), x.std())
         plt.show()
+
     return x
 
 
+
+
 def interp_extrap_f(x, y, x_find, plot=False):
-    """interpolate or extrapolate value from an array with fitted2-deg or 3-deg polynomial
+    """Interpolate or extrapolate value from an array with a fitted 2nd-degree or 3rd-degree polynomial.
 
     Parameters
     ----------
     x : array-like
-        variable
+        Independent variable.
     y : array-like
-        function value
+        Function values.
     x_find : int or float or array-like
-        look-up x
+        Lookup x.
     plot : bool
-        plot curve fit and data points, default if false
+        If True, plot curve fit and data points. Default is False.
 
     Returns
     -------
     int or float or array-like
-        inter/extrapolated value(s), raise warning when extrapolation is used
+        Interpolated or extrapolated value(s). Raises a warning when extrapolation is used.
     """
 
     def func2(x, a, b, c):
-        # 2-order polynomial
-        return a * (x ** 2) + b * (x ** 1) + c
+        # 2nd-degree polynomial
+        return a * (x ** 2) + b * x + c
 
     def func3(x, a, b, c, d):
-        # 3-order polynomial
-        return a * (x ** 2) + b * (x ** 2) + c * x + d
+        # 3rd-degree polynomial
+        return a * (x ** 3) + b * (x ** 2) + c * x + d
 
-    if (x_find < x.min()).any() or (x_find > x.max()).any():
+    if np.any(x_find < x.min()) or np.any(x_find > x.max()):
         logger.warning("Warning: extrapolation used")
 
     from scipy.optimize import curve_fit
 
-    # Initial parameter guess, just to kick off the optimization
+    # Initial parameter guess to kick off the optimization
     if len(y) > 3:
-        logger.debug("use func3: 3-deg polynomial")
+        logger.debug("use func3: 3rd-degree polynomial")
         guess = (0.5, 0.5, 0.5, 0.5)
         popt, _ = curve_fit(func3, x, y, p0=guess)
         y_find = func3(x_find, *popt)
@@ -192,14 +198,12 @@ def interp_extrap_f(x, y, x_find, plot=False):
             ax.plot(x, y, ".", label="table")
             _plot_data = np.linspace(x.min(), x.max(), 100)
             ax.plot(_plot_data, func3(_plot_data, *popt), "--")
-            ax.plot(
-                x_find, y_find, "x", color="r", markersize=8, label="interp/extrap data"
-            )
+            ax.plot(x_find, y_find, "x", color="r", markersize=8, label="interp/extrap data")
             ax.legend()
             plt.show()
 
     elif len(y) <= 3:
-        logger.debug("use func2: 2-deg polynomial")
+        logger.debug("use func2: 2nd-degree polynomial")
         guess = (0.5, 0.5, 0.5)
         popt, _ = curve_fit(func2, x, y, p0=guess)
         y_find = func2(x_find, *popt)
@@ -208,9 +212,7 @@ def interp_extrap_f(x, y, x_find, plot=False):
             ax.plot(x, y, ".", label="table")
             _plot_data = np.linspace(x.min(), x.max(), 100)
             ax.plot(_plot_data, func2(_plot_data, *popt), "--")
-            ax.plot(
-                x_find, y_find, "x", color="r", markersize=8, label="interp/extrap data"
-            )
+            ax.plot(x_find, y_find, "x", color="r", markersize=8, label="interp/extrap data")
             ax.legend()
             plt.show()
     else:
@@ -219,19 +221,19 @@ def interp_extrap_f(x, y, x_find, plot=False):
 
 
 def find_similar_group(item_list, similar_group_size=2):
-    """find_similar_group finds most alike values in a list
+    """Find the most alike values in a list.
 
     Parameters
     ----------
     item_list : list
-        a list to choose from
+        A list to choose from.
     similar_group_size : int, optional
-        number of the alike values, by default 2
+        Number of alike values. Default is 2.
 
     Returns
     -------
     list
-        a sublist with alike values
+        A sublist with alike values.
     """
     from itertools import combinations
 
@@ -242,21 +244,21 @@ def find_similar_group(item_list, similar_group_size=2):
 
 
 def sample_integral(Y, x):
-    """integrate Y over x, where every Y data point is a bunch of distribution samples,
+    """Integrate Y over x, where every Y data point is a bunch of distribution samples.
 
     Parameters
     ----------
     Y : numpy array
-        2D \n
-        column: y data point\n
-        row: samples for each y data point
+        2D array.\n
+        Column: y data point. \n
+        Row: samples for each y data point.
     x : numpy array
-        1D
+        1D array.
 
     Returns
     -------
     numpy array
-            int_y_x : integral of y over x for all sampled data
+        int_y_x : integral of y over x for all sampled data.
     
     Examples
     --------
@@ -274,16 +276,22 @@ def sample_integral(Y, x):
 
 
 def f_solve_poly2(a, b, c):
-    """find the two roots of $ax^2+bx+c=0$
+    """Find the two roots of the quadratic equation $ax^2+bx+c=0$
     """
-    r1 = (-b + (b ** 2 - 4 * a * c) ** 0.5) / (2 * a)
-    r2 = (-b - (b ** 2 - 4 * a * c) ** 0.5) / (2 * a)
+    discriminant = b ** 2 - 4 * a * c
+
+    if discriminant < 0:
+        raise ValueError("The quadratic equation has complex roots")
+
+    sqrt_discriminant = discriminant ** 0.5
+    r1 = (-b + sqrt_discriminant) / (2 * a)
+    r2 = (-b - sqrt_discriminant) / (2 * a)
     return r1, r2
 
 
 # helper function
 def fit_distribution(s, fit_type="kernel", plot=False, xlabel="", title="", axn=None):
-    """fit data to a probability distribution function(parametric or numerical)
+    """Fit data to a probability distribution function (parametric or numerical)
     and return a continuous random variable or a random variable represented by Gaussian kernels
     parametric : normal
     numerical : Gaussian kernels
@@ -291,19 +299,23 @@ def fit_distribution(s, fit_type="kernel", plot=False, xlabel="", title="", axn=
     Parameters
     ----------
     s : array-like
-        sample data
-    fit_type : string
-        fit type keywords, 'kernel', 'normal'
-    plot : bool
-        when True, create a plot with histogram and fitted pdf curve
+        Sample data.
+    fit_type : str, optional
+        Fit type ('kernel' or 'normal'), by default 'kernel'.
+    plot : bool, optional
+        When True, create a plot with histogram and fitted PDF curve.
+    xlabel : str, optional
+        Label for the x-axis of the plot, by default "".
+    title : str, optional
+        Title of the plot, by default "".
+    axn : Any, optional
+        Axes object for the plot, by default None.
 
     Returns
     -------
     instance of random variable 
-        when parametric normal is used
-            continuous random variable : stats.norm(loc = mu, scale = sigma)
-        when kernel is used
-            Gaussian kernel random variable : (stats.gaussian_kde)
+        Continuous random variable (stats.norm) if parametric normal is used,
+        Gaussian kernel random variable (stats.gaussian_kde) if kernel is used.
     """
     mu = None
     sigma = None
@@ -312,7 +324,7 @@ def fit_distribution(s, fit_type="kernel", plot=False, xlabel="", title="", axn=
         # parametric, fit normal distribution
         logger.debug("parametric, fit normal distribution")
 
-        # Fit a curve to the variates  mu is loc sigma is scale
+        # fit a curve to the variates  mu is loc sigma is scale
         mu, sigma = stats.norm.fit(s, floc=s.mean())
 
     elif fit_type == "kernel":
@@ -337,7 +349,7 @@ def fit_distribution(s, fit_type="kernel", plot=False, xlabel="", title="", axn=
             pdf = stats.norm.pdf(dist_space, mu, sigma)
             axn.plot(dist_space, pdf, label="normal")
 
-        if fit_type == "kernel":
+        elif fit_type == "kernel":
             pdf_kde = kde(dist_space)
             axn.plot(dist_space, pdf_kde, label="kernel")
 
@@ -345,43 +357,43 @@ def fit_distribution(s, fit_type="kernel", plot=False, xlabel="", title="", axn=
         axn.set_ylabel("distribution density")
         axn.legend(loc="upper right")
         axn.set_title(title)
-    # return
+    
     if fit_type == "normal":
         return stats.norm(loc=mu, scale=sigma)
     if fit_type == "kernel":
         return kde
 
 
-def pf_RS(R_info, S, R_distrib_type="normal", plot=False):  # updated!
-    """pf_RS calculates the probability of failure  Pf = P(R-S<0), given the R(resistance) and S(load)
-    with three three methods and use method 3 if it is checked "OK" with the other two
+def pf_RS(R_info, S, R_distrib_type="normal", plot=False):
+    """pf_RS calculates the probability of failure Pf = P(R-S<0), given the R(resistance) and S(load)
+    with three methods and uses method 3 if it is checked "OK" with the other two
 
     1. crude monte carlo  
     2. numerical integral of g kernel fit
-    3. R S integral: $\int\limits_{-\infty}^{\infty} F_R(x)f_S(x)dx$, reliability index(beta factor) is calculated with simple 1st order g.mean()/g.std()
+    3. R S integral: $\int\limits_{-\infty}^{\infty} F_R(x)f_S(x)dx$, reliability index (beta factor) is calculated with simple 1st order g.mean()/g.std()
 
     Parameters
     ----------
     R_info : tuple, numpy array
-        distribution of Resistance, e.g. cover thickness, critical chloride content, tensile strength
-        can be array or distribution parameters
+        Distribution of Resistance, e.g., cover thickness, critical chloride content, tensile strength
+        Can be an array or distribution parameters.
 
-        R_distrib_type='normal' -> tuple(m,s) for normal m: mean s: standard deviation
+        R_distrib_type='normal' -> tuple(m, s) for normal (m: mean, s: standard deviation)
         
-        R_distrib_type='beta' -> tuple(m,s,a,b) for (General) beta distribution
-        m: mean, s: standard deviation a,b : lower, upper bound
+        R_distrib_type='beta' -> tuple(m, s, a, b) for (General) beta distribution
+        m: mean, s: standard deviation, a, b: lower, upper bound
         
-        R_distrib_type='array' -> array: for not-determined distribution, will be treated numerically(R S integral is not applied )
+        R_distrib_type='array' -> array: for an undetermined distribution, will be treated numerically (R S integral is not applied)
 
     S : numpy array
-        distribution of load, e.g. carbonation depth, chloride content, tensile stress
-        the distribution type is calculated S is usually not determined, can vary a lot in different cases, therefore fitted with kernel
+        Distribution of load, e.g., carbonation depth, chloride content, tensile stress
+        The distribution type is calculated S is usually not determined, can vary a lot in different cases, therefore fitted with kernel.
 
     R_distrib_type : str, optional
-                'normal', 'beta', 'array', by default 'normal'
+        'normal', 'beta', 'array', by default 'normal'
 
     plot : bool, optional
-        plot distribution, by default False
+        Plot distribution, by default False
 
     Returns
     -------
@@ -390,9 +402,9 @@ def pf_RS(R_info, S, R_distrib_type="normal", plot=False):  # updated!
 
     Note
     ----
-        For R as arrays R S integral is not applied
+        For R as arrays, R S integral is not applied
         R S integration method: $P_f = P(R-S<=0)=\int\limits_{-\infty}^{\infty}f_S(y) \int\limits_{-\infty}^{y}f_R(x)dxdy$
-        the dual numerical integration seems too computationally expensive, so consider fit R to analytical distribution in the future versions[TODO]
+        The dual numerical integration seems too computationally expensive, so consider fitting R to an analytical distribution in future versions [TODO]
 
     """
     from scipy import integrate
@@ -409,7 +421,7 @@ def pf_RS(R_info, S, R_distrib_type="normal", plot=False):  # updated!
         R = R_distrib.rvs(size=N_SAMPLE)
 
         # Calculate probability of failure
-        #     $P_f = P(R-S<=0)=\int\limits_{-\infty}^{\infty} F_R(x)f_S(x)dx$
+        # $P_f = P(R-S<=0)=\int\limits_{-\infty}^{\infty} F_R(x)f_S(x)dx$
         pf_RS = integrate.quad(
             lambda x: R_distrib.cdf(x) * S_kde_fit(x)[0], 0, S_dropna.max()
         )[0]
@@ -423,7 +435,7 @@ def pf_RS(R_info, S, R_distrib_type="normal", plot=False):  # updated!
         c = a
         d = b - a
 
-        # mean and variance for
+        # mean and variance for 
         mu = (m - c) / d
         var = s ** 2 / d ** 2
 
@@ -441,8 +453,8 @@ def pf_RS(R_info, S, R_distrib_type="normal", plot=False):  # updated!
         )[0]
 
     elif R_distrib_type == "array":
-        # dual numerical integration is too expensive, consider fit R to analytical distribution!!!!!!!!!!!!!!!!!!!!!!!!!!
-        # plot condition to be fixed !!!!!!!!!!!!!!!!!!!!!!
+        # dual numerical integration is computationally expensive, consider fit R to analytical distribution in future versions.
+        # plot condition to be updated in future versions.
 
         #         # use R array
         #         R_kde_fit = Fit_distrib(R, fit_type='kernel')
@@ -450,7 +462,7 @@ def pf_RS(R_info, S, R_distrib_type="normal", plot=False):  # updated!
         #         # $P_f = P(R-S<=0)=\int\limits_{-\infty}^{\infty}f_S(y) \int\limits_{-\infty}^{y}f_R(x)dxdy$
 
         #         def R_cdf_S_pdf(x, R_kde_fit, S_kde_fit):
-        #             R_cdf = integrate.quad(lambda z: R_kde_fit(z)[0],0,x)[0] # kde_fit returns ([array needed]). therefore use lamda z kde(z)[0]
+        #             R_cdf = integrate.quad(lambda z: R_kde_fit(z)[0],0,x)[0] # kde_fit returns ([array needed]). therefore use lambda z kde(z)[0]
         #             S_pdf = S_kde_fit(x)[0]
         #             return R_cdf*S_pdf
 
