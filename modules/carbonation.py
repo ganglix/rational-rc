@@ -131,9 +131,15 @@ def k_e(pars):
 
     Parameters
     ----------
-    pars.RH_ref : 65 [%]
+    pars.RH_ref : float
+        Reference relative humidity 65 [%]
     g_e    : 2.5 [-]
     f_e    : 5.0 [-]
+
+    Returns
+    -------
+    float
+        Calculated environmental factor k_e[-]
     """
     RH_real = pars.RH_real
     RH_ref = 65.0
@@ -148,11 +154,15 @@ def k_c(pars):
 
     Parameters
     ----------
-    pars.t_c: period of curing [d]
-         constant
-    b_c: exponent of regression [-]
+    pars.t_c : float
+        Period of curing [d]
+    b_c: [built-in] exponent of regression [-]
          normal distribution, m: -0.567
                               s: 0.024
+    Returns
+    -------
+    float
+        Calculated execution transfer parameter k_c[-]
     """
     t_c = pars.t_c
     b_c = mh.normal_custom(m=-0.567, s=0.024)
@@ -162,22 +172,23 @@ def k_c(pars):
 
 def R_ACC_0_inv(pars):
     """ Calculate R_ACC_0_inv[(mm^2/year)/(kg/m^3)], the inverse effective carbonation resistance of concrete(accelerated)
-        From ACC test or from existing empirical data interpolation for orientation purpose
-        test condition: duration time = 56 days CO2 = 2.0 vol%, T =25 degC RH_ref =65
+    From ACC test or from existing empirical data interpolation for orientation purpose
+    test condition: duration time = 56 days CO2 = 2.0 vol%, T =25 degC RH_ref =65
 
     Parameters
     ----------
     pars.x_c : float
-                measured carbonation depth in the accelerated test[m]
+        Measured carbonation depth in the accelerated test [m]
     pars.option.choose : bool
-                if true -> choose to use interpolation method
+        If True, choose to use interpolation method
     pars.option.df_R_ACC : pandas.DataFrame
-                data table for interpolate, loaded by function load_df_R_ACC, interpolated by function interp_extrap_f
+        Data table for interpolation, loaded by function load_df_R_ACC, interpolated by function interp_extrap_f
 
     Returns
     -------
     out: numpy arrays
-        parameter value with sample number = N_SAMPLE(defined globally)
+        Calculated inverse effective carbonation resistance [mm^2/year)/(kg/m^3] 
+        with sample number = N_SAMPLE (defined globally)
 
     Notes
     -----
@@ -185,7 +196,7 @@ def R_ACC_0_inv(pars):
     """
     x_c = pars.x_c
     if isinstance(x_c, int) or isinstance(x_c, float):
-        # though acc-test
+        # Through acc-test
         tau = 420.0  # tau: 'time constant' in [(s/kg/m^3)^0.5], for described test conditions tau = 420
         R_ACC_0_inv_mean = (x_c / tau) ** 2  # [(m^2/s)/(kg/m^3)]
 
@@ -222,8 +233,8 @@ def R_ACC_0_inv(pars):
 
     else:
         logger.error("R_ACC_0_inv calculation failed; application interrupted")
-
         sys.exit("Error message")
+
     # unit change [(m^2/s)/(kg/m^3)] -> [(mm^2/year)/(kg/m^3)]  final model input
     R_ACC_0_inv_final = 365 * 24 * 3600 * 1e6 * R_ACC_0_inv_temp
     return R_ACC_0_inv_final
@@ -253,11 +264,16 @@ def eps_t():
 
 # Environmental impact C_S
 def C_S(C_S_emi=0):
-    """Calculate CO2 density[kg/m^3] in the environment, it is about 350-380 ppm in the atm plus other source or sink
+    """Calculate CO2 density[kg/m^3] in the environment; it is about 350-380 ppm in the atm plus other source or sink
 
     Parameters
     ----------
     C_S_emi : additional emission, positive or negative(sink), default is 0
+
+    Returns
+    -------
+    float
+        CO2 density in kg/m^3
     """
     C_S_atm = mh.normal_custom(0.00082, 0.0001)
     C_S = C_S_atm + C_S_emi
@@ -266,24 +282,28 @@ def C_S(C_S_emi=0):
 
 # weather function
 def W_t(t, pars):
-    """ Calculate weather function W_t, a parameter considering the meso-climatic conditions due to wetting events of concrete surface
-
+    """ Calculate weather parameter W, a parameter considering the meso-climatic conditions due to wetting events of concrete surface
+    
     Parameters
     ----------
-    pars.ToW : time of wetness [-]
-               ToW = (days with rainfall h_Nd >= 2.5 mm per day)/365
-
-    pars.p_SR : probability of driving rain [-]
-                Vertical -> weather station
-                Horizontal 1.0
-                Interior 0.0
-
-    pars.b_w; exponent of regression [-] ND(0.446, 0.163)
-    built-in param t_0 : time of reference [years]
+    t : float
+        Time [years]
+    pars : object
+        Instance of Param class containing the following attributes:
+        - ToW : float
+            Time of wetness [-], calculated as (days with rainfall h_Nd >= 2.5 mm per day)/365
+        - p_SR : float
+            Probability of driving rain [-], 1.0 for vertical surface, 0.0 for horizontal or interior surfaces
+        - b_w : float
+            Exponent of regression [-], normally distributed with mean=0.446 and standard deviation=0.163
+        - t_0 : float
+            Time of reference [years] [built-in param]
 
     Returns
     -------
-    out : numpy array
+    numpy array
+        Weather parameter array W
+
     """
     ToW = pars.ToW
     p_SR = pars.p_SR
@@ -297,46 +317,49 @@ def W_t(t, pars):
 
 # helper function: calibration function
 def calibrate_f(model_raw, t, carb_depth_field, tol=1e-6, max_count=50, print_out=True):
-    """carb_depth_field[mm]-> find corresponding x_c(accelerated test carb depth[m])
-    Calibrate the carbonation model with field carbonation test data and return the new calibrated model object/instance
+    """Calibrate the carbonation model with field carbonation test data [mm] and return the new calibrated model.
     Optimization method: searching for the best accelerated test carbonation depth x_c[m] so the model matches field data
     on the mean value of the carbonation depth)
 
     Parameters
     ----------
-    model_raw : object/instance of Carbonation_Model class, mutable, so a deepcopy will be used in this function
-    t         : float or int
-                survey time, age of the concrete[year]
+    model_raw : object
+        Instance of the CarbonationModel class, mutable (a deepcopy will be used in this function).
+    t : float or int
+        Survey time, age of the concrete [years].
     carb_depth_field : numpy array
-                       at time t, field carbonation depths[mm]
-    tol : float
-        accelerated carbonation depth x_c optimization tolerance, default is 1e-5 [mm]
-    max_count : int
-                maximum number of searching iteration, default is 50
+        Field carbonation depths at time t [mm].
+    tol : float, optional
+        Accelerated carbonation depth x_c optimization tolerance, default is 1e-5 [mm].
+    max_count : int, optional
+        Maximum number of searching iterations, default is 50.
+    print_out : bool, optional
+        Flag to print out the results, default is True.
 
     Returns
     -------
-    out : object/instance of Carbonation_Model class
-         new calibrated model
+    object
+        New calibrated model instance.
     """
+
     model = model_raw.copy()
-    # accelerated test
-    # cap
+
+    # Define the initial search space for x_c
     x_c_min = 0.0
     x_c_max = 0.1  # [m] unrealistically large safe ceiling
 
-    # optimization
+    # Optimization
     count = 0
     while x_c_max - x_c_min > tol:
-        # update guess
+        # update guess for x_c
         x_c_guess = 0.5 * (x_c_min + x_c_max)
         model.pars.x_c = x_c_guess
         model.run(t)
         carb_depth_mean = mh.get_mean(model.xc_t)
 
-        # compare
+        # Compare the mean carbonation depth with the field data
         if carb_depth_mean < carb_depth_field.mean():
-            # narrow the cap
+            # Narrow the search space
             x_c_min = max(x_c_guess, x_c_min)
         else:
             x_c_max = min(x_c_guess, x_c_max)
@@ -347,7 +370,7 @@ def calibrate_f(model_raw, t, carb_depth_field, tol=1e-6, max_count=50, print_ou
 
         count += 1
         if count > max_count:
-            logger.warning("iteration exceeded max {}".format(count))
+            logger.warning("Iteration exceeded the maximum count {}".format(count))
             break
 
     if print_out:
@@ -366,7 +389,7 @@ def calibrate_f(model_raw, t, carb_depth_field, tol=1e-6, max_count=50, print_ou
 
 
 def carb_year(model, year_lis, plot=True, amplify=80):
-    """run model over time"""
+    """Run the model over time and plot the results."""
     t_lis = year_lis
     M_cal = model
 
@@ -382,7 +405,8 @@ def carb_year(model, year_lis, plot=True, amplify=80):
             sharex=True,
             gridspec_kw={"height_ratios": [1, 1, 3]},
         )
-        # plot a few distribution
+
+        # plot a few distributions
         indx = np.linspace(0, len(year_lis) - 1, min(6, len(year_lis))).astype("int")[
             1:
         ]
@@ -410,10 +434,11 @@ def carb_year(model, year_lis, plot=True, amplify=80):
         )
         ax2.set_ylabel(r"Reliability factor $\beta$")
 
-        # plot mean results
+        # Plot mean results
         ax3.plot(t_lis, [M.pars.cover_mean for M in M_lis], "--C0")
         ax3.plot(t_lis, [mh.get_mean(M.xc_t) for M in M_lis], "--C1")
-        # plot distribution
+
+        # Plot distribution
         for this_M in M_sel:
             mh.plot_RS(this_M, ax=ax3, t_offset=this_M.t, amplify=amplify)
 
@@ -423,7 +448,7 @@ def carb_year(model, year_lis, plot=True, amplify=80):
         S_patch = mpatches.Patch(color="C1", label="S: carbonation", alpha=0.8)
 
         ax3.set_xlabel("Time[year]")
-        ax3.set_ylabel("cover/carbonation depth [mm]")
+        ax3.set_ylabel("Cover/Carbonation Depth [mm]")
         ax3.legend(handles=[R_patch, S_patch], loc="upper left")
 
         plt.tight_layout()
@@ -437,12 +462,13 @@ class CarbonationModel:
         logger.debug("\nRaw pars are {}\n".format(vars(pars)))
 
     def run(self, t):
-        """t[year]"""
+        """Run the model for the given time t [year]."""
         self.xc_t = carb_depth(t, self.pars)
         self.t = t
-        logger.info("Carbonation depth, xc_t{} mm".format(self.xc_t))
+        logger.info("Carbonation depth, xc_t: {} mm".format(self.xc_t))
 
     def postproc(self, plot=False):
+        """Post-process the model results."""
         sol = mh.pf_RS(
             (self.pars.cover_mean, self.pars.cover_std), self.xc_t, plot=plot
         )
@@ -454,13 +480,15 @@ class CarbonationModel:
         logger.info("pf{}\n beta_factor{}".format(self.pf, self.beta_factor))
 
     def calibrate(self, t, carb_depth_field, print_out=False):
-        """return a new model instance with calibrated param"""
+        """Calibrate the model with field data and return a new calibrated model instance."""
         model_cal = calibrate_f(self, t, carb_depth_field, print_out=print_out)
         return model_cal
 
     def copy(self):
+        """Create a deep copy of the model."""
         return deepcopy(self)
 
     def carb_with_year(self, year_lis, plot=True, amplify=80):
+        """Run the model over time and return lists of pf and beta values."""
         pf_lis, beta_lis = carb_year(self, year_lis, plot=plot, amplify=amplify)
         return np.array(pf_lis), np.array(beta_lis)
