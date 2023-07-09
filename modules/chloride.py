@@ -681,6 +681,8 @@ def calibrate_chloride_f_group(
         M_cal_new.pars.D_RCM_test = np.mean(
             np.array([M_cal.pars.D_RCM_test for M_cal in M_cal_lis])
         )
+        # update the corresponding pars.D_RCM_0 and pars.D_app in the M_cal_new
+        M_cal_new.pars.D_app = D_app(t, M_cal_new.pars) 
 
     if plot:
         Cl_model = [
