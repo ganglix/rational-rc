@@ -56,24 +56,24 @@ def carb_depth(t, pars):
 
     Note
     ----
-        intermediate parameters calculated and attached to 
-        
-        pars k_e : environmental function [-] 
-        
-        k_c : execution transfer parameter [-] 
-        
-        account for curing measures 
-        
-        k_t : regression parameter [-] 
-        
-        R_ACC_0_inv: inverse effective carbonation resistance of concrete(accelerated) [(mm^2/year)/(kg/m^3)] eps_t  : error term [-]
-        
-        C_S    : CO2 concentration [$kg/m^3$] 
-        
-        W_t    : weather function [-] 
-        
-        k      : constant before the sqrt of time(time[year], carbonation depth[mm]) [mm/year^0.5] 
-        typical value of k =3~4 for unit mm,year [https://www.researchgate.net/publication/272174090_Carbonation_Coefficient_of_Concrete_in_Dhaka_City]
+    intermediate parameters calculated and attached to 
+    
+    pars k_e : environmental function [-] 
+    
+    k_c : execution transfer parameter [-] 
+    
+    account for curing measures 
+    
+    k_t : regression parameter [-] 
+    
+    R_ACC_0_inv: inverse effective carbonation resistance of concrete(accelerated) [(mm^2/year)/(kg/m^3)] eps_t  : error term [-]
+    
+    C_S    : CO2 concentration [$kg/m^3$] 
+    
+    W_t    : weather function [-] 
+    
+    k      : constant before the sqrt of time(time[year], carbonation depth[mm]) [mm/year^0.5] 
+    typical value of k =3~4 for unit mm,year [https://www.researchgate.net/publication/272174090_Carbonation_Coefficient_of_Concrete_in_Dhaka_City]
     """
     
     # Calculate intermediate parameters
@@ -303,8 +303,8 @@ def W_t(t, pars):
     -------
     numpy array
         Weather parameter array W
-
     """
+
     ToW = pars.ToW
     p_SR = pars.p_SR
 

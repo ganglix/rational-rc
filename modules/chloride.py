@@ -1,15 +1,15 @@
 """
 **Summary**
 
-Analytical solution of Fick’s second law under advection zone\n
-Modified with material property and exposure environment
+Analytical solution of Fick’s second law under the advection zone,\n
+modified with material property and exposure environment.
 
 + **Resistance**: 	critical chloride content
 + **Load**: 		chloride content at rebar depth
 + **limit-state**: 	chloride content at rebar depth >= critical chloride content
 + **Field data**: 	chloride content profile
 
-TODO: make t input vectorized 
+TODO: make t input vectorized. 
 """
 
 import numpy as np
@@ -42,32 +42,41 @@ logger.setLevel(
 
 # model functions
 def chloride_content(x, t, pars):
-    """chloride_content is the master model function, calculate chloride content at depth x and time t with Fick's 2nd law below the convection zone (x > dx)
-    The derived parameters is also calculated within this function.
+    """Calculate the chloride content at depth x and time t with Fick's 2nd law below the advection zone (x > dx).
     
     + Caution: The pars instance is mutable, so a deepcopy of the original instance should be used if the calculation is not intended for "inplace".
 
     Parameters
     ----------
-    x : float, int
-        depth at which chloride content C_x_t is reported [mm]
-    t : float, int
-        time [year]
-    pars : instance of param object
-        a wrapper of all material and environmental parameters deep-copied from the raw data
+    x : float or int
+        Depth at which chloride content C_x_t is reported [mm].
+    t : float or int
+        Time [year].
+    pars : param object
+        An instance of the Param class, containing material and environmental parameters.
 
     Returns
     -------
     numpy array
-        sample of the distribution of the chloride content in concrete at a depth x (surface x=0) at time t [wt-.%/c]
+        Sample of the distribution of the chloride content in concrete at a depth x (surface x=0) at time t [wt-.%/c]
     
     Note
     ----
-    intermediate parameters were calculated and attached to pars
+    Intermediate parameters are calculated and attached to pars:
+    - C_0 : float
+        Initial chloride content of the concrete [wt-.%/cement].
+    - C_S_dx : float
+        Chloride content at a depth dx and a certain point of time t [wt-.%/cement].
+    - dx : float
+        Depth of the advection zone (concrete layer, up to which the process of chloride penetration differs from Fick's 2nd law of diffusion) [mm].
+    - D_app : float
+        Apparent coefficient of chloride diffusion through concrete [mm^2/year].
+    - erf : function
+        Imported error function.
 
     + C_0    : initial chloride content of the concrete [wt-.%/cement]
     + C_S_dx : chloride content at a depth dx and a certain point of time t [wt-.%/cement]
-    + dx     : depth of the convection zone (concrete layer, up to which the process of chloride penetration differs from Fick’s 2nd law of diffusion) [mm]
+    + dx     : depth of the advection zone (concrete layer, up to which the process of chloride penetration differs from Fick’s 2nd law of diffusion) [mm]
     + D_app  : apparent coefficient of chloride diffusion through concrete [mm^2/year]
     + erf    : imported error function
     """
