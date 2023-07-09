@@ -4,7 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
@@ -35,7 +35,9 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -93,7 +95,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules</a><ul class="current">
@@ -103,7 +105,27 @@
 <li class="toctree-l2"><a class="reference internal" href="corrosion.html">corrosion module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cracking.html">cracking module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="helper_func.html">helper_func module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">test_helper_func module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">test_helper_func module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#test_helper_func.TestHelperFunc"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#test_helper_func.TestHelperFunc.setUp"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test_helper_func.TestHelperFunc.tearDown"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc.tearDown()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test_helper_func.TestHelperFunc.test_Beta_custom"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc.test_Beta_custom()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test_helper_func.TestHelperFunc.test_Fit_distrib"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc.test_Fit_distrib()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test_helper_func.TestHelperFunc.test_Get_mean"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc.test_Get_mean()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test_helper_func.TestHelperFunc.test_Get_std"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc.test_Get_std()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test_helper_func.TestHelperFunc.test_Normal_custom"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc.test_Normal_custom()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test_helper_func.TestHelperFunc.test_Pf_RS"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc.test_Pf_RS()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test_helper_func.TestHelperFunc.test_RS_plot"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc.test_RS_plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test_helper_func.TestHelperFunc.test_dropna"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc.test_dropna()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test_helper_func.TestHelperFunc.test_f_solve_poly2"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc.test_f_solve_poly2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test_helper_func.TestHelperFunc.test_find_mean"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc.test_find_mean()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test_helper_func.TestHelperFunc.test_find_similar_group"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc.test_find_similar_group()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test_helper_func.TestHelperFunc.test_interp_extrap_f"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc.test_interp_extrap_f()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test_helper_func.TestHelperFunc.test_sample_integral"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc.test_sample_integral()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
@@ -201,11 +223,11 @@
 }
 </style>
 <section id="module-test_helper_func">
-<span id="test-helper-func-module"></span><h1>test_helper_func module<a class="headerlink" href="#module-test_helper_func" title="Permalink to this headline">¶</a></h1>
+<span id="test-helper-func-module"></span><h1>test_helper_func module<a class="headerlink" href="#module-test_helper_func" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="test_helper_func.TestHelperFunc">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">test_helper_func.</span></span><span class="sig-name descname"><span class="pre">TestHelperFunc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#test_helper_func.TestHelperFunc" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">unittest.case.TestCase</span></code></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">test_helper_func.</span></span><span class="sig-name descname"><span class="pre">TestHelperFunc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#test_helper_func.TestHelperFunc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="test_helper_func.TestHelperFunc.setUp">
 <span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test_helper_func.TestHelperFunc.setUp" title="Permalink to this definition">¶</a></dt>

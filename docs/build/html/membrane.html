@@ -4,7 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
@@ -35,10 +35,12 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -95,11 +97,27 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">membrane module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">membrane module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#membrane.Membrane_Model"><code class="docutils literal notranslate"><span class="pre">Membrane_Model</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#membrane.Membrane_Model.calibrate"><code class="docutils literal notranslate"><span class="pre">Membrane_Model.calibrate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#membrane.Membrane_Model.copy"><code class="docutils literal notranslate"><span class="pre">Membrane_Model.copy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#membrane.Membrane_Model.membrane_failure_with_year"><code class="docutils literal notranslate"><span class="pre">Membrane_Model.membrane_failure_with_year()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#membrane.Membrane_Model.postproc"><code class="docutils literal notranslate"><span class="pre">Membrane_Model.postproc()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#membrane.Membrane_Model.run"><code class="docutils literal notranslate"><span class="pre">Membrane_Model.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#membrane.Pf_RS_special"><code class="docutils literal notranslate"><span class="pre">Pf_RS_special()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#membrane.RS_plot_special"><code class="docutils literal notranslate"><span class="pre">RS_plot_special()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#membrane.calibrate_f"><code class="docutils literal notranslate"><span class="pre">calibrate_f()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#membrane.membrane_age"><code class="docutils literal notranslate"><span class="pre">membrane_age()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#membrane.membrane_failure_year"><code class="docutils literal notranslate"><span class="pre">membrane_failure_year()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#membrane.membrane_life"><code class="docutils literal notranslate"><span class="pre">membrane_life()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="carbonation.html">carbonation module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chloride.html">chloride module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="corrosion.html">corrosion module</a></li>
@@ -203,7 +221,7 @@
 }
 </style>
 <section id="module-membrane">
-<span id="membrane-module"></span><h1>membrane module<a class="headerlink" href="#module-membrane" title="Permalink to this headline">¶</a></h1>
+<span id="membrane-module"></span><h1>membrane module<a class="headerlink" href="#module-membrane" title="Permalink to this heading">¶</a></h1>
 <p><strong>Summary</strong></p>
 <p>A statistical model is used to predict the probability of failure for the membrane.</p>
 <ul class="simple">
@@ -213,23 +231,23 @@
 </ul>
 <dl class="py class">
 <dt class="sig sig-object py" id="membrane.Membrane_Model">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">membrane.</span></span><span class="sig-name descname"><span class="pre">Membrane_Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#membrane.Membrane_Model" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">membrane.</span></span><span class="sig-name descname"><span class="pre">Membrane_Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#membrane.Membrane_Model" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="membrane.Membrane_Model.calibrate">
 <span class="sig-name descname"><span class="pre">calibrate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">membrane_age_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">membrane_failure_ratio_field</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#membrane.Membrane_Model.calibrate" title="Permalink to this definition">¶</a></dt>
 <dd><p>calibrate membrane model to field condition</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>membrane_age_field</strong> (<em>float</em><em>, </em><em>int</em>) – membrane age when membrane failure rate is surveyed</p></li>
 <li><p><strong>membrane_failure_ratio_field</strong> (<em>float</em>) – failure rate e.g. 0.1 for 10%</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>calibrated model</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>membrane model object instance</p>
 </dd>
 </dl>
@@ -272,7 +290,7 @@ with three three methods and use method 3 if it is checked “OK” with the oth
 <li><p>R S integral: <span class="math notranslate nohighlight">\(F_R(S)\)</span>, reliability index(beta factor) is calculated with simple 1st order g.mean()/g.std()</p></li>
 </ol>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>R_info</strong> (<em>tuple</em>) – distribution of Resistance, for this specicial case, the membrane service life.
 R_distrib_type=’normal’ -&gt; tuple(m,s) for normal m: mean s: standard deviation
@@ -282,10 +300,10 @@ other distribution form will be ignored.</p></li>
 <li><p><strong>plot</strong> (<em>bool</em><em>, </em><em>optional</em>) – plot distribution, by default False</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>(probability of failure, beta factor)</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>tuple</p>
 </dd>
 </dl>
@@ -300,7 +318,7 @@ other distribution form will be ignored.</p></li>
 <span class="sig-prename descclassname"><span class="pre">membrane.</span></span><span class="sig-name descname"><span class="pre">RS_plot_special</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#membrane.RS_plot_special" title="Permalink to this definition">¶</a></dt>
 <dd><p>plot R S distribution vertically at a time to an axis special case: S is a number.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>model</strong> (<em>model object instance</em>) – <ul>
 <li><p>model.R_distrib : scipy.stats._continuous_distns, normal or beta [calculated in Pf_RS() through model.postproc()]</p></li>
@@ -320,7 +338,7 @@ other distribution form will be ignored.</p></li>
 <span class="sig-prename descclassname"><span class="pre">membrane.</span></span><span class="sig-name descname"><span class="pre">calibrate_f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_raw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">membrane_failure_ratio_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#membrane.calibrate_f" title="Permalink to this definition">¶</a></dt>
 <dd><p>calibrate membrane model to field condition by finding the corresponding membrane service life std that matches the failure ratio in the field</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>model_raw</strong> (<em>model instance</em>) – model to be calibrated</p></li>
 <li><p><strong>t</strong> (<em>int</em><em>, </em><em>float</em>) – membrane age when membrane failure rate is surveyed [year]</p></li>
@@ -330,10 +348,10 @@ other distribution form will be ignored.</p></li>
 <li><p><strong>print_out</strong> (<em>bool</em><em>, </em><em>optional</em>) – if True print out model vs field compare, by default True</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>calibrated model</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>membrane model object instance</p>
 </dd>
 </dl>
@@ -344,13 +362,13 @@ other distribution form will be ignored.</p></li>
 <span class="sig-prename descclassname"><span class="pre">membrane.</span></span><span class="sig-name descname"><span class="pre">membrane_age</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#membrane.membrane_age" title="Permalink to this definition">¶</a></dt>
 <dd><p>return the membrane age as the “resistance”</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>t</strong> (<em>int</em><em>, </em><em>float</em>) – membrane age</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>membrane age</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int, float</p>
 </dd>
 </dl>
@@ -365,7 +383,7 @@ other distribution form will be ignored.</p></li>
 <span class="sig-prename descclassname"><span class="pre">membrane.</span></span><span class="sig-name descname"><span class="pre">membrane_failure_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year_lis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#membrane.membrane_failure_year" title="Permalink to this definition">¶</a></dt>
 <dd><p>membrane_failure_year: run model over a list of time steps</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>model</strong> (<em>class instance</em>) – Membrane_model class instance</p></li>
 <li><p><strong>year_lis</strong> (<em>list</em><em>, </em><em>array-like</em>) – a list of time steps</p></li>
@@ -373,10 +391,10 @@ other distribution form will be ignored.</p></li>
 <li><p><strong>amplify</strong> (<em>int</em><em>, </em><em>optional</em>) – the arbitrary comparable size of the distribution curve, by default 80</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>(pf list , beta list)</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>tuple</p>
 </dd>
 </dl>
@@ -388,16 +406,16 @@ other distribution form will be ignored.</p></li>
 <dd><p>calculate the mean value of the service life from the manufacture’s service life label(eg. 30 years with 95% confidence)
 with the given standard deviation</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>pars</strong> (<em>parameter object instance</em>) – raw parameters
 pars.life_product_label_life
 pars.life_confidence
 pars.life_std</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>service life mean value</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>

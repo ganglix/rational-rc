@@ -4,7 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
@@ -35,7 +35,9 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -93,14 +95,48 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="membrane.html">membrane module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="carbonation.html">carbonation module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chloride.html">chloride module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">corrosion module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">corrosion module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#corrosion.C_f"><code class="docutils literal notranslate"><span class="pre">C_f()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#corrosion.Corrosion_Model"><code class="docutils literal notranslate"><span class="pre">Corrosion_Model</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#corrosion.Corrosion_Model.calibrate"><code class="docutils literal notranslate"><span class="pre">Corrosion_Model.calibrate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#corrosion.Corrosion_Model.copy"><code class="docutils literal notranslate"><span class="pre">Corrosion_Model.copy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#corrosion.Corrosion_Model.run"><code class="docutils literal notranslate"><span class="pre">Corrosion_Model.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#corrosion.Cs_g_f"><code class="docutils literal notranslate"><span class="pre">Cs_g_f()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#corrosion.De_O2_f"><code class="docutils literal notranslate"><span class="pre">De_O2_f()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#corrosion.RH_to_WaterbyMassHCP"><code class="docutils literal notranslate"><span class="pre">RH_to_WaterbyMassHCP()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#corrosion.Section_loss_Model"><code class="docutils literal notranslate"><span class="pre">Section_loss_Model</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#corrosion.Section_loss_Model.copy"><code class="docutils literal notranslate"><span class="pre">Section_loss_Model.copy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#corrosion.Section_loss_Model.postproc"><code class="docutils literal notranslate"><span class="pre">Section_loss_Model.postproc()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#corrosion.Section_loss_Model.run"><code class="docutils literal notranslate"><span class="pre">Section_loss_Model.run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#corrosion.Section_loss_Model.section_loss_with_year"><code class="docutils literal notranslate"><span class="pre">Section_loss_Model.section_loss_with_year()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#corrosion.V_m_f"><code class="docutils literal notranslate"><span class="pre">V_m_f()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#corrosion.WaterbyMassHCP_to_RH"><code class="docutils literal notranslate"><span class="pre">WaterbyMassHCP_to_RH()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#corrosion.WaterbyMassHCP_to_theta_water"><code class="docutils literal notranslate"><span class="pre">WaterbyMassHCP_to_theta_water()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#corrosion.calibrate_f"><code class="docutils literal notranslate"><span class="pre">calibrate_f()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#corrosion.epsilon_p_f"><code class="docutils literal notranslate"><span class="pre">epsilon_p_f()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#corrosion.iL_f"><code class="docutils literal notranslate"><span class="pre">iL_f()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#corrosion.icorr_base"><code class="docutils literal notranslate"><span class="pre">icorr_base()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#corrosion.icorr_f"><code class="docutils literal notranslate"><span class="pre">icorr_f()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#corrosion.icorr_to_mmpy"><code class="docutils literal notranslate"><span class="pre">icorr_to_mmpy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#corrosion.k_f"><code class="docutils literal notranslate"><span class="pre">k_f()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#corrosion.mmpy_to_icorr"><code class="docutils literal notranslate"><span class="pre">mmpy_to_icorr()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#corrosion.theta2rho_fun"><code class="docutils literal notranslate"><span class="pre">theta2rho_fun()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#corrosion.theta_water_to_WaterbyMassHCP"><code class="docutils literal notranslate"><span class="pre">theta_water_to_WaterbyMassHCP()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#corrosion.x_loss_t_fun"><code class="docutils literal notranslate"><span class="pre">x_loss_t_fun()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#corrosion.x_loss_year"><code class="docutils literal notranslate"><span class="pre">x_loss_year()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="cracking.html">cracking module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="helper_func.html">helper_func module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_helper_func.html">test_helper_func module</a></li>
@@ -201,7 +237,7 @@
 }
 </style>
 <section id="module-corrosion">
-<span id="corrosion-module"></span><h1>corrosion module<a class="headerlink" href="#module-corrosion" title="Permalink to this headline">¶</a></h1>
+<span id="corrosion-module"></span><h1>corrosion module<a class="headerlink" href="#module-corrosion" title="Permalink to this heading">¶</a></h1>
 <p><strong>Summary</strong></p>
 <p>2D electrochemical model and its regressed solution</p>
 <p>icorr = f(moisture, temperature, oxygen availability)</p>
@@ -215,7 +251,7 @@
 <span class="sig-prename descclassname"><span class="pre">corrosion.</span></span><span class="sig-name descname"><span class="pre">C_f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.C_f" title="Permalink to this definition">¶</a></dt>
 <dd><p>C_f returns BET model parameter C sampled from a normal distribution</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>T</strong> (<em>float</em>) – temperature [K]</p>
 </dd>
 </dl>
@@ -227,7 +263,7 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="corrosion.Corrosion_Model">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">corrosion.</span></span><span class="sig-name descname"><span class="pre">Corrosion_Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.Corrosion_Model" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">corrosion.</span></span><span class="sig-name descname"><span class="pre">Corrosion_Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.Corrosion_Model" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="corrosion.Corrosion_Model.calibrate">
@@ -260,10 +296,10 @@
 :param pars:
 :type pars: instance of Param object</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>O2 effective diffusivity of concrete</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>float, numpy array</p>
 </dd>
 </dl>
@@ -290,7 +326,7 @@ Therefore, the value of effective diffusivity is considered herein as a function
 
 <dl class="py class">
 <dt class="sig sig-object py" id="corrosion.Section_loss_Model">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">corrosion.</span></span><span class="sig-name descname"><span class="pre">Section_loss_Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.Section_loss_Model" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">corrosion.</span></span><span class="sig-name descname"><span class="pre">Section_loss_Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.Section_loss_Model" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="corrosion.Section_loss_Model.copy">
@@ -303,7 +339,7 @@ Therefore, the value of effective diffusivity is considered herein as a function
 <span class="sig-name descname"><span class="pre">postproc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.Section_loss_Model.postproc" title="Permalink to this definition">¶</a></dt>
 <dd><p>calculate the Pf and beta from accumulated section loss and section loss limit</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>plot</strong> (<em>bool</em><em>, </em><em>optional</em>) – if true plot the R S curve, by default False</p>
 </dd>
 </dl>
@@ -314,7 +350,7 @@ Therefore, the value of effective diffusivity is considered herein as a function
 <span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_end</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.Section_loss_Model.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>run model to solve the accumulated section loss at t_end by using x_loss_t_fun()</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>t_end</strong> (<em>int</em><em>, </em><em>float</em>) – year</p>
 </dd>
 </dl>
@@ -326,17 +362,17 @@ Therefore, the value of effective diffusivity is considered herein as a function
 <dd><p>use x_loss_year() to report the accumulated section loss at each time step and
 the corresponding Pf and beta.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>year_lis</strong> (<em>list</em>) – a list of time step [year]</p></li>
 <li><p><strong>plot</strong> (<em>bool</em><em>, </em><em>optional</em>) – if true plot the RS pf beta with time, by default True</p></li>
 <li><p><strong>amplify</strong> (<em>int</em><em>, </em><em>optional</em>) – scale factor to adjust the height of the distribution curve, by default 1</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>(pf_list, beta_list)</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>tuple</p>
 </dd>
 </dl>
@@ -349,16 +385,16 @@ the corresponding Pf and beta.</p>
 <span class="sig-prename descclassname"><span class="pre">corrosion.</span></span><span class="sig-name descname"><span class="pre">V_m_f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cement_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.V_m_f" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate V_m, a BET model parameter</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>t</strong> (<em>curing time/concrete age</em><em> [</em><em>day</em><em>]</em>) – </p></li>
 <li><p><strong>w_c</strong> (<em>water-cement ratio</em>) – </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>V_m : BET model parameter</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>numpy array</p>
 </dd>
 </dl>
@@ -399,19 +435,19 @@ to volumetric in HCP to volumetric in concrete</p>
 <dt class="sig sig-object py" id="corrosion.epsilon_p_f">
 <span class="sig-prename descclassname"><span class="pre">corrosion.</span></span><span class="sig-name descname"><span class="pre">epsilon_p_f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.epsilon_p_f" title="Permalink to this definition">¶</a></dt>
 <dd><p>calculate the porosity of the hardened cement paste from the concrete porosity</p>
+<section id="paramters">
+<h2>Paramters<a class="headerlink" href="#paramters" title="Permalink to this heading">¶</a></h2>
 <p>pars : instance of Param object</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p></p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>float, numpy array</p>
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float, numpy array</p>
 </dd>
 </dl>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>[TODO: when the concrete porosity is not known, the calculated porosity is time dependent at young age, a function of concrete mix and t]</p>
 </div>
+</section>
 </dd></dl>
 
 <dl class="py function">
@@ -421,10 +457,10 @@ to volumetric in HCP to volumetric in concrete</p>
 :param pars: parameter object that contains the material properties
 :type pars: instance of Param object</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>O2 limiting current density [A/m^2]</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>float, numpy array</p>
 </dd>
 </dl>
@@ -440,10 +476,10 @@ to volumetric in HCP to volumetric in concrete</p>
 </ul>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>iL : current density over the steel concrete interface [A/m^2]</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>float, numpy array</p>
 </dd>
 </dl>
@@ -462,10 +498,10 @@ to volumetric in HCP to volumetric in concrete</p>
 :param d: concrete cover depth [m]
 :type d: float, numpy array</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>icorr : corrosion current density, treated as uniform corrosion [A/m^2]</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>float array</p>
 </dd>
 </dl>
@@ -483,8 +519,8 @@ SI units</p>
 <dd><p>A wrapper of the icorr_base() with modified parameters (resistivity rho -&gt; volumetric water content, theta_water)
 by theta2rho_fun().</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>pars</strong> (<em>instance of Param class</em>) – <ul class="simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pars</strong> (<em>instance</em><em> of </em><em>Param class</em>) – <ul class="simple">
 <li><p>pars.theta_water,</p></li>
 <li><p>pars.T,</p></li>
 <li><p>pars.iL,</p></li>
@@ -494,10 +530,10 @@ by theta2rho_fun().</p>
 </ul>
 </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>icorr : corrosion current density [A/m^2]</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float, numpy array</p>
 </dd>
 </dl>
@@ -508,13 +544,13 @@ by theta2rho_fun().</p>
 <span class="sig-prename descclassname"><span class="pre">corrosion.</span></span><span class="sig-name descname"><span class="pre">icorr_to_mmpy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">icorr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.icorr_to_mmpy" title="Permalink to this definition">¶</a></dt>
 <dd><p>icorr_to_mmpy converts icorr [A/m^2] to corrosion rate[mm/year] using Faraday’s laws</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>icorr</strong> (<em>float</em>) – corrosion current density [A/m^2]</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>corrosion rate, section loss [mm/year]</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -531,13 +567,13 @@ by theta2rho_fun().</p>
 <span class="sig-prename descclassname"><span class="pre">corrosion.</span></span><span class="sig-name descname"><span class="pre">mmpy_to_icorr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#corrosion.mmpy_to_icorr" title="Permalink to this definition">¶</a></dt>
 <dd><p>mmpy_to_icorr converts corrosion rate[mm/year] to icorr [A/m^2] using Faraday’s laws</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>rate</strong> (<em>float</em>) – corrosion rate, section loss [mm/year]</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>corrosion current density [A/m^2]</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -562,7 +598,7 @@ a reverse function of WaterbyMassHCP_to_theta_water()</p>
 <dd><p>x_loss_t_fun returns x_loss samples at a SINGLE given time t_end. the samples represents distribution of all possible x_loss with
 different corrosion history</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>t_end</strong> (<em>int</em><em>, </em><em>float</em>) – year in which the x_loss is reported</p></li>
 <li><p><strong>n_step</strong> (<em>int</em>) – number of time steps</p></li>
@@ -570,10 +606,10 @@ different corrosion history</p>
 <li><p><strong>p_active_t_curve</strong> (<em>tuple</em>) – (t_lis_curve, pf_lis_curve)</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>section loss at t_end year, a large sample from the distribution</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>numpy array</p>
 </dd>
 </dl>

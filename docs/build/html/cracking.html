@@ -4,7 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
@@ -35,7 +35,9 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -93,7 +95,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules</a><ul class="current">
@@ -101,7 +103,21 @@
 <li class="toctree-l2"><a class="reference internal" href="carbonation.html">carbonation module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chloride.html">chloride module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="corrosion.html">corrosion module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">cracking module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">cracking module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cracking.Cracking_Model"><code class="docutils literal notranslate"><span class="pre">Cracking_Model</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cracking.Cracking_Model.copy"><code class="docutils literal notranslate"><span class="pre">Cracking_Model.copy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cracking.Cracking_Model.postproc"><code class="docutils literal notranslate"><span class="pre">Cracking_Model.postproc()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cracking.Cracking_Model.run"><code class="docutils literal notranslate"><span class="pre">Cracking_Model.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cracking.bilinear_stress_strain"><code class="docutils literal notranslate"><span class="pre">bilinear_stress_strain()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cracking.crack_width_open"><code class="docutils literal notranslate"><span class="pre">crack_width_open()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cracking.solve_stress_strain_crack_deterministic"><code class="docutils literal notranslate"><span class="pre">solve_stress_strain_crack_deterministic()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cracking.solve_stress_strain_crack_stochastic"><code class="docutils literal notranslate"><span class="pre">solve_stress_strain_crack_stochastic()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cracking.strain_f"><code class="docutils literal notranslate"><span class="pre">strain_f()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cracking.strain_stress_crack_f"><code class="docutils literal notranslate"><span class="pre">strain_stress_crack_f()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="helper_func.html">helper_func module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_helper_func.html">test_helper_func module</a></li>
 </ul>
@@ -201,7 +217,7 @@
 }
 </style>
 <section id="module-cracking">
-<span id="cracking-module"></span><h1>cracking module<a class="headerlink" href="#module-cracking" title="Permalink to this headline">¶</a></h1>
+<span id="cracking-module"></span><h1>cracking module<a class="headerlink" href="#module-cracking" title="Permalink to this heading">¶</a></h1>
 <p><strong>Summary</strong></p>
 <p>Thick-walled expansive cylinder model to calculate internal
 stress strain through the concrete cover and the location of the crack tip</p>
@@ -218,7 +234,7 @@ delamination, visible crack ratio</p>
 </ul>
 <dl class="py class">
 <dt class="sig sig-object py" id="cracking.Cracking_Model">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">cracking.</span></span><span class="sig-name descname"><span class="pre">Cracking_Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cracking.Cracking_Model" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cracking.</span></span><span class="sig-name descname"><span class="pre">Cracking_Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cracking.Cracking_Model" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="cracking.Cracking_Model.copy">
@@ -245,17 +261,17 @@ delamination, visible crack ratio</p>
 <span class="sig-prename descclassname"><span class="pre">cracking.</span></span><span class="sig-name descname"><span class="pre">bilinear_stress_strain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epsilon_theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">E_0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cracking.bilinear_stress_strain" title="Permalink to this definition">¶</a></dt>
 <dd><p>returns the stress in concrete from strain using the bilinear stress-strain curve</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>epsilon_theta</strong> (<em>numpy array</em>) – strain[-]</p></li>
 <li><p><strong>f_t</strong> (<em>numpy array</em>) – cracking tensile strength[MPa]</p></li>
 <li><p><strong>E_0</strong> (<em>numpy array</em>) – modulus of elasticity[MPa]</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>stress[MPa]</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>numpy array</p>
 </dd>
 </dl>
@@ -270,7 +286,7 @@ delamination, visible crack ratio</p>
 <span class="sig-prename descclassname"><span class="pre">cracking.</span></span><span class="sig-name descname"><span class="pre">crack_width_open</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_st</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">E_0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cracking.crack_width_open" title="Permalink to this definition">¶</a></dt>
 <dd><p>calculate crack opening on the concret cover surface</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>a</strong> (<em>numpy array</em>) – inner radius boundary of the rust (center of rebar to rust-concrete) [m]</p></li>
 <li><p><strong>b</strong> (<em>numpy array</em>) – outer radius boundary of the concrete (center of rebar to cover surface) [m]</p></li>
@@ -279,10 +295,10 @@ delamination, visible crack ratio</p>
 <li><p><strong>E_0</strong> (<em>numpy array</em>) – modulus of elasticity [MPa]</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>sample of crack opening on the concret cover surface</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>numpy array</p>
 </dd>
 </dl>
@@ -294,21 +310,21 @@ delamination, visible crack ratio</p>
 <dd><p>solve the stress and strain along the polar axis using strain_stress_crack_f().
 One deterministic solution is returned by the means of all input variables.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pars</strong> (<em>Param object instance</em>) – an object instance containing material properties</p></li>
 <li><p><strong>number_of_points</strong> (<em>int</em><em>, </em><em>optional</em>) – number of points where the stress and strain is reported along
 the polar axis, by default 100</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><p>(epsilon_theta, sigma_theta, rust_thickness,
 crack_condition, R_c, w_open)</p>
 <p>(strain, stress, rust thickness,
 crack condition code, crack front cooridnate, open crack width)</p>
 </p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>tuple</p>
 </dd>
 </dl>
@@ -320,21 +336,21 @@ crack condition code, crack front cooridnate, open crack width)</p>
 <dd><p>solve the stress and strain along the polar axis using strain_stress_crack_f().
 the stochastic solution matrix is returned, where each row represents a deterministic solution</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pars</strong> (<em>Param object instance</em>) – an object instance containing material properties</p></li>
 <li><p><strong>number_of_points</strong> (<em>int</em><em>, </em><em>optional</em>) – number of points where the stress and strain is reported along
 the polar axis, by default 100</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><p>(epsilon_theta, sigma_theta, rust_thickness,
 crack_condition, R_c, w_open)</p>
 <p>(strain, stress, rust thickness,
 crack condition code, crack front cooridnate, open crack width)</p>
 </p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>tuple</p>
 </dd>
 </dl>
@@ -346,7 +362,7 @@ crack condition code, crack front cooridnate, open crack width)</p>
 <dd><p>strain_f returns the strain along the polar axis r, a&lt;=r&lt;=b,
 fully vectorized with numpy funcions</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>r</strong> (<em>2D numpy array</em>) – coordinate along the polar axis, a matrix with rows representing each r grid,
 column number is repeated values [m]</p></li>
@@ -366,10 +382,10 @@ column number is repeated values [m]</p></li>
 </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>strain, epsilon_theta matrix, row is the strain along the polar axis</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>2D numpy array</p>
 </dd>
 </dl>
@@ -379,11 +395,11 @@ column number is repeated values [m]</p></li>
 <dt class="sig sig-object py" id="cracking.strain_stress_crack_f">
 <span class="sig-prename descclassname"><span class="pre">cracking.</span></span><span class="sig-name descname"><span class="pre">strain_stress_crack_f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r0_bar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_loss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cover</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">E_0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cracking.strain_stress_crack_f" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
-<dt>calculate the stress, strain, crack_condition for the whole concrete cover</dt><dd><p>(fully vectorized with numpy matrix funcions)</p>
+<dt>calculate the stress, strain, crack_condition for the whole concrete cover</dt><dd><p>(fully vectorized with numpy matrix functions)</p>
 </dd>
 </dl>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>r</strong> (<em>2D numpy array</em>) – coordinate along the polar axis, a matrix with rows representing each r grid,
 column number is repeated values [m]</p></li>
@@ -398,14 +414,14 @@ column number is repeated values [m]</p></li>
 <li><p><strong>ax</strong> (<em>axis instance</em>) – subplot axis, by default None</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><p>(epsilon_theta, sigma_theta, rust_thickness,
 crack_condition, R_c, w_open)</p>
 <p>(strain, stress, rust thickness,
 crack condition code, crack front cooridnate, open crack width)</p>
 </p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>tuple</p>
 </dd>
 </dl>

@@ -4,7 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
@@ -35,7 +35,9 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -93,7 +95,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Modules</a><ul>
@@ -199,16 +201,164 @@
 }
 </style>
 <section id="modules">
-<h1>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h1>
+<h1>Modules<a class="headerlink" href="#modules" title="Permalink to this heading">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="membrane.html">membrane module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="carbonation.html">carbonation module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chloride.html">chloride module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="corrosion.html">corrosion module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cracking.html">cracking module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="helper_func.html">helper_func module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="test_helper_func.html">test_helper_func module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="membrane.html">membrane module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="membrane.html#membrane.Membrane_Model"><code class="docutils literal notranslate"><span class="pre">Membrane_Model</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="membrane.html#membrane.Membrane_Model.calibrate"><code class="docutils literal notranslate"><span class="pre">Membrane_Model.calibrate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="membrane.html#membrane.Membrane_Model.copy"><code class="docutils literal notranslate"><span class="pre">Membrane_Model.copy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="membrane.html#membrane.Membrane_Model.membrane_failure_with_year"><code class="docutils literal notranslate"><span class="pre">Membrane_Model.membrane_failure_with_year()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="membrane.html#membrane.Membrane_Model.postproc"><code class="docutils literal notranslate"><span class="pre">Membrane_Model.postproc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="membrane.html#membrane.Membrane_Model.run"><code class="docutils literal notranslate"><span class="pre">Membrane_Model.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="membrane.html#membrane.Pf_RS_special"><code class="docutils literal notranslate"><span class="pre">Pf_RS_special()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="membrane.html#membrane.RS_plot_special"><code class="docutils literal notranslate"><span class="pre">RS_plot_special()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="membrane.html#membrane.calibrate_f"><code class="docutils literal notranslate"><span class="pre">calibrate_f()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="membrane.html#membrane.membrane_age"><code class="docutils literal notranslate"><span class="pre">membrane_age()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="membrane.html#membrane.membrane_failure_year"><code class="docutils literal notranslate"><span class="pre">membrane_failure_year()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="membrane.html#membrane.membrane_life"><code class="docutils literal notranslate"><span class="pre">membrane_life()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="carbonation.html">carbonation module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="carbonation.html#carbonation.C_S"><code class="docutils literal notranslate"><span class="pre">C_S()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="carbonation.html#carbonation.Carb_depth"><code class="docutils literal notranslate"><span class="pre">Carb_depth()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="carbonation.html#carbonation.Carbonation_Model"><code class="docutils literal notranslate"><span class="pre">Carbonation_Model</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="carbonation.html#carbonation.Carbonation_Model.calibrate"><code class="docutils literal notranslate"><span class="pre">Carbonation_Model.calibrate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="carbonation.html#carbonation.Carbonation_Model.carb_with_year"><code class="docutils literal notranslate"><span class="pre">Carbonation_Model.carb_with_year()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="carbonation.html#carbonation.Carbonation_Model.copy"><code class="docutils literal notranslate"><span class="pre">Carbonation_Model.copy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="carbonation.html#carbonation.Carbonation_Model.postproc"><code class="docutils literal notranslate"><span class="pre">Carbonation_Model.postproc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="carbonation.html#carbonation.Carbonation_Model.run"><code class="docutils literal notranslate"><span class="pre">Carbonation_Model.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="carbonation.html#carbonation.R_ACC_0_inv"><code class="docutils literal notranslate"><span class="pre">R_ACC_0_inv()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="carbonation.html#carbonation.W_t"><code class="docutils literal notranslate"><span class="pre">W_t()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="carbonation.html#carbonation.calibrate_f"><code class="docutils literal notranslate"><span class="pre">calibrate_f()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="carbonation.html#carbonation.carb_year"><code class="docutils literal notranslate"><span class="pre">carb_year()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="carbonation.html#carbonation.eps_t"><code class="docutils literal notranslate"><span class="pre">eps_t()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="carbonation.html#carbonation.k_c"><code class="docutils literal notranslate"><span class="pre">k_c()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="carbonation.html#carbonation.k_e"><code class="docutils literal notranslate"><span class="pre">k_e()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="carbonation.html#carbonation.k_t"><code class="docutils literal notranslate"><span class="pre">k_t()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="carbonation.html#carbonation.load_df_R_ACC"><code class="docutils literal notranslate"><span class="pre">load_df_R_ACC()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="chloride.html">chloride module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="chloride.html#chloride.A_t"><code class="docutils literal notranslate"><span class="pre">A_t()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="chloride.html#chloride.C_S_0"><code class="docutils literal notranslate"><span class="pre">C_S_0()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="chloride.html#chloride.C_S_dx"><code class="docutils literal notranslate"><span class="pre">C_S_dx()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="chloride.html#chloride.C_crit_param"><code class="docutils literal notranslate"><span class="pre">C_crit_param()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="chloride.html#chloride.C_eqv"><code class="docutils literal notranslate"><span class="pre">C_eqv()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="chloride.html#chloride.C_eqv_to_C_S_0"><code class="docutils literal notranslate"><span class="pre">C_eqv_to_C_S_0()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="chloride.html#chloride.C_max"><code class="docutils literal notranslate"><span class="pre">C_max()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="chloride.html#chloride.Chloride_Model"><code class="docutils literal notranslate"><span class="pre">Chloride_Model</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="chloride.html#chloride.Chloride_Model.calibrate"><code class="docutils literal notranslate"><span class="pre">Chloride_Model.calibrate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="chloride.html#chloride.Chloride_Model.chloride_with_year"><code class="docutils literal notranslate"><span class="pre">Chloride_Model.chloride_with_year()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="chloride.html#chloride.Chloride_Model.copy"><code class="docutils literal notranslate"><span class="pre">Chloride_Model.copy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="chloride.html#chloride.Chloride_Model.postproc"><code class="docutils literal notranslate"><span class="pre">Chloride_Model.postproc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="chloride.html#chloride.Chloride_Model.run"><code class="docutils literal notranslate"><span class="pre">Chloride_Model.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="chloride.html#chloride.Chloride_content"><code class="docutils literal notranslate"><span class="pre">Chloride_content()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="chloride.html#chloride.D_RCM_0"><code class="docutils literal notranslate"><span class="pre">D_RCM_0()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="chloride.html#chloride.D_app"><code class="docutils literal notranslate"><span class="pre">D_app()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="chloride.html#chloride.b_e"><code class="docutils literal notranslate"><span class="pre">b_e()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="chloride.html#chloride.calibrate_chloride_f"><code class="docutils literal notranslate"><span class="pre">calibrate_chloride_f()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="chloride.html#chloride.calibrate_chloride_f_group"><code class="docutils literal notranslate"><span class="pre">calibrate_chloride_f_group()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="chloride.html#chloride.chloride_year"><code class="docutils literal notranslate"><span class="pre">chloride_year()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="chloride.html#chloride.dx"><code class="docutils literal notranslate"><span class="pre">dx()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="chloride.html#chloride.k_e"><code class="docutils literal notranslate"><span class="pre">k_e()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="chloride.html#chloride.load_df_D_RCM"><code class="docutils literal notranslate"><span class="pre">load_df_D_RCM()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="corrosion.html">corrosion module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="corrosion.html#corrosion.C_f"><code class="docutils literal notranslate"><span class="pre">C_f()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="corrosion.html#corrosion.Corrosion_Model"><code class="docutils literal notranslate"><span class="pre">Corrosion_Model</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="corrosion.html#corrosion.Corrosion_Model.calibrate"><code class="docutils literal notranslate"><span class="pre">Corrosion_Model.calibrate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="corrosion.html#corrosion.Corrosion_Model.copy"><code class="docutils literal notranslate"><span class="pre">Corrosion_Model.copy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="corrosion.html#corrosion.Corrosion_Model.run"><code class="docutils literal notranslate"><span class="pre">Corrosion_Model.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="corrosion.html#corrosion.Cs_g_f"><code class="docutils literal notranslate"><span class="pre">Cs_g_f()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="corrosion.html#corrosion.De_O2_f"><code class="docutils literal notranslate"><span class="pre">De_O2_f()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="corrosion.html#corrosion.RH_to_WaterbyMassHCP"><code class="docutils literal notranslate"><span class="pre">RH_to_WaterbyMassHCP()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="corrosion.html#corrosion.Section_loss_Model"><code class="docutils literal notranslate"><span class="pre">Section_loss_Model</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="corrosion.html#corrosion.Section_loss_Model.copy"><code class="docutils literal notranslate"><span class="pre">Section_loss_Model.copy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="corrosion.html#corrosion.Section_loss_Model.postproc"><code class="docutils literal notranslate"><span class="pre">Section_loss_Model.postproc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="corrosion.html#corrosion.Section_loss_Model.run"><code class="docutils literal notranslate"><span class="pre">Section_loss_Model.run()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="corrosion.html#corrosion.Section_loss_Model.section_loss_with_year"><code class="docutils literal notranslate"><span class="pre">Section_loss_Model.section_loss_with_year()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="corrosion.html#corrosion.V_m_f"><code class="docutils literal notranslate"><span class="pre">V_m_f()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="corrosion.html#corrosion.WaterbyMassHCP_to_RH"><code class="docutils literal notranslate"><span class="pre">WaterbyMassHCP_to_RH()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="corrosion.html#corrosion.WaterbyMassHCP_to_theta_water"><code class="docutils literal notranslate"><span class="pre">WaterbyMassHCP_to_theta_water()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="corrosion.html#corrosion.calibrate_f"><code class="docutils literal notranslate"><span class="pre">calibrate_f()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="corrosion.html#corrosion.epsilon_p_f"><code class="docutils literal notranslate"><span class="pre">epsilon_p_f()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="corrosion.html#corrosion.iL_f"><code class="docutils literal notranslate"><span class="pre">iL_f()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="corrosion.html#corrosion.icorr_base"><code class="docutils literal notranslate"><span class="pre">icorr_base()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="corrosion.html#corrosion.icorr_f"><code class="docutils literal notranslate"><span class="pre">icorr_f()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="corrosion.html#corrosion.icorr_to_mmpy"><code class="docutils literal notranslate"><span class="pre">icorr_to_mmpy()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="corrosion.html#corrosion.k_f"><code class="docutils literal notranslate"><span class="pre">k_f()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="corrosion.html#corrosion.mmpy_to_icorr"><code class="docutils literal notranslate"><span class="pre">mmpy_to_icorr()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="corrosion.html#corrosion.theta2rho_fun"><code class="docutils literal notranslate"><span class="pre">theta2rho_fun()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="corrosion.html#corrosion.theta_water_to_WaterbyMassHCP"><code class="docutils literal notranslate"><span class="pre">theta_water_to_WaterbyMassHCP()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="corrosion.html#corrosion.x_loss_t_fun"><code class="docutils literal notranslate"><span class="pre">x_loss_t_fun()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="corrosion.html#corrosion.x_loss_year"><code class="docutils literal notranslate"><span class="pre">x_loss_year()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cracking.html">cracking module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cracking.html#cracking.Cracking_Model"><code class="docutils literal notranslate"><span class="pre">Cracking_Model</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cracking.html#cracking.Cracking_Model.copy"><code class="docutils literal notranslate"><span class="pre">Cracking_Model.copy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cracking.html#cracking.Cracking_Model.postproc"><code class="docutils literal notranslate"><span class="pre">Cracking_Model.postproc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cracking.html#cracking.Cracking_Model.run"><code class="docutils literal notranslate"><span class="pre">Cracking_Model.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cracking.html#cracking.bilinear_stress_strain"><code class="docutils literal notranslate"><span class="pre">bilinear_stress_strain()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="cracking.html#cracking.crack_width_open"><code class="docutils literal notranslate"><span class="pre">crack_width_open()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="cracking.html#cracking.solve_stress_strain_crack_deterministic"><code class="docutils literal notranslate"><span class="pre">solve_stress_strain_crack_deterministic()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="cracking.html#cracking.solve_stress_strain_crack_stochastic"><code class="docutils literal notranslate"><span class="pre">solve_stress_strain_crack_stochastic()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="cracking.html#cracking.strain_f"><code class="docutils literal notranslate"><span class="pre">strain_f()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="cracking.html#cracking.strain_stress_crack_f"><code class="docutils literal notranslate"><span class="pre">strain_stress_crack_f()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="helper_func.html">helper_func module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="helper_func.html#helper_func.Beta_custom"><code class="docutils literal notranslate"><span class="pre">Beta_custom()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="helper_func.html#helper_func.Fit_distrib"><code class="docutils literal notranslate"><span class="pre">Fit_distrib()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="helper_func.html#helper_func.Get_mean"><code class="docutils literal notranslate"><span class="pre">Get_mean()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="helper_func.html#helper_func.Get_std"><code class="docutils literal notranslate"><span class="pre">Get_std()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="helper_func.html#helper_func.Hist_custom"><code class="docutils literal notranslate"><span class="pre">Hist_custom()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="helper_func.html#helper_func.Normal_custom"><code class="docutils literal notranslate"><span class="pre">Normal_custom()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="helper_func.html#helper_func.Pf_RS"><code class="docutils literal notranslate"><span class="pre">Pf_RS()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="helper_func.html#helper_func.RS_plot"><code class="docutils literal notranslate"><span class="pre">RS_plot()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="helper_func.html#helper_func.dropna"><code class="docutils literal notranslate"><span class="pre">dropna()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="helper_func.html#helper_func.f_solve_poly2"><code class="docutils literal notranslate"><span class="pre">f_solve_poly2()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="helper_func.html#helper_func.find_mean"><code class="docutils literal notranslate"><span class="pre">find_mean()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="helper_func.html#helper_func.find_similar_group"><code class="docutils literal notranslate"><span class="pre">find_similar_group()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="helper_func.html#helper_func.interp_extrap_f"><code class="docutils literal notranslate"><span class="pre">interp_extrap_f()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="helper_func.html#helper_func.sample_integral"><code class="docutils literal notranslate"><span class="pre">sample_integral()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="test_helper_func.html">test_helper_func module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="test_helper_func.html#test_helper_func.TestHelperFunc"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="test_helper_func.html#test_helper_func.TestHelperFunc.setUp"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc.setUp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_helper_func.html#test_helper_func.TestHelperFunc.tearDown"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc.tearDown()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_helper_func.html#test_helper_func.TestHelperFunc.test_Beta_custom"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc.test_Beta_custom()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_helper_func.html#test_helper_func.TestHelperFunc.test_Fit_distrib"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc.test_Fit_distrib()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_helper_func.html#test_helper_func.TestHelperFunc.test_Get_mean"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc.test_Get_mean()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_helper_func.html#test_helper_func.TestHelperFunc.test_Get_std"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc.test_Get_std()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_helper_func.html#test_helper_func.TestHelperFunc.test_Normal_custom"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc.test_Normal_custom()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_helper_func.html#test_helper_func.TestHelperFunc.test_Pf_RS"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc.test_Pf_RS()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_helper_func.html#test_helper_func.TestHelperFunc.test_RS_plot"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc.test_RS_plot()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_helper_func.html#test_helper_func.TestHelperFunc.test_dropna"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc.test_dropna()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_helper_func.html#test_helper_func.TestHelperFunc.test_f_solve_poly2"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc.test_f_solve_poly2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_helper_func.html#test_helper_func.TestHelperFunc.test_find_mean"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc.test_find_mean()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_helper_func.html#test_helper_func.TestHelperFunc.test_find_similar_group"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc.test_find_similar_group()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_helper_func.html#test_helper_func.TestHelperFunc.test_interp_extrap_f"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc.test_interp_extrap_f()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_helper_func.html#test_helper_func.TestHelperFunc.test_sample_integral"><code class="docutils literal notranslate"><span class="pre">TestHelperFunc.test_sample_integral()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </section>
