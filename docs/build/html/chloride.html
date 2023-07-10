@@ -249,16 +249,13 @@
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>t</strong> (<em>int</em><em>, </em><em>float</em>) – time [year]</p></li>
 <li><p><strong>pars</strong> (<em>instance</em><em> of </em><em>param object</em>) – <p>a wrapper of all material and environmental parameters deep-copied from the raw data</p>
-<ul>
-<li><dl>
+<dl>
 <dt>pars.concrete_type<span class="classifier">string</span></dt><dd><p>Option:</p>
 <p>’Portland cement concrete’,</p>
 <p>’Portland fly ash cement concrete’,</p>
 <p>’Blast furnace slag cement concrete’</p>
 </dd>
 </dl>
-</li>
-</ul>
 </p></li>
 </ul>
 </dd>
@@ -290,11 +287,9 @@
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pars.C_eqv</strong> (<em>float</em>) – calculated with by C_eqv(pars) [g/L]</p></li>
 <li><p><strong>pars.C_eqv_to_C_S_0</strong> (<em>global function</em>) – <p>This function is based experiment with the info of</p>
-<ul>
-<li><p>binder-specific chloride-adsorption-isotherms</p></li>
-<li><p>the concrete composition(cement/concrete ratio)</p></li>
-<li><p>potential chloride impact C_eqv [g/L]</p></li>
-</ul>
+<p>binder-specific chloride-adsorption-isotherms
+the concrete composition(cement/concrete ratio)
+potential chloride impact C_eqv [g/L]</p>
 </p></li>
 </ul>
 </dd>
@@ -382,18 +377,14 @@ See Note for details</p>
 <ol class="arabic simple">
 <li><p>marine or coastal</p></li>
 </ol>
-<ul class="simple">
-<li><p>pars.C_0_M : natural chloride content of sea water [g/l]</p></li>
-</ul>
+<p>pars.C_0_M : natural chloride content of sea water [g/l]</p>
 <ol class="arabic simple" start="2">
 <li><p>de-icing salt (hard to quantify)</p></li>
 </ol>
-<ul class="simple">
-<li><p>pars.C_0_R : average chloride content of the chloride contaminated water [g/l]</p></li>
-<li><p>pars.n     : average number of salting events per year [-]</p></li>
-<li><p>pars.C_R_i : average amount of chloride spread within one spreading event [g/m2]</p></li>
-<li><p>pars.h_S_i : amount of water from rain and melted snow per spreading period [l/m2]</p></li>
-</ul>
+<p>pars.C_0_R : average chloride content of the chloride contaminated water [g/l]
+pars.n     : average number of salting events per year [-]
+pars.C_R_i : average amount of chloride spread within one spreading event [g/m2]
+pars.h_S_i : amount of water from rain and melted snow per spreading period [l/m2]</p>
 <p>C_eqv is used for contineous exposure or NON-geometry-sensitive intermittent exposure.
 For geometry-sensitive condition(road side splash) the tested C_max() should be used.</p>
 </div>
@@ -582,12 +573,10 @@ Options:
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>intermediate parameters calculated and attached to pars</p>
-<ul class="simple">
-<li><p>k_e     : environmental transfer variable [-]</p></li>
-<li><p>D_RCM_0 : chloride migration coefficient [mm^2/year]</p></li>
-<li><p>k_t     : transfer parameter, k_t =1 was set in A_t()[-]</p></li>
-<li><p>A_t     : subfunction considering the ‘ageing’ [-]</p></li>
-</ul>
+<p>k_e     : environmental transfer variable [-]
+D_RCM_0 : chloride migration coefficient [mm^2/year]
+k_t     : transfer parameter, k_t =1 was set in A_t()[-]
+A_t     : subfunction considering the ‘ageing’ [-]</p>
 </div>
 </dd></dl>
 
@@ -738,11 +727,9 @@ chloride_content_field[wt.-%/cement] at time t</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>pars</strong> (<em>instance</em><em> of </em><em>param object</em>) – <p>a wrapper of all material and environmental parameters deep-copied from the raw data</p>
-<ul class="simple">
-<li><p>pars.T_ref  : standard test temperature 293 [K]</p></li>
-<li><p>pars.T_real : temperature of the structural element [K]</p></li>
-<li><p>pars.b_e    : regression variable [K]</p></li>
-</ul>
+<p>pars.T_ref  : standard test temperature 293 [K]
+pars.T_real : temperature of the structural element [K]
+pars.b_e    : regression variable [K]</p>
 </p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>

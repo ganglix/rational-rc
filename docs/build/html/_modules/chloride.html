@@ -271,10 +271,10 @@
 <span class="sd">    ----</span>
 <span class="sd">    intermediate parameters calculated and attached to pars</span>
 <span class="sd">    </span>
-<span class="sd">    + k_e     : environmental transfer variable [-]</span>
-<span class="sd">    + D_RCM_0 : chloride migration coefficient [mm^2/year]</span>
-<span class="sd">    + k_t     : transfer parameter, k_t =1 was set in A_t()[-]</span>
-<span class="sd">    + A_t     : subfunction considering the &#39;ageing&#39; [-]</span>
+<span class="sd">    k_e     : environmental transfer variable [-]</span>
+<span class="sd">    D_RCM_0 : chloride migration coefficient [mm^2/year]</span>
+<span class="sd">    k_t     : transfer parameter, k_t =1 was set in A_t()[-]</span>
+<span class="sd">    A_t     : subfunction considering the &#39;ageing&#39; [-]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">pars</span><span class="o">.</span><span class="n">k_e</span> <span class="o">=</span> <span class="n">k_e</span><span class="p">(</span><span class="n">pars</span><span class="p">)</span>
     <span class="n">pars</span><span class="o">.</span><span class="n">D_RCM_0</span> <span class="o">=</span> <span class="n">D_RCM_0</span><span class="p">(</span><span class="n">pars</span><span class="p">)</span>
@@ -292,9 +292,9 @@
 <span class="sd">    pars : instance of param object</span>
 <span class="sd">        a wrapper of all material and environmental parameters deep-copied from the raw data</span>
 
-<span class="sd">        + pars.T_ref  : standard test temperature 293 [K]</span>
-<span class="sd">        + pars.T_real : temperature of the structural element [K]</span>
-<span class="sd">        + pars.b_e    : regression variable [K]</span>
+<span class="sd">        pars.T_ref  : standard test temperature 293 [K]</span>
+<span class="sd">        pars.T_real : temperature of the structural element [K]</span>
+<span class="sd">        pars.b_e    : regression variable [K]</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -323,7 +323,7 @@
 <span class="sd">    pars : instance of param object</span>
 <span class="sd">        a wrapper of all material and environmental parameters deep-copied from the raw data</span>
 <span class="sd">        </span>
-<span class="sd">        + pars.concrete_type : string</span>
+<span class="sd">        pars.concrete_type : string</span>
 <span class="sd">            Option:</span>
 
 <span class="sd">            &#39;Portland cement concrete&#39;,</span>
@@ -513,14 +513,14 @@
 <span class="sd">    ----</span>
 <span class="sd">    1. marine or coastal</span>
 
-<span class="sd">    + pars.C_0_M : natural chloride content of sea water [g/l]</span>
+<span class="sd">    pars.C_0_M : natural chloride content of sea water [g/l]</span>
 
 <span class="sd">    2. de-icing salt (hard to quantify)</span>
 
-<span class="sd">    + pars.C_0_R : average chloride content of the chloride contaminated water [g/l]</span>
-<span class="sd">    + pars.n     : average number of salting events per year [-]</span>
-<span class="sd">    + pars.C_R_i : average amount of chloride spread within one spreading event [g/m2]</span>
-<span class="sd">    + pars.h_S_i : amount of water from rain and melted snow per spreading period [l/m2]</span>
+<span class="sd">    pars.C_0_R : average chloride content of the chloride contaminated water [g/l]</span>
+<span class="sd">    pars.n     : average number of salting events per year [-]</span>
+<span class="sd">    pars.C_R_i : average amount of chloride spread within one spreading event [g/m2]</span>
+<span class="sd">    pars.h_S_i : amount of water from rain and melted snow per spreading period [l/m2]</span>
 
 <span class="sd">    C_eqv is used for contineous exposure or NON-geometry-sensitive intermittent exposure.</span>
 <span class="sd">    For geometry-sensitive condition(road side splash) the tested C_max() should be used.</span>
@@ -553,9 +553,9 @@
 <span class="sd">    pars.C_eqv_to_C_S_0 : global function</span>
 <span class="sd">        This function is based experiment with the info of</span>
 
-<span class="sd">        + binder-specific chloride-adsorption-isotherms</span>
-<span class="sd">        + the concrete composition(cement/concrete ratio)</span>
-<span class="sd">        + potential chloride impact C_eqv [g/L]</span>
+<span class="sd">        binder-specific chloride-adsorption-isotherms</span>
+<span class="sd">        the concrete composition(cement/concrete ratio)</span>
+<span class="sd">        potential chloride impact C_eqv [g/L]</span>
 <span class="sd">    </span>
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
