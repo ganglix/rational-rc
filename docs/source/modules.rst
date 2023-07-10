@@ -9,5 +9,4 @@ Modules
    chloride
    corrosion
    cracking
-   helper_func
-   test_helper_func
+   math_helper

@@ -4,7 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
@@ -35,7 +35,9 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -93,17 +95,43 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="membrane.html">membrane module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="carbonation.html">carbonation module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">chloride module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">chloride module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#chloride.A_t"><code class="docutils literal notranslate"><span class="pre">A_t()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chloride.C_S_0"><code class="docutils literal notranslate"><span class="pre">C_S_0()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chloride.C_S_dx"><code class="docutils literal notranslate"><span class="pre">C_S_dx()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chloride.C_crit_param"><code class="docutils literal notranslate"><span class="pre">C_crit_param()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chloride.C_eqv"><code class="docutils literal notranslate"><span class="pre">C_eqv()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chloride.C_eqv_to_C_S_0"><code class="docutils literal notranslate"><span class="pre">C_eqv_to_C_S_0()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chloride.C_max"><code class="docutils literal notranslate"><span class="pre">C_max()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chloride.ChlorideModel"><code class="docutils literal notranslate"><span class="pre">ChlorideModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#chloride.ChlorideModel.calibrate"><code class="docutils literal notranslate"><span class="pre">ChlorideModel.calibrate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chloride.ChlorideModel.chloride_with_year"><code class="docutils literal notranslate"><span class="pre">ChlorideModel.chloride_with_year()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chloride.ChlorideModel.copy"><code class="docutils literal notranslate"><span class="pre">ChlorideModel.copy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chloride.ChlorideModel.postproc"><code class="docutils literal notranslate"><span class="pre">ChlorideModel.postproc()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chloride.ChlorideModel.run"><code class="docutils literal notranslate"><span class="pre">ChlorideModel.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#chloride.D_RCM_0"><code class="docutils literal notranslate"><span class="pre">D_RCM_0()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chloride.D_app"><code class="docutils literal notranslate"><span class="pre">D_app()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chloride.b_e"><code class="docutils literal notranslate"><span class="pre">b_e()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chloride.calibrate_chloride_f"><code class="docutils literal notranslate"><span class="pre">calibrate_chloride_f()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chloride.calibrate_chloride_f_group"><code class="docutils literal notranslate"><span class="pre">calibrate_chloride_f_group()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chloride.chloride_content"><code class="docutils literal notranslate"><span class="pre">chloride_content()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chloride.chloride_year"><code class="docutils literal notranslate"><span class="pre">chloride_year()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chloride.dx"><code class="docutils literal notranslate"><span class="pre">dx()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chloride.k_e"><code class="docutils literal notranslate"><span class="pre">k_e()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chloride.load_df_D_RCM"><code class="docutils literal notranslate"><span class="pre">load_df_D_RCM()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="corrosion.html">corrosion module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cracking.html">cracking module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="helper_func.html">helper_func module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="test_helper_func.html">test_helper_func module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math_helper.html">math_helper module</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
@@ -201,26 +229,26 @@
 }
 </style>
 <section id="module-chloride">
-<span id="chloride-module"></span><h1>chloride module<a class="headerlink" href="#module-chloride" title="Permalink to this headline">¶</a></h1>
+<span id="chloride-module"></span><h1>chloride module<a class="headerlink" href="#module-chloride" title="Permalink to this heading">¶</a></h1>
 <p><strong>Summary</strong></p>
-<p>Analytical solution of Fick’s second law under advection zone</p>
-<p>Modified with material property and exposure environment</p>
+<p>Analytical solution of Fick’s second law under the advection zone,</p>
+<p>modified with material property and exposure environment.</p>
 <ul class="simple">
 <li><p><strong>Resistance</strong>:       critical chloride content</p></li>
 <li><p><strong>Load</strong>:             chloride content at rebar depth</p></li>
 <li><p><strong>limit-state</strong>:      chloride content at rebar depth &gt;= critical chloride content</p></li>
 <li><p><strong>Field data</strong>:       chloride content profile</p></li>
 </ul>
-<p>TODO: make t input vectorized</p>
+<p>TODO: make t input vectorized.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="chloride.A_t">
-<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">A_t</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.A_t" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">A_t</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#A_t"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.A_t" title="Permalink to this definition">¶</a></dt>
 <dd><p>calculate A_t considering the ageing effect</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>t</strong> (<em>int</em><em>, </em><em>float</em>) – time [year]</p></li>
-<li><p><strong>pars</strong> (<em>instance of param object</em>) – <p>a wrapper of all material and environmental parameters deep-copied from the raw data</p>
+<li><p><strong>pars</strong> (<em>instance</em><em> of </em><em>param object</em>) – <p>a wrapper of all material and environmental parameters deep-copied from the raw data</p>
 <ul>
 <li><dl>
 <dt>pars.concrete_type<span class="classifier">string</span></dt><dd><p>Option:</p>
@@ -234,10 +262,10 @@
 </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>out</strong> – subfunction considering the ‘ageing’[-]</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>out</strong> – subfunction considering the “ageing”[-]</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>numpy array</p>
 </dd>
 </dl>
@@ -255,10 +283,10 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="chloride.C_S_0">
-<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">C_S_0</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.C_S_0" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">C_S_0</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#C_S_0"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.C_S_0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return (surface) chloride saturation concentration C_S_0 [wt.-%/cement] caused by  C_eqv [g/l]</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pars.C_eqv</strong> (<em>float</em>) – calculated with by C_eqv(pars) [g/L]</p></li>
 <li><p><strong>pars.C_eqv_to_C_S_0</strong> (<em>global function</em>) – <p>This function is based experiment with the info of</p>
@@ -270,10 +298,10 @@
 </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>chloride saturation concentration C_S_0 [wt.-%/cement]</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -286,28 +314,28 @@ TODO: update to a conversion function dependent on the proportioning and cementi
 
 <dl class="py function">
 <dt class="sig sig-object py" id="chloride.C_S_dx">
-<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">C_S_dx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.C_S_dx" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">C_S_dx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#C_S_dx"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.C_S_dx" title="Permalink to this definition">¶</a></dt>
 <dd><p>return the substitute chloride surface concentration, i.e. chloride content just below the advection zone.</p>
 <p>Fick’s 2nd law applies below the advection zone(depth=dx). No advection effect when dx = 0
-condition considered: continuous/intermittent expsure - ‘submerged’,’leakage’, ‘spray’, ‘splash’ where C_S_dx = C_S_0.
+condition considered: continuous/intermittent exposure - ‘submerged’,’leakage’, ‘spray’, ‘splash’ where C_S_dx = C_S_0.
 The advection depth dx is calculated in the dx() function externally.</p>
 <p>if exposure_condition_geom_sensitive is True: the observed/empirical highest chloride content in concrete C_max is used, C_max is calculated by C_max()</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>pars</strong> (<em>object/instance of param class</em>) – contains material and environment parameters</p></li>
+<li><p><strong>pars</strong> (<em>object/instance</em><em> of </em><em>param class</em>) – contains material and environment parameters</p></li>
 <li><p><strong>pars.C_S_0</strong> (<em>float</em><em> or </em><em>numpy array</em>) – chloride saturation concentration C_S_0 [wt.-%/cement]
 built-in calculation with C_S_0(pars)</p></li>
 <li><p><strong>pars.C_max</strong> (<em>float</em>) – maximum content of chlorides within the chloride profile, [wt.-%/cement]
 built-in calculation with C_max(pars)</p></li>
-<li><p><strong>pars.exposure_condition</strong> (<em>string</em>) – continuous/intermittent expsure - ‘submerged’,’leakage’, ‘spray’, ‘splash’</p></li>
+<li><p><strong>pars.exposure_condition</strong> (<em>string</em>) – continuous/intermittent exposure - ‘submerged’,’leakage’, ‘spray’, ‘splash’</p></li>
 <li><p><strong>pars.exposure_condition_geom_sensitive</strong> (<em>bool</em>) – if True, the C_max is used instead of C_S_0</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>C_S_dx, the substitute chloride surface concentration [wt.-%/cement]</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float or numpy arrays</p>
 </dd>
 </dl>
@@ -315,13 +343,13 @@ built-in calculation with C_max(pars)</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="chloride.C_crit_param">
-<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">C_crit_param</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chloride.C_crit_param" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">C_crit_param</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#C_crit_param"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.C_crit_param" title="Permalink to this definition">¶</a></dt>
 <dd><p>return the beta distribution parameters for the critical chloride content(total chloride), C_crit [wt.-%/cement]</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>parameters of general beta distribution (mean, std, lower_bound, upper_bound)</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>tuple</p>
 </dd>
 </dl>
@@ -329,7 +357,7 @@ built-in calculation with C_max(pars)</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="chloride.C_eqv">
-<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">C_eqv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.C_eqv" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">C_eqv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#C_eqv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.C_eqv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluate the Potential chloride impact -&gt; equivalent chloride solution concentration, C_eqv[g/L]
 from the source of</p>
 <ol class="arabic simple">
@@ -338,14 +366,14 @@ from the source of</p>
 </ol>
 <p>It is later used to estimate the boundary condition C_S_dx of contineous exposure or NON-geometry-sensitive intermittent exposure</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>pars</strong> (<em>instance of the param object</em>) – a wrapper of all material and environmental parameters deep-copied from the raw data
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pars</strong> (<em>instance</em><em> of </em><em>the param object</em>) – a wrapper of all material and environmental parameters deep-copied from the raw data
 See Note for details</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>C_eqv, potential chloride impact [g/L]</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -373,17 +401,17 @@ For geometry-sensitive condition(road side splash) the tested C_max() should be 
 
 <dl class="py function">
 <dt class="sig sig-object py" id="chloride.C_eqv_to_C_S_0">
-<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">C_eqv_to_C_S_0</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">C_eqv</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.C_eqv_to_C_S_0" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">C_eqv_to_C_S_0</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">C_eqv</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#C_eqv_to_C_S_0"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.C_eqv_to_C_S_0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert solution chloride content to saturated chloride content in concrete
 interpolate function for 300kg cement w/c=0.5 OPC. Other empirical function should be used if available</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>C_eqv</strong> (<em>float</em>) – chloride content of the solution at the surface[g/L]</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>saturated chloride content in concrete[wt-%/cement]</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -391,11 +419,11 @@ interpolate function for 300kg cement w/c=0.5 OPC. Other empirical function shou
 
 <dl class="py function">
 <dt class="sig sig-object py" id="chloride.C_max">
-<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">C_max</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.C_max" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">C_max</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#C_max"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.C_max" title="Permalink to this definition">¶</a></dt>
 <dd><p>C_max: maximum content of chlorides within the chloride profile [wt.-%/cement]
 calculate from empirical equations or from test data [wt.-%/concrete]</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pars.cement_concrete_ratio</strong> (<em>float</em>) – cement/concrete weight ratio, used to convert [wt.-%/concrete] -&gt; [wt.-%/cement]</p></li>
 <li><p><strong>pars.C_max_option</strong> (<em>string</em>) – “empirical” - use empirical equation
@@ -405,16 +433,16 @@ calculate from empirical equations or from test data [wt.-%/concrete]</p>
 <li><p><strong>pars.C_max_user_input</strong> – “user_input” option: Experiment-tested maximum chloride content [wt.-%/concrete]</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>C_max</strong> – maximum content of chlorides within the chloride profile, [wt.-%/cement]</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The empirical expression should be determined for structures of different exposure or concrete mixe.
+<p>The empirical expression should be determined for structures of different exposure or concrete mix.
 A typical C_max used by default in this function is from</p>
 <ul class="simple">
 <li><p>location: urban and rural areas in Germany</p></li>
@@ -425,37 +453,37 @@ A typical C_max used by default in this function is from</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="chloride.Chloride_Model">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">Chloride_Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars_raw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.Chloride_Model" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chloride.ChlorideModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">ChlorideModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars_raw</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#ChlorideModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.ChlorideModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
-<dt class="sig sig-object py" id="chloride.Chloride_Model.calibrate">
-<span class="sig-name descname"><span class="pre">calibrate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chloride_content_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_proc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.Chloride_Model.calibrate" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chloride.ChlorideModel.calibrate">
+<span class="sig-name descname"><span class="pre">calibrate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chloride_content_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_proc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#ChlorideModel.calibrate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.ChlorideModel.calibrate" title="Permalink to this definition">¶</a></dt>
 <dd><p>return a calibrated model with calibrate_chloride_f_group() function</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>t</strong> (<em>int</em><em>, </em><em>float</em>) – time [year]</p></li>
-<li><p><strong>chloride_content_field</strong> (<em>pandas dataframe</em>) – containts field chloride contents at various depths [wt.-%/cement]</p></li>
+<li><p><strong>chloride_content_field</strong> (<em>pandas.DataFrame</em>) – contains field chloride contents at various depths [wt.-%/cement]</p></li>
 <li><p><strong>print_proc</strong> (<em>bool</em><em>, </em><em>optional</em>) – if true, print the optimization process, by default False</p></li>
 <li><p><strong>plot</strong> (<em>bool</em><em>, </em><em>optional</em>) – if true, plot the field vs model comparison, by default True</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>a new calibrated model with the averaged calibrated D_RCM_0</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>instance of Chloride_Model object</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="chloride.Chloride_Model.chloride_with_year">
-<span class="sig-name descname"><span class="pre">chloride_with_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">depth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year_lis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.Chloride_Model.chloride_with_year" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chloride.ChlorideModel.chloride_with_year">
+<span class="sig-name descname"><span class="pre">chloride_with_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">depth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year_lis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#ChlorideModel.chloride_with_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.ChlorideModel.chloride_with_year" title="Permalink to this definition">¶</a></dt>
 <dd><p>chloride_with_year runs the model for a list of time steps</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>depth</strong> (<em>float</em>) – depth at which the chloride concrete is calculated, x[mm]</p></li>
 <li><p><strong>year_lis</strong> (<em>list</em>) – a list of time steps [year]</p></li>
@@ -463,35 +491,35 @@ A typical C_max used by default in this function is from</p>
 <li><p><strong>amplify</strong> (<em>int</em><em>, </em><em>optional</em>) – a scale parameter adjusting the hight of the distribution curve, by default 80</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>(pf list, beta list)</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>tuple</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="chloride.Chloride_Model.copy">
-<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chloride.Chloride_Model.copy" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chloride.ChlorideModel.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#ChlorideModel.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.ChlorideModel.copy" title="Permalink to this definition">¶</a></dt>
 <dd><p>create a deepcopy of the instance, to preserve the mutable object</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="chloride.Chloride_Model.postproc">
-<span class="sig-name descname"><span class="pre">postproc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.Chloride_Model.postproc" title="Permalink to this definition">¶</a></dt>
-<dd><p>postproc the solved model and attach the Pf and beta to the model object</p>
+<dt class="sig sig-object py" id="chloride.ChlorideModel.postproc">
+<span class="sig-name descname"><span class="pre">postproc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#ChlorideModel.postproc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.ChlorideModel.postproc" title="Permalink to this definition">¶</a></dt>
+<dd><p>postprocess the solved model and attach the Pf and beta to the model object</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>plot</strong> (<em>bool</em><em>, </em><em>optional</em>) – if true, plot the R S curve, by default False</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="chloride.Chloride_Model.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.Chloride_Model.run" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chloride.ChlorideModel.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#ChlorideModel.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.ChlorideModel.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>solve the chloride content at depth x and time t
 :param x: depth x[mm]
 :type x: int, float
@@ -502,54 +530,18 @@ A typical C_max used by default in this function is from</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="chloride.Chloride_content">
-<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">Chloride_content</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.Chloride_content" title="Permalink to this definition">¶</a></dt>
-<dd><p>Chloride_content is the master model function, calculate chloride content at depth x and time t with Fick’s 2nd law below the convection zone (x &gt; dx)
-The derived parameters is also calculated within this funcion.</p>
-<ul class="simple">
-<li><p>Caution: The pars instance is mutable, so a deepcopy of the original instance should be used if the calculation is not intended for “inplace”.</p></li>
-</ul>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> (<em>float</em><em>, </em><em>int</em>) – depth at which chloride content C_x_t is reported [mm]</p></li>
-<li><p><strong>t</strong> (<em>float</em><em>, </em><em>int</em>) – time [year]</p></li>
-<li><p><strong>pars</strong> (<em>instance of param object</em>) – a wrapper of all material and environmental parameters deep-copied from the raw data</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>sample of the distribution of the chloride content in concrete at a depth x (suface x=0) at time t [wt-.%/c]</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>numpy array</p>
-</dd>
-</dl>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>intermediate parameters were calculated and attached to pars</p>
-<ul class="simple">
-<li><p>C_0    : initial chloride content of the concrete [wt-.%/cement]</p></li>
-<li><p>C_S_dx : chloride content at a depth dx and a certain point of time t [wt-.%/cement]</p></li>
-<li><p>dx     : depth of the convection zone (concrete layer, up to which the process of chloride penetration differs from Fick’s 2nd law of diffusion) [mm]</p></li>
-<li><p>D_app  : apparent coefficient of chloride diffusion through concrete [mm^2/year]</p></li>
-<li><p>erf    : imported error function</p></li>
-</ul>
-</div>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="chloride.D_RCM_0">
-<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">D_RCM_0</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.D_RCM_0" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">D_RCM_0</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#D_RCM_0"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.D_RCM_0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the chloride migration coefficient from Rapid chloride migration test [m^2/s] see NT Build 492
-if the test data is not available from pars, use interpolation of existion empirical data for orientation purpose
+if the test data is not available from pars, use interpolation of existing empirical data for orientation purpose
 Pay attention to the units output [mm^2/year], used for the model</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>pars</strong> (<em>instance of param object</em>) – a wrapper of all material and environmental parameters deep-copied from the raw data</p></li>
+<li><p><strong>pars</strong> (<em>instance</em><em> of </em><em>param object</em>) – a wrapper of all material and environmental parameters deep-copied from the raw data</p></li>
 <li><p><strong>pars.D_RCM_test</strong> (<em>int</em><em> or </em><em>float</em>) – RCM test results[m^2/s], the mean value from the test is used, and standard deviation is estimated based on mean</p></li>
 <li><p><strong>pars.option.choose</strong> (<em>bool</em>) – if true interpolation from existing data table is used</p></li>
-<li><p><strong>pars.option.df_D_RCM_0</strong> (<em>pandas dataframe</em>) – experimental data table(cement type, and w/c eqv) for interpolation</p></li>
+<li><p><strong>pars.option.df_D_RCM_0</strong> (<em>pandas.DataFrame</em>) – experimental data table(cement type, and w/c eqv) for interpolation</p></li>
 <li><p><strong>pars.option.cement_type</strong> (<em>string</em>) – <p>select cement type for data interpolation of the df_D_RCM_0,
 Options:
 ‘CEM_I_42.5_R’</p>
@@ -560,10 +552,10 @@ Options:
 <li><p><strong>pars.option.wc_eqv</strong> (<em>float</em>) – equivalent water cement ratio considering supplementary cementitious materials</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>D_RCM_0_final [mm^2/year]</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>numpy array</p>
 </dd>
 </dl>
@@ -571,19 +563,19 @@ Options:
 
 <dl class="py function">
 <dt class="sig sig-object py" id="chloride.D_app">
-<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">D_app</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.D_app" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">D_app</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#D_app"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.D_app" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the apparent coefficient of chloride diffusion through concrete D_app[mm^2/year]</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>t</strong> (<em>float</em><em>, </em><em>int</em>) – time [year]</p></li>
-<li><p><strong>pars</strong> (<em>instance of param object</em>) – a wrapper of all material and environmental parameters deep-copied from the raw data</p></li>
+<li><p><strong>pars</strong> (<em>instance</em><em> of </em><em>param object</em>) – a wrapper of all material and environmental parameters deep-copied from the raw data</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>sample of the distribution of the apparent coefficient of chloride diffusion through concrete [mm^2/year]</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>numpy array</p>
 </dd>
 </dl>
@@ -601,33 +593,33 @@ Options:
 
 <dl class="py function">
 <dt class="sig sig-object py" id="chloride.b_e">
-<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">b_e</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chloride.b_e" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">b_e</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#b_e"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.b_e" title="Permalink to this definition">¶</a></dt>
 <dd><p>provide the large sample array of b_e : regression variable [K]</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="chloride.calibrate_chloride_f">
-<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">calibrate_chloride_f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_raw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chloride_content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_proc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.calibrate_chloride_f" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">calibrate_chloride_f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_raw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chloride_content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_proc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#calibrate_chloride_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.calibrate_chloride_f" title="Permalink to this definition">¶</a></dt>
 <dd><p>calibrate chloride model to field data at one depth at one time.
 Calibrate the chloride model with field chloride test data and return the new calibrated model object/instance
 Optimization method:  Field chloride content at depth x and time t -&gt; find corresponding D_RCM_0(repaid chloride migration diffusivity[m^2/s])</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>model_raw</strong> (<em>object/instance of Chloride_model class</em><em> (</em><em>to be calibrated</em><em>)</em>) – </p></li>
+<li><p><strong>model_raw</strong> (<em>object/instance</em><em> of </em><em>Chloride_model class</em><em> (</em><em>to be calibrated</em><em>)</em>) – </p></li>
 <li><p><strong>x</strong> (<em>float</em>) – depth [mm]</p></li>
 <li><p><strong>t</strong> (<em>: int</em><em> or </em><em>float</em>) – time [year]</p></li>
 <li><p><strong>chloride_content</strong> (<em>float</em><em> or </em><em>int</em>) – field chloride_content[wt.-%/cement] at time t, depth x,</p></li>
 <li><p><strong>tol</strong> (<em>float</em>) – D_RCM_0 optimization absolute tolerance 1e-15 [m^2/s]</p></li>
-<li><p><strong>max_count</strong> (<em>int</em>) – maximun number of searching iteration, default is 50</p></li>
+<li><p><strong>max_count</strong> (<em>int</em>) – maximum number of searching iteration, default is 50</p></li>
 <li><p><strong>print_out</strong> (<em>bool</em>) – if true, print model and field chloride content</p></li>
 <li><p><strong>print_proc</strong> (<em>bool</em>) – if turn, print optimization process. (debug message in the logger)</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>new calibrated model</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>instance of Chloride_Model object</p>
 </dd>
 </dl>
@@ -647,55 +639,116 @@ chloride_content_field[wt.-%/cement] at time t</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="chloride.calibrate_chloride_f_group">
-<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">calibrate_chloride_f_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_raw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chloride_content_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_proc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.calibrate_chloride_f_group" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">calibrate_chloride_f_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_raw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chloride_content_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_proc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#calibrate_chloride_f_group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.calibrate_chloride_f_group" title="Permalink to this definition">¶</a></dt>
 <dd><p>use calibrate_chloride_f() to calibrate model to field chloride content at three or more depths, and return the new calibrated model with the averaged D_RCM_0</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>model_raw</strong> (<em>object/instance of Chloride_Model class</em>) – model object to be calibrated), model_raw.copy() will be used</p></li>
-<li><p><strong>chloride_content_field</strong> (<em>pandas dataframe</em>) – containts field chloride contents at various depths [wt.-%/cement]</p></li>
+<li><p><strong>model_raw</strong> (<em>object/instance</em><em> of </em><em>Chloride_Model class</em>) – model object to be calibrated), model_raw.copy() will be used</p></li>
+<li><p><strong>chloride_content_field</strong> (<em>pandas.DataFrame</em>) – contains field chloride contents at various depths [wt.-%/cement]</p></li>
 <li><p><strong>t</strong> (<em>int</em><em> or </em><em>float</em>) – time [year]</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>a new calibrated model with the averaged calibrated D_RCM_0</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>object/instance of Chloride_model class</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="chloride.chloride_content">
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">chloride_content</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#chloride_content"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.chloride_content" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the chloride content at depth x and time t with Fick’s 2nd law below the advection zone (x &gt; dx).</p>
+<ul class="simple">
+<li><p>Caution: The pars instance is mutable, so a deepcopy of the original instance should be used if the calculation is not intended for “inplace”.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>float</em><em> or </em><em>int</em>) – Depth at which chloride content C_x_t is reported [mm].</p></li>
+<li><p><strong>t</strong> (<em>float</em><em> or </em><em>int</em>) – Time [year].</p></li>
+<li><p><strong>pars</strong> (<em>param object</em>) – An instance of the Param class, containing material and environmental parameters.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Sample of the distribution of the chloride content in concrete at a depth x (surface x=0) at time t [wt-.%/c]</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy array</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Intermediate parameters are calculated and attached to pars:
+- C_0 : float</p>
+<blockquote>
+<div><p>Initial chloride content of the concrete [wt-.%/cement].</p>
+</div></blockquote>
+<ul class="simple">
+<li><dl class="simple">
+<dt>C_S_dx<span class="classifier">float</span></dt><dd><p>Chloride content at a depth dx and a certain point of time t [wt-.%/cement].</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>dx<span class="classifier">float</span></dt><dd><p>Depth of the advection zone (concrete layer, up to which the process of chloride penetration differs from Fick’s 2nd law of diffusion) [mm].</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>D_app<span class="classifier">float</span></dt><dd><p>Apparent coefficient of chloride diffusion through concrete [mm^2/year].</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>erf<span class="classifier">function</span></dt><dd><p>Imported error function.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple">
+<li><p>C_0    : initial chloride content of the concrete [wt-.%/cement]</p></li>
+<li><p>C_S_dx : chloride content at a depth dx and a certain point of time t [wt-.%/cement]</p></li>
+<li><p>dx     : depth of the advection zone (concrete layer, up to which the process of chloride penetration differs from Fick’s 2nd law of diffusion) [mm]</p></li>
+<li><p>D_app  : apparent coefficient of chloride diffusion through concrete [mm^2/year]</p></li>
+<li><p>erf    : imported error function</p></li>
+</ul>
+</div>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="chloride.chloride_year">
-<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">chloride_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year_lis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">80</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.chloride_year" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">chloride_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year_lis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">80</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#chloride_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.chloride_year" title="Permalink to this definition">¶</a></dt>
 <dd><p>run model over a list of time steps</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="chloride.dx">
-<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">dx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.dx" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">dx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#dx"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.dx" title="Permalink to this definition">¶</a></dt>
 <dd><p>return dx : advection depth [mm] dependent on the exposure conditions</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="chloride.k_e">
-<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">k_e</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chloride.k_e" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">k_e</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#k_e"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.k_e" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate k_e: environmental transfer variable [-]</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>pars</strong> (<em>instance of param object</em>) – <p>a wrapper of all material and environmental parameters deep-copied from the raw data</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pars</strong> (<em>instance</em><em> of </em><em>param object</em>) – <p>a wrapper of all material and environmental parameters deep-copied from the raw data</p>
 <ul class="simple">
-<li><p>pars.T_ref  : standard test temperatrue 293 [K]</p></li>
+<li><p>pars.T_ref  : standard test temperature 293 [K]</p></li>
 <li><p>pars.T_real : temperature of the structural element [K]</p></li>
 <li><p>pars.b_e    : regression variable [K]</p></li>
 </ul>
 </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>large sample of the distribution of k_e</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>numpy array</p>
 </dd>
 </dl>
@@ -703,15 +756,15 @@ chloride_content_field[wt.-%/cement] at time t</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="chloride.load_df_D_RCM">
-<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">load_df_D_RCM</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chloride.load_df_D_RCM" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">load_df_D_RCM</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/chloride.html#load_df_D_RCM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.load_df_D_RCM" title="Permalink to this definition">¶</a></dt>
 <dd><p>load the data table of the Rapid Chloride Migration(RCM) test
 for D_RCM interpolation.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Data table from experiment</p>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>Pandas Dataframe</p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
 </dd>
 </dl>
 </dd></dl>

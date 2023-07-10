@@ -34,7 +34,9 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -90,7 +92,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
@@ -201,7 +203,7 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="helper_func.html#helper_func.Beta_custom">Beta_custom() (in module helper_func)</a>
+      <li><a href="math_helper.html#math_helper.beta_custom">beta_custom() (in module math_helper)</a>
 </li>
       <li><a href="cracking.html#cracking.bilinear_stress_strain">bilinear_stress_strain() (in module cracking)</a>
 </li>
@@ -227,14 +229,14 @@
 </li>
       <li><a href="chloride.html#chloride.C_S_dx">C_S_dx() (in module chloride)</a>
 </li>
-      <li><a href="carbonation.html#carbonation.Carbonation_Model.calibrate">calibrate() (carbonation.Carbonation_Model method)</a>
+      <li><a href="carbonation.html#carbonation.CarbonationModel.calibrate">calibrate() (carbonation.CarbonationModel method)</a>
 
       <ul>
-        <li><a href="chloride.html#chloride.Chloride_Model.calibrate">(chloride.Chloride_Model method)</a>
+        <li><a href="chloride.html#chloride.ChlorideModel.calibrate">(chloride.ChlorideModel method)</a>
 </li>
-        <li><a href="corrosion.html#corrosion.Corrosion_Model.calibrate">(corrosion.Corrosion_Model method)</a>
+        <li><a href="corrosion.html#corrosion.CorrosionModel.calibrate">(corrosion.CorrosionModel method)</a>
 </li>
-        <li><a href="membrane.html#membrane.Membrane_Model.calibrate">(membrane.Membrane_Model method)</a>
+        <li><a href="membrane.html#membrane.MembraneModel.calibrate">(membrane.MembraneModel method)</a>
 </li>
       </ul></li>
       <li><a href="chloride.html#chloride.calibrate_chloride_f">calibrate_chloride_f() (in module chloride)</a>
@@ -249,9 +251,9 @@
         <li><a href="membrane.html#membrane.calibrate_f">(in module membrane)</a>
 </li>
       </ul></li>
-      <li><a href="carbonation.html#carbonation.Carb_depth">Carb_depth() (in module carbonation)</a>
+      <li><a href="carbonation.html#carbonation.carb_depth">carb_depth() (in module carbonation)</a>
 </li>
-      <li><a href="carbonation.html#carbonation.Carbonation_Model.carb_with_year">carb_with_year() (carbonation.Carbonation_Model method)</a>
+      <li><a href="carbonation.html#carbonation.CarbonationModel.carb_with_year">carb_with_year() (carbonation.CarbonationModel method)</a>
 </li>
       <li><a href="carbonation.html#carbonation.carb_year">carb_year() (in module carbonation)</a>
 </li>
@@ -264,7 +266,7 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="carbonation.html#carbonation.Carbonation_Model">Carbonation_Model (class in carbonation)</a>
+      <li><a href="carbonation.html#carbonation.CarbonationModel">CarbonationModel (class in carbonation)</a>
 </li>
       <li>
     chloride
@@ -273,26 +275,26 @@
         <li><a href="chloride.html#module-chloride">module</a>
 </li>
       </ul></li>
-      <li><a href="chloride.html#chloride.Chloride_content">Chloride_content() (in module chloride)</a>
+      <li><a href="chloride.html#chloride.chloride_content">chloride_content() (in module chloride)</a>
 </li>
-      <li><a href="chloride.html#chloride.Chloride_Model">Chloride_Model (class in chloride)</a>
-</li>
-      <li><a href="chloride.html#chloride.Chloride_Model.chloride_with_year">chloride_with_year() (chloride.Chloride_Model method)</a>
+      <li><a href="chloride.html#chloride.ChlorideModel.chloride_with_year">chloride_with_year() (chloride.ChlorideModel method)</a>
 </li>
       <li><a href="chloride.html#chloride.chloride_year">chloride_year() (in module chloride)</a>
 </li>
-      <li><a href="carbonation.html#carbonation.Carbonation_Model.copy">copy() (carbonation.Carbonation_Model method)</a>
+      <li><a href="chloride.html#chloride.ChlorideModel">ChlorideModel (class in chloride)</a>
+</li>
+      <li><a href="carbonation.html#carbonation.CarbonationModel.copy">copy() (carbonation.CarbonationModel method)</a>
 
       <ul>
-        <li><a href="chloride.html#chloride.Chloride_Model.copy">(chloride.Chloride_Model method)</a>
+        <li><a href="chloride.html#chloride.ChlorideModel.copy">(chloride.ChlorideModel method)</a>
 </li>
-        <li><a href="corrosion.html#corrosion.Corrosion_Model.copy">(corrosion.Corrosion_Model method)</a>
+        <li><a href="corrosion.html#corrosion.CorrosionModel.copy">(corrosion.CorrosionModel method)</a>
 </li>
-        <li><a href="corrosion.html#corrosion.Section_loss_Model.copy">(corrosion.Section_loss_Model method)</a>
+        <li><a href="corrosion.html#corrosion.SectionLossModel.copy">(corrosion.SectionLossModel method)</a>
 </li>
         <li><a href="cracking.html#cracking.Cracking_Model.copy">(cracking.Cracking_Model method)</a>
 </li>
-        <li><a href="membrane.html#membrane.Membrane_Model.copy">(membrane.Membrane_Model method)</a>
+        <li><a href="membrane.html#membrane.MembraneModel.copy">(membrane.MembraneModel method)</a>
 </li>
       </ul></li>
       <li>
@@ -302,7 +304,7 @@
         <li><a href="corrosion.html#module-corrosion">module</a>
 </li>
       </ul></li>
-      <li><a href="corrosion.html#corrosion.Corrosion_Model">Corrosion_Model (class in corrosion)</a>
+      <li><a href="corrosion.html#corrosion.CorrosionModel">CorrosionModel (class in corrosion)</a>
 </li>
       <li><a href="cracking.html#cracking.crack_width_open">crack_width_open() (in module cracking)</a>
 </li>
@@ -331,7 +333,7 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="corrosion.html#corrosion.De_O2_f">De_O2_f() (in module corrosion)</a>
 </li>
-      <li><a href="helper_func.html#helper_func.dropna">dropna() (in module helper_func)</a>
+      <li><a href="math_helper.html#math_helper.dropna">dropna() (in module math_helper)</a>
 </li>
       <li><a href="chloride.html#chloride.dx">dx() (in module chloride)</a>
 </li>
@@ -353,15 +355,15 @@
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="helper_func.html#helper_func.f_solve_poly2">f_solve_poly2() (in module helper_func)</a>
+      <li><a href="math_helper.html#math_helper.f_solve_poly2">f_solve_poly2() (in module math_helper)</a>
 </li>
-      <li><a href="helper_func.html#helper_func.find_mean">find_mean() (in module helper_func)</a>
+      <li><a href="math_helper.html#math_helper.find_mean">find_mean() (in module math_helper)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="helper_func.html#helper_func.find_similar_group">find_similar_group() (in module helper_func)</a>
+      <li><a href="math_helper.html#math_helper.find_similar_group">find_similar_group() (in module math_helper)</a>
 </li>
-      <li><a href="helper_func.html#helper_func.Fit_distrib">Fit_distrib() (in module helper_func)</a>
+      <li><a href="math_helper.html#math_helper.fit_distribution">fit_distribution() (in module math_helper)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -369,11 +371,11 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="helper_func.html#helper_func.Get_mean">Get_mean() (in module helper_func)</a>
+      <li><a href="math_helper.html#math_helper.get_mean">get_mean() (in module math_helper)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="helper_func.html#helper_func.Get_std">Get_std() (in module helper_func)</a>
+      <li><a href="math_helper.html#math_helper.get_std">get_std() (in module math_helper)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -381,16 +383,7 @@
 <h2 id="H">H</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li>
-    helper_func
-
-      <ul>
-        <li><a href="helper_func.html#module-helper_func">module</a>
-</li>
-      </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="helper_func.html#helper_func.Hist_custom">Hist_custom() (in module helper_func)</a>
+      <li><a href="math_helper.html#math_helper.hist_custom">hist_custom() (in module math_helper)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -408,7 +401,7 @@
 </li>
       <li><a href="corrosion.html#corrosion.iL_f">iL_f() (in module corrosion)</a>
 </li>
-      <li><a href="helper_func.html#helper_func.interp_extrap_f">interp_extrap_f() (in module helper_func)</a>
+      <li><a href="math_helper.html#math_helper.interp_extrap_f">interp_extrap_f() (in module math_helper)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -449,6 +442,13 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
+    math_helper
+
+      <ul>
+        <li><a href="math_helper.html#module-math_helper">module</a>
+</li>
+      </ul></li>
+      <li>
     membrane
 
       <ul>
@@ -457,18 +457,18 @@
       </ul></li>
       <li><a href="membrane.html#membrane.membrane_age">membrane_age() (in module membrane)</a>
 </li>
-      <li><a href="membrane.html#membrane.Membrane_Model.membrane_failure_with_year">membrane_failure_with_year() (membrane.Membrane_Model method)</a>
+      <li><a href="membrane.html#membrane.MembraneModel.membrane_failure_with_year">membrane_failure_with_year() (membrane.MembraneModel method)</a>
 </li>
       <li><a href="membrane.html#membrane.membrane_failure_year">membrane_failure_year() (in module membrane)</a>
 </li>
       <li><a href="membrane.html#membrane.membrane_life">membrane_life() (in module membrane)</a>
 </li>
-      <li><a href="membrane.html#membrane.Membrane_Model">Membrane_Model (class in membrane)</a>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="membrane.html#membrane.MembraneModel">MembraneModel (class in membrane)</a>
 </li>
       <li><a href="corrosion.html#corrosion.mmpy_to_icorr">mmpy_to_icorr() (in module corrosion)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     module
 
@@ -481,11 +481,9 @@
 </li>
         <li><a href="cracking.html#module-cracking">cracking</a>
 </li>
-        <li><a href="helper_func.html#module-helper_func">helper_func</a>
+        <li><a href="math_helper.html#module-math_helper">math_helper</a>
 </li>
         <li><a href="membrane.html#module-membrane">membrane</a>
-</li>
-        <li><a href="test_helper_func.html#module-test_helper_func">test_helper_func</a>
 </li>
       </ul></li>
   </ul></td>
@@ -494,7 +492,7 @@
 <h2 id="N">N</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="helper_func.html#helper_func.Normal_custom">Normal_custom() (in module helper_func)</a>
+      <li><a href="math_helper.html#math_helper.normal_custom">normal_custom() (in module math_helper)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -502,20 +500,26 @@
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="helper_func.html#helper_func.Pf_RS">Pf_RS() (in module helper_func)</a>
+      <li><a href="math_helper.html#math_helper.pf_RS">pf_RS() (in module math_helper)</a>
 </li>
-      <li><a href="membrane.html#membrane.Pf_RS_special">Pf_RS_special() (in module membrane)</a>
+      <li><a href="membrane.html#membrane.pf_RS_special">pf_RS_special() (in module membrane)</a>
 </li>
-      <li><a href="carbonation.html#carbonation.Carbonation_Model.postproc">postproc() (carbonation.Carbonation_Model method)</a>
+      <li><a href="math_helper.html#math_helper.plot_RS">plot_RS() (in module math_helper)</a>
+</li>
+      <li><a href="membrane.html#membrane.plot_RS_special">plot_RS_special() (in module membrane)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="carbonation.html#carbonation.CarbonationModel.postproc">postproc() (carbonation.CarbonationModel method)</a>
 
       <ul>
-        <li><a href="chloride.html#chloride.Chloride_Model.postproc">(chloride.Chloride_Model method)</a>
+        <li><a href="chloride.html#chloride.ChlorideModel.postproc">(chloride.ChlorideModel method)</a>
 </li>
-        <li><a href="corrosion.html#corrosion.Section_loss_Model.postproc">(corrosion.Section_loss_Model method)</a>
+        <li><a href="corrosion.html#corrosion.SectionLossModel.postproc">(corrosion.SectionLossModel method)</a>
 </li>
         <li><a href="cracking.html#cracking.Cracking_Model.postproc">(cracking.Cracking_Model method)</a>
 </li>
-        <li><a href="membrane.html#membrane.Membrane_Model.postproc">(membrane.Membrane_Model method)</a>
+        <li><a href="membrane.html#membrane.MembraneModel.postproc">(membrane.MembraneModel method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -526,24 +530,20 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="carbonation.html#carbonation.R_ACC_0_inv">R_ACC_0_inv() (in module carbonation)</a>
 </li>
-      <li><a href="corrosion.html#corrosion.RH_to_WaterbyMassHCP">RH_to_WaterbyMassHCP() (in module corrosion)</a>
+      <li><a href="corrosion.html#corrosion.RH_to_waterByMassHCP">RH_to_waterByMassHCP() (in module corrosion)</a>
 </li>
-      <li><a href="helper_func.html#helper_func.RS_plot">RS_plot() (in module helper_func)</a>
-</li>
-      <li><a href="membrane.html#membrane.RS_plot_special">RS_plot_special() (in module membrane)</a>
-</li>
-      <li><a href="carbonation.html#carbonation.Carbonation_Model.run">run() (carbonation.Carbonation_Model method)</a>
+      <li><a href="carbonation.html#carbonation.CarbonationModel.run">run() (carbonation.CarbonationModel method)</a>
 
       <ul>
-        <li><a href="chloride.html#chloride.Chloride_Model.run">(chloride.Chloride_Model method)</a>
+        <li><a href="chloride.html#chloride.ChlorideModel.run">(chloride.ChlorideModel method)</a>
 </li>
-        <li><a href="corrosion.html#corrosion.Corrosion_Model.run">(corrosion.Corrosion_Model method)</a>
+        <li><a href="corrosion.html#corrosion.CorrosionModel.run">(corrosion.CorrosionModel method)</a>
 </li>
-        <li><a href="corrosion.html#corrosion.Section_loss_Model.run">(corrosion.Section_loss_Model method)</a>
+        <li><a href="corrosion.html#corrosion.SectionLossModel.run">(corrosion.SectionLossModel method)</a>
 </li>
         <li><a href="cracking.html#cracking.Cracking_Model.run">(cracking.Cracking_Model method)</a>
 </li>
-        <li><a href="membrane.html#membrane.Membrane_Model.run">(membrane.Membrane_Model method)</a>
+        <li><a href="membrane.html#membrane.MembraneModel.run">(membrane.MembraneModel method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -552,13 +552,11 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="helper_func.html#helper_func.sample_integral">sample_integral() (in module helper_func)</a>
+      <li><a href="math_helper.html#math_helper.sample_integral">sample_integral() (in module math_helper)</a>
 </li>
-      <li><a href="corrosion.html#corrosion.Section_loss_Model">Section_loss_Model (class in corrosion)</a>
+      <li><a href="corrosion.html#corrosion.SectionLossModel.section_loss_with_year">section_loss_with_year() (corrosion.SectionLossModel method)</a>
 </li>
-      <li><a href="corrosion.html#corrosion.Section_loss_Model.section_loss_with_year">section_loss_with_year() (corrosion.Section_loss_Model method)</a>
-</li>
-      <li><a href="test_helper_func.html#test_helper_func.TestHelperFunc.setUp">setUp() (test_helper_func.TestHelperFunc method)</a>
+      <li><a href="corrosion.html#corrosion.SectionLossModel">SectionLossModel (class in corrosion)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -576,48 +574,11 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="test_helper_func.html#test_helper_func.TestHelperFunc.tearDown">tearDown() (test_helper_func.TestHelperFunc method)</a>
-</li>
-      <li><a href="test_helper_func.html#test_helper_func.TestHelperFunc.test_Beta_custom">test_Beta_custom() (test_helper_func.TestHelperFunc method)</a>
-</li>
-      <li><a href="test_helper_func.html#test_helper_func.TestHelperFunc.test_dropna">test_dropna() (test_helper_func.TestHelperFunc method)</a>
-</li>
-      <li><a href="test_helper_func.html#test_helper_func.TestHelperFunc.test_f_solve_poly2">test_f_solve_poly2() (test_helper_func.TestHelperFunc method)</a>
-</li>
-      <li><a href="test_helper_func.html#test_helper_func.TestHelperFunc.test_find_mean">test_find_mean() (test_helper_func.TestHelperFunc method)</a>
-</li>
-      <li><a href="test_helper_func.html#test_helper_func.TestHelperFunc.test_find_similar_group">test_find_similar_group() (test_helper_func.TestHelperFunc method)</a>
-</li>
-      <li><a href="test_helper_func.html#test_helper_func.TestHelperFunc.test_Fit_distrib">test_Fit_distrib() (test_helper_func.TestHelperFunc method)</a>
-</li>
-      <li><a href="test_helper_func.html#test_helper_func.TestHelperFunc.test_Get_mean">test_Get_mean() (test_helper_func.TestHelperFunc method)</a>
-</li>
-      <li><a href="test_helper_func.html#test_helper_func.TestHelperFunc.test_Get_std">test_Get_std() (test_helper_func.TestHelperFunc method)</a>
+      <li><a href="corrosion.html#corrosion.theta2rho_fun">theta2rho_fun() (in module corrosion)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li>
-    test_helper_func
-
-      <ul>
-        <li><a href="test_helper_func.html#module-test_helper_func">module</a>
-</li>
-      </ul></li>
-      <li><a href="test_helper_func.html#test_helper_func.TestHelperFunc.test_interp_extrap_f">test_interp_extrap_f() (test_helper_func.TestHelperFunc method)</a>
-</li>
-      <li><a href="test_helper_func.html#test_helper_func.TestHelperFunc.test_Normal_custom">test_Normal_custom() (test_helper_func.TestHelperFunc method)</a>
-</li>
-      <li><a href="test_helper_func.html#test_helper_func.TestHelperFunc.test_Pf_RS">test_Pf_RS() (test_helper_func.TestHelperFunc method)</a>
-</li>
-      <li><a href="test_helper_func.html#test_helper_func.TestHelperFunc.test_RS_plot">test_RS_plot() (test_helper_func.TestHelperFunc method)</a>
-</li>
-      <li><a href="test_helper_func.html#test_helper_func.TestHelperFunc.test_sample_integral">test_sample_integral() (test_helper_func.TestHelperFunc method)</a>
-</li>
-      <li><a href="test_helper_func.html#test_helper_func.TestHelperFunc">TestHelperFunc (class in test_helper_func)</a>
-</li>
-      <li><a href="corrosion.html#corrosion.theta2rho_fun">theta2rho_fun() (in module corrosion)</a>
-</li>
-      <li><a href="corrosion.html#corrosion.theta_water_to_WaterbyMassHCP">theta_water_to_WaterbyMassHCP() (in module corrosion)</a>
+      <li><a href="corrosion.html#corrosion.theta_water_to_waterByMassHCP">theta_water_to_waterByMassHCP() (in module corrosion)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -637,9 +598,9 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="corrosion.html#corrosion.WaterbyMassHCP_to_RH">WaterbyMassHCP_to_RH() (in module corrosion)</a>
+      <li><a href="corrosion.html#corrosion.waterByMassHCP_to_RH">waterByMassHCP_to_RH() (in module corrosion)</a>
 </li>
-      <li><a href="corrosion.html#corrosion.WaterbyMassHCP_to_theta_water">WaterbyMassHCP_to_theta_water() (in module corrosion)</a>
+      <li><a href="corrosion.html#corrosion.waterByMassHCP_to_theta_water">waterByMassHCP_to_theta_water() (in module corrosion)</a>
 </li>
   </ul></td>
 </tr></table>

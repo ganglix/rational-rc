@@ -4,7 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
@@ -35,7 +35,9 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -93,7 +95,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
@@ -445,20 +447,21 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="chloride-module-example">
-<h1>chloride module example<a class="headerlink" href="#chloride-module-example" title="Permalink to this headline">¶</a></h1>
+<h1>chloride module example<a class="headerlink" href="#chloride-module-example" title="Permalink to this heading">¶</a></h1>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">from</span> <span class="nn">chloride</span> <span class="kn">import</span> <span class="n">Chloride_Model</span><span class="p">,</span> <span class="n">load_df_D_RCM</span><span class="p">,</span> <span class="n">C_crit_param</span><span class="p">,</span> <span class="n">C_eqv_to_C_S_0</span>
+<span class="kn">from</span> <span class="nn">chloride</span> <span class="kn">import</span> <span class="n">ChlorideModel</span><span class="p">,</span> <span class="n">load_df_D_RCM</span><span class="p">,</span> <span class="n">C_crit_param</span><span class="p">,</span> <span class="n">C_eqv_to_C_S_0</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -470,7 +473,7 @@ div.rendered_html tbody tr:hover {
 <span class="n">pars_raw</span><span class="o">.</span><span class="n">marine</span> <span class="o">=</span> <span class="kc">False</span>
 
 <span class="c1"># 1)marine or coastal</span>
-<span class="n">pars_raw</span><span class="o">.</span><span class="n">C_0_M</span> <span class="o">=</span> <span class="mf">18.980</span> <span class="c1"># natural chloirde content of sea water [g/l]</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">C_0_M</span> <span class="o">=</span> <span class="mf">18.980</span> <span class="c1"># natural chloride content of sea water [g/l]</span>
 
 <span class="c1"># 2) de-icing salt (hard to quantify)</span>
 <span class="n">pars_raw</span><span class="o">.</span><span class="n">C_0_R</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># average chloride content of the chloride contaminated water [g/l]</span>
@@ -505,12 +508,12 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># initialize model</span>
-<span class="n">model_cl</span> <span class="o">=</span> <span class="n">Chloride_Model</span><span class="p">(</span><span class="n">pars_raw</span><span class="p">)</span>
+<span class="n">model_cl</span> <span class="o">=</span> <span class="n">ChlorideModel</span><span class="p">(</span><span class="n">pars_raw</span><span class="p">)</span>
 
 <span class="c1"># run for 40 mm and 10 year</span>
 <span class="n">model_cl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="mi">40</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
@@ -525,28 +528,55 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-/Users/gangli/anaconda3/lib/python3.7/site-packages/scipy/optimize/minpack.py:808: OptimizeWarning: Covariance of the parameters could not be estimated
+/Users/gangli/anaconda3/lib/python3.7/site-packages/scipy/optimize/minpack.py:834: OptimizeWarning: Covariance of the parameters could not be estimated
   category=OptimizeWarning)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
 Pf(g = R-S &lt; 0) from various methods
-    sample count: 0.5239
-    g integral: 0.5264259274316304
-    R S integral: 0.5264361482672922
-    beta_factor: -0.31087440419437906
+    sample count: 0.52397
+    g integral: 0.5264646795220598
+    R S integral: 0.5264365424769382
+    beta_factor: -0.3102651198488958
+-0.26944259984866864 0.6023160843054596
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/chloride_example_3_1.svg" src="_images/chloride_example_3_1.svg" /></div>
+<img alt="_images/chloride_example_3_2.png" src="_images/chloride_example_3_2.png" />
+</div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">model_cl</span><span class="o">.</span><span class="n">pf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.5264365424769382
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># Calibration</span>
-<span class="c1"># field data at three depth</span>
+<span class="c1"># field data at three depth at t = 10 years</span>
 <span class="n">chloride_content_field</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
 <span class="n">chloride_content_field</span><span class="p">[</span><span class="s1">&#39;depth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">12.5</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>  <span class="c1"># [mm]</span>
 <span class="n">chloride_content_field</span><span class="p">[</span><span class="s1">&#39;cl&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.226</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">,</span> <span class="mf">0.014</span><span class="p">])</span> <span class="o">/</span> <span class="n">pars_raw</span><span class="o">.</span><span class="n">cement_concrete_ratio</span>  <span class="c1"># chloride_content[wt.-%/cement]</span>
@@ -566,35 +596,36 @@ Pf(g = R-S &lt; 0) from various methods
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1">#calibrate model to the field chloride content</span>
-<span class="n">model_cl_cal</span> <span class="o">=</span> <span class="n">model_cl</span><span class="o">.</span><span class="n">calibrate</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">chloride_content_field</span><span class="p">,</span><span class="n">print_proc</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">model_cl_cal</span> <span class="o">=</span> <span class="n">model_cl</span><span class="o">.</span><span class="n">calibrate</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">chloride_content_field</span><span class="p">,</span><span class="n">print_proc</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area docutils container">
+<div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2.9516601562500007e-13
-1.0129394531250003e-12
-/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/chloride.py:66: RuntimeWarning: invalid value encountered in sqrt
+/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/chloride.py:76: RuntimeWarning: invalid value encountered in sqrt
   1 - erf((x - pars.dx) / (2 * (pars.D_app * t) ** 0.5))
-2.574462890625e-12
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/chloride_example_5_1.svg" src="_images/chloride_example_5_1.svg" /></div>
+<div class="highlight"><pre>
+7.82958984375e-13
+2.9069824218749997e-12
+2.999267578125e-12
+</pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -611,20 +642,22 @@ Pf(g = R-S &lt; 0) from various methods
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Pf(g = R-S &lt; 0) from various methods
-    sample count: 0.11808
-    g integral: 0.11947147378471051
-    R S integral: 0.1195360365046989
-    beta_factor: 0.5079907001618054
+    sample count: 0.11802
+    g integral: 0.11970350000961451
+    R S integral: 0.11986330913922909
+    beta_factor: 0.49857588419071386
+0.326225250538341 0.2303033179353886
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/chloride_example_6_1.svg" src="_images/chloride_example_6_1.svg" /></div>
+<img alt="_images/chloride_example_7_1.png" src="_images/chloride_example_7_1.png" />
+</div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -642,7 +675,7 @@ Pf(g = R-S &lt; 0) from various methods
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/chloride.py:66: RuntimeWarning: invalid value encountered in sqrt
+/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/chloride.py:76: RuntimeWarning: invalid value encountered in sqrt
   1 - erf((x - pars.dx) / (2 * (pars.D_app * t) ** 0.5))
 /Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/helper_func.py:440: IntegrationWarning: The maximum number of subdivisions (50) has been achieved.
   If increasing the limit yields no improvement it is advised to analyze
@@ -657,7 +690,8 @@ Pf(g = R-S &lt; 0) from various methods
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/chloride_example_7_1.svg" src="_images/chloride_example_7_1.svg" /></div>
+<img alt="_images/chloride_example_8_1.png" src="_images/chloride_example_8_1.png" />
+</div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:

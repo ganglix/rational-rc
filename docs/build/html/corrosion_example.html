@@ -4,7 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
@@ -35,7 +35,9 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -93,7 +95,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
@@ -445,7 +447,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="corrosion-module-example">
-<h1>corrosion module example<a class="headerlink" href="#corrosion-module-example" title="Permalink to this headline">¶</a></h1>
+<h1>corrosion module example<a class="headerlink" href="#corrosion-module-example" title="Permalink to this heading">¶</a></h1>
 <ul class="simple">
 <li><p>Input Raw data</p></li>
 <li><p>moisture</p></li>
@@ -453,23 +455,23 @@ div.rendered_html tbody tr:hover {
 <li><p>corrosion state determined by chloride and carbonation from other modules</p></li>
 <li><p>Output</p></li>
 <li><p>icorr and corrosion rate</p></li>
-<li><p>accumulated sectionloss with time</p></li>
+<li><p>accumulated section loss with time</p></li>
 </ul>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">corrosion</span> <span class="kn">import</span> <span class="n">Corrosion_Model</span><span class="p">,</span> <span class="n">Section_loss_Model</span>
-<span class="kn">import</span> <span class="nn">helper_func</span> <span class="k">as</span> <span class="nn">hf</span>
+<span class="kn">from</span> <span class="nn">corrosion</span> <span class="kn">import</span> <span class="n">CorrosionModel</span><span class="p">,</span> <span class="n">SectionLossModel</span>
+<span class="kn">import</span> <span class="nn">math_helper</span> <span class="k">as</span> <span class="nn">mh</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -500,12 +502,12 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># initialize and run model</span>
-<span class="n">model_corr</span> <span class="o">=</span> <span class="n">Corrosion_Model</span><span class="p">(</span><span class="n">raw_pars</span><span class="p">)</span>
+<span class="n">model_corr</span> <span class="o">=</span> <span class="n">CorrosionModel</span><span class="p">(</span><span class="n">raw_pars</span><span class="p">)</span>
 <span class="n">model_corr</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 
 <span class="c1"># result</span>
@@ -524,15 +526,15 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-icorr [A/m^2]: 0.006407370834095256
-section loss rate [mm/year]: 0.007420513570849189
+icorr [A/m^2]: 0.006407338781248256
+section loss rate [mm/year]: 0.007420476449759697
 </pre></div></div>
 </div>
 <ul class="simple">
 <li><p>Accumulated section loss with the increasing probability of active corrosion</p></li>
 </ul>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -551,7 +553,7 @@ section loss rate [mm/year]: 0.007420513570849189
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -563,10 +565,11 @@ Text(0, 0.5, &#39;probability of active corrosion&#39;)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/corrosion_example_5_1.svg" src="_images/corrosion_example_5_1.svg" /></div>
+<img alt="_images/corrosion_example_5_1.png" src="_images/corrosion_example_5_1.png" />
+</div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -580,7 +583,7 @@ Text(0, 0.5, &#39;probability of active corrosion&#39;)
 <span class="n">pars_sl</span><span class="o">.</span><span class="n">x_loss_limit_std</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="mf">0.005</span>  <span class="c1"># mm</span>
 
 <span class="c1"># initialize section loss model object</span>
-<span class="n">model_sl</span> <span class="o">=</span> <span class="n">Section_loss_Model</span><span class="p">(</span><span class="n">pars_sl</span><span class="p">)</span>
+<span class="n">model_sl</span> <span class="o">=</span> <span class="n">SectionLossModel</span><span class="p">(</span><span class="n">pars_sl</span><span class="p">)</span>
 
 <span class="c1"># run model for one time step, 80 year</span>
 <span class="n">model_sl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">t_end</span> <span class="o">=</span> <span class="mi">50</span><span class="p">)</span>
@@ -597,19 +600,21 @@ Text(0, 0.5, &#39;probability of active corrosion&#39;)
 warning: very small Pf
 Pf(g = R-S &lt; 0) from various methods
     sample count: 0.0
-    g integral: -5.000000269139826e-06
+    g integral: -8.940780559194072e-06
     R S integral: 0.0
-    beta_factor: 41.75751987706608
+    beta_factor: 41.81683117869038
+0.13022243234345696 0.0
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/corrosion_example_6_1.svg" src="_images/corrosion_example_6_1.svg" /></div>
+<img alt="_images/corrosion_example_6_1.png" src="_images/corrosion_example_6_1.png" />
+</div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -629,14 +634,14 @@ warning: very small Pf
 warning: very small Pf
 warning: very small Pf
 warning: very small Pf
-warning: very small Pf
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/corrosion_example_7_1.svg" src="_images/corrosion_example_7_1.svg" /></div>
+<img alt="_images/corrosion_example_7_1.png" src="_images/corrosion_example_7_1.png" />
+</div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:

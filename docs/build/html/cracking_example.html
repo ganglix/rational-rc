@@ -4,7 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
@@ -35,7 +35,9 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -92,7 +94,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
@@ -444,9 +446,9 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="cracking-model-example">
-<h1>cracking model example<a class="headerlink" href="#cracking-model-example" title="Permalink to this headline">¶</a></h1>
+<h1>cracking model example<a class="headerlink" href="#cracking-model-example" title="Permalink to this heading">¶</a></h1>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -454,13 +456,14 @@ div.rendered_html tbody tr:hover {
 <span class="c1"># %load_ext autoreload</span>
 <span class="c1"># %autoreload 2</span>
 
-<span class="kn">import</span> <span class="nn">helper_func</span> <span class="k">as</span> <span class="nn">hf</span>
+<span class="kn">import</span> <span class="nn">math_helper</span> <span class="k">as</span> <span class="nn">mh</span>
 <span class="kn">from</span> <span class="nn">cracking</span> <span class="kn">import</span> <span class="n">Cracking_Model</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -476,20 +479,20 @@ div.rendered_html tbody tr:hover {
 <span class="n">x_loss_mean</span> <span class="o">=</span> <span class="mf">12.5e-6</span><span class="o">*</span><span class="mf">0.6</span>   <span class="c1"># rebar section loss, mean [m]</span>
 <span class="n">cover_mean</span> <span class="o">=</span> <span class="mf">4e-2</span>           <span class="c1"># cover thickness, mean [m]</span>
 
-<span class="n">raw_pars</span><span class="o">.</span><span class="n">r0_bar</span> <span class="o">=</span> <span class="n">Normal_custom</span><span class="p">(</span><span class="n">r0_bar_mean</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">r0_bar_mean</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">raw_pars</span><span class="o">.</span><span class="n">x_loss</span> <span class="o">=</span> <span class="n">Normal_custom</span><span class="p">(</span><span class="n">x_loss_mean</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">x_loss_mean</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># or from the corrosion model solution</span>
-<span class="n">raw_pars</span><span class="o">.</span><span class="n">cover</span> <span class="o">=</span> <span class="n">Normal_custom</span><span class="p">(</span><span class="n">cover_mean</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">cover_mean</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">raw_pars</span><span class="o">.</span><span class="n">f_t</span> <span class="o">=</span> <span class="n">Normal_custom</span><span class="p">(</span><span class="n">f_t_mean</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">f_t_mean</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">raw_pars</span><span class="o">.</span><span class="n">E_0</span> <span class="o">=</span> <span class="n">Normal_custom</span><span class="p">(</span><span class="n">E_0_mean</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">E_0_mean</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">raw_pars</span><span class="o">.</span><span class="n">w_c</span> <span class="o">=</span> <span class="n">Normal_custom</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">*</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">raw_pars</span><span class="o">.</span><span class="n">r_v</span> <span class="o">=</span> <span class="n">Beta_custom</span><span class="p">(</span><span class="mf">2.96</span><span class="p">,</span> <span class="mf">2.96</span><span class="o">*</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">3.3</span><span class="p">,</span> <span class="mf">2.6</span><span class="p">)</span>  <span class="c1"># rust volumetric expansion rate  2.96 lower 2.6  upper: 3.3</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">r0_bar</span> <span class="o">=</span> <span class="n">mh</span><span class="o">.</span><span class="n">normal_custom</span><span class="p">(</span><span class="n">r0_bar_mean</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">r0_bar_mean</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">x_loss</span> <span class="o">=</span> <span class="n">mh</span><span class="o">.</span><span class="n">normal_custom</span><span class="p">(</span><span class="n">x_loss_mean</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">x_loss_mean</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># or from the corrosion model solution</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">cover</span> <span class="o">=</span> <span class="n">mh</span><span class="o">.</span><span class="n">normal_custom</span><span class="p">(</span><span class="n">cover_mean</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">cover_mean</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">f_t</span> <span class="o">=</span> <span class="n">mh</span><span class="o">.</span><span class="n">normal_custom</span><span class="p">(</span><span class="n">f_t_mean</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">f_t_mean</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">E_0</span> <span class="o">=</span> <span class="n">mh</span><span class="o">.</span><span class="n">normal_custom</span><span class="p">(</span><span class="n">E_0_mean</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">E_0_mean</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">w_c</span> <span class="o">=</span> <span class="n">mh</span><span class="o">.</span><span class="n">normal_custom</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">*</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">r_v</span> <span class="o">=</span> <span class="n">mh</span><span class="o">.</span><span class="n">beta_custom</span><span class="p">(</span><span class="mf">2.96</span><span class="p">,</span> <span class="mf">2.96</span><span class="o">*</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">3.3</span><span class="p">,</span> <span class="mf">2.6</span><span class="p">)</span>  <span class="c1"># rust volumetric expansion rate  2.96 lower 2.6  upper: 3.3</span>
 
 
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -506,31 +509,17 @@ div.rendered_html tbody tr:hover {
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 deterministic
-/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/cracking.py:256: RuntimeWarning: invalid value encountered in greater_equal
-  sol = solve_stress_strain_crack_stochastic(self.pars)  # no plot
-/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/cracking.py:257: RuntimeWarning: invalid value encountered in less_equal
-  else:
-/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/cracking.py:273: RuntimeWarning: invalid value encountered in less
-/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/cracking.py:70: RuntimeWarning: invalid value encountered in less_equal
-  return sigma_theta
-/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/cracking.py:73: RuntimeWarning: invalid value encountered in greater
-  def crack_width_open(a, b, u_st, f_t, E_0):
-/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/cracking.py:73: RuntimeWarning: invalid value encountered in less_equal
-  def crack_width_open(a, b, u_st, f_t, E_0):
-/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/cracking.py:78: RuntimeWarning: invalid value encountered in greater
-  inner radius boundary of the rust (center of rebar to rust-concrete) [m]
-/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/cracking.py:78: RuntimeWarning: invalid value encountered in less_equal
-  inner radius boundary of the rust (center of rebar to rust-concrete) [m]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/cracking_example_3_1.svg" src="_images/cracking_example_3_1.svg" /></div>
+<img alt="_images/cracking_example_3_1.png" src="_images/cracking_example_3_1.png" />
+</div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -544,78 +533,67 @@ deterministic
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/cracking.py:166: RuntimeWarning: divide by zero encountered in true_divide
-
-/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/cracking.py:168: RuntimeWarning: divide by zero encountered in true_divide
-
-/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/cracking.py:256: RuntimeWarning: invalid value encountered in greater_equal
-  sol = solve_stress_strain_crack_stochastic(self.pars)  # no plot
-/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/cracking.py:257: RuntimeWarning: invalid value encountered in less_equal
-  else:
-/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/cracking.py:267: RuntimeWarning: divide by zero encountered in true_divide
-  crack_length_over_cover[np.isnan(crack_length_over_cover)] = 0.0  # crack length=0 for no crack
-/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/cracking.py:273: RuntimeWarning: invalid value encountered in less
-/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/cracking.py:70: RuntimeWarning: invalid value encountered in less_equal
-  return sigma_theta
-/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/cracking.py:73: RuntimeWarning: invalid value encountered in greater
-  def crack_width_open(a, b, u_st, f_t, E_0):
-/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/cracking.py:73: RuntimeWarning: invalid value encountered in less_equal
-  def crack_width_open(a, b, u_st, f_t, E_0):
-/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/cracking.py:78: RuntimeWarning: invalid value encountered in greater
-  inner radius boundary of the rust (center of rebar to rust-concrete) [m]
-/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/cracking.py:78: RuntimeWarning: invalid value encountered in less_equal
-  inner radius boundary of the rust (center of rebar to rust-concrete) [m]
-0.0
-[0.01133316 0.00386504        nan ... 0.00987846 0.00390584 0.00404105]
-[0.04600693 0.03706798 0.04092084 ... 0.04372599 0.03084513 0.03971957]
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">hf</span><span class="o">.</span><span class="n">Hist_custom</span><span class="p">(</span><span class="n">model_crack</span><span class="o">.</span><span class="n">crack_condition</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-(array([29667.,     0.,     0.,     0.,     0.,     0.,     0.,     0.,
-            0., 70333.]),
- array([0. , 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1. ]),
- &lt;a list of 10 Patch objects&gt;)
+/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/cracking.py:156: RuntimeWarning: divide by zero encountered in true_divide
+  R_c = b / (f_t * a / (E_0 * u_st) * ((b / a) ** 2 + 1) - 1) ** 0.5
+/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/cracking.py:158: RuntimeWarning: divide by zero encountered in true_divide
+  ((b / r) ** 2 + 1) / ((b / R_c) ** 2 + 1) * f_t / E_0
+/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/cracking.py:257: RuntimeWarning: divide by zero encountered in true_divide
+  R_c[row_mask_1] = (b / (f_t * a / (E_0 * u_st) * ((b / a) ** 2 + 1) - 1) ** 0.5)[
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/cracking_example_5_1.svg" src="_images/cracking_example_5_1.svg" /></div>
+<div class="highlight"><pre>
+0.0
+[       nan        nan 0.00997421 ... 0.00149363        nan 0.00405172]
+[0.0390288  0.04102875 0.04423796 ... 0.03693974 0.03790861 0.04346325]
+</pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">mh</span><span class="o">.</span><span class="n">hist_custom</span><span class="p">(</span><span class="n">model_crack</span><span class="o">.</span><span class="n">crack_condition</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;Figure size 432x288 with 0 Axes&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/cracking_example_5_1.png" src="_images/cracking_example_5_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># histgram of the relative crack length though the cover</span>
-<span class="n">hf</span><span class="o">.</span><span class="n">Hist_custom</span><span class="p">(</span><span class="n">model_crack</span><span class="o">.</span><span class="n">crack_length_over_cover</span><span class="p">[</span><span class="n">model_crack</span><span class="o">.</span><span class="n">crack_length_over_cover</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">])</span> <span class="c1"># eliminate the uncracked case</span>
+<span class="n">mh</span><span class="o">.</span><span class="n">hist_custom</span><span class="p">(</span><span class="n">model_crack</span><span class="o">.</span><span class="n">crack_length_over_cover</span><span class="p">[</span><span class="n">model_crack</span><span class="o">.</span><span class="n">crack_length_over_cover</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">])</span> <span class="c1"># eliminate the uncracked case</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;crack length/ cover&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -627,10 +605,11 @@ Text(0.5, 0, &#39;crack length/ cover&#39;)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/cracking_example_6_1.svg" src="_images/cracking_example_6_1.svg" /></div>
+<img alt="_images/cracking_example_6_1.png" src="_images/cracking_example_6_1.png" />
+</div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>

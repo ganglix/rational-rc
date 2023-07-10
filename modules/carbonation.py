@@ -290,13 +290,13 @@ def W_t(t, pars):
         Time [years]
     pars : object
         Instance of Param class containing the following attributes:
-        - ToW : float
+        pars.ToW : float
             Time of wetness [-], calculated as (days with rainfall h_Nd >= 2.5 mm per day)/365
-        - p_SR : float
+        pars.p_SR : float
             Probability of driving rain [-], 1.0 for vertical surface, 0.0 for horizontal or interior surfaces
-        - b_w : float
+        pars.b_w : float
             Exponent of regression [-], normally distributed with mean=0.446 and standard deviation=0.163
-        - t_0 : float
+        pars.t_0 : float
             Time of reference [years] [built-in param]
 
     Returns
@@ -304,7 +304,6 @@ def W_t(t, pars):
     numpy array
         Weather parameter array W
     """
-
     ToW = pars.ToW
     p_SR = pars.p_SR
 

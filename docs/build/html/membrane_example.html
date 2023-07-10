@@ -4,7 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
@@ -35,7 +35,9 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
@@ -93,7 +95,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
@@ -445,7 +447,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="membrane-module-example">
-<h1>membrane module example<a class="headerlink" href="#membrane-module-example" title="Permalink to this headline">¶</a></h1>
+<h1>membrane module example<a class="headerlink" href="#membrane-module-example" title="Permalink to this heading">¶</a></h1>
 <ul class="simple">
 <li><p>Raw parameter data</p></li>
 <li><p>initialize model</p></li>
@@ -453,18 +455,18 @@ div.rendered_html tbody tr:hover {
 <li><p>calibrate model</p></li>
 </ul>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">membrane</span> <span class="kn">import</span> <span class="n">Membrane_Model</span>
+<span class="kn">from</span> <span class="nn">membrane</span> <span class="kn">import</span> <span class="n">MembraneModel</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -488,12 +490,12 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># initialize model</span>
-<span class="n">mem_model</span> <span class="o">=</span> <span class="n">Membrane_Model</span><span class="p">(</span><span class="n">raw_pars</span><span class="p">)</span>
+<span class="n">mem_model</span> <span class="o">=</span> <span class="n">MembraneModel</span><span class="p">(</span><span class="n">raw_pars</span><span class="p">)</span>
 
 <span class="c1"># run and postproc (uncalibrated)</span>
 <span class="n">mem_model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># 10 years</span>
@@ -507,20 +509,21 @@ div.rendered_html tbody tr:hover {
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Pf(g = R-S &lt; 0) from various methods
-    sample count: 0.05058
-    g integral: 0.051280490624611694
+    sample count: 0.05009
+    g integral: 0.050994623564832295
     R S integral: 0.05000000000001138
-    beta_factor: 1.6378434656157241
+    beta_factor: 1.6475217846071326
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/membrane_example_3_1.svg" src="_images/membrane_example_3_1.svg" /></div>
+<img alt="_images/membrane_example_3_1.png" src="_images/membrane_example_3_1.png" />
+</div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -542,7 +545,7 @@ field: 0.01
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -558,20 +561,21 @@ field: 0.01
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Pf(g = R-S &lt; 0) from various methods
-    sample count: 0.17761
-    g integral: 0.1791927385519138
+    sample count: 0.17666
+    g integral: 0.17838508499899636
     R S integral: 0.17795324587799488
-    beta_factor: 0.9208084394524149
+    beta_factor: 0.9241428616945742
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/membrane_example_5_1.svg" src="_images/membrane_example_5_1.svg" /></div>
+<img alt="_images/membrane_example_5_1.png" src="_images/membrane_example_5_1.png" />
+</div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -585,7 +589,8 @@ Pf(g = R-S &lt; 0) from various methods
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/membrane_example_6_0.svg" src="_images/membrane_example_6_0.svg" /></div>
+<img alt="_images/membrane_example_6_0.png" src="_images/membrane_example_6_0.png" />
+</div>
 </div>
 </section>
 

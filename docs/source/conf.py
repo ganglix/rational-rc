@@ -37,7 +37,7 @@ release = 'beta'
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
-    # 'sphinx.ext.viewcode',
+    'sphinx.ext.viewcode',
     'nbsphinx',
     'nbsphinx_link',
     'sphinx_rtd_theme',
