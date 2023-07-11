@@ -20,17 +20,12 @@ import math_helper as mh
 # special functions for this module
 
 def pf_RS_special(R_info, S, R_distrib_type="normal", plot=False):
-    """special case of helper_fuc.Pf_RS, here the "load" S is a number and it calculates the probability of failure  Pf = P(R-S<0), given the R(resistance) and S(load)
-    with three three methods and use method 3 if it is checked "OK" with the other two
-
-    1. crude monte carlo  
-    2. numerical integral of g kernel fit
-    3. R S integral: $F_R(S)$, reliability index(beta factor) is calculated with simple 1st order g.mean()/g.std()
-    
+    """Calculate the probability of failure given the resistance R and load S using three methods.
+        
     Parameters
     ----------
     R_info : tuple
-        distribution of Resistance, for this specicial case, the membrane service life.
+        distribution of Resistance, for this special case, the membrane service life.
         R_distrib_type='normal' -> tuple(m,s) for normal m: mean s: standard deviation
         other distribution form will be ignored.
 
@@ -41,16 +36,23 @@ def pf_RS_special(R_info, S, R_distrib_type="normal", plot=False):
         by default 'normal'
 
     plot : bool, optional
-        plot distribution, by default False
+        Whether to plot the distributions. Default is False.
 
     Returns
     -------
     tuple
-        (probability of failure, beta factor)
+        Probability of failure (Pf), beta factor, and R distribution
 
     Note
     ----
-    R_info only supports two-parameter normal distribution.
+    It is a special case of math_helper.Pf_RS, here the "load" S is a number and it calculates the probability of failure  Pf = P(R-S<0), given the R(resistance) and S(load)
+    with three three methods and use method 3 if it is checked "OK" with the other two
+    
+    1. crude monte carlo  
+    2. numerical integral of g kernel fit
+    3. R S integral: $F_R(S)$, reliability index(beta factor) is calculated with simple 1st order g.mean()/g.std()
+
+    R_info only supports the two-parameter normal distribution.
     """
     from scipy import integrate
 
@@ -75,8 +77,7 @@ def pf_RS_special(R_info, S, R_distrib_type="normal", plot=False):
         R_distrib = None
         print("S is not configured")
 
-    # compare with
-    # numerical g
+    # compare with numerical g
     g = R - S
     g = g[~np.isnan(g)]
     # numerical kernel fit
@@ -111,7 +112,7 @@ def pf_RS_special(R_info, S, R_distrib_type="normal", plot=False):
         # S updated
         ax1.vlines(
             x=S, ymin=0, ymax=R_distrib.pdf(R_info[0]), color="C1", alpha=1, label="S"
-        )  # updated
+        )
 
         ax1.set_title("S: {:.1f}".format(S))
         ax1.legend()
@@ -148,23 +149,23 @@ def pf_RS_special(R_info, S, R_distrib_type="normal", plot=False):
 
 
 def plot_RS_special(model, ax=None, t_offset=0, amplify=1):  # updated!
-    """plot R S distribution vertically at a time to an axis special case: S is a number.
+    """Plot R-S distribution vertically at a time to an axis (special case: S is a number).
 
-    Parameters
-    ----------
+    Parameters:
+    -----------
     model : model object instance
-        
-        + model.R_distrib : scipy.stats._continuous_distns, normal or beta [calculated in Pf_RS() through model.postproc()]
-        + model.S : single number for this special case
+        Model object instance containing the following attributes:
+        - model.R_distrib: scipy.stats._continuous_distns, normal or beta distribution (calculated in pf_RS_special() through model.postproc())
+        - model.S: Single number for this special case
 
-    ax : axes
-        subplot axis
+    ax : axes, optional
+        Subplot axis. If not provided, the current axis will be used.
 
-    t_offset : int, float
-        time offset to move the plot along the t-axis. default is zero
-    
-    amplify : int
-        scale the height of the pdf plot
+    t_offset : int or float, optional
+        Time offset to move the plot along the t-axis. Default is zero.
+
+    amplify : int, optional
+        Scale the height of the PDF plot.
     """
 
     R_distrib = model.R_distrib
@@ -176,7 +177,7 @@ def plot_RS_special(model, ax=None, t_offset=0, amplify=1):  # updated!
 
     if ax == None:
         ax = plt.gca()
-    # R
+    # plot R
     R_plot = np.linspace(R.min(), R.max(), 100)
     ax.plot(R_distrib.pdf(R_plot) * amplify + t_offset, R_plot, color="C0")
     ax.fill_betweenx(
@@ -187,7 +188,7 @@ def plot_RS_special(model, ax=None, t_offset=0, amplify=1):  # updated!
         alpha=0.5,
         label="R",
     )
-    # S
+    # plot S
     S_plot = np.linspace(S_dropna.min(), S_dropna.max(), 100)
     ax.hlines(
         y=S,
@@ -201,44 +202,45 @@ def plot_RS_special(model, ax=None, t_offset=0, amplify=1):  # updated!
 
 # model function
 def membrane_age(t):
-    """return the membrane age as the "resistance"
+    """
+    Return the membrane age as the "resistance".
 
-    Parameters
-    ----------
-    t : int, float
-        membrane age
+    Parameters:
+    -----------
+    t : int or float
+        Membrane age.
 
-    Returns
-    -------
-    int, float
-        membrane age
-    
-    Note
-    ----
-        This function is a placeholder for more complex age input
+    Returns:
+    --------
+    int or float
+        Membrane age.
+
+    Notes:
+    ------
+    This function is a placeholder for more complex age input.
     """
     return t
 
 
 def membrane_life(pars):
-    """calculate the mean value of the service life from the manufacture's service life label(eg. 30 years with 95% confidence)
-    with the given standard deviation
+    """Calculate the mean value of the service life from the manufacturer's service life label
+    (e.g., 30 years with 95% confidence) with the given standard deviation.
 
-    Parameters
-    ----------
+    Parameters:
+    -----------
     pars : parameter object instance
-        raw parameters
-        pars.life_product_label_life
-        pars.life_confidence
-        pars.life_std
+        Raw parameters.
+        - pars.life_product_label_life
+        - pars.life_confidence
+        - pars.life_std
 
-    Returns
-    -------
+    Returns:
+    --------
     float
-        service life mean value
+        Service life mean value.
     """
+
     life_mean = mh.find_mean(
-        # find_mean is a helper function in helper_func.py
         val=pars.life_product_label_life,
         s=pars.life_std,
         confidence_one_tailed=pars.life_confidence,
@@ -250,32 +252,34 @@ def membrane_life(pars):
 def calibrate_f(
     model_raw, t, membrane_failure_ratio_field, tol=1e-6, max_count=100, print_out=True
 ):
-    """calibrate membrane model to field condition by finding the corresponding membrane service life std that matches the failure ratio in the field
+    """    Calibrate the membrane model to field conditions by finding the corresponding membrane service life std
+    that matches the failure ratio in the field.
 
-    Parameters
-    ----------
+    Parameters:
+    -----------
     model_raw : model instance
-        model to be calibrated
+        Model to be calibrated.
     t : int, float
-        membrane age when membrane failure rate is surveyed [year]
+        Membrane age when membrane failure rate is surveyed [year].
     membrane_failure_ratio_field : float
-        failure rate e.g. 0.1 for 10%
+        Failure rate, e.g., 0.1 for 10%.
     tol : float, optional
-        optimization tolerance, by default 1e-6
+        Optimization tolerance, default is 1e-6.
     max_count : int, optional
-        optimization max iteration number, by default 100
+        Maximum iteration number for optimization, default is 100.
     print_out : bool, optional
-        if True print out model vs field compare, by default True
+        If True, print out the model vs field comparison, default is True.
 
-    Returns
-    -------
+    Returns:
+    --------
     membrane model object instance
-        calibrated model
+        Calibrated model.
     """
     
     model = model_raw.copy()
     std_min = 0.0
     std_max = 100.0  # year, unrealistic large safe ceiling
+
     # optimization
     count = 0
     while std_max - std_min > tol:
@@ -305,23 +309,23 @@ def calibrate_f(
 
 
 def membrane_failure_year(model, year_lis, plot=True, amplify=30):
-    """membrane_failure_year: run model over a list of time steps
+    """    Run the model over a list of time steps.
 
-    Parameters
-    ----------
+    Parameters:
+    -----------
     model : class instance
-        Membrane_model class instance
+        Membrane_model class instance.
     year_lis : list, array-like
-        a list of time steps
+        A list of time steps.
     plot : bool, optional
-        if True, plot the Pf, beta, R S distribution, by default True
+        If True, plot the Pf, beta, R S distribution. Default is True.
     amplify : int, optional
-        the arbitrary comparable size of the distribution curve, by default 80
+        The arbitrary comparable size of the distribution curve. Default is 30.
 
-    Returns
-    -------
+    Returns:
+    --------
     tuple
-        (pf list , beta list)
+        (pf list, beta list)
     """
     t_lis = year_lis
     M_cal = model
@@ -388,17 +392,38 @@ def membrane_failure_year(model, year_lis, plot=True, amplify=30):
 
 class MembraneModel:
     def __init__(self, pars):
-        """initialize the object with raw parameter object (pars) and mean membrane life"""
+        """
+        Initialize the object with raw parameter object (pars) and mean membrane life.
+
+        Parameters:
+        -----------
+        pars : parameter object instance
+            Raw parameters.
+        """
         self.pars = pars
         self.pars.life_mean = membrane_life(self.pars)
 
     def run(self, t):
-        """attach the resistance: membrane age"""
+        """
+        Attach the resistance: membrane age.
+
+        Parameters:
+        -----------
+        t : int, float
+            Membrane age.
+        """
         self.t = t
         self.age = membrane_age(t)
 
     def postproc(self, plot=False):
-        """solve pf, beta, attach R distribution with plot option"""
+        """
+        Solve pf, beta, attach R distribution with plot option.
+
+        Parameters:
+        -----------
+        plot : bool, optional
+            If True, plot the distributions. Default is False.
+        """
         sol = pf_RS_special(
             (self.pars.life_mean, self.pars.life_std),
             self.age,
@@ -411,7 +436,22 @@ class MembraneModel:
         self.S = self.age
 
     def membrane_failure_with_year(self, year_lis, plot=True, amplify=80):
-        """solve pf, beta at a list of time steps with plot option"""
+        """Solve pf, beta at a list of time steps with plot option.
+
+        Parameters:
+        -----------
+        year_lis : list, array-like
+            A list of time steps.
+        plot : bool, optional
+            If True, plot the Pf, beta, R S distribution. Default is True.
+        amplify : int, optional
+            The arbitrary comparable size of the distribution curve. Default is 80.
+
+        Returns:
+        --------
+        tuple
+            (pf array, beta array)
+        """
         pf_lis, beta_lis = membrane_failure_year(
             self, year_lis, plot=plot, amplify=amplify
         )
@@ -422,7 +462,7 @@ class MembraneModel:
         return deepcopy(self)
 
     def calibrate(self, membrane_age_field, membrane_failure_ratio_field):
-        """calibrate membrane model to field condition
+        """Calibrate membrane model to field condition
 
         Parameters
         ----------
