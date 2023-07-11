@@ -280,7 +280,7 @@ def f_solve_poly2(a, b, c):
     """
     discriminant = b ** 2 - 4 * a * c
 
-    if discriminant < 0:
+    if discriminant.any() < 0:
         raise ValueError("The quadratic equation has complex roots")
 
     sqrt_discriminant = discriminant ** 0.5
