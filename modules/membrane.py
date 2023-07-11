@@ -19,7 +19,6 @@ import math_helper as mh
 
 # special functions for this module
 
-
 def pf_RS_special(R_info, S, R_distrib_type="normal", plot=False):
     """special case of helper_fuc.Pf_RS, here the "load" S is a number and it calculates the probability of failure  Pf = P(R-S<0), given the R(resistance) and S(load)
     with three three methods and use method 3 if it is checked "OK" with the other two
@@ -136,7 +135,7 @@ def pf_RS_special(R_info, S, R_distrib_type="normal", plot=False):
         )
 
         ax2.annotate(
-            text=r"$\{mu}_g$",
+            s=r"$\{mu}_g$",
             xy=(0, g.mean()),
             xytext=(g.mean(), g_kde_fit(0)[0]),
             va="center",
