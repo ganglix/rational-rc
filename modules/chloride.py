@@ -63,22 +63,12 @@ def chloride_content(x, t, pars):
     Note
     ----
     Intermediate parameters are calculated and attached to pars:
-    - C_0 : float
-        Initial chloride content of the concrete [wt-.%/cement].
-    - C_S_dx : float
-        Chloride content at a depth dx and a certain point of time t [wt-.%/cement].
-    - dx : float
-        Depth of the advection zone (concrete layer, up to which the process of chloride penetration differs from Fick's 2nd law of diffusion) [mm].
-    - D_app : float
-        Apparent coefficient of chloride diffusion through concrete [mm^2/year].
-    - erf : function
-        Imported error function.
 
-    + C_0    : initial chloride content of the concrete [wt-.%/cement]
-    + C_S_dx : chloride content at a depth dx and a certain point of time t [wt-.%/cement]
-    + dx     : depth of the advection zone (concrete layer, up to which the process of chloride penetration differs from Fick’s 2nd law of diffusion) [mm]
-    + D_app  : apparent coefficient of chloride diffusion through concrete [mm^2/year]
-    + erf    : imported error function
+    C_0    : initial chloride content of the concrete [wt-.%/cement]
+    C_S_dx : chloride content at a depth dx and a certain point of time t [wt-.%/cement]
+    dx     : depth of the advection zone (concrete layer, up to which the process of chloride penetration differs from Fick’s 2nd law of diffusion) [mm]
+    D_app  : apparent coefficient of chloride diffusion through concrete [mm^2/year]
+    erf    : imported error function
     """
     pars.D_app = D_app(t, pars)
     C_x_t = pars.C_0 + (pars.C_S_dx - pars.C_0) * (
@@ -106,10 +96,10 @@ def D_app(t, pars):
     ----
     intermediate parameters calculated and attached to pars
     
-    + k_e     : environmental transfer variable [-]
-    + D_RCM_0 : chloride migration coefficient [mm^2/year]
-    + k_t     : transfer parameter, k_t =1 was set in A_t()[-]
-    + A_t     : subfunction considering the 'ageing' [-]
+    k_e     : environmental transfer variable [-]
+    D_RCM_0 : chloride migration coefficient [mm^2/year]
+    k_t     : transfer parameter, k_t =1 was set in A_t()[-]
+    A_t     : subfunction considering the 'ageing' [-]
     """
     pars.k_e = k_e(pars)
     pars.D_RCM_0 = D_RCM_0(pars)
@@ -120,21 +110,24 @@ def D_app(t, pars):
 
 
 def k_e(pars):
-    """Calculate k_e: environmental transfer variable [-]
+    """
+    Calculate the environmental transfer variable k_e [-].
 
     Parameters
     ----------
-    pars : instance of param object
-        a wrapper of all material and environmental parameters deep-copied from the raw data
-
-        + pars.T_ref  : standard test temperature 293 [K]
-        + pars.T_real : temperature of the structural element [K]
-        + pars.b_e    : regression variable [K]
+    pars : Param
+        An instance of the Param class, containing the following parameters:
+        pars.T_ref : float
+            Standard test temperature 293.[K].
+        pars.T_real : float
+            Temperature of the structural element [K].
+        pars.b_e : float
+            Regression variable [K].
 
     Returns
     -------
     numpy array
-        large sample of the distribution of k_e
+        Large sample of the distribution of k_e.
     """
     pars.T_ref = 293  # K (20°C)
     pars.b_e = b_e()
@@ -143,22 +136,22 @@ def k_e(pars):
 
 
 def b_e():
-    """provide the large sample array of b_e : regression variable [K]"""
+    """Provide a large sample array of b_e: regression variable [K]."""
     b_e = mh.normal_custom(4800, 700)  # K
     return b_e
 
 
 def A_t(t, pars):
-    """calculate A_t considering the ageing effect
+    """Calculate A_t considering the ageing effect.
 
     Parameters
     ----------
-    t : int, float
-        time [year]
+    t : int or float
+        Time [year].
     pars : instance of param object
-        a wrapper of all material and environmental parameters deep-copied from the raw data
+        A wrapper of all material and environmental parameters deep-copied from the raw data.
         
-        + pars.concrete_type : string
+        pars.concrete_type : string
             Option:
 
             'Portland cement concrete',
@@ -169,15 +162,14 @@ def A_t(t, pars):
 
     Returns
     -------
-    out : numpy array
-        subfunction considering the "ageing"[-]
+    numpy array
+        Subfunction considering the "ageing" [-].
 
     Note
     ----
-    built-in parameters
-
-        + pars.k_t : transfer parameter, k_t =1 was set for experiment [-]
-        + pars.t_0 : reference point of time, 0.0767 [year]
+    Built-in parameters
+        pars.k_t : transfer parameter, k_t =1 was set for experiment [-]
+        pars.t_0 : reference point of time, 0.0767 [year]
     """
     pars.t_0 = 0.0767  # reference point of time [year]
     # To carry out the quantification of a, the transfer variable k_t was set to k_t = 1:
@@ -188,11 +180,11 @@ def A_t(t, pars):
         # CEM I; 0.40 ≤ w/c ≤ 0.60
         a = mh.beta_custom(0.3, 0.12, 0.0, 1.0)
 
-    if pars.concrete_type == "Portland fly ash cement concrete":
+    elif pars.concrete_type == "Portland fly ash cement concrete":
         # f≥0.20·z;k=0.50; 0.40≤w/c_eqv. ≤0.62
         a = mh.beta_custom(0.6, 0.15, 0.0, 1.0)
 
-    if pars.concrete_type == "Blast furnace slag cement concrete":
+    elif pars.concrete_type == "Blast furnace slag cement concrete":
         # CEM III/B; 0.40 ≤ w/c ≤ 0.60
         a = mh.beta_custom(0.45, 0.20, 0.0, 1.0)
 
@@ -213,11 +205,11 @@ def D_RCM_0(pars):
     pars.D_RCM_test    : int or float
                             RCM test results[m^2/s], the mean value from the test is used, and standard deviation is estimated based on mean
     pars.option.choose : bool
-                            if true interpolation from existing data table is used
+                            If true interpolation from existing data table is used
     pars.option.df_D_RCM_0  : pandas.DataFrame
-                            experimental data table(cement type, and w/c eqv) for interpolation
+                            Experimental data table(cement type, and w/c eqv) for interpolation
     pars.option.cement_type : string
-                            select cement type for data interpolation of the df_D_RCM_0,
+                            Select cement type for data interpolation of the df_D_RCM_0,
                             Options:
                             'CEM_I_42.5_R'\n
                             'CEM_I_42.5_R+FA'\n
@@ -229,7 +221,7 @@ def D_RCM_0(pars):
     Returns
     -------
     numpy array
-         D_RCM_0_final [mm^2/year]
+         D_RCM_0_final [mm^2/year].
     """
     if isinstance(pars.D_RCM_test, int) or isinstance(pars.D_RCM_test, float):
         # though test result [m^2/s]
@@ -263,36 +255,31 @@ def D_RCM_0(pars):
 
 # Data table to interpolate/extrapolate
 def load_df_D_RCM():
-    """load the data table of the Rapid Chloride Migration(RCM) test
+    """Load the data table of the Rapid Chloride Migration(RCM) test
     for D_RCM interpolation.
 
     Returns
     -------
     pandas.DataFrame
-        Data table from experiment
+        Data table from the RCM experiment.
     """
     wc_eqv = np.arange(0.35, 0.60 + (0.05 / 2), 0.05)
 
-    df = pd.DataFrame(
-        columns=[
-            "wc_eqv",  # water/cement ratio (equivalent)
-            "CEM_I_42.5_R",  # k=0
-            "CEM_I_42.5_R+FA",  # k=0.5
-            "CEM_I_42.5_R+SF",  # k=2.0
-            "CEM_III/B_42.5",
-        ]
-    )  # k=0
-    df["wc_eqv"] = wc_eqv
-    df["CEM_I_42.5_R"] = np.array([np.nan, 8.9, 10.0, 15.8, 17.9, 25.0])
-    df["CEM_I_42.5_R+FA"] = np.array([np.nan, 5.6, 6.9, 9.0, 10.9, 14.9])
-    df["CEM_I_42.5_R+SF"] = np.array([4.4, 4.8, np.nan, np.nan, 5.3, np.nan])
-    df["CEM_III/B_42.5"] = np.array([np.nan, 8.3, 1.9, 2.8, 3.0, 3.4])
+    data = {
+        "wc_eqv": wc_eqv,
+        "CEM_I_42.5_R": [np.nan, 8.9, 10.0, 15.8, 17.9, 25.0],
+        "CEM_I_42.5_R+FA": [np.nan, 5.6, 6.9, 9.0, 10.9, 14.9],
+        "CEM_I_42.5_R+SF": [4.4, 4.8, np.nan, np.nan, 5.3, np.nan],
+        "CEM_III/B_42.5": [np.nan, 8.3, 1.9, 2.8, 3.0, 3.4]
+    }
+
+    df = pd.DataFrame(data)
     df = df.set_index("wc_eqv")
     return df
 
 
 def C_eqv_to_C_S_0(C_eqv):
-    """ Convert solution chloride content to saturated chloride content in concrete
+    """ Convert aqueous solution chloride content to saturated chloride content in concrete
     interpolate function for 300kg cement w/c=0.5 OPC. Other empirical function should be used if available
 
     Parameters
@@ -324,13 +311,13 @@ def C_eqv_to_C_S_0(C_eqv):
 
 # Environmental param: Potential chloride impact C_eqv
 def C_eqv(pars):
-    """Evaluate the Potential chloride impact -> equivalent chloride solution concentration, C_eqv[g/L]
+    """Calculate equivalent chloride solution concentration, C_eqv[g/L] as a measurement of the Potential chloride impact
     from the source of 
 
     1. marine or coastal and/or 
     2. de icing salt 
 
-    It is later used to estimate the boundary condition C_S_dx of contineous exposure or NON-geometry-sensitive intermittent exposure
+    It is later used to estimate the boundary condition C_S_dx of contineous exposure or non-geometry-sensitive intermittent exposure
     
     Parameters
     ----------
@@ -342,36 +329,30 @@ def C_eqv(pars):
     Returns
     -------
     float
-          C_eqv, potential chloride impact [g/L]
+          C_eqv, equivalent chloride solution concentration [g/L]
 
     Note
     ----
     1. marine or coastal
 
-    + pars.C_0_M : natural chloride content of sea water [g/l]
+    pars.C_0_M : natural chloride content of sea water [g/l]
 
-    2. de-icing salt (hard to quantify)
+    2. de-icing salt
 
-    + pars.C_0_R : average chloride content of the chloride contaminated water [g/l]
-    + pars.n     : average number of salting events per year [-]
-    + pars.C_R_i : average amount of chloride spread within one spreading event [g/m2]
-    + pars.h_S_i : amount of water from rain and melted snow per spreading period [l/m2]
+    pars.C_0_R : average chloride content of the chloride contaminated water [g/l]
+    pars.n     : average number of salting events per year [-]
+    pars.C_R_i : average amount of chloride spread within one spreading event [g/m2]
+    pars.h_S_i : amount of water from rain and melted snow per spreading period [l/m2]
 
-    C_eqv is used for contineous exposure or NON-geometry-sensitive intermittent exposure.
-    For geometry-sensitive condition(road side splash) the tested C_max() should be used.
+    C_eqv is used for continuous exposure or non-geometry-sensitive intermittent exposure.
+    For geometry-sensitive conditions (roadside splash), the tested C_max() should be used.
     """
     C_0_M = pars.C_0_M
+    C_0_R = (pars.n * pars.C_R_i) / pars.h_S_i
 
-    n = pars.n
-    C_R_i = pars.C_R_i
-    h_S_i = pars.h_S_i
-
-    C_0_R = (n * C_R_i) / h_S_i
-
-    C_eqv = None
     if pars.marine:
         C_eqv = C_0_M + C_0_R
-    if not pars.marine:
+    else:
         C_eqv = C_0_R
 
     return C_eqv
@@ -379,7 +360,7 @@ def C_eqv(pars):
 
 # exposure condition
 def C_S_0(pars):
-    """Return (surface) chloride saturation concentration C_S_0 [wt.-%/cement] caused by  C_eqv [g/l]
+    """Return (surface) chloride saturation concentration C_S_0 [wt.-%/cement] caused by  C_eqv [g/l].
 
     Parameters
     ----------
@@ -388,9 +369,9 @@ def C_S_0(pars):
     pars.C_eqv_to_C_S_0 : global function
         This function is based experiment with the info of
 
-        + binder-specific chloride-adsorption-isotherms
-        + the concrete composition(cement/concrete ratio)
-        + potential chloride impact C_eqv [g/L]
+        binder-specific chloride-adsorption-isotherms
+        the concrete composition(cement/concrete ratio)
+        potential chloride impact C_eqv [g/L]
     
     Returns
     -------
@@ -410,36 +391,40 @@ def C_S_0(pars):
 
 # substitute chloride surface concentration
 def C_S_dx(pars):
-    """return the substitute chloride surface concentration, i.e. chloride content just below the advection zone.
+    """Return the substitute chloride surface concentration, i.e. chloride content just below the advection zone.
     
-    Fick's 2nd law applies below the advection zone(depth=dx). No advection effect when dx = 0
-    condition considered: continuous/intermittent exposure - 'submerged','leakage', 'spray', 'splash' where C_S_dx = C_S_0.
-    The advection depth dx is calculated in the dx() function externally.
-
-    if exposure_condition_geom_sensitive is True: the observed/empirical highest chloride content in concrete C_max is used, C_max is calculated by C_max()
-
     Parameters
     ----------
     pars       : object/instance of param class
                  contains material and environment parameters
+
     pars.C_S_0 : float or numpy array
-                 chloride saturation concentration C_S_0 [wt.-%/cement]
-                 built-in calculation with C_S_0(pars)
+                chloride saturation concentration C_S_0 [wt.-%/cement]
+                built-in calculation with C_S_0(pars)
     pars.C_max : float
-                 maximum content of chlorides within the chloride profile, [wt.-%/cement]
-                 built-in calculation with C_max(pars)
+                maximum content of chlorides within the chloride profile, [wt.-%/cement]
+                built-in calculation with C_max(pars)
     pars.exposure_condition : string
                     continuous/intermittent exposure - 'submerged','leakage', 'spray', 'splash'
 
     pars.exposure_condition_geom_sensitive : bool
-                 if True, the C_max is used instead of C_S_0
+                if True, the C_max is used instead of C_S_0
 
     Returns
     -------
     float or numpy arrays
           C_S_dx, the substitute chloride surface concentration [wt.-%/cement]
 
+    Note
+    ----
+    Fick's 2nd law applies below the advection zone (depth=dx). No advection effect when dx = 0.
+    Conditions considered: continuous/intermittent exposure - 'submerged', 'leakage', 'spray', 'splash' where C_S_dx = C_S_0.
+    The advection depth dx is calculated in the dx() function externally.
+
+    If exposure_condition_geom_sensitive is True, the observed/empirical highest chloride content in concrete C_max is used.
+    C_max is calculated by C_max().
     """
+
     pars.C_S_0 = C_S_0(pars)
     # transfer functions considering geometry and exposure conditions
     # C_S_dx considered as time independent for simplification
@@ -465,7 +450,27 @@ def C_S_dx(pars):
 
 # Convection depth
 def dx(pars):
-    """return dx : advection depth [mm] dependent on the exposure conditions"""
+    """Return dx: advection depth [mm] dependent on the exposure conditions.
+
+    Parameters
+    ----------
+    pars : object/instance of param class
+        Contains material and environment parameters.
+
+    pars.exposure_condition : string
+        Exposure condition - 'splash', 'submerged', 'leakage', 'spray'.
+
+    Returns
+    -------
+    float
+        dx, advection depth [mm].
+
+    Note
+    ----
+    The advection depth dx is specific to each exposure condition.
+    """
+
+    
     condition = pars.exposure_condition
     dx = None
     if condition == "splash":
@@ -480,37 +485,44 @@ def dx(pars):
         dx = 0.0
 
     if condition == "other":
-        print("to be determined")
+        print("To be determined")
         pass
+
     return dx
 
 
 #  Chloride surface content CS resp. substitute chloride surface content C_S_dx
 def C_max(pars):
     """
-    C_max: maximum content of chlorides within the chloride profile [wt.-%/cement]
-    calculate from empirical equations or from test data [wt.-%/concrete]
+    Calculate C_max: maximum content of chlorides within the chloride profile [wt.-%/cement].
+    It is calculated from empirical equations or from test data [wt.-%/concrete].
 
     Parameters
     ----------
+    pars : object/instance of param class
+    Contains material and environment parameters.
+
     pars.cement_concrete_ratio : float
                       cement/concrete weight ratio, used to convert [wt.-%/concrete] -> [wt.-%/cement]
 
     pars.C_max_option : string
-                        "empirical" - use empirical equation
-                        "user_input" - use user input, from test
-    pars.x_a : 
+        Option for determining C_max:
+        - "empirical" - use empirical equation.
+        - "user_input" - use user input from test.
+
+    pars.x_a : float
         "empirical" option: horizontal distance from the roadside [cm]
-    pars.x_h : 
+
+    pars.x_h : float
         "empirical" option: height above road surface [cm]
 
-    pars.C_max_user_input : 
+    pars.C_max_user_input : float
         "user_input" option: Experiment-tested maximum chloride content [wt.-%/concrete]
 
     Returns
     -------
-    C_max : float
-        maximum content of chlorides within the chloride profile, [wt.-%/cement]
+    float
+        C_max, maximum content of chlorides within the chloride profile, [wt.-%/cement]
 
     Note
     ----
@@ -545,7 +557,7 @@ def C_max(pars):
 
 # critical chloride content
 def C_crit_param():
-    """return the beta distribution parameters for the critical chloride content(total chloride), C_crit [wt.-%/cement]
+    """Return the beta distribution parameters for the critical chloride content(total chloride), C_crit [wt.-%/cement]
 
     Returns
     -------
@@ -567,9 +579,8 @@ def calibrate_chloride_f(
     print_out=True,
     print_proc=False,
 ):
-    """calibrate chloride model to field data at one depth at one time.
-    Calibrate the chloride model with field chloride test data and return the new calibrated model object/instance
-    Optimization method:  Field chloride content at depth x and time t -> find corresponding D_RCM_0(repaid chloride migration diffusivity[m^2/s])
+    """
+    Calibrate the chloride model with field chloride test data (at one depth and at one time) and return the new calibrated model object/instance
 
     Parameters
     ----------
@@ -598,13 +609,17 @@ def calibrate_chloride_f(
 
     Note
     ----
+    Optimization method:  Field chloride content at depth x and time t -> find corresponding D_RCM_test 
+    and then update D_RCM_0(repaid chloride migration diffusivity[m^2/s]) in the model.run()
+
     calibrate model to field data at three depths in calibrate_chloride_f_group()
     chloride_content_field[wt.-%/cement] at time t
 
-        + optimizing corresponding D_RCM_0,
+        + optimizing corresponding D_RCM_test,
         + fixed C_S_dx (exposure type dependent)
         + fixed dx (determined by the original model)
     """
+
     model = model_raw.copy()
     # target chloride content at depth x
     cl = chloride_content
@@ -618,13 +633,11 @@ def calibrate_chloride_f(
     # optimization
     count = 0
     while D_RCM_test_max - D_RCM_test_min > tol:
-
         # update guess
         D_RCM_test_guess = 0.5 * (D_RCM_test_min + D_RCM_test_max)
         model.pars.D_RCM_test = D_RCM_test_guess
         model.run(x, t)
         chloride_mean = mh.get_mean(model.C_x_t)
-        #         print 'relative tol: ', (D_RCM_test_max - D_RCM_test_min)/ D_RCM_test_guess
 
         # compare
         if chloride_mean < cl.mean():
@@ -656,7 +669,7 @@ def calibrate_chloride_f(
 def calibrate_chloride_f_group(
     model_raw, t, chloride_content_field, plot=True, print_proc=False
 ):
-    """use calibrate_chloride_f() to calibrate model to field chloride content at three or more depths, and return the new calibrated model with the averaged D_RCM_0
+    """Use calibrate_chloride_f() to calibrate model to field chloride content at three or more depths, and return the new calibrated model with the averaged D_RCM_0
 
     Parameters
     ----------
@@ -670,7 +683,7 @@ def calibrate_chloride_f_group(
     returns
     -------
     object/instance of Chloride_model class
-        a new calibrated model with the averaged calibrated D_RCM_0
+        a new calibrated model with the averaged calibrated D_RCM_test, and corresponding D_RCM_0 normal distribution array. 
     """
     M_cal_lis = []
     M_cal_new = None
@@ -714,7 +727,29 @@ def calibrate_chloride_f_group(
 
 
 def chloride_year(model, depth, year_lis, plot=True, amplify=80):
-    """run model over a list of time steps"""
+    """
+    Run the model over a list of time steps.
+
+    Parameters
+    ----------
+    model : instance of ChlorideModel class
+        The chloride model to run.
+    depth : float
+        Depth [mm].
+    year_list : list of int or float
+        List of time steps [years].
+    plot : bool, optional
+        If True, plot the results, by default True.
+    amplify : float, optional
+        Amplification factor for the plot, by default 80.
+
+    Returns
+    -------
+    list
+        Probability of failure (Pf) for each time step.
+    list
+        Reliability factor (beta) for each time step.
+    """
     t_lis = year_lis
     M_cal = model
 
@@ -784,15 +819,14 @@ def chloride_year(model, depth, year_lis, plot=True, amplify=80):
 
 class ChlorideModel:
     def __init__(self, pars_raw):
-        """initialize the model object
+        """Initialize the model object.
 
         Parameters
         ----------
         pars_raw : Param object
-            material and environment parameters
-            attached a deepcopy of pars_raw with user-input, then update the copy with derived parameters
+            Material and environment parameters.
+            A deep copy of `pars_raw` is attached and then updated with derived parameters.
         """
-        #
         self.pars = deepcopy(pars_raw)
         self.pars.C_S_dx = C_S_dx(pars_raw)
         self.pars.dx = dx(pars_raw)
@@ -802,10 +836,13 @@ class ChlorideModel:
         Parameters
         ----------
         x : int, float
-            depth x[mm]
+            Depth x[mm]
         t : float
-            time[year]
-            
+            Time[year]
+        Returns
+        -------
+        numpy array
+            Chloride content at depth x and time t.
         """
         self.C_x_t = chloride_content(x, t, self.pars)
         self.x = x
@@ -813,12 +850,12 @@ class ChlorideModel:
         return self.C_x_t
 
     def postproc(self, plot=False):
-        """postprocess the solved model and attach the Pf and beta to the model object
+        """Postprocess the solved model and attach Pf and beta to the model object.
 
         Parameters
         ----------
         plot : bool, optional
-            if true, plot the R S curve, by default False
+            If True, plot the R-S curve, by default False.
         """
         sol = mh.pf_RS(
             self.pars.C_crit_distrib_param, self.C_x_t, R_distrib_type="beta", plot=plot
@@ -830,23 +867,23 @@ class ChlorideModel:
         self.S = self.C_x_t
 
     def calibrate(self, t, chloride_content_field, print_proc=False, plot=True):
-        """return a calibrated model with calibrate_chloride_f_group() function
+        """Return a calibrated model with `calibrate_chloride_f_group()` function.
 
         Parameters
         ----------
-        t : int, float
-            time [year]
-        chloride_content_field : pandas.DataFrame
-            contains field chloride contents at various depths [wt.-%/cement]
+        t : int or float
+            Time [year].
+        chloride_content_field : pandas DataFrame
+            Field chloride contents at various depths [wt.-%/cement].
         print_proc : bool, optional
-            if true, print the optimization process, by default False
+            If True, print the optimization process, by default False.
         plot : bool, optional
-            if true, plot the field vs model comparison, by default True
+            If True, plot the field vs model comparison, by default True.
 
         Returns
         -------
-        instance of Chloride_Model object
-            a new calibrated model with the averaged calibrated D_RCM_0
+        ChlorideModel
+            A new calibrated model with the averaged calibrated D_RCM_0.
         """
         model_cal = calibrate_chloride_f_group(
             self, t, chloride_content_field, print_proc=print_proc, plot=plot
@@ -859,23 +896,25 @@ class ChlorideModel:
         return deepcopy(self)
 
     def chloride_with_year(self, depth, year_lis, plot=True, amplify=1):
-        """chloride_with_year runs the model for a list of time steps
+        """Run the model for a list of time steps.
 
         Parameters
         ----------
         depth : float
-            depth at which the chloride concrete is calculated, x[mm]
-        year_lis : list
-            a list of time steps [year]
+            Depth at which the chloride concrete is calculated, x [mm].
+        year_list : list of int or float
+            A list of time steps [year].
         plot : bool, optional
-            if true, plot the R S curve, pf, beta with time axis, by default True
+            If True, plot the R-S curve, pf, beta with time axis, by default True.
         amplify : int, optional
-            a scale parameter adjusting the hight of the distribution curve, by default 80
+            A scale parameter adjusting the height of the distribution curve, by default 1.
 
         Returns
         -------
-        tuple
-            (pf list, beta list)
+        numpy array
+            Probability of failure (Pf) for each time step.
+        numpy array
+            Reliability factor (beta) for each time step.
         """
         pf_lis, beta_lis = chloride_year(
             self, depth, year_lis, plot=plot, amplify=amplify
