@@ -2,7 +2,7 @@ import unittest
 import numpy as np
 from corrosion import CorrosionModel, SectionLossModel
 
-class TestCorrosionModel(unittest.TestCase):
+class TestCorrosion(unittest.TestCase):
     def setUp(self):
         self.pars = DummyCorrPars()
 
