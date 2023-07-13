@@ -10,7 +10,6 @@ icorr = f(moisture, temperature, oxygen availability)
 
 + corrosion rate (LPR, corrosion sensor) to validate the model
 
-
 """
 
 
@@ -21,68 +20,69 @@ from copy import deepcopy
 import math_helper as mh
 
 def icorr_to_mmpy(icorr):
-    """icorr_to_mmpy converts icorr [A/m^2] to corrosion rate[mm/year] using Faraday's laws
+    """Converts icorr [A/m^2] to corrosion rate [mm/year] using Faraday's laws
 
     Parameters
     ----------
-    icorr : float
-        corrosion current density [A/m^2]
+    icorr : float or numpy array
+        Corrosion current density [A/m^2]
 
     Returns
     -------
-    float
-        corrosion rate, section loss [mm/year]
+    float or numpy array
+        Corrosion rate, section loss [mm/year]
     """
     M_Fe = 55.8e-3  # kg/mol
     rho_Fe = 7.874e3  # kg/m^3
     n = 2.0
-
-    F = 96485.33212  # C mol^−1
+    F = 96485.33212  # C/mol
     return icorr * M_Fe / (n * F * rho_Fe) * 3600 * 24 * 365 * 1000.0
 
 
 def mmpy_to_icorr(rate):
-    """mmpy_to_icorr converts corrosion rate[mm/year] to icorr [A/m^2] using Faraday's laws
+    """Converts corrosion rate [mm/year] to icorr [A/m^2] using Faraday's laws
 
     Parameters
     ----------
-    rate : float
-        corrosion rate, section loss [mm/year]
+    rate : float or numpy array
+        Corrosion rate, section loss [mm/year]
 
     Returns
     -------
-    float
-        corrosion current density [A/m^2]
+    float or numpy array
+        Corrosion current density [A/m^2]
     """
     M_Fe = 55.8e-3  # kg/mol
     rho_Fe = 7.874e3  # kg/m^3
     n = 2.0
-    F = 96485.33212  # C mol^−1
+    F = 96485.33212  # C/mol
+
     return rate * n * F * rho_Fe / (M_Fe * 3600 * 24 * 365 * 1000.0)
 
 
 def icorr_base(rho, T, iL, d):  # SI units # regressed model for the ref
-    """ calculate averaged corrosion current density over the rebar-concrete interface from resistivity, temperature, limiting current and cover thickness
+    """Calculate averaged corrosion current density over the rebar-concrete interface from resistivity, temperature, limiting current, and cover thickness.
+
     Parameters
     ----------
-    rho : float, numpy array
-        resistivity [ohm.m]
-    T : float, numpy array
-        temperature [K]
-    iL : float, numpy array 
-        limiting current, oxygen diffusion [ A/m^2]
-    d : float, numpy array
-        concrete cover depth [m]
+    rho : float or numpy array
+        Resistivity [ohm.m]
+    T : float or numpy array
+        Temperature [K]
+    iL : float or numpy array 
+        Limiting current, oxygen diffusion [A/m^2]
+    d : float or numpy array
+        Concrete cover depth [m]
 
     Returns
     -------
-    float array
-        icorr : corrosion current density, treated as uniform corrosion [A/m^2]
-    
-    Note
-    ----
-    reference: Pour-Ghaz, M., Isgor, O. B., & Ghods, P. (2009)The effect of temperature on the corrosion of steel in concrete. Part 1: Simulated polarization resistance tests and model development. Corrosion Science, 51(2), 415–425. https://doi.org/10.1016/j.corsci.2008.10.034
-    parameters from ref
+    numpy array
+        icorr : Corrosion current density, treated as uniform corrosion [A/m^2]
+
+    Notes
+    -----
+    Reference: Pour-Ghaz, M., Isgor, O. B., & Ghods, P. (2009). The effect of temperature on the corrosion of steel in concrete. Part 1: Simulated polarization resistance tests and model development. Corrosion Science, 51(2), 415–425. https://doi.org/10.1016/j.corsci.2008.10.034
+    Parameters from the reference.
     SI units
     """
     # constants
@@ -114,39 +114,55 @@ def icorr_base(rho, T, iL, d):  # SI units # regressed model for the ref
 
 
 def theta2rho_fun(theta_water, a, b):
-    """volumetric water content to resistivity, index regression function used"""
+    """Convert volumetric water content to resistivity using an exponential function.
+
+    Parameters
+    ----------
+    theta_water : float or numpy array
+        Volumetric water content
+    a : float
+        Regression coefficient
+    b : float
+        Regression coefficient
+
+    Returns
+    -------
+    float or numpy array
+        Resistivity
+
+    """
     rho = a * theta_water ** b
     return rho
 
 
 def icorr_f(pars):
-    """ A wrapper of the icorr_base() with modified parameters (resistivity rho -> volumetric water content, theta_water)
-    by theta2rho_fun().
+    """Calculate the corrosion current density using icorr_base() with volumetric water content.
 
     Parameters
     ----------
-    pars : instance of Param class
-
-            + pars.theta_water,
-            + pars.T,
-            + pars.iL,
-            + pars.d,
-            + pars.a,
-            + pars.b
+    pars : Param
+        An instance of the Param class containing the following attributes:
+        - theta_water : float
+            Volumetric water content
+        - T : float or numpy array
+            Temperature [K]
+        - iL : float or numpy array 
+            Limiting current, oxygen diffusion [A/m^2]
+        - d : float or numpy array
+            Concrete cover depth [m]
+        - theta2rho_coeff_a : float
+            Regression coefficient of theta2rho_fun
+        - theta2rho_coeff_b : float
+            Regression coefficient of theta2rho_fun
 
     Returns
     -------
     float, numpy array
         icorr : corrosion current density [A/m^2]
     """
-    # previously calibrated to carbonated concrete
     pars.iL = iL_f(pars)
-    icorr = icorr_base(
-        theta2rho_fun(pars.theta_water, pars.theta2rho_coeff_a, pars.theta2rho_coeff_b),
-        pars.T,
-        pars.iL,
-        pars.d,
-    )
+    rho = theta2rho_fun(pars.theta_water, pars.theta2rho_coeff_a, pars.theta2rho_coeff_b)
+    icorr = icorr_base(rho, pars.T, pars.iL, pars.d)
     return icorr
 
 
@@ -155,7 +171,7 @@ def iL_f(pars):
     Parameters
     ----------
     pars : instance of Param object
-        parameter object that contains the material properties
+        parameter object that contains the material properties listed in the note.
 
     Returns
     -------
@@ -195,7 +211,7 @@ def iL_f(pars):
 
 
 def Cs_g_f():
-    """atmospheric O2 concentration in gas phase on the boundary [mol/m^3], converted from 20.95% by volume"""
+    """Calculate the atmospheric O2 concentration in the gas phase on the boundary [mol/m^3], converted from 20.95% by volume"""
     O2_fraction = 20.95 / 100
     air_molar_vol = 22.4  # [L/mol]
     Cs_g = 1 / air_molar_vol * O2_fraction * 1000  # mol/m^3
@@ -242,7 +258,7 @@ def De_O2_f(pars):
 
 
 def epsilon_p_f(pars):
-    """calculate the porosity of the hardened cement paste from the concrete porosity
+    """Calculate the porosity of the hardened cement paste from the concrete porosity
     
     Parameters
     ---------
@@ -279,15 +295,15 @@ def epsilon_p_f(pars):
     return epsilon_p
 
 
-def calibrate_f(raw_model, field_data):  # [TODO]
-    """A placeholder function for future use. field_data: temperature, theta_water, icorr_list"""
+def calibrate_f(raw_model, field_data):
+    """[TODO] A placeholder function for future development. field_data: temperature, theta_water, icorr_list"""
     model = raw_model.copy()
     return model
 
 
 # RH and water theta is related. Use theoretical model adsorption isotherm or empirical van-Genutchten model
 def RH_to_waterByMassHCP(pars):
-    """return water content(g/g hardened cement paste) from RH in pores/environment based on w_c, cement_type, Temperature by using modified BET model
+    """Return water content(g/g hardened cement paste) from RH in pores/environment based on water-cement ratio w_c, cement_type, temperature by using modified BET model
 
     Note
     ----
@@ -316,7 +332,7 @@ def RH_to_waterByMassHCP(pars):
 
 
 def waterByMassHCP_to_RH(pars):
-    """return RH in pores/environment from water content(g/g hardened cement paste) based on w_c, cement_type, Temperature
+    """Return RH in pores/environment from water content(g/g hardened cement paste) based on water-cement ratio w_c, cement type, temperature,
     a reverse function of RH_to_waterByMassHCP()"""
     V_m = V_m_f(pars.t, pars.w_c, pars.cement_type)
     pars.V_m = V_m
@@ -343,12 +359,16 @@ def waterByMassHCP_to_RH(pars):
 
 
 def V_m_f(t, w_c, cement_type):
-    """ Calculate V_m, a BET model parameter
+    """Calculate V_m, a BET model parameter.
 
     Parameters
     ----------
-    t : curing time/concrete age [day]
-    w_c : water-cement ratio
+    t : float
+        Curing time/concrete age [day]
+    w_c : float
+        Water-cement ratio
+    cement_type : str
+        ASTM C150 cement type, see note
 
     Returns
     -------
@@ -390,7 +410,7 @@ def V_m_f(t, w_c, cement_type):
 
 
 def C_f(T):
-    """C_f returns BET model parameter C sampled from a normal distribution
+    """Return BET model parameter C sampled from a normal distribution.
 
     Parameters
     ----------
@@ -409,7 +429,24 @@ def C_f(T):
 
 
 def k_f(C_mean, w_c, t, cement_type):
-    """ returns BET model parameter k"""
+    """Return BET model parameter k
+
+    Parameters
+    ----------
+    C_mean : float
+        Mean value of BET model parameter C
+    w_c : float
+        Water-cement ratio
+    t : float
+        Curing time/concrete age [day]
+    cement_type : str
+        ASTM C150 cement type
+
+    Returns
+    -------
+    numpy array
+        k : BET model parameter
+    """
     if t < 5:
         t = 5
 
@@ -434,11 +471,31 @@ def k_f(C_mean, w_c, t, cement_type):
     k = mh.normal_custom(k_mean, k_std)
     return k
 
-    # convert theta_water to W or W to theta_water
 
 def waterByMassHCP_to_theta_water(pars):
-    """convert water content from g/g hardened cement paste(HCP) 
-    to volumetric in HCP to volumetric in concrete"""
+    """Convert water content from g/g hardened cement paste (HCP) 
+    to volumetric in HCP to volumetric in concrete
+
+    Parameters
+    ----------
+    pars : Param
+        An instance of the Param class containing the following attributes:
+        - waterByMassHCP : float
+            Water content by mass in hardened cement paste [g/g]
+        - rho_c : float
+            Density of cement [kg/m^3]
+        - rho_a : float
+            Density of aggregate [kg/m^3]
+        - a_c : float
+            aggregate-cement ratio
+        - w_c : float
+            Water-cement ratio
+
+    Returns
+    -------
+    float
+        theta_water : volumetric water content in concrete
+    """
     rho_w = 1000
     waterByMassHCP = pars.waterByMassHCP
 
@@ -455,8 +512,30 @@ def waterByMassHCP_to_theta_water(pars):
 
 
 def theta_water_to_waterByMassHCP(pars):
-    """ convert water content from volumetric by concrete to volumetric in HCP  to g/g  inHCP
-    a reverse function of waterByMassHCP_to_theta_water()"""
+    """ convert water content from volumetric by concrete to volumetric in HCP to g/g in HCP,
+    a reverse function of waterByMassHCP_to_theta_water()
+    
+    Parameters
+    ----------
+    pars : Param
+        An instance of the Param class containing the following attributes:
+        - theta_water : float
+            volumetric water content in concrete
+        - rho_c : float
+            Density of cement [kg/m^3]
+        - rho_a : float
+            Density of aggregate [kg/m^3]
+        - a_c : float
+            Aggregate-cement ratio
+        - w_c : float
+            Water-cement ratio
+
+    Returns
+    -------
+    float
+        waterByMassHCP : Water content by mass in hardened cement paste [g/g]
+    """
+
     rho_w = 1000
     theta_water = pars.theta_water
     rho_c = pars.rho_c
@@ -473,19 +552,20 @@ def theta_water_to_waterByMassHCP(pars):
 
 class CorrosionModel:
     def __init__(self, pars):
-        """initialize the model with Param object and built-in coefficient
-        """
-        pars.theta2rho_coeff_a = 18.71810174  # [TODO: add uncertainty for a and b]
+        """Initialize the model with Param object and built-in coefficient"""
+        pars.theta2rho_coeff_a = 18.71810174  # [TODO: future updates: uncertainty for a and b]
         pars.theta2rho_coeff_b = -1.37938931
         self.pars = pars
+        self.icorr = None
+        self.x_loss_rate = None
 
     def run(self):
-        """solve for icorr and the corresponding section loss rate
-        """
+        """Solve for icorr and the corresponding section loss rate"""
         self.icorr = icorr_f(self.pars)
         self.x_loss_rate = icorr_to_mmpy(self.icorr)  # [mm/year]
 
     def calibrate(self, field_data):
+        # place holder function for future update#
         # update parameters a and b
         pass
 
@@ -497,25 +577,25 @@ class CorrosionModel:
 
 # output section loss distribution at time t
 def x_loss_t_fun(t_end, n_step, x_loss_rate, p_active_t_curve):
-    """x_loss_t_fun returns x_loss samples at a SINGLE given time t_end. the samples represents distribution of all possible x_loss with 
-    different corrosion history
+    """Return samples of x_loss at a given time t_end. The samples represent the distribution of all possible x_loss with different corrosion history
 
     Parameters
     ----------
-    t_end : int, float
-        year in which the x_loss is reported
+    t_end : float
+        Year in which the x_loss is reported
     n_step : int
-        number of time steps
-    r_corr_mean : float
-        averaged corrosion rate i.e. x-loss rate
+        Number of time steps
+    x_loss_rate : float
+        Averaged corrosion rate (x-loss rate)
     p_active_t_curve : tuple
-        (t_lis_curve, pf_lis_curve)
+        (t_lis_curve, pf_lis_curve) - Probability curve data
 
     Returns
     -------
     numpy array
-        section loss at t_end year, a large sample from the distribution
+        Section loss at t_end year, a large sample from the distribution
     """
+
     # probability curve data
     t_lis_curve, pf_lis_curve = p_active_t_curve
 
@@ -539,7 +619,26 @@ def x_loss_t_fun(t_end, n_step, x_loss_rate, p_active_t_curve):
 
 
 def x_loss_year(model, year_lis, plot=True, amplify=80):
-    """run x_loss_t_fun() function over time"""
+    """Run x_loss_t_fun() function over time.
+
+    Parameters
+    ----------
+    model : SectionLossModel object
+        An instance of the SectionLossModel class
+    year_lis : list
+        List of years
+    plot : bool, optional
+        Flag indicating whether to plot the results, by default True
+    amplify : int, optional
+        Amplification factor for plotting, by default 80
+
+    Returns
+    -------
+    list
+        List of probabilities of failure (Pf) at each year
+    list
+        List of reliability factors (beta) at each year
+    """
     t_lis = year_lis
     M_cal = model
 
@@ -615,7 +714,7 @@ class SectionLossModel:
         self.S = self.x_loss_t
     
     def copy(self):
-        """copy return a deep copy
+        """Return a deep copy of the object
         """
         return deepcopy(self)
     
@@ -628,7 +727,7 @@ class SectionLossModel:
         year_lis : list
             a list of time step [year]
         plot : bool, optional
-            if true plot the RS pf beta with time, by default True
+            if true, plot the RS, pf, beta with time, by default True
         amplify : int, optional
             scale factor to adjust the height of the distribution curve, by default 1
 
