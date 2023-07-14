@@ -22,7 +22,7 @@ class TestCracking(unittest.TestCase):
                                              np.array([0.71194436, 1.5450239,  0.66794578, 0.4256151]),
                                              decimal=1)
         self.assertAlmostEqual(self.model.rust_thickness[0], 7.20151627e-06, places=7)
-        self.assertAlmostEqual(self.model.R_c[0], 0.00850738, places=4)
+        self.assertAlmostEqual(self.model.R_c[0,0], 0.00850738, places=4)
 
     def test_run_stochastic(self):
         # Run the model in stochastic mode
