@@ -13,8 +13,6 @@ stress strain through the concrete cover and the location of the crack tip
 + **Field data**: 	concrete mechanical properties
 		(compressive, tensile strength Young’s modulus) 
 		delamination, visible crack ratio
-
-
 """
 
 
@@ -24,26 +22,24 @@ import numpy as np
 
 # model function
 def bilinear_stress_strain(epsilon_theta, f_t, E_0):
-    """returns the stress in concrete from strain using the bilinear stress-strain curve
+    """Return the stress in concrete from strain using the bilinear stress-strain curve.
 
     Parameters
     ----------
     epsilon_theta : numpy array
-        strain[-]
+        strain [-]
     f_t : numpy array
-        cracking tensile strength[MPa]
+        cracking tensile strength [MPa]
     E_0 : numpy array
-        modulus of elasticity[MPa] 
+        modulus of elasticity [MPa] 
 
     Returns
     -------
     numpy array
-        stress[MPa]
+        stress [MPa]
 
-    Note
-    ----
-    [TODO]: modulus of elasticity reduction due to creep
     """
+
     # parameters defining the bilinear curve
     # critical cracking strain
     epsilon_cr = f_t / E_0
@@ -52,7 +48,7 @@ def bilinear_stress_strain(epsilon_theta, f_t, E_0):
     # strain corresponding to zero residual tensile strength
     epsilon_u = 0.002
 
-    # numpy func for speed replacing the use np.where or "if condition"
+    # vectorization with numpy matrix operation for speed, replacing the use of np.where or "if-condition"
     sigma_theta = np.empty_like(epsilon_theta)
 
     sigma_theta[:] = np.nan
@@ -76,12 +72,12 @@ def bilinear_stress_strain(epsilon_theta, f_t, E_0):
 
 
 def crack_width_open(a, b, u_st, f_t, E_0):
-    """ calculate crack opening on the concrete cover surface
+    """ Calculate crack opening size on the concrete cover surface.
 
     Parameters
     ----------
     a: numpy array
-        inner radius boundary of the rust (center of rebar to rust-concrete) [m]
+        inner radius boundary of the rust (center of rebar to rust-concrete interface) [m]
     b : numpy array
         outer radius boundary of the concrete (center of rebar to cover surface) [m]
     u_st : numpy array
@@ -94,7 +90,7 @@ def crack_width_open(a, b, u_st, f_t, E_0):
     Returns
     -------
     numpy array
-        sample of crack opening on the concrete cover surface    
+        samples of crack opening size on the concrete cover surface    
     """
     epsilon_cr = f_t / E_0
     w = 2 * np.pi * b * (2.0 / ((b / a) ** 2.0 + 1) * u_st / a - epsilon_cr)
@@ -102,8 +98,8 @@ def crack_width_open(a, b, u_st, f_t, E_0):
 
 
 def strain_f(r, a, b, u_st, f_t, E_0, crack_condition):
-    """strain_f returns the strain along the polar axis r, a<=r<=b, 
-    fully vectorized with numpy functions
+    """Calculate the strain along the polar axis r, a <= r <= b, 
+    fully vectorized for matrix representing samples.
 
     Parameters
     ----------
@@ -120,7 +116,7 @@ def strain_f(r, a, b, u_st, f_t, E_0, crack_condition):
         (center of rebar to cover surface) [m]
     
     u_st : numpy array
-        rust expansion(to original rebar surface) beyond the porous zone [m]
+        rust expansion (to original rebar surface) beyond the porous zone [m]
 
     f_t : array
         ultimate tensile strength [MPa]
@@ -130,18 +126,17 @@ def strain_f(r, a, b, u_st, f_t, E_0, crack_condition):
     
     crack_condition : array
         crack_condition array [int]. Each element corresponds to the condition of each row of the matrix
-        
-        + 0 'sound cover' 
-        + 1 'partially cracked'
-        + 2 'fully cracked'
+        - 0: 'sound cover' 
+        - 1: 'partially cracked'
+        - 2: 'fully cracked'
 
     Returns
     -------
     2D numpy array
-        strain, epsilon_theta matrix, row is the strain along the polar axis
+        strain, epsilon_theta matrix. Row is the strain along the polar axis.
     """
 
-    # numpy func for speed
+    # numpy matrix operation for speed
     epsilon_theta = np.empty_like(r) * np.nan  # initialize
 
     # sound cover
@@ -171,7 +166,7 @@ def strain_stress_crack_f(
     r, r0_bar, x_loss, cover, f_t, E_0, w_c, r_v, plot=False, ax=None
 ):
     """calculate the stress, strain, crack_condition for the whole concrete cover
-        (fully vectorized with numpy matrix functions)
+        (fully vectorized with numpy matrix functions).
 
     Parameters
     ----------
@@ -212,6 +207,7 @@ def strain_stress_crack_f(
     Vectorization:
     r is a matrix. Other material property parameters(such as E) are 1-D arrays (to be converted to column vector in the calculation)
     """
+
     epsilon_cr = f_t / E_0
     #     r_v = Beta_custom(2.96, 2.96*0.05, 3.3, 2.6)  # volumetric expansion rate  2.96 lower 2.6  upper: 3.3
     u_r = (r_v - 1) * x_loss
@@ -259,7 +255,7 @@ def strain_stress_crack_f(
     ]  # crack tip
 
     # fully cracked
-    # there could be Nans in epsilon_theta, compare with Nan is always False
+    # there could be Nans in epsilon_theta; compare with Nan is always False
     row_mask_2_inverse = ((epsilon_theta) < epsilon_cr).any(axis=1)[:, None]
     row_mask_2 = ~row_mask_2_inverse
     crack_condition[row_mask_2] = 2  # 2 'fully cracked'
@@ -313,8 +309,8 @@ def strain_stress_crack_f(
 
 
 def solve_stress_strain_crack_deterministic(pars, number_of_points=100, plot=True):
-    """solve the stress and strain along the polar axis using strain_stress_crack_f().
-    One deterministic solution is returned by the means of all input variables.
+    """Solve the stress and strain along the polar axis using strain_stress_crack_f().
+    One deterministic solution is returned by the mean values of all input variables.
 
     Parameters
     ----------
@@ -323,6 +319,8 @@ def solve_stress_strain_crack_deterministic(pars, number_of_points=100, plot=Tru
     number_of_points : int, optional
         number of points where the stress and strain is reported along 
         the polar axis, by default 100
+    plot : bool, optional
+        If True, plot the stress and strain diagram, by default True
 
     Returns
     -------
@@ -361,7 +359,7 @@ def solve_stress_strain_crack_deterministic(pars, number_of_points=100, plot=Tru
 
 
 def solve_stress_strain_crack_stochastic(pars, number_of_points=100):
-    """solve the stress and strain along the polar axis using strain_stress_crack_f().
+    """Solve the stress and strain along the polar axis using strain_stress_crack_f().
     the stochastic solution matrix is returned, where each row represents a deterministic solution
 
     Parameters
@@ -422,7 +420,16 @@ class Cracking_Model:
         self.pars = pars
 
     def run(self, stochastic=True, plot_deterministic_result = True):
-        """Solve stress and strain and crack tip location in concrete cover"""
+        """
+        Solve stress, strain, and crack tip location in concrete cover.
+        
+        Parameters
+        ----------
+        stochastic : bool, optional
+            If True, run the model in stochastic mode, by default True
+        plot_deterministic_result : bool, optional
+            If True, plot the deterministic result, by default True
+        """
         if stochastic:
             self.stochastic = stochastic
             sol = solve_stress_strain_crack_stochastic(self.pars)  # no plot
@@ -443,7 +450,7 @@ class Cracking_Model:
         ) = sol
 
     def postproc(self):
-        """calculate the crack length and surface crack rate
+        """calculate the crack length and surface crack rate.
         """
         if self.stochastic:
             crack_length_over_cover = (self.R_c - self.pars.r0_bar) / self.pars.cover
@@ -458,6 +465,5 @@ class Cracking_Model:
             print("Warning! Postprocessing for stochastic solution only")
 
     def copy(self):
-        """create a deepcopy
-        """
+        """Create a deepcopy of the Cracking_Model instance."""
         return deepcopy(self)
