@@ -312,7 +312,7 @@ def strain_stress_crack_f(
     return epsilon_theta, sigma_theta, rust_thickness, crack_condition, R_c, w_open
 
 
-def solve_stress_strain_crack_deterministic(pars, number_of_points=100):
+def solve_stress_strain_crack_deterministic(pars, number_of_points=100, plot=True):
     """solve the stress and strain along the polar axis using strain_stress_crack_f().
     One deterministic solution is returned by the means of all input variables.
 
@@ -346,8 +346,7 @@ def solve_stress_strain_crack_deterministic(pars, number_of_points=100):
         (1, number_of_points),
         np.linspace(r0_bar_mean[0], cover_mean[0], number_of_points),
     )  # solution point
-
-    fig, ax = plt.subplots()
+   
     (
         epsilon_theta,
         sigma_theta,
@@ -356,7 +355,7 @@ def solve_stress_strain_crack_deterministic(pars, number_of_points=100):
         R_c,
         w_open,
     ) = strain_stress_crack_f(
-        r, r0_bar_mean, x_loss_mean, cover_mean, f_t_mean, E_0_mean, w_c, r_v, plot=True
+        r, r0_bar_mean, x_loss_mean, cover_mean, f_t_mean, E_0_mean, w_c, r_v, plot=plot
     )
     return epsilon_theta, sigma_theta, rust_thickness, crack_condition, R_c, w_open
 
@@ -422,7 +421,7 @@ class Cracking_Model:
     def __init__(self, pars):
         self.pars = pars
 
-    def run(self, stochastic=True):
+    def run(self, stochastic=True, plot_deterministic_result = True):
         """Solve stress and strain and crack tip location in concrete cover"""
         if stochastic:
             self.stochastic = stochastic
@@ -431,7 +430,7 @@ class Cracking_Model:
             self.stochastic = stochastic
             print("deterministic")
             sol = solve_stress_strain_crack_deterministic(
-                self.pars
+                self.pars, plot=plot_deterministic_result
             )  # plot to plt.gca()
 
         (
