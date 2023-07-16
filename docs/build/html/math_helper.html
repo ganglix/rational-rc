@@ -1,102 +1,53 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>math_helper module &mdash; Tinkrete beta documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Examples" href="examples.html" />
     <link rel="prev" title="cracking module" href="cracking.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
 
           
-            <a href="index.html" class="icon icon-home"> Tinkrete
           
-
-          
+          <a href="index.html" class="icon icon-home">
+            Tinkrete
           </a>
-
-          
-            
-            
               <div class="version">
                 0.2.2
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
@@ -128,99 +79,33 @@
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Tinkrete</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="modules.html">Modules</a> &raquo;</li>
-        
-      <li>math_helper module</li>
-    
-    
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">Modules</a></li>
+      <li class="breadcrumb-item active">math_helper module</li>
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="_sources/math_helper.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<section id="module-math_helper">
-<span id="math-helper-module"></span><h1>math_helper module<a class="headerlink" href="#module-math_helper" title="Permalink to this heading">¶</a></h1>
+             
+  <section id="module-math_helper">
+<span id="math-helper-module"></span><h1>math_helper module<a class="headerlink" href="#module-math_helper" title="Permalink to this heading"></a></h1>
 <p><strong>Summary</strong></p>
 <p>The helper module is designed to handle the repeated math operations that are not directly related to the mechanistic model calculation. These operations include the following</p>
 <ul class="simple">
@@ -234,7 +119,7 @@
 </ul>
 <dl class="py function">
 <dt class="sig sig-object py" id="math_helper.beta_custom">
-<span class="sig-prename descclassname"><span class="pre">math_helper.</span></span><span class="sig-name descname"><span class="pre">beta_custom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_sample</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/math_helper.html#beta_custom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#math_helper.beta_custom" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">math_helper.</span></span><span class="sig-name descname"><span class="pre">beta_custom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_sample</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/math_helper.html#beta_custom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#math_helper.beta_custom" title="Permalink to this definition"></a></dt>
 <dd><p>Draw samples from a general beta distribution.</p>
 <p>The general beta distribution is described by mean, standard deviation, lower bound, and upper bound.
 X ~ General Beta(a, b, loc=c, scale=d)
@@ -264,19 +149,19 @@ X = c + d * Z</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="math_helper.dropna">
-<span class="sig-prename descclassname"><span class="pre">math_helper.</span></span><span class="sig-name descname"><span class="pre">dropna</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/math_helper.html#dropna"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#math_helper.dropna" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">math_helper.</span></span><span class="sig-name descname"><span class="pre">dropna</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/math_helper.html#dropna"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#math_helper.dropna" title="Permalink to this definition"></a></dt>
 <dd><p>Removes NaN values from the input array.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="math_helper.f_solve_poly2">
-<span class="sig-prename descclassname"><span class="pre">math_helper.</span></span><span class="sig-name descname"><span class="pre">f_solve_poly2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/math_helper.html#f_solve_poly2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#math_helper.f_solve_poly2" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">math_helper.</span></span><span class="sig-name descname"><span class="pre">f_solve_poly2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/math_helper.html#f_solve_poly2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#math_helper.f_solve_poly2" title="Permalink to this definition"></a></dt>
 <dd><p>Find the two roots of the quadratic equation <span class="math notranslate nohighlight">\(ax^2+bx+c=0\)</span></p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="math_helper.find_mean">
-<span class="sig-prename descclassname"><span class="pre">math_helper.</span></span><span class="sig-name descname"><span class="pre">find_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confidence_one_tailed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/math_helper.html#find_mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#math_helper.find_mean" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">math_helper.</span></span><span class="sig-name descname"><span class="pre">find_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confidence_one_tailed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/math_helper.html#find_mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#math_helper.find_mean" title="Permalink to this definition"></a></dt>
 <dd><p>return the mean value of a unknown normal distribution
 based on the given value at a known one-tailed confidence level(default 95%)</p>
 <dl class="field-list simple">
@@ -298,7 +183,7 @@ based on the given value at a known one-tailed confidence level(default 95%)</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="math_helper.find_similar_group">
-<span class="sig-prename descclassname"><span class="pre">math_helper.</span></span><span class="sig-name descname"><span class="pre">find_similar_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">similar_group_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/math_helper.html#find_similar_group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#math_helper.find_similar_group" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">math_helper.</span></span><span class="sig-name descname"><span class="pre">find_similar_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">similar_group_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/math_helper.html#find_similar_group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#math_helper.find_similar_group" title="Permalink to this definition"></a></dt>
 <dd><p>Find the most alike values in a list.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -318,7 +203,7 @@ based on the given value at a known one-tailed confidence level(default 95%)</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="math_helper.fit_distribution">
-<span class="sig-prename descclassname"><span class="pre">math_helper.</span></span><span class="sig-name descname"><span class="pre">fit_distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'kernel'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/math_helper.html#fit_distribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#math_helper.fit_distribution" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">math_helper.</span></span><span class="sig-name descname"><span class="pre">fit_distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'kernel'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/math_helper.html#fit_distribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#math_helper.fit_distribution" title="Permalink to this definition"></a></dt>
 <dd><p>Fit data to a probability distribution function (parametric or numerical)
 and return a continuous random variable or a random variable represented by Gaussian kernels
 parametric : normal
@@ -346,25 +231,25 @@ Gaussian kernel random variable (stats.gaussian_kde) if kernel is used.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="math_helper.get_mean">
-<span class="sig-prename descclassname"><span class="pre">math_helper.</span></span><span class="sig-name descname"><span class="pre">get_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/math_helper.html#get_mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#math_helper.get_mean" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">math_helper.</span></span><span class="sig-name descname"><span class="pre">get_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/math_helper.html#get_mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#math_helper.get_mean" title="Permalink to this definition"></a></dt>
 <dd><p>Calculate the mean of the input array, ignoring NaN values.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="math_helper.get_std">
-<span class="sig-prename descclassname"><span class="pre">math_helper.</span></span><span class="sig-name descname"><span class="pre">get_std</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/math_helper.html#get_std"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#math_helper.get_std" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">math_helper.</span></span><span class="sig-name descname"><span class="pre">get_std</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/math_helper.html#get_std"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#math_helper.get_std" title="Permalink to this definition"></a></dt>
 <dd><p>Calculate the standard deviation of the input array, ignoring NaN values.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="math_helper.hist_custom">
-<span class="sig-prename descclassname"><span class="pre">math_helper.</span></span><span class="sig-name descname"><span class="pre">hist_custom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/math_helper.html#hist_custom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#math_helper.hist_custom" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">math_helper.</span></span><span class="sig-name descname"><span class="pre">hist_custom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/math_helper.html#hist_custom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#math_helper.hist_custom" title="Permalink to this definition"></a></dt>
 <dd><p>Plot a histogram with N_SAMPLE//100 bins, ignoring NaN values.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="math_helper.interp_extrap_f">
-<span class="sig-prename descclassname"><span class="pre">math_helper.</span></span><span class="sig-name descname"><span class="pre">interp_extrap_f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_find</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/math_helper.html#interp_extrap_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#math_helper.interp_extrap_f" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">math_helper.</span></span><span class="sig-name descname"><span class="pre">interp_extrap_f</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_find</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/math_helper.html#interp_extrap_f"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#math_helper.interp_extrap_f" title="Permalink to this definition"></a></dt>
 <dd><p>Interpolate or extrapolate value from an array with a fitted 2nd-degree or 3rd-degree polynomial.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -386,7 +271,7 @@ Gaussian kernel random variable (stats.gaussian_kde) if kernel is used.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="math_helper.normal_custom">
-<span class="sig-prename descclassname"><span class="pre">math_helper.</span></span><span class="sig-name descname"><span class="pre">normal_custom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_sample</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_negative</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/math_helper.html#normal_custom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#math_helper.normal_custom" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">math_helper.</span></span><span class="sig-name descname"><span class="pre">normal_custom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_sample</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_negative</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/math_helper.html#normal_custom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#math_helper.normal_custom" title="Permalink to this definition"></a></dt>
 <dd><p>Sample from a normal distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -409,7 +294,7 @@ Gaussian kernel random variable (stats.gaussian_kde) if kernel is used.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="math_helper.pf_RS">
-<span class="sig-prename descclassname"><span class="pre">math_helper.</span></span><span class="sig-name descname"><span class="pre">pf_RS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R_distrib_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'normal'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/math_helper.html#pf_RS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#math_helper.pf_RS" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">math_helper.</span></span><span class="sig-name descname"><span class="pre">pf_RS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R_distrib_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'normal'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/math_helper.html#pf_RS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#math_helper.pf_RS" title="Permalink to this definition"></a></dt>
 <dd><p>pf_RS calculates the probability of failure Pf = P(R-S&lt;0), given the R(resistance) and S(load)
 with three methods and uses method 3 if it is checked “OK” with the other two</p>
 <ol class="arabic simple">
@@ -450,7 +335,7 @@ The dual numerical integration seems too computationally expensive, so consider 
 
 <dl class="py function">
 <dt class="sig sig-object py" id="math_helper.plot_RS">
-<span class="sig-prename descclassname"><span class="pre">math_helper.</span></span><span class="sig-name descname"><span class="pre">plot_RS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/math_helper.html#plot_RS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#math_helper.plot_RS" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">math_helper.</span></span><span class="sig-name descname"><span class="pre">plot_RS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/math_helper.html#plot_RS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#math_helper.plot_RS" title="Permalink to this definition"></a></dt>
 <dd><p>plot R S distribution vertically at a time to an axis</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -469,7 +354,7 @@ distribution of load, e.g. carbonation depth, chloride content, tensile     stre
 
 <dl class="py function">
 <dt class="sig sig-object py" id="math_helper.sample_integral">
-<span class="sig-prename descclassname"><span class="pre">math_helper.</span></span><span class="sig-name descname"><span class="pre">sample_integral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/math_helper.html#sample_integral"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#math_helper.sample_integral" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">math_helper.</span></span><span class="sig-name descname"><span class="pre">sample_integral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/math_helper.html#sample_integral"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#math_helper.sample_integral" title="Permalink to this definition"></a></dt>
 <dd><p>Integrate Y over x, where every Y data point is a bunch of distribution samples.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -499,50 +384,33 @@ distribution of load, e.g. carbonation depth, chloride content, tensile     stre
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="examples.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="cracking.html" class="btn btn-neutral float-left" title="cracking module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="examples.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, Gang Li.
-
-    </p>
+    <p>&#169; Copyright 2021, Gang Li.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

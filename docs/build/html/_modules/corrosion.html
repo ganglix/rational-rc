@@ -1,97 +1,48 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>corrosion &mdash; Tinkrete beta documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
 
           
-            <a href="../index.html" class="icon icon-home"> Tinkrete
           
-
-          
+          <a href="../index.html" class="icon icon-home">
+            Tinkrete
           </a>
-
-          
-            
-            
               <div class="version">
                 0.2.2
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
@@ -99,69 +50,30 @@
 <li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Tinkrete</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="index.html">Module code</a> &raquo;</li>
-        
-      <li>corrosion</li>
-    
-    
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">corrosion</li>
       <li class="wy-breadcrumbs-aside">
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <h1>Source code for corrosion</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">**Summary**</span>
@@ -175,7 +87,6 @@
 
 <span class="sd">+ corrosion rate (LPR, corrosion sensor) to validate the model</span>
 
-
 <span class="sd">&quot;&quot;&quot;</span>
 
 
@@ -186,68 +97,69 @@
 <span class="kn">import</span> <span class="nn">math_helper</span> <span class="k">as</span> <span class="nn">mh</span>
 
 <div class="viewcode-block" id="icorr_to_mmpy"><a class="viewcode-back" href="../corrosion.html#corrosion.icorr_to_mmpy">[docs]</a><span class="k">def</span> <span class="nf">icorr_to_mmpy</span><span class="p">(</span><span class="n">icorr</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;icorr_to_mmpy converts icorr [A/m^2] to corrosion rate[mm/year] using Faraday&#39;s laws</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts icorr [A/m^2] to corrosion rate [mm/year] using Faraday&#39;s laws</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    icorr : float</span>
-<span class="sd">        corrosion current density [A/m^2]</span>
+<span class="sd">    icorr : float or numpy array</span>
+<span class="sd">        Corrosion current density [A/m^2]</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    float</span>
-<span class="sd">        corrosion rate, section loss [mm/year]</span>
+<span class="sd">    float or numpy array</span>
+<span class="sd">        Corrosion rate, section loss [mm/year]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">M_Fe</span> <span class="o">=</span> <span class="mf">55.8e-3</span>  <span class="c1"># kg/mol</span>
     <span class="n">rho_Fe</span> <span class="o">=</span> <span class="mf">7.874e3</span>  <span class="c1"># kg/m^3</span>
     <span class="n">n</span> <span class="o">=</span> <span class="mf">2.0</span>
-
-    <span class="n">F</span> <span class="o">=</span> <span class="mf">96485.33212</span>  <span class="c1"># C mol^−1</span>
+    <span class="n">F</span> <span class="o">=</span> <span class="mf">96485.33212</span>  <span class="c1"># C/mol</span>
     <span class="k">return</span> <span class="n">icorr</span> <span class="o">*</span> <span class="n">M_Fe</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">F</span> <span class="o">*</span> <span class="n">rho_Fe</span><span class="p">)</span> <span class="o">*</span> <span class="mi">3600</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">365</span> <span class="o">*</span> <span class="mf">1000.0</span></div>
 
 
 <div class="viewcode-block" id="mmpy_to_icorr"><a class="viewcode-back" href="../corrosion.html#corrosion.mmpy_to_icorr">[docs]</a><span class="k">def</span> <span class="nf">mmpy_to_icorr</span><span class="p">(</span><span class="n">rate</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;mmpy_to_icorr converts corrosion rate[mm/year] to icorr [A/m^2] using Faraday&#39;s laws</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts corrosion rate [mm/year] to icorr [A/m^2] using Faraday&#39;s laws</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    rate : float</span>
-<span class="sd">        corrosion rate, section loss [mm/year]</span>
+<span class="sd">    rate : float or numpy array</span>
+<span class="sd">        Corrosion rate, section loss [mm/year]</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    float</span>
-<span class="sd">        corrosion current density [A/m^2]</span>
+<span class="sd">    float or numpy array</span>
+<span class="sd">        Corrosion current density [A/m^2]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">M_Fe</span> <span class="o">=</span> <span class="mf">55.8e-3</span>  <span class="c1"># kg/mol</span>
     <span class="n">rho_Fe</span> <span class="o">=</span> <span class="mf">7.874e3</span>  <span class="c1"># kg/m^3</span>
     <span class="n">n</span> <span class="o">=</span> <span class="mf">2.0</span>
-    <span class="n">F</span> <span class="o">=</span> <span class="mf">96485.33212</span>  <span class="c1"># C mol^−1</span>
+    <span class="n">F</span> <span class="o">=</span> <span class="mf">96485.33212</span>  <span class="c1"># C/mol</span>
+
     <span class="k">return</span> <span class="n">rate</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">F</span> <span class="o">*</span> <span class="n">rho_Fe</span> <span class="o">/</span> <span class="p">(</span><span class="n">M_Fe</span> <span class="o">*</span> <span class="mi">3600</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">365</span> <span class="o">*</span> <span class="mf">1000.0</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="icorr_base"><a class="viewcode-back" href="../corrosion.html#corrosion.icorr_base">[docs]</a><span class="k">def</span> <span class="nf">icorr_base</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">iL</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>  <span class="c1"># SI units # regressed model for the ref</span>
-    <span class="sd">&quot;&quot;&quot; calculate averaged corrosion current density over the rebar-concrete interface from resistivity, temperature, limiting current and cover thickness</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate averaged corrosion current density over the rebar-concrete interface from resistivity, temperature, limiting current, and cover thickness.</span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    rho : float, numpy array</span>
-<span class="sd">        resistivity [ohm.m]</span>
-<span class="sd">    T : float, numpy array</span>
-<span class="sd">        temperature [K]</span>
-<span class="sd">    iL : float, numpy array </span>
-<span class="sd">        limiting current, oxygen diffusion [ A/m^2]</span>
-<span class="sd">    d : float, numpy array</span>
-<span class="sd">        concrete cover depth [m]</span>
+<span class="sd">    rho : float or numpy array</span>
+<span class="sd">        Resistivity [ohm.m]</span>
+<span class="sd">    T : float or numpy array</span>
+<span class="sd">        Temperature [K]</span>
+<span class="sd">    iL : float or numpy array </span>
+<span class="sd">        Limiting current, oxygen diffusion [A/m^2]</span>
+<span class="sd">    d : float or numpy array</span>
+<span class="sd">        Concrete cover depth [m]</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    float array</span>
-<span class="sd">        icorr : corrosion current density, treated as uniform corrosion [A/m^2]</span>
-<span class="sd">    </span>
-<span class="sd">    Note</span>
-<span class="sd">    ----</span>
-<span class="sd">    reference: Pour-Ghaz, M., Isgor, O. B., &amp; Ghods, P. (2009)The effect of temperature on the corrosion of steel in concrete. Part 1: Simulated polarization resistance tests and model development. Corrosion Science, 51(2), 415–425. https://doi.org/10.1016/j.corsci.2008.10.034</span>
-<span class="sd">    parameters from ref</span>
+<span class="sd">    numpy array</span>
+<span class="sd">        icorr : Corrosion current density, treated as uniform corrosion [A/m^2]</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    Reference: Pour-Ghaz, M., Isgor, O. B., &amp; Ghods, P. (2009). The effect of temperature on the corrosion of steel in concrete. Part 1: Simulated polarization resistance tests and model development. Corrosion Science, 51(2), 415–425. https://doi.org/10.1016/j.corsci.2008.10.034</span>
+<span class="sd">    Parameters from the reference.</span>
 <span class="sd">    SI units</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># constants</span>
@@ -279,48 +191,64 @@
 
 
 <div class="viewcode-block" id="theta2rho_fun"><a class="viewcode-back" href="../corrosion.html#corrosion.theta2rho_fun">[docs]</a><span class="k">def</span> <span class="nf">theta2rho_fun</span><span class="p">(</span><span class="n">theta_water</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;volumetric water content to resistivity, index regression function used&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert volumetric water content to resistivity using an exponential function.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    theta_water : float or numpy array</span>
+<span class="sd">        Volumetric water content</span>
+<span class="sd">    a : float</span>
+<span class="sd">        Regression coefficient</span>
+<span class="sd">    b : float</span>
+<span class="sd">        Regression coefficient</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float or numpy array</span>
+<span class="sd">        Resistivity</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">rho</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">theta_water</span> <span class="o">**</span> <span class="n">b</span>
     <span class="k">return</span> <span class="n">rho</span></div>
 
 
 <div class="viewcode-block" id="icorr_f"><a class="viewcode-back" href="../corrosion.html#corrosion.icorr_f">[docs]</a><span class="k">def</span> <span class="nf">icorr_f</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; A wrapper of the icorr_base() with modified parameters (resistivity rho -&gt; volumetric water content, theta_water)</span>
-<span class="sd">    by theta2rho_fun().</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the corrosion current density using icorr_base() with volumetric water content.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    pars : instance of Param class</span>
-
-<span class="sd">            + pars.theta_water,</span>
-<span class="sd">            + pars.T,</span>
-<span class="sd">            + pars.iL,</span>
-<span class="sd">            + pars.d,</span>
-<span class="sd">            + pars.a,</span>
-<span class="sd">            + pars.b</span>
+<span class="sd">    pars : Param</span>
+<span class="sd">        An instance of the Param class containing the following attributes:</span>
+<span class="sd">        - theta_water : float</span>
+<span class="sd">            Volumetric water content</span>
+<span class="sd">        - T : float or numpy array</span>
+<span class="sd">            Temperature [K]</span>
+<span class="sd">        - iL : float or numpy array </span>
+<span class="sd">            Limiting current, oxygen diffusion [A/m^2]</span>
+<span class="sd">        - d : float or numpy array</span>
+<span class="sd">            Concrete cover depth [m]</span>
+<span class="sd">        - theta2rho_coeff_a : float</span>
+<span class="sd">            Regression coefficient of theta2rho_fun</span>
+<span class="sd">        - theta2rho_coeff_b : float</span>
+<span class="sd">            Regression coefficient of theta2rho_fun</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    float, numpy array</span>
 <span class="sd">        icorr : corrosion current density [A/m^2]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># previously calibrated to carbonated concrete</span>
     <span class="n">pars</span><span class="o">.</span><span class="n">iL</span> <span class="o">=</span> <span class="n">iL_f</span><span class="p">(</span><span class="n">pars</span><span class="p">)</span>
-    <span class="n">icorr</span> <span class="o">=</span> <span class="n">icorr_base</span><span class="p">(</span>
-        <span class="n">theta2rho_fun</span><span class="p">(</span><span class="n">pars</span><span class="o">.</span><span class="n">theta_water</span><span class="p">,</span> <span class="n">pars</span><span class="o">.</span><span class="n">theta2rho_coeff_a</span><span class="p">,</span> <span class="n">pars</span><span class="o">.</span><span class="n">theta2rho_coeff_b</span><span class="p">),</span>
-        <span class="n">pars</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
-        <span class="n">pars</span><span class="o">.</span><span class="n">iL</span><span class="p">,</span>
-        <span class="n">pars</span><span class="o">.</span><span class="n">d</span><span class="p">,</span>
-    <span class="p">)</span>
+    <span class="n">rho</span> <span class="o">=</span> <span class="n">theta2rho_fun</span><span class="p">(</span><span class="n">pars</span><span class="o">.</span><span class="n">theta_water</span><span class="p">,</span> <span class="n">pars</span><span class="o">.</span><span class="n">theta2rho_coeff_a</span><span class="p">,</span> <span class="n">pars</span><span class="o">.</span><span class="n">theta2rho_coeff_b</span><span class="p">)</span>
+    <span class="n">icorr</span> <span class="o">=</span> <span class="n">icorr_base</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span> <span class="n">pars</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">pars</span><span class="o">.</span><span class="n">iL</span><span class="p">,</span> <span class="n">pars</span><span class="o">.</span><span class="n">d</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">icorr</span></div>
 
 
 <div class="viewcode-block" id="iL_f"><a class="viewcode-back" href="../corrosion.html#corrosion.iL_f">[docs]</a><span class="k">def</span> <span class="nf">iL_f</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;calculate O2 limiting current density</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;calculate O2 limiting current density</span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    pars : instance of Param object</span>
-<span class="sd">        parameter object that contains the material properties</span>
+<span class="sd">        parameter object that contains the material properties listed in the note.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -360,7 +288,7 @@
 
 
 <div class="viewcode-block" id="Cs_g_f"><a class="viewcode-back" href="../corrosion.html#corrosion.Cs_g_f">[docs]</a><span class="k">def</span> <span class="nf">Cs_g_f</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;atmospheric O2 concentration in gas phase on the boundary [mol/m^3], converted from 20.95% by volume&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the atmospheric O2 concentration in the gas phase on the boundary [mol/m^3], converted from 20.95% by volume&quot;&quot;&quot;</span>
     <span class="n">O2_fraction</span> <span class="o">=</span> <span class="mf">20.95</span> <span class="o">/</span> <span class="mi">100</span>
     <span class="n">air_molar_vol</span> <span class="o">=</span> <span class="mf">22.4</span>  <span class="c1"># [L/mol]</span>
     <span class="n">Cs_g</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">air_molar_vol</span> <span class="o">*</span> <span class="n">O2_fraction</span> <span class="o">*</span> <span class="mi">1000</span>  <span class="c1"># mol/m^3</span>
@@ -368,7 +296,7 @@
 
 
 <div class="viewcode-block" id="De_O2_f"><a class="viewcode-back" href="../corrosion.html#corrosion.De_O2_f">[docs]</a><span class="k">def</span> <span class="nf">De_O2_f</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;calculate the O2 effective diffusivity of concrete</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;calculate the O2 effective diffusivity of concrete</span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    pars : instance of Param object</span>
@@ -407,7 +335,7 @@
 
 
 <div class="viewcode-block" id="epsilon_p_f"><a class="viewcode-back" href="../corrosion.html#corrosion.epsilon_p_f">[docs]</a><span class="k">def</span> <span class="nf">epsilon_p_f</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;calculate the porosity of the hardened cement paste from the concrete porosity</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the porosity of the hardened cement paste from the concrete porosity</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ---------</span>
@@ -444,15 +372,15 @@
     <span class="k">return</span> <span class="n">epsilon_p</span></div>
 
 
-<div class="viewcode-block" id="calibrate_f"><a class="viewcode-back" href="../corrosion.html#corrosion.calibrate_f">[docs]</a><span class="k">def</span> <span class="nf">calibrate_f</span><span class="p">(</span><span class="n">raw_model</span><span class="p">,</span> <span class="n">field_data</span><span class="p">):</span>  <span class="c1"># [TODO]</span>
-    <span class="sd">&quot;&quot;&quot;A placeholder function for future use. field_data: temperature, theta_water, icorr_list&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="calibrate_f"><a class="viewcode-back" href="../corrosion.html#corrosion.calibrate_f">[docs]</a><span class="k">def</span> <span class="nf">calibrate_f</span><span class="p">(</span><span class="n">raw_model</span><span class="p">,</span> <span class="n">field_data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;[TODO] A placeholder function for future development. field_data: temperature, theta_water, icorr_list&quot;&quot;&quot;</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">raw_model</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">model</span></div>
 
 
 <span class="c1"># RH and water theta is related. Use theoretical model adsorption isotherm or empirical van-Genutchten model</span>
 <div class="viewcode-block" id="RH_to_waterByMassHCP"><a class="viewcode-back" href="../corrosion.html#corrosion.RH_to_waterByMassHCP">[docs]</a><span class="k">def</span> <span class="nf">RH_to_waterByMassHCP</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;return water content(g/g hardened cement paste) from RH in pores/environment based on w_c, cement_type, Temperature by using modified BET model</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return water content(g/g hardened cement paste) from RH in pores/environment based on water-cement ratio w_c, cement_type, temperature by using modified BET model</span>
 
 <span class="sd">    Note</span>
 <span class="sd">    ----</span>
@@ -481,7 +409,7 @@
 
 
 <div class="viewcode-block" id="waterByMassHCP_to_RH"><a class="viewcode-back" href="../corrosion.html#corrosion.waterByMassHCP_to_RH">[docs]</a><span class="k">def</span> <span class="nf">waterByMassHCP_to_RH</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;return RH in pores/environment from water content(g/g hardened cement paste) based on w_c, cement_type, Temperature</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return RH in pores/environment from water content(g/g hardened cement paste) based on water-cement ratio w_c, cement type, temperature,</span>
 <span class="sd">    a reverse function of RH_to_waterByMassHCP()&quot;&quot;&quot;</span>
     <span class="n">V_m</span> <span class="o">=</span> <span class="n">V_m_f</span><span class="p">(</span><span class="n">pars</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">pars</span><span class="o">.</span><span class="n">w_c</span><span class="p">,</span> <span class="n">pars</span><span class="o">.</span><span class="n">cement_type</span><span class="p">)</span>
     <span class="n">pars</span><span class="o">.</span><span class="n">V_m</span> <span class="o">=</span> <span class="n">V_m</span>
@@ -508,12 +436,16 @@
 
 
 <div class="viewcode-block" id="V_m_f"><a class="viewcode-back" href="../corrosion.html#corrosion.V_m_f">[docs]</a><span class="k">def</span> <span class="nf">V_m_f</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">w_c</span><span class="p">,</span> <span class="n">cement_type</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Calculate V_m, a BET model parameter</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate V_m, a BET model parameter.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    t : curing time/concrete age [day]</span>
-<span class="sd">    w_c : water-cement ratio</span>
+<span class="sd">    t : float</span>
+<span class="sd">        Curing time/concrete age [day]</span>
+<span class="sd">    w_c : float</span>
+<span class="sd">        Water-cement ratio</span>
+<span class="sd">    cement_type : str</span>
+<span class="sd">        ASTM C150 cement type, see note</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -555,7 +487,7 @@
 
 
 <div class="viewcode-block" id="C_f"><a class="viewcode-back" href="../corrosion.html#corrosion.C_f">[docs]</a><span class="k">def</span> <span class="nf">C_f</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;C_f returns BET model parameter C sampled from a normal distribution</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return BET model parameter C sampled from a normal distribution.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -574,7 +506,24 @@
 
 
 <div class="viewcode-block" id="k_f"><a class="viewcode-back" href="../corrosion.html#corrosion.k_f">[docs]</a><span class="k">def</span> <span class="nf">k_f</span><span class="p">(</span><span class="n">C_mean</span><span class="p">,</span> <span class="n">w_c</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">cement_type</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; returns BET model parameter k&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return BET model parameter k</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    C_mean : float</span>
+<span class="sd">        Mean value of BET model parameter C</span>
+<span class="sd">    w_c : float</span>
+<span class="sd">        Water-cement ratio</span>
+<span class="sd">    t : float</span>
+<span class="sd">        Curing time/concrete age [day]</span>
+<span class="sd">    cement_type : str</span>
+<span class="sd">        ASTM C150 cement type</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    numpy array</span>
+<span class="sd">        k : BET model parameter</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
         <span class="n">t</span> <span class="o">=</span> <span class="mi">5</span>
 
@@ -599,11 +548,31 @@
     <span class="n">k</span> <span class="o">=</span> <span class="n">mh</span><span class="o">.</span><span class="n">normal_custom</span><span class="p">(</span><span class="n">k_mean</span><span class="p">,</span> <span class="n">k_std</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">k</span></div>
 
-    <span class="c1"># convert theta_water to W or W to theta_water</span>
 
 <div class="viewcode-block" id="waterByMassHCP_to_theta_water"><a class="viewcode-back" href="../corrosion.html#corrosion.waterByMassHCP_to_theta_water">[docs]</a><span class="k">def</span> <span class="nf">waterByMassHCP_to_theta_water</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;convert water content from g/g hardened cement paste(HCP) </span>
-<span class="sd">    to volumetric in HCP to volumetric in concrete&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert water content from g/g hardened cement paste (HCP) </span>
+<span class="sd">    to volumetric in HCP to volumetric in concrete</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pars : Param</span>
+<span class="sd">        An instance of the Param class containing the following attributes:</span>
+<span class="sd">        - waterByMassHCP : float</span>
+<span class="sd">            Water content by mass in hardened cement paste [g/g]</span>
+<span class="sd">        - rho_c : float</span>
+<span class="sd">            Density of cement [kg/m^3]</span>
+<span class="sd">        - rho_a : float</span>
+<span class="sd">            Density of aggregate [kg/m^3]</span>
+<span class="sd">        - a_c : float</span>
+<span class="sd">            aggregate-cement ratio</span>
+<span class="sd">        - w_c : float</span>
+<span class="sd">            Water-cement ratio</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        theta_water : volumetric water content in concrete</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">rho_w</span> <span class="o">=</span> <span class="mi">1000</span>
     <span class="n">waterByMassHCP</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">waterByMassHCP</span>
 
@@ -620,8 +589,30 @@
 
 
 <div class="viewcode-block" id="theta_water_to_waterByMassHCP"><a class="viewcode-back" href="../corrosion.html#corrosion.theta_water_to_waterByMassHCP">[docs]</a><span class="k">def</span> <span class="nf">theta_water_to_waterByMassHCP</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; convert water content from volumetric by concrete to volumetric in HCP  to g/g  inHCP</span>
-<span class="sd">    a reverse function of waterByMassHCP_to_theta_water()&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; convert water content from volumetric by concrete to volumetric in HCP to g/g in HCP,</span>
+<span class="sd">    a reverse function of waterByMassHCP_to_theta_water()</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pars : Param</span>
+<span class="sd">        An instance of the Param class containing the following attributes:</span>
+<span class="sd">        - theta_water : float</span>
+<span class="sd">            volumetric water content in concrete</span>
+<span class="sd">        - rho_c : float</span>
+<span class="sd">            Density of cement [kg/m^3]</span>
+<span class="sd">        - rho_a : float</span>
+<span class="sd">            Density of aggregate [kg/m^3]</span>
+<span class="sd">        - a_c : float</span>
+<span class="sd">            Aggregate-cement ratio</span>
+<span class="sd">        - w_c : float</span>
+<span class="sd">            Water-cement ratio</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        waterByMassHCP : Water content by mass in hardened cement paste [g/g]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">rho_w</span> <span class="o">=</span> <span class="mi">1000</span>
     <span class="n">theta_water</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">theta_water</span>
     <span class="n">rho_c</span> <span class="o">=</span> <span class="n">pars</span><span class="o">.</span><span class="n">rho_c</span>
@@ -638,19 +629,20 @@
 
 <div class="viewcode-block" id="CorrosionModel"><a class="viewcode-back" href="../corrosion.html#corrosion.CorrosionModel">[docs]</a><span class="k">class</span> <span class="nc">CorrosionModel</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;initialize the model with Param object and built-in coefficient</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">pars</span><span class="o">.</span><span class="n">theta2rho_coeff_a</span> <span class="o">=</span> <span class="mf">18.71810174</span>  <span class="c1"># [TODO: add uncertainty for a and b]</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the model with Param object and built-in coefficient&quot;&quot;&quot;</span>
+        <span class="n">pars</span><span class="o">.</span><span class="n">theta2rho_coeff_a</span> <span class="o">=</span> <span class="mf">18.71810174</span>  <span class="c1"># [TODO: future updates: uncertainty for a and b]</span>
         <span class="n">pars</span><span class="o">.</span><span class="n">theta2rho_coeff_b</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.37938931</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pars</span> <span class="o">=</span> <span class="n">pars</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">icorr</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x_loss_rate</span> <span class="o">=</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="CorrosionModel.run"><a class="viewcode-back" href="../corrosion.html#corrosion.CorrosionModel.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;solve for icorr and the corresponding section loss rate</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Solve for icorr and the corresponding section loss rate&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">icorr</span> <span class="o">=</span> <span class="n">icorr_f</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x_loss_rate</span> <span class="o">=</span> <span class="n">icorr_to_mmpy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">icorr</span><span class="p">)</span>  <span class="c1"># [mm/year]</span></div>
 
 <div class="viewcode-block" id="CorrosionModel.calibrate"><a class="viewcode-back" href="../corrosion.html#corrosion.CorrosionModel.calibrate">[docs]</a>    <span class="k">def</span> <span class="nf">calibrate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field_data</span><span class="p">):</span>
+        <span class="c1"># place holder function for future update#</span>
         <span class="c1"># update parameters a and b</span>
         <span class="k">pass</span></div>
 
@@ -662,25 +654,25 @@
 
 <span class="c1"># output section loss distribution at time t</span>
 <div class="viewcode-block" id="x_loss_t_fun"><a class="viewcode-back" href="../corrosion.html#corrosion.x_loss_t_fun">[docs]</a><span class="k">def</span> <span class="nf">x_loss_t_fun</span><span class="p">(</span><span class="n">t_end</span><span class="p">,</span> <span class="n">n_step</span><span class="p">,</span> <span class="n">x_loss_rate</span><span class="p">,</span> <span class="n">p_active_t_curve</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;x_loss_t_fun returns x_loss samples at a SINGLE given time t_end. the samples represents distribution of all possible x_loss with </span>
-<span class="sd">    different corrosion history</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return samples of x_loss at a given time t_end. The samples represent the distribution of all possible x_loss with different corrosion history</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    t_end : int, float</span>
-<span class="sd">        year in which the x_loss is reported</span>
+<span class="sd">    t_end : float</span>
+<span class="sd">        Year in which the x_loss is reported</span>
 <span class="sd">    n_step : int</span>
-<span class="sd">        number of time steps</span>
-<span class="sd">    r_corr_mean : float</span>
-<span class="sd">        averaged corrosion rate i.e. x-loss rate</span>
+<span class="sd">        Number of time steps</span>
+<span class="sd">    x_loss_rate : float</span>
+<span class="sd">        Averaged corrosion rate (x-loss rate)</span>
 <span class="sd">    p_active_t_curve : tuple</span>
-<span class="sd">        (t_lis_curve, pf_lis_curve)</span>
+<span class="sd">        (t_lis_curve, pf_lis_curve) - Probability curve data</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    numpy array</span>
-<span class="sd">        section loss at t_end year, a large sample from the distribution</span>
+<span class="sd">        Section loss at t_end year, a large sample from the distribution</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="c1"># probability curve data</span>
     <span class="n">t_lis_curve</span><span class="p">,</span> <span class="n">pf_lis_curve</span> <span class="o">=</span> <span class="n">p_active_t_curve</span>
 
@@ -704,7 +696,26 @@
 
 
 <div class="viewcode-block" id="x_loss_year"><a class="viewcode-back" href="../corrosion.html#corrosion.x_loss_year">[docs]</a><span class="k">def</span> <span class="nf">x_loss_year</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">year_lis</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">80</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;run x_loss_t_fun() function over time&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run x_loss_t_fun() function over time.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    model : SectionLossModel object</span>
+<span class="sd">        An instance of the SectionLossModel class</span>
+<span class="sd">    year_lis : list</span>
+<span class="sd">        List of years</span>
+<span class="sd">    plot : bool, optional</span>
+<span class="sd">        Flag indicating whether to plot the results, by default True</span>
+<span class="sd">    amplify : int, optional</span>
+<span class="sd">        Amplification factor for plotting, by default 80</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    list</span>
+<span class="sd">        List of probabilities of failure (Pf) at each year</span>
+<span class="sd">    list</span>
+<span class="sd">        List of reliability factors (beta) at each year</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">t_lis</span> <span class="o">=</span> <span class="n">year_lis</span>
     <span class="n">M_cal</span> <span class="o">=</span> <span class="n">model</span>
 
@@ -754,7 +765,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">pars</span> <span class="o">=</span> <span class="n">pars</span>  <span class="c1"># pars with user-input</span>
 
 <div class="viewcode-block" id="SectionLossModel.run"><a class="viewcode-back" href="../corrosion.html#corrosion.SectionLossModel.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t_end</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;run model to solve the accumulated section loss at t_end by using x_loss_t_fun()</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;run model to solve the accumulated section loss at t_end by using x_loss_t_fun()</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -765,7 +776,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">x_loss_t</span> <span class="o">=</span> <span class="n">x_loss_t_fun</span><span class="p">(</span><span class="n">t_end</span><span class="p">,</span> <span class="n">mh</span><span class="o">.</span><span class="n">N_SAMPLE</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">x_loss_rate</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">p_active_t_curve</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="SectionLossModel.postproc"><a class="viewcode-back" href="../corrosion.html#corrosion.SectionLossModel.postproc">[docs]</a>    <span class="k">def</span> <span class="nf">postproc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;calculate the Pf and beta from accumulated section loss and section loss limit</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;calculate the Pf and beta from accumulated section loss and section loss limit</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -780,12 +791,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">S</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_loss_t</span></div>
     
 <div class="viewcode-block" id="SectionLossModel.copy"><a class="viewcode-back" href="../corrosion.html#corrosion.SectionLossModel.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;copy return a deep copy</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a deep copy of the object</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
     
 <div class="viewcode-block" id="SectionLossModel.section_loss_with_year"><a class="viewcode-back" href="../corrosion.html#corrosion.SectionLossModel.section_loss_with_year">[docs]</a>    <span class="k">def</span> <span class="nf">section_loss_with_year</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">year_lis</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;use x_loss_year() to report the accumulated section loss at each time step and</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;use x_loss_year() to report the accumulated section loss at each time step and</span>
 <span class="sd">        the corresponding Pf and beta.</span>
 
 <span class="sd">        Parameters</span>
@@ -793,7 +804,7 @@
 <span class="sd">        year_lis : list</span>
 <span class="sd">            a list of time step [year]</span>
 <span class="sd">        plot : bool, optional</span>
-<span class="sd">            if true plot the RS pf beta with time, by default True</span>
+<span class="sd">            if true, plot the RS, pf, beta with time, by default True</span>
 <span class="sd">        amplify : int, optional</span>
 <span class="sd">            scale factor to adjust the height of the distribution curve, by default 1</span>
 
@@ -807,46 +818,30 @@
 </pre></div>
 
            </div>
-           
           </div>
           <footer>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, Gang Li.
-
-    </p>
+    <p>&#169; Copyright 2021, Gang Li.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
