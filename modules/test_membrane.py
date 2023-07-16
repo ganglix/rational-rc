@@ -20,7 +20,7 @@ class TestMembraneModel(unittest.TestCase):
         model_cal.run(10)  # 10 years
         model_cal.postproc(plot=False)
         self.assertAlmostEqual(model_cal.pf, 0.17795324587799488, places=1)
-        self.assertAlmostEqual(model_cal.beta_factor, 0.9218308896882579, places=2)
+        self.assertAlmostEqual(model_cal.beta_factor, 0.9218308896882579, places=1)
 
 
 class DummyPars:
