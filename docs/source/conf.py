@@ -35,8 +35,8 @@ release = 'beta'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
+    'sphinx.ext.autodoc',
     'sphinx.ext.viewcode',
     'nbsphinx',
     'nbsphinx_link',
@@ -46,6 +46,7 @@ extensions = [
     'sphinx_math_dollar',
     # 'sphinx_copybutton',
     'sphinx.ext.todo',
+    'IPython.sphinxext.ipython_console_highlighting',
 ]
 
 # Add any paths that contain templates here, relative to this directory.

@@ -100,12 +100,12 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%matplotlib inline
-import math_helper as mh
-import numpy as np
-from carbonation import CarbonationModel, load_df_R_ACC
-import warnings
-warnings.filterwarnings(&#39;ignore&#39;)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">math_helper</span> <span class="k">as</span> <span class="nn">mh</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">carbonation</span> <span class="kn">import</span> <span class="n">CarbonationModel</span><span class="p">,</span> <span class="n">load_df_R_ACC</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -113,35 +113,35 @@ warnings.filterwarnings(&#39;ignore&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Case study
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Case study</span>
 
-# global - Raw parameters
-class Param: pass
+<span class="c1"># global - Raw parameters</span>
+<span class="k">class</span> <span class="nc">Param</span><span class="p">:</span> <span class="k">pass</span>
 
-pars = Param()
+<span class="n">pars</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>
 
-pars.cover_mean = 50  # mm
-pars.cover_std = 5
-pars.RH_real = 60
-pars.t_c = 28
-pars.x_c = 0.008  # m
-pars.ToW = 2 / 52.
-pars.p_SR = 0.0
-pars.C_S_emi = 0.
+<span class="n">pars</span><span class="o">.</span><span class="n">cover_mean</span> <span class="o">=</span> <span class="mi">50</span>  <span class="c1"># mm</span>
+<span class="n">pars</span><span class="o">.</span><span class="n">cover_std</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">pars</span><span class="o">.</span><span class="n">RH_real</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="n">pars</span><span class="o">.</span><span class="n">t_c</span> <span class="o">=</span> <span class="mi">28</span>
+<span class="n">pars</span><span class="o">.</span><span class="n">x_c</span> <span class="o">=</span> <span class="mf">0.008</span>  <span class="c1"># m</span>
+<span class="n">pars</span><span class="o">.</span><span class="n">ToW</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">/</span> <span class="mf">52.</span>
+<span class="n">pars</span><span class="o">.</span><span class="n">p_SR</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">pars</span><span class="o">.</span><span class="n">C_S_emi</span> <span class="o">=</span> <span class="mf">0.</span>
 
-pars.option = Param()
-pars.option.choose = False
-pars.option.cement_type = &#39;CEM_I_42.5_R+SF&#39;
-pars.option.wc_eqv = 0.6
-pars.option.df_R_ACC = load_df_R_ACC()
-pars.option.plot = True
+<span class="n">pars</span><span class="o">.</span><span class="n">option</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>
+<span class="n">pars</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">choose</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">pars</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">cement_type</span> <span class="o">=</span> <span class="s1">&#39;CEM_I_42.5_R+SF&#39;</span>
+<span class="n">pars</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">wc_eqv</span> <span class="o">=</span> <span class="mf">0.6</span>
+<span class="n">pars</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">df_R_ACC</span> <span class="o">=</span> <span class="n">load_df_R_ACC</span><span class="p">()</span>
+<span class="n">pars</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">plot</span> <span class="o">=</span> <span class="kc">True</span>
 
-# initialize model
-carb_model = CarbonationModel(pars)
+<span class="c1"># initialize model</span>
+<span class="n">carb_model</span> <span class="o">=</span> <span class="n">CarbonationModel</span><span class="p">(</span><span class="n">pars</span><span class="p">)</span>
 
-# run and postproc model
-carb_model.run(50)
-carb_model.postproc(plot=True)
+<span class="c1"># run and postproc model</span>
+<span class="n">carb_model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">carb_model</span><span class="o">.</span><span class="n">postproc</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <br/></pre></div>
 </div>
 </div>
@@ -169,10 +169,10 @@ Pf(g = R-S &lt; 0) from various methods
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># calibration to field data
-# field data: field carbonation after 20 years, mean=30, std=5
-carb_depth_field = mh.normal_custom(30, 5, n_sample=12)  # mm
-carb_model_cal = carb_model.calibrate(20, carb_depth_field, print_out=True)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calibration to field data</span>
+<span class="c1"># field data: field carbonation after 20 years, mean=30, std=5</span>
+<span class="n">carb_depth_field</span> <span class="o">=</span> <span class="n">mh</span><span class="o">.</span><span class="n">normal_custom</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">n_sample</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>  <span class="c1"># mm</span>
+<span class="n">carb_model_cal</span> <span class="o">=</span> <span class="n">carb_model</span><span class="o">.</span><span class="n">calibrate</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">carb_depth_field</span><span class="p">,</span> <span class="n">print_out</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <br/></pre></div>
 </div>
 </div>
@@ -194,11 +194,11 @@ std:4.340697831896319
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># carbonation for a list of time steps
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># carbonation for a list of time steps</span>
 
-year_lis = np.arange(10,150,20)
+<span class="n">year_lis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">150</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
 
-pf_lis, beta_lis = carb_model_cal.carb_with_year(year_lis=year_lis, plot=True, amplify=200)
+<span class="n">pf_lis</span><span class="p">,</span> <span class="n">beta_lis</span> <span class="o">=</span> <span class="n">carb_model_cal</span><span class="o">.</span><span class="n">carb_with_year</span><span class="p">(</span><span class="n">year_lis</span><span class="o">=</span><span class="n">year_lis</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
 <br/></pre></div>
 </div>
 </div>
@@ -213,7 +213,7 @@ pf_lis, beta_lis = carb_model_cal.carb_with_year(year_lis=year_lis, plot=True, a
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># fig.savefig(&#39;RS_time_carbonation.pdf&#39;,dpi=1200)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fig.savefig(&#39;RS_time_carbonation.pdf&#39;,dpi=1200)</span>
 <br/></pre></div>
 </div>
 </div>

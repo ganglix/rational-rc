@@ -103,11 +103,11 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%matplotlib inline
-import numpy as np
-from corrosion import CorrosionModel, SectionLossModel
-import math_helper as mh
-import matplotlib.pyplot as plt
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">corrosion</span> <span class="kn">import</span> <span class="n">CorrosionModel</span><span class="p">,</span> <span class="n">SectionLossModel</span>
+<span class="kn">import</span> <span class="nn">math_helper</span> <span class="k">as</span> <span class="nn">mh</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
@@ -115,26 +115,26 @@ import matplotlib.pyplot as plt
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span>class Param: pass
-raw_pars = Param()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="k">class</span> <span class="nc">Param</span><span class="p">:</span> <span class="k">pass</span>
+<span class="n">raw_pars</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>
 
-# geometry and age
-raw_pars.d = 0.04  # cover depth [m]
-raw_pars.t = 3650  # age[day]
+<span class="c1"># geometry and age</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">d</span> <span class="o">=</span> <span class="mf">0.04</span>  <span class="c1"># cover depth [m]</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="mi">3650</span>  <span class="c1"># age[day]</span>
 
-# concrete composition
-raw_pars.cement_type = &#39;Type I&#39;
-raw_pars.concrete_density = 2400 #kg/m^3
-raw_pars.a_c = 2        # aggregate(fine and coarse)/cement ratio
-raw_pars.w_c = 0.5      # water/cement ratio
-raw_pars.rho_c= 3.1e3   # density of cement particle [kg/m^3]
-raw_pars.rho_a= 2600.   # density of aggregate particle(fine and coarse) range 2400-2900 [kg/m^3]
+<span class="c1"># concrete composition</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">cement_type</span> <span class="o">=</span> <span class="s1">&#39;Type I&#39;</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">concrete_density</span> <span class="o">=</span> <span class="mi">2400</span> <span class="c1">#kg/m^3</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">a_c</span> <span class="o">=</span> <span class="mi">2</span>        <span class="c1"># aggregate(fine and coarse)/cement ratio</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">w_c</span> <span class="o">=</span> <span class="mf">0.5</span>      <span class="c1"># water/cement ratio</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">rho_c</span><span class="o">=</span> <span class="mf">3.1e3</span>   <span class="c1"># density of cement particle [kg/m^3]</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">rho_a</span><span class="o">=</span> <span class="mf">2600.</span>   <span class="c1"># density of aggregate particle(fine and coarse) range 2400-2900 [kg/m^3]</span>
 
 
-# concrete condition
-raw_pars.epsilon = 0.25     # porosity of concrete
-raw_pars.theta_water = 0.12 # volumetric water content
-raw_pars.T = 273.15+25      # temperature [K]
+<span class="c1"># concrete condition</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.25</span>     <span class="c1"># porosity of concrete</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">theta_water</span> <span class="o">=</span> <span class="mf">0.12</span> <span class="c1"># volumetric water content</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">T</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="mi">25</span>      <span class="c1"># temperature [K]</span>
 <br/><br/></pre></div>
 </div>
 </div>
@@ -142,18 +142,18 @@ raw_pars.T = 273.15+25      # temperature [K]
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># initialize and run model
-model_corr = CorrosionModel(raw_pars)
-model_corr.run()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize and run model</span>
+<span class="n">model_corr</span> <span class="o">=</span> <span class="n">CorrosionModel</span><span class="p">(</span><span class="n">raw_pars</span><span class="p">)</span>
+<span class="n">model_corr</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 
-# result
-model_corr.icorr
+<span class="c1"># result</span>
+<span class="n">model_corr</span><span class="o">.</span><span class="n">icorr</span>
 
-# icorr
-print(f&quot;icorr [A/m^2]: {model_corr.icorr.mean()}&quot;)
-# section loss
-model_corr.x_loss_rate
-print(f&quot;section loss rate [mm/year]: {model_corr.x_loss_rate.mean()}&quot;)
+<span class="c1"># icorr</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;icorr [A/m^2]: </span><span class="si">{</span><span class="n">model_corr</span><span class="o">.</span><span class="n">icorr</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># section loss</span>
+<span class="n">model_corr</span><span class="o">.</span><span class="n">x_loss_rate</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;section loss rate [mm/year]: </span><span class="si">{</span><span class="n">model_corr</span><span class="o">.</span><span class="n">x_loss_rate</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -173,16 +173,16 @@ section loss rate [mm/year]: 0.007420514521903584
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># time steps
-t_lis = np.linspace(0, 365*100 , 100)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># time steps</span>
+<span class="n">t_lis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">365</span><span class="o">*</span><span class="mi">100</span> <span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 
-# Given probability of active corrosion with time, and the section loss  (determined by membrane, carbonation, chloride module)
-# dummy data used for this example
-pf_lis = np.linspace(0,1,len(t_lis))**5
-plt.plot(t_lis / 365, pf_lis)
-plt.title(&#39;dummy data Pf vs time&#39;)
-plt.xlabel(&#39;Time[year]&#39;)
-plt.ylabel(&#39;probability of active corrosion&#39;)
+<span class="c1"># Given probability of active corrosion with time, and the section loss  (determined by membrane, carbonation, chloride module)</span>
+<span class="c1"># dummy data used for this example</span>
+<span class="n">pf_lis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">t_lis</span><span class="p">))</span><span class="o">**</span><span class="mi">5</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_lis</span> <span class="o">/</span> <span class="mi">365</span><span class="p">,</span> <span class="n">pf_lis</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;dummy data Pf vs time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time[year]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;probability of active corrosion&#39;</span><span class="p">)</span>
 <br/></pre></div>
 </div>
 </div>
@@ -206,21 +206,21 @@ Text(0, 0.5, &#39;probability of active corrosion&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># prepare Param object for section loss object
-pars_sl = Param()
-pars_sl.x_loss_rate = model_corr.x_loss_rate.mean()     # mm/year mean section loss rate from the corrosion model
-pars_sl.p_active_t_curve = (pf_lis, t_lis)              # use dummy data for this example
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># prepare Param object for section loss object</span>
+<span class="n">pars_sl</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>
+<span class="n">pars_sl</span><span class="o">.</span><span class="n">x_loss_rate</span> <span class="o">=</span> <span class="n">model_corr</span><span class="o">.</span><span class="n">x_loss_rate</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>     <span class="c1"># mm/year mean section loss rate from the corrosion model</span>
+<span class="n">pars_sl</span><span class="o">.</span><span class="n">p_active_t_curve</span> <span class="o">=</span> <span class="p">(</span><span class="n">pf_lis</span><span class="p">,</span> <span class="n">t_lis</span><span class="p">)</span>              <span class="c1"># use dummy data for this example</span>
 
-# critical section loss from the external structural analysis
-pars_sl.x_loss_limit_mean = 0.5         # mm
-pars_sl.x_loss_limit_std = 0.5 * 0.005  # mm
+<span class="c1"># critical section loss from the external structural analysis</span>
+<span class="n">pars_sl</span><span class="o">.</span><span class="n">x_loss_limit_mean</span> <span class="o">=</span> <span class="mf">0.5</span>         <span class="c1"># mm</span>
+<span class="n">pars_sl</span><span class="o">.</span><span class="n">x_loss_limit_std</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="mf">0.005</span>  <span class="c1"># mm</span>
 
-# initialize section loss model object
-model_sl = SectionLossModel(pars_sl)
+<span class="c1"># initialize section loss model object</span>
+<span class="n">model_sl</span> <span class="o">=</span> <span class="n">SectionLossModel</span><span class="p">(</span><span class="n">pars_sl</span><span class="p">)</span>
 
-# run model for one time step, 70 year
-model_sl.run(t_end = 70)
-model_sl.postproc(plot=True)
+<span class="c1"># run model for one time step, 70 year</span>
+<span class="n">model_sl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">t_end</span> <span class="o">=</span> <span class="mi">70</span><span class="p">)</span>
+<span class="n">model_sl</span><span class="o">.</span><span class="n">postproc</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <br/><br/></pre></div>
 </div>
 </div>
@@ -248,8 +248,8 @@ Pf(g = R-S &lt; 0) from various methods
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># run the model through a list of year steps
-pf_sl, beta_sl = model_sl.section_loss_with_year(year_lis=np.arange(65,70,0.2), amplify=5e-4)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># run the model through a list of year steps</span>
+<span class="n">pf_sl</span><span class="p">,</span> <span class="n">beta_sl</span> <span class="o">=</span> <span class="n">model_sl</span><span class="o">.</span><span class="n">section_loss_with_year</span><span class="p">(</span><span class="n">year_lis</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">65</span><span class="p">,</span><span class="mi">70</span><span class="p">,</span><span class="mf">0.2</span><span class="p">),</span> <span class="n">amplify</span><span class="o">=</span><span class="mf">5e-4</span><span class="p">)</span>
 <br/></pre></div>
 </div>
 </div>

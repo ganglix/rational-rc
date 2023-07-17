@@ -94,10 +94,10 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%matplotlib inline
-from chloride import ChlorideModel, load_df_D_RCM, C_crit_param, C_eqv_to_C_S_0
-import pandas as pd
-import numpy as np
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">from</span> <span class="nn">chloride</span> <span class="kn">import</span> <span class="n">ChlorideModel</span><span class="p">,</span> <span class="n">load_df_D_RCM</span><span class="p">,</span> <span class="n">C_crit_param</span><span class="p">,</span> <span class="n">C_eqv_to_C_S_0</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
 </div>
@@ -105,45 +105,45 @@ import numpy as np
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># raw data
-class Param: pass
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># raw data</span>
+<span class="k">class</span> <span class="nc">Param</span><span class="p">:</span> <span class="k">pass</span>
 
-pars_raw = Param()
+<span class="n">pars_raw</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>
 
-pars_raw.marine = False
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">marine</span> <span class="o">=</span> <span class="kc">False</span>
 
-# 1)marine or coastal
-pars_raw.C_0_M = 18.980 # natural chloride content of sea water [g/l]
+<span class="c1"># 1)marine or coastal</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">C_0_M</span> <span class="o">=</span> <span class="mf">18.980</span> <span class="c1"># natural chloride content of sea water [g/l]</span>
 
-# 2) de-icing salt (hard to quantify)
-pars_raw.C_0_R = 0  # average chloride content of the chloride contaminated water [g/l]
-pars_raw.n = 0      # average number of salting events per year [-]
-pars_raw.C_R_i = 0  # average amount of chloride spread within one spreading event [g/m2]
-pars_raw.h_S_i = 1  # amount of water from rain and melted snow per spreading period [l/m2]
+<span class="c1"># 2) de-icing salt (hard to quantify)</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">C_0_R</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># average chloride content of the chloride contaminated water [g/l]</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>      <span class="c1"># average number of salting events per year [-]</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">C_R_i</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># average amount of chloride spread within one spreading event [g/m2]</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">h_S_i</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># amount of water from rain and melted snow per spreading period [l/m2]</span>
 
-pars_raw.C_eqv_to_C_S_0 = C_eqv_to_C_S_0 # imported correlation function for chloride content from soluiton to concrete
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">C_eqv_to_C_S_0</span> <span class="o">=</span> <span class="n">C_eqv_to_C_S_0</span> <span class="c1"># imported correlation function for chloride content from soluiton to concrete</span>
 
-pars_raw.exposure_condition = &#39;splash&#39;
-pars_raw.exposure_condition_geom_sensitive = True
-pars_raw.T_real = 273 + 25  # averaged ambient temperature[K]
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">exposure_condition</span> <span class="o">=</span> <span class="s1">&#39;splash&#39;</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">exposure_condition_geom_sensitive</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">T_real</span> <span class="o">=</span> <span class="mi">273</span> <span class="o">+</span> <span class="mi">25</span>  <span class="c1"># averaged ambient temperature[K]</span>
 
-pars_raw.x_a = 10.
-pars_raw.x_h = 10.
-pars_raw.D_RCM_test = &#39;N/A&#39;
-pars_raw.concrete_type = &#39;Portland cement concrete&#39;
-pars_raw.cement_concrete_ratio = 300./2400.
-pars_raw.C_max_user_input = None
-pars_raw.C_max_option = &#39;empirical&#39;
-pars_raw.C_0 = 0
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">x_a</span> <span class="o">=</span> <span class="mf">10.</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">x_h</span> <span class="o">=</span> <span class="mf">10.</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">D_RCM_test</span> <span class="o">=</span> <span class="s1">&#39;N/A&#39;</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">concrete_type</span> <span class="o">=</span> <span class="s1">&#39;Portland cement concrete&#39;</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">cement_concrete_ratio</span> <span class="o">=</span> <span class="mf">300.</span><span class="o">/</span><span class="mf">2400.</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">C_max_user_input</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">C_max_option</span> <span class="o">=</span> <span class="s1">&#39;empirical&#39;</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">C_0</span> <span class="o">=</span> <span class="mi">0</span>
 
-pars_raw.C_crit_distrib_param = C_crit_param()  # critical chloride content import from Chloride module 0.6 wt.% cement (mean value)
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">C_crit_distrib_param</span> <span class="o">=</span> <span class="n">C_crit_param</span><span class="p">()</span>  <span class="c1"># critical chloride content import from Chloride module 0.6 wt.% cement (mean value)</span>
 
-# more options
-pars_raw.option = Param()
-pars_raw.option.choose = True
-pars_raw.option.cement_type = &#39;CEM_I_42.5_R+SF&#39;
-pars_raw.option.wc_eqv = 0.4    # equivalent water/binder ratio
-pars_raw.option.df_D_RCM_0 = load_df_D_RCM()
+<span class="c1"># more options</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">option</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">choose</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">cement_type</span> <span class="o">=</span> <span class="s1">&#39;CEM_I_42.5_R+SF&#39;</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">wc_eqv</span> <span class="o">=</span> <span class="mf">0.4</span>    <span class="c1"># equivalent water/binder ratio</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">df_D_RCM_0</span> <span class="o">=</span> <span class="n">load_df_D_RCM</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -151,14 +151,14 @@ pars_raw.option.df_D_RCM_0 = load_df_D_RCM()
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># initialize model
-model_cl = ChlorideModel(pars_raw)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize model</span>
+<span class="n">model_cl</span> <span class="o">=</span> <span class="n">ChlorideModel</span><span class="p">(</span><span class="n">pars_raw</span><span class="p">)</span>
 
-# run for 40 mm and 10 year
-model_cl.run(x = 40, t = 10)
+<span class="c1"># run for 40 mm and 10 year</span>
+<span class="n">model_cl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="mi">40</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
 
-# postproc
-model_cl.postproc(plot=True)
+<span class="c1"># postproc</span>
+<span class="n">model_cl</span><span class="o">.</span><span class="n">postproc</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -195,7 +195,7 @@ Pf(g = R-S &lt; 0) from various methods
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>np.mean(model_cl.pf)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">model_cl</span><span class="o">.</span><span class="n">pf</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -212,12 +212,12 @@ Pf(g = R-S &lt; 0) from various methods
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Calibration
-# field data at three depth at t = 10 years
-chloride_content_field = pd.DataFrame()
-chloride_content_field[&#39;depth&#39;] = [12.5, 50, 100]  # [mm]
-chloride_content_field[&#39;cl&#39;] = np.array([0.226, 0.04, 0.014]) / pars_raw.cement_concrete_ratio  # chloride_content[wt.-%/cement]
-print(chloride_content_field)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calibration</span>
+<span class="c1"># field data at three depth at t = 10 years</span>
+<span class="n">chloride_content_field</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">chloride_content_field</span><span class="p">[</span><span class="s1">&#39;depth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">12.5</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>  <span class="c1"># [mm]</span>
+<span class="n">chloride_content_field</span><span class="p">[</span><span class="s1">&#39;cl&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.226</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">,</span> <span class="mf">0.014</span><span class="p">])</span> <span class="o">/</span> <span class="n">pars_raw</span><span class="o">.</span><span class="n">cement_concrete_ratio</span>  <span class="c1"># chloride_content[wt.-%/cement]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">chloride_content_field</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -236,8 +236,8 @@ print(chloride_content_field)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>#calibrate model to the field chloride content
-model_cl_cal = model_cl.calibrate(10, chloride_content_field,print_proc=False, plot=False)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#calibrate model to the field chloride content</span>
+<span class="n">model_cl_cal</span> <span class="o">=</span> <span class="n">model_cl</span><span class="o">.</span><span class="n">calibrate</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">chloride_content_field</span><span class="p">,</span><span class="n">print_proc</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -264,10 +264,10 @@ model_cl_cal = model_cl.calibrate(10, chloride_content_field,print_proc=False, p
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># run the calibrated model for 40 mm and 10 year
-model_cl_cal.run(x = 40, t = 10)
-model_cl_cal.postproc(plot=True)
-# plt.savefig(&#39;chloride_at_rebar_40year.pdf&#39;,dpi=1200)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># run the calibrated model for 40 mm and 10 year</span>
+<span class="n">model_cl_cal</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="mi">40</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">model_cl_cal</span><span class="o">.</span><span class="n">postproc</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># plt.savefig(&#39;chloride_at_rebar_40year.pdf&#39;,dpi=1200)</span>
 </pre></div>
 </div>
 </div>
@@ -295,11 +295,11 @@ Pf(g = R-S &lt; 0) from various methods
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># run model for a list of time steps
-t_lis = np.arange(5,50,5)
-cover = 50
-pf_lis, beta_lis = model_cl_cal.chloride_with_year(depth=cover, year_lis=t_lis,amplify=1)
-# fig.savefig(&#39;RS_time_chloride.pdf&#39;,dpi=1200)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># run model for a list of time steps</span>
+<span class="n">t_lis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">cover</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">pf_lis</span><span class="p">,</span> <span class="n">beta_lis</span> <span class="o">=</span> <span class="n">model_cl_cal</span><span class="o">.</span><span class="n">chloride_with_year</span><span class="p">(</span><span class="n">depth</span><span class="o">=</span><span class="n">cover</span><span class="p">,</span> <span class="n">year_lis</span><span class="o">=</span><span class="n">t_lis</span><span class="p">,</span><span class="n">amplify</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># fig.savefig(&#39;RS_time_chloride.pdf&#39;,dpi=1200)</span>
 <br/></pre></div>
 </div>
 </div>

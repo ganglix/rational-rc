@@ -207,20 +207,11 @@ with sample number = N_SAMPLE (defined globally)</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>t</strong> (<em>float</em>) – Time [years]</p></li>
-<li><p><strong>pars</strong> (<em>object</em>) – <p>Instance of Param class containing the following attributes:
-pars.ToW : float</p>
-<blockquote>
-<div><p>Time of wetness [-], calculated as (days with rainfall h_Nd &gt;= 2.5 mm per day)/365</p>
-</div></blockquote>
-<dl class="simple">
-<dt>pars.p_SR<span class="classifier">float</span></dt><dd><p>Probability of driving rain [-], 1.0 for vertical surface, 0.0 for horizontal or interior surfaces</p>
-</dd>
-<dt>pars.b_w<span class="classifier">float</span></dt><dd><p>Exponent of regression [-], normally distributed with mean=0.446 and standard deviation=0.163</p>
-</dd>
-<dt>pars.t_0<span class="classifier">float</span></dt><dd><p>Time of reference [years] [built-in param]</p>
-</dd>
-</dl>
-</p></li>
+<li><p><strong>pars</strong> (<em>object</em>) – Instance of Param class containing the following attributes:</p></li>
+<li><p><strong>pars.ToW</strong> (<em>float</em>) – Time of wetness [-], calculated as (days with rainfall h_Nd &gt;= 2.5 mm per day)/365</p></li>
+<li><p><strong>pars.p_SR</strong> (<em>float</em>) – Probability of driving rain [-], 1.0 for vertical surface, 0.0 for horizontal or interior surfaces</p></li>
+<li><p><strong>pars.b_w</strong> (<em>float</em>) – Exponent of regression [-], normally distributed with mean=0.446 and standard deviation=0.163</p></li>
+<li><p><strong>pars.t_0</strong> (<em>float</em>) – Time of reference [years] [built-in param]</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>

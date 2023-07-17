@@ -93,12 +93,12 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%matplotlib inline
-import math_helper as mh
-from cracking import Cracking_Model
-import matplotlib.pyplot as plt
-import warnings
-warnings.filterwarnings(&#39;ignore&#39;)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">math_helper</span> <span class="k">as</span> <span class="nn">mh</span>
+<span class="kn">from</span> <span class="nn">cracking</span> <span class="kn">import</span> <span class="n">Cracking_Model</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -106,25 +106,25 @@ warnings.filterwarnings(&#39;ignore&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># raw data
-class Param: pass
-raw_pars = Param()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># raw data</span>
+<span class="k">class</span> <span class="nc">Param</span><span class="p">:</span> <span class="k">pass</span>
+<span class="n">raw_pars</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>
 
-# material properties
-r0_bar_mean = 5e-3          # rebar diameter [m]
-f_t_mean=5.                 # concrete ultimate tensile strength[MPa]
-E_0_mean=32e3               # concrete modulus of elasticity [Mpa]
+<span class="c1"># material properties</span>
+<span class="n">r0_bar_mean</span> <span class="o">=</span> <span class="mf">5e-3</span>          <span class="c1"># rebar diameter [m]</span>
+<span class="n">f_t_mean</span><span class="o">=</span><span class="mf">5.</span>                 <span class="c1"># concrete ultimate tensile strength[MPa]</span>
+<span class="n">E_0_mean</span><span class="o">=</span><span class="mf">32e3</span>               <span class="c1"># concrete modulus of elasticity [Mpa]</span>
 
-x_loss_mean = 12.5e-6*0.6   # rebar section loss, mean [m]
-cover_mean = 4e-2           # cover thickness, mean [m]
+<span class="n">x_loss_mean</span> <span class="o">=</span> <span class="mf">12.5e-6</span><span class="o">*</span><span class="mf">0.6</span>   <span class="c1"># rebar section loss, mean [m]</span>
+<span class="n">cover_mean</span> <span class="o">=</span> <span class="mf">4e-2</span>           <span class="c1"># cover thickness, mean [m]</span>
 
-raw_pars.r0_bar = mh.normal_custom(r0_bar_mean, 0.1*r0_bar_mean, non_negative=True)
-raw_pars.x_loss = mh.normal_custom(x_loss_mean, 0.1*x_loss_mean, non_negative=True)  # or from the corrosion model solution
-raw_pars.cover = mh.normal_custom(cover_mean, 0.1*cover_mean, non_negative=True)
-raw_pars.f_t = mh.normal_custom(f_t_mean, 0.1*f_t_mean, non_negative=True)
-raw_pars.E_0 = mh.normal_custom(E_0_mean, 0.1*E_0_mean, non_negative=True)
-raw_pars.w_c = mh.normal_custom(0.5, 0.1*0.6, non_negative=True)
-raw_pars.r_v = mh.beta_custom(2.96, 2.96*0.05, 3.3, 2.6)  # rust volumetric expansion rate  2.96 lower 2.6  upper: 3.3
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">r0_bar</span> <span class="o">=</span> <span class="n">mh</span><span class="o">.</span><span class="n">normal_custom</span><span class="p">(</span><span class="n">r0_bar_mean</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">r0_bar_mean</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">x_loss</span> <span class="o">=</span> <span class="n">mh</span><span class="o">.</span><span class="n">normal_custom</span><span class="p">(</span><span class="n">x_loss_mean</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">x_loss_mean</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># or from the corrosion model solution</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">cover</span> <span class="o">=</span> <span class="n">mh</span><span class="o">.</span><span class="n">normal_custom</span><span class="p">(</span><span class="n">cover_mean</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">cover_mean</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">f_t</span> <span class="o">=</span> <span class="n">mh</span><span class="o">.</span><span class="n">normal_custom</span><span class="p">(</span><span class="n">f_t_mean</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">f_t_mean</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">E_0</span> <span class="o">=</span> <span class="n">mh</span><span class="o">.</span><span class="n">normal_custom</span><span class="p">(</span><span class="n">E_0_mean</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">E_0_mean</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">w_c</span> <span class="o">=</span> <span class="n">mh</span><span class="o">.</span><span class="n">normal_custom</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">*</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">r_v</span> <span class="o">=</span> <span class="n">mh</span><span class="o">.</span><span class="n">beta_custom</span><span class="p">(</span><span class="mf">2.96</span><span class="p">,</span> <span class="mf">2.96</span><span class="o">*</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">3.3</span><span class="p">,</span> <span class="mf">2.6</span><span class="p">)</span>  <span class="c1"># rust volumetric expansion rate  2.96 lower 2.6  upper: 3.3</span>
 <br/><br/></pre></div>
 </div>
 </div>
@@ -132,10 +132,10 @@ raw_pars.r_v = mh.beta_custom(2.96, 2.96*0.05, 3.3, 2.6)  # rust volumetric expa
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># initialize model
-model_crack = Cracking_Model(raw_pars)
-# run model in deterministic mode to check the stress and strain diagram
-model_crack.run(stochastic=False, plot_deterministic_result = True)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize model</span>
+<span class="n">model_crack</span> <span class="o">=</span> <span class="n">Cracking_Model</span><span class="p">(</span><span class="n">raw_pars</span><span class="p">)</span>
+<span class="c1"># run model in deterministic mode to check the stress and strain diagram</span>
+<span class="n">model_crack</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">stochastic</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">plot_deterministic_result</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -158,13 +158,13 @@ deterministic
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># run model in stochastic mode
-model_crack.run(stochastic=True)
-model_crack.postproc()
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># run model in stochastic mode</span>
+<span class="n">model_crack</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">stochastic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">model_crack</span><span class="o">.</span><span class="n">postproc</span><span class="p">()</span>
 
-print(model_crack.crack_visible_rate_count)
-print(model_crack.R_c - model_crack.pars.r0_bar) #/ M.pars.cover
-print(model_crack.pars.cover)
+<span class="nb">print</span><span class="p">(</span><span class="n">model_crack</span><span class="o">.</span><span class="n">crack_visible_rate_count</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model_crack</span><span class="o">.</span><span class="n">R_c</span> <span class="o">-</span> <span class="n">model_crack</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">r0_bar</span><span class="p">)</span> <span class="c1">#/ M.pars.cover</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model_crack</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">cover</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -182,8 +182,8 @@ print(model_crack.pars.cover)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.figure()
-mh.hist_custom(model_crack.crack_condition)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">mh</span><span class="o">.</span><span class="n">hist_custom</span><span class="p">(</span><span class="n">model_crack</span><span class="o">.</span><span class="n">crack_condition</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -206,9 +206,9 @@ mh.hist_custom(model_crack.crack_condition)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># histgram of the relative crack length though the cover
-mh.hist_custom(model_crack.crack_length_over_cover[model_crack.crack_length_over_cover != 0]) # eliminate the uncracked case
-plt.xlabel(&#39;crack length/ cover&#39;)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># histgram of the relative crack length though the cover</span>
+<span class="n">mh</span><span class="o">.</span><span class="n">hist_custom</span><span class="p">(</span><span class="n">model_crack</span><span class="o">.</span><span class="n">crack_length_over_cover</span><span class="p">[</span><span class="n">model_crack</span><span class="o">.</span><span class="n">crack_length_over_cover</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">])</span> <span class="c1"># eliminate the uncracked case</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;crack length/ cover&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

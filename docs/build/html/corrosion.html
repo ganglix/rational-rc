@@ -345,14 +345,6 @@ the corresponding Pf and beta.</p>
 <li><p>pars.epsilon_g : gas phase fraction</p></li>
 </ul>
 </div>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>iL : current density over the steel concrete interface [A/m^2]</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>float, numpy array</p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -387,39 +379,15 @@ SI units</p>
 <dd><p>Calculate the corrosion current density using icorr_base() with volumetric water content.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>pars</strong> (<em>Param</em>) – <p>An instance of the Param class containing the following attributes:
-- theta_water : float</p>
-<blockquote>
-<div><p>Volumetric water content</p>
-</div></blockquote>
-<ul class="simple">
-<li><dl class="simple">
-<dt>T<span class="classifier">float or numpy array</span></dt><dd><p>Temperature [K]</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>iL<span class="classifier">float or numpy array</span></dt><dd><p>Limiting current, oxygen diffusion [A/m^2]</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>d<span class="classifier">float or numpy array</span></dt><dd><p>Concrete cover depth [m]</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>theta2rho_coeff_a<span class="classifier">float</span></dt><dd><p>Regression coefficient of theta2rho_fun</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>theta2rho_coeff_b<span class="classifier">float</span></dt><dd><p>Regression coefficient of theta2rho_fun</p>
-</dd>
-</dl>
-</li>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pars</strong> (<em>Param</em>) – An instance of the Param class containing the following attributes:</p></li>
+<li><p><strong>pars.theta_water</strong> (<em>float</em>) – Volumetric water content</p></li>
+<li><p><strong>pars.T</strong> (<em>float</em><em> or </em><em>numpy array</em>) – Temperature [K]</p></li>
+<li><p><strong>pars.iL</strong> (<em>float</em><em> or </em><em>numpy array</em>) – Limiting current, oxygen diffusion [A/m^2]</p></li>
+<li><p><strong>pars.d</strong> (<em>float</em><em> or </em><em>numpy array</em>) – Concrete cover depth [m]</p></li>
+<li><p><strong>pars.theta2rho_coeff_a</strong> (<em>float</em>) – Regression coefficient of theta2rho_fun</p></li>
+<li><p><strong>pars.theta2rho_coeff_b</strong> (<em>float</em>) – Regression coefficient of theta2rho_fun</p></li>
 </ul>
-</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>icorr : corrosion current density [A/m^2]</p>
@@ -514,34 +482,14 @@ SI units</p>
 a reverse function of waterByMassHCP_to_theta_water()</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>pars</strong> (<em>Param</em>) – <p>An instance of the Param class containing the following attributes:
-- theta_water : float</p>
-<blockquote>
-<div><p>volumetric water content in concrete</p>
-</div></blockquote>
-<ul class="simple">
-<li><dl class="simple">
-<dt>rho_c<span class="classifier">float</span></dt><dd><p>Density of cement [kg/m^3]</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>rho_a<span class="classifier">float</span></dt><dd><p>Density of aggregate [kg/m^3]</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>a_c<span class="classifier">float</span></dt><dd><p>Aggregate-cement ratio</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>w_c<span class="classifier">float</span></dt><dd><p>Water-cement ratio</p>
-</dd>
-</dl>
-</li>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pars</strong> (<em>Param</em>) – An instance of the Param class containing the following attributes:</p></li>
+<li><p><strong>pars.theta_water</strong> (<em>float</em>) – volumetric water content in concrete</p></li>
+<li><p><strong>pars.rho_c</strong> (<em>float</em>) – Density of cement [kg/m^3]</p></li>
+<li><p><strong>pars.rho_a</strong> (<em>float</em>) – Density of aggregate [kg/m^3]</p></li>
+<li><p><strong>pars.a_c</strong> (<em>float</em>) – Aggregate-cement ratio</p></li>
+<li><p><strong>pars.w_c</strong> (<em>float</em>) – Water-cement ratio</p></li>
 </ul>
-</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>waterByMassHCP : Water content by mass in hardened cement paste [g/g]</p>
@@ -566,34 +514,14 @@ a reverse function of RH_to_waterByMassHCP()</p>
 to volumetric in HCP to volumetric in concrete</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>pars</strong> (<em>Param</em>) – <p>An instance of the Param class containing the following attributes:
-- waterByMassHCP : float</p>
-<blockquote>
-<div><p>Water content by mass in hardened cement paste [g/g]</p>
-</div></blockquote>
-<ul class="simple">
-<li><dl class="simple">
-<dt>rho_c<span class="classifier">float</span></dt><dd><p>Density of cement [kg/m^3]</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>rho_a<span class="classifier">float</span></dt><dd><p>Density of aggregate [kg/m^3]</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>a_c<span class="classifier">float</span></dt><dd><p>aggregate-cement ratio</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>w_c<span class="classifier">float</span></dt><dd><p>Water-cement ratio</p>
-</dd>
-</dl>
-</li>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pars</strong> (<em>Param</em>) – An instance of the Param class containing the following attributes:</p></li>
+<li><p><strong>pars.waterByMassHCP</strong> (<em>float</em>) – Water content by mass in hardened cement paste [g/g]</p></li>
+<li><p><strong>pars.rho_c</strong> (<em>float</em>) – Density of cement [kg/m^3]</p></li>
+<li><p><strong>pars.rho_a</strong> (<em>float</em>) – Density of aggregate [kg/m^3]</p></li>
+<li><p><strong>pars.a_c</strong> (<em>float</em>) – aggregate-cement ratio</p></li>
+<li><p><strong>pars.w_c</strong> (<em>float</em>) – Water-cement ratio</p></li>
 </ul>
-</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>theta_water : volumetric water content in concrete</p>

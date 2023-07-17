@@ -142,18 +142,18 @@ def icorr_f(pars):
     ----------
     pars : Param
         An instance of the Param class containing the following attributes:
-        - theta_water : float
-            Volumetric water content
-        - T : float or numpy array
-            Temperature [K]
-        - iL : float or numpy array 
-            Limiting current, oxygen diffusion [A/m^2]
-        - d : float or numpy array
-            Concrete cover depth [m]
-        - theta2rho_coeff_a : float
-            Regression coefficient of theta2rho_fun
-        - theta2rho_coeff_b : float
-            Regression coefficient of theta2rho_fun
+    pars.theta_water : float
+        Volumetric water content
+    pars.T : float or numpy array
+        Temperature [K]
+    pars.iL : float or numpy array 
+        Limiting current, oxygen diffusion [A/m^2]
+    pars.d : float or numpy array
+        Concrete cover depth [m]
+    pars.theta2rho_coeff_a : float
+        Regression coefficient of theta2rho_fun
+    pars.theta2rho_coeff_b : float
+        Regression coefficient of theta2rho_fun
 
     Returns
     -------
@@ -187,11 +187,6 @@ def iL_f(pars):
     + pars.De_O2 : diffusivity [m^2/s]
     + pars.Cs_g : bulk concentration [mol/m^3]
     + pars.epsilon_g : gas phase fraction
-
-    returns
-    -------
-    float, numpy array
-        iL : current density over the steel concrete interface [A/m^2]
     """
     F = 96485.3329  # s*A/mol
     z = 4
@@ -480,16 +475,16 @@ def waterByMassHCP_to_theta_water(pars):
     ----------
     pars : Param
         An instance of the Param class containing the following attributes:
-        - waterByMassHCP : float
-            Water content by mass in hardened cement paste [g/g]
-        - rho_c : float
-            Density of cement [kg/m^3]
-        - rho_a : float
-            Density of aggregate [kg/m^3]
-        - a_c : float
-            aggregate-cement ratio
-        - w_c : float
-            Water-cement ratio
+    pars.waterByMassHCP : float
+        Water content by mass in hardened cement paste [g/g]
+    pars.rho_c : float
+        Density of cement [kg/m^3]
+    pars.rho_a : float
+        Density of aggregate [kg/m^3]
+    pars.a_c : float
+        aggregate-cement ratio
+    pars.w_c : float
+        Water-cement ratio
 
     Returns
     -------
@@ -519,16 +514,16 @@ def theta_water_to_waterByMassHCP(pars):
     ----------
     pars : Param
         An instance of the Param class containing the following attributes:
-        - theta_water : float
-            volumetric water content in concrete
-        - rho_c : float
-            Density of cement [kg/m^3]
-        - rho_a : float
-            Density of aggregate [kg/m^3]
-        - a_c : float
-            Aggregate-cement ratio
-        - w_c : float
-            Water-cement ratio
+    pars.theta_water : float
+        volumetric water content in concrete
+    pars.rho_c : float
+        Density of cement [kg/m^3]
+    pars.rho_a : float
+        Density of aggregate [kg/m^3]
+    pars.a_c : float
+        Aggregate-cement ratio
+    pars.w_c : float
+        Water-cement ratio
 
     Returns
     -------

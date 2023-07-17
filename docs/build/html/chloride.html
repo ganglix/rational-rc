@@ -633,18 +633,12 @@ erf    : imported error function</p>
 <dd><p>Calculate the environmental transfer variable k_e [-].</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>pars</strong> (<em>Param</em>) – <p>An instance of the Param class, containing the following parameters:
-pars.T_ref : float</p>
-<blockquote>
-<div><p>Standard test temperature 293.[K].</p>
-</div></blockquote>
-<dl class="simple">
-<dt>pars.T_real<span class="classifier">float</span></dt><dd><p>Temperature of the structural element [K].</p>
-</dd>
-<dt>pars.b_e<span class="classifier">float</span></dt><dd><p>Regression variable [K].</p>
-</dd>
-</dl>
-</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pars</strong> (<em>Param</em>) – An instance of the Param class, containing the following parameters:</p></li>
+<li><p><strong>pars.T_ref</strong> (<em>float</em>) – Standard test temperature 293.[K].</p></li>
+<li><p><strong>pars.T_real</strong> (<em>float</em>) – Temperature of the structural element [K].</p></li>
+<li><p><strong>pars.b_e</strong> (<em>float</em>) – Regression variable [K].</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Large sample of the distribution of k_e.</p>

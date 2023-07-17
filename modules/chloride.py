@@ -117,12 +117,12 @@ def k_e(pars):
     ----------
     pars : Param
         An instance of the Param class, containing the following parameters:
-        pars.T_ref : float
-            Standard test temperature 293.[K].
-        pars.T_real : float
-            Temperature of the structural element [K].
-        pars.b_e : float
-            Regression variable [K].
+    pars.T_ref : float
+        Standard test temperature 293.[K].
+    pars.T_real : float
+        Temperature of the structural element [K].
+    pars.b_e : float
+        Regression variable [K].
 
     Returns
     -------

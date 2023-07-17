@@ -100,9 +100,9 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%matplotlib inline
-import numpy as np
-from membrane import MembraneModel
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">membrane</span> <span class="kn">import</span> <span class="n">MembraneModel</span>
 </pre></div>
 </div>
 </div>
@@ -110,20 +110,20 @@ from membrane import MembraneModel
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Case study Raw parameter data
-class Param: pass
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Case study Raw parameter data</span>
+<span class="k">class</span> <span class="nc">Param</span><span class="p">:</span> <span class="k">pass</span>
 
-raw_pars = Param()
+<span class="n">raw_pars</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>
 
-# product information
-raw_pars.life_product_label_life = 10  # year, defined as 95% confident non-failure
-raw_pars.life_std = 0.2 * raw_pars.life_product_label_life # assume if not known, calibrate later for real service conditions
-raw_pars.life_confidence = 0.95
+<span class="c1"># product information</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">life_product_label_life</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># year, defined as 95% confident non-failure</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">life_std</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="n">raw_pars</span><span class="o">.</span><span class="n">life_product_label_life</span> <span class="c1"># assume if not known, calibrate later for real service conditions</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">life_confidence</span> <span class="o">=</span> <span class="mf">0.95</span>
 
-# calibration data (if available)
-# field survey result
-raw_pars.membrane_failure_ratio_field = 0.01
-raw_pars.membrane_age_field = 5  # [year]
+<span class="c1"># calibration data (if available)</span>
+<span class="c1"># field survey result</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">membrane_failure_ratio_field</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">membrane_age_field</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># [year]</span>
 <br/><br/></pre></div>
 </div>
 </div>
@@ -131,12 +131,12 @@ raw_pars.membrane_age_field = 5  # [year]
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># initialize model
-mem_model = MembraneModel(raw_pars)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize model</span>
+<span class="n">mem_model</span> <span class="o">=</span> <span class="n">MembraneModel</span><span class="p">(</span><span class="n">raw_pars</span><span class="p">)</span>
 
-# run and postproc (uncalibrated)
-mem_model.run(10)  # 10 years
-mem_model.postproc(plot=True)
+<span class="c1"># run and postproc (uncalibrated)</span>
+<span class="n">mem_model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># 10 years</span>
+<span class="n">mem_model</span><span class="o">.</span><span class="n">postproc</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -163,8 +163,8 @@ Pf(g = R-S &lt; 0) from various methods
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># calibration to field data
-mem_model_cal = mem_model.calibrate(raw_pars.membrane_age_field, raw_pars.membrane_failure_ratio_field)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calibration to field data</span>
+<span class="n">mem_model_cal</span> <span class="o">=</span> <span class="n">mem_model</span><span class="o">.</span><span class="n">calibrate</span><span class="p">(</span><span class="n">raw_pars</span><span class="o">.</span><span class="n">membrane_age_field</span><span class="p">,</span> <span class="n">raw_pars</span><span class="o">.</span><span class="n">membrane_failure_ratio_field</span><span class="p">)</span>
 <br/><br/></pre></div>
 </div>
 </div>
@@ -182,9 +182,9 @@ field: 0.01
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># run and postproc (calibrated)
-mem_model_cal.run(10)  # 10 years
-mem_model_cal.postproc(plot=True)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># run and postproc (calibrated)</span>
+<span class="n">mem_model_cal</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># 10 years</span>
+<span class="n">mem_model_cal</span><span class="o">.</span><span class="n">postproc</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -211,9 +211,9 @@ Pf(g = R-S &lt; 0) from various methods
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># model with a list of time steps
-t_lis = np.arange(0,21,1)
-pf_lis, beta_lis = mem_model_cal.membrane_failure_with_year(year_lis=t_lis, plot=True, amplify=30)
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># model with a list of time steps</span>
+<span class="n">t_lis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">pf_lis</span><span class="p">,</span> <span class="n">beta_lis</span> <span class="o">=</span> <span class="n">mem_model_cal</span><span class="o">.</span><span class="n">membrane_failure_with_year</span><span class="p">(</span><span class="n">year_lis</span><span class="o">=</span><span class="n">t_lis</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
