@@ -17,7 +17,8 @@ from copy import deepcopy
 import numpy as np
 import matplotlib.pyplot as plt
 from copy import deepcopy
-import math_helper as mh
+
+import rational_rc.math_helper as mh
 
 def icorr_to_mmpy(icorr):
     """Converts icorr [A/m^2] to corrosion rate [mm/year] using Faraday's laws

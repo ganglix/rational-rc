@@ -1,5 +1,5 @@
 import unittest
-import math_helper as mh
+import rational_rc.math_helper as mh
 import numpy as np
 from scipy import stats
 

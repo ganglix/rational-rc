@@ -15,7 +15,8 @@ import matplotlib.pyplot as plt
 from copy import deepcopy
 from scipy import stats
 import numpy as np
-import math_helper as mh
+
+import rational_rc.math_helper as mh
 
 # special functions for this module
 

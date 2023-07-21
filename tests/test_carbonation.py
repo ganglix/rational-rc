@@ -1,8 +1,8 @@
 import unittest
 import numpy as np
 import pandas as pd
-import math_helper as mh
-from carbonation import carb_depth, load_df_R_ACC, CarbonationModel
+import rational_rc.math_helper as mh
+from rational_rc.carbonation import carb_depth, load_df_R_ACC, CarbonationModel
 
 class TestCarbonation(unittest.TestCase):
 

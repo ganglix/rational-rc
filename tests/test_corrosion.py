@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-from corrosion import CorrosionModel, SectionLossModel
+from rational_rc.corrosion import CorrosionModel, SectionLossModel
 
 class TestCorrosion(unittest.TestCase):
     def setUp(self):

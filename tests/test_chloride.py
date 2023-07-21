@@ -1,7 +1,7 @@
 import unittest
-from chloride import ChlorideModel, load_df_D_RCM, C_crit_param, C_eqv_to_C_S_0
+from rational_rc.chloride import ChlorideModel, load_df_D_RCM, C_crit_param, C_eqv_to_C_S_0
 import pandas as pd
-import math_helper as mh
+import rational_rc.math_helper as mh
 import numpy as np
 
 class TestChloride(unittest.TestCase):

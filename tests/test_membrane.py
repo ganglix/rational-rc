@@ -1,6 +1,6 @@
 import unittest
 import matplotlib.pyplot as plt
-from membrane import MembraneModel
+from rational_rc.membrane import MembraneModel
 
 class TestMembraneModel(unittest.TestCase):
 

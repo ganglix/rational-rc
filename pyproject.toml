@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rational-rc"
+version = "0.0.3"
+description = "This is a package: rational-rc"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [
+  { name="Gang Li", email="ganglix@gmail.com" },
+]
+
+classifiers = [
+    'Development Status :: 3 - Beta',
+    "Programming Language :: Python :: 3.9",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [  
+"matplotlib==3.7.2",
+"numpy==1.25.1",
+"pandas==2.0.3",
+"scipy==1.11.1",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/ganglix/rational-rc"
+"Documentation" = "https://github.com/ganglix/rational-rc"
