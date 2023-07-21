@@ -19,12 +19,12 @@ sys.path.insert(0, os.path.abspath('../../modules/'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'Tinkrete'
-copyright = '2021, Gang Li'
+project = 'rational-rc'
+copyright = '2023, Gang Li'
 author = 'Gang Li'
 
 # The short X.Y version
-version = '0.2.2'
+version = '0.2.3'
 
 # The full version, including alpha/beta/rc tags
 release = 'beta'
