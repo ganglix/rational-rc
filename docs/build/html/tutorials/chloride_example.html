@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>chloride module example &mdash; rational-rc beta documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/nbsphinx-code-cells.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="corrosion module example" href="corrosion_example.html" />
+    <link rel="prev" title="carbonation module example" href="carbonation_example.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            rational-rc
+          </a>
+              <div class="version">
+                0.2.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Rational-RC API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/module_index.html">Modules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="tutorial_index.html">tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="membrane_example.html">membrane module example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="carbonation_example.html">carbonation module example</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">chloride module example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="corrosion_example.html">corrosion module example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cracking_example.html">cracking model example</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">rational-rc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="tutorial_index.html">tutorials</a></li>
+      <li class="breadcrumb-item active">chloride module example</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tutorials/chloride_example.nblink.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="chloride-module-example">
+<h1>chloride module example<a class="headerlink" href="#chloride-module-example" title="Permalink to this heading"></a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">from</span> <span class="nn">rational_rc.chloride</span> <span class="kn">import</span> <span class="n">ChlorideModel</span><span class="p">,</span> <span class="n">load_df_D_RCM</span><span class="p">,</span> <span class="n">C_crit_param</span><span class="p">,</span> <span class="n">C_eqv_to_C_S_0</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># raw data</span>
+<span class="k">class</span> <span class="nc">Param</span><span class="p">:</span> <span class="k">pass</span>
+
+<span class="n">pars_raw</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>
+
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">marine</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="c1"># 1)marine or coastal</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">C_0_M</span> <span class="o">=</span> <span class="mf">18.980</span> <span class="c1"># natural chloride content of sea water [g/l]</span>
+
+<span class="c1"># 2) de-icing salt (hard to quantify)</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">C_0_R</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># average chloride content of the chloride contaminated water [g/l]</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>      <span class="c1"># average number of salting events per year [-]</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">C_R_i</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># average amount of chloride spread within one spreading event [g/m2]</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">h_S_i</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># amount of water from rain and melted snow per spreading period [l/m2]</span>
+
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">C_eqv_to_C_S_0</span> <span class="o">=</span> <span class="n">C_eqv_to_C_S_0</span> <span class="c1"># imported correlation function for chloride content from soluiton to concrete</span>
+
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">exposure_condition</span> <span class="o">=</span> <span class="s1">&#39;splash&#39;</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">exposure_condition_geom_sensitive</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">T_real</span> <span class="o">=</span> <span class="mi">273</span> <span class="o">+</span> <span class="mi">25</span>  <span class="c1"># averaged ambient temperature[K]</span>
+
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">x_a</span> <span class="o">=</span> <span class="mf">10.</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">x_h</span> <span class="o">=</span> <span class="mf">10.</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">D_RCM_test</span> <span class="o">=</span> <span class="s1">&#39;N/A&#39;</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">concrete_type</span> <span class="o">=</span> <span class="s1">&#39;Portland cement concrete&#39;</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">cement_concrete_ratio</span> <span class="o">=</span> <span class="mf">300.</span><span class="o">/</span><span class="mf">2400.</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">C_max_user_input</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">C_max_option</span> <span class="o">=</span> <span class="s1">&#39;empirical&#39;</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">C_0</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">C_crit_distrib_param</span> <span class="o">=</span> <span class="n">C_crit_param</span><span class="p">()</span>  <span class="c1"># critical chloride content import from Chloride module 0.6 wt.% cement (mean value)</span>
+
+<span class="c1"># more options</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">option</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">choose</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">cement_type</span> <span class="o">=</span> <span class="s1">&#39;CEM_I_42.5_R+SF&#39;</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">wc_eqv</span> <span class="o">=</span> <span class="mf">0.4</span>    <span class="c1"># equivalent water/binder ratio</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">df_D_RCM_0</span> <span class="o">=</span> <span class="n">load_df_D_RCM</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize model</span>
+<span class="n">model_cl</span> <span class="o">=</span> <span class="n">ChlorideModel</span><span class="p">(</span><span class="n">pars_raw</span><span class="p">)</span>
+
+<span class="c1"># run for 40 mm and 10 year</span>
+<span class="n">model_cl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="mi">40</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># postproc</span>
+<span class="n">model_cl</span><span class="o">.</span><span class="n">postproc</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/Users/gangli/anaconda3/lib/python3.7/site-packages/scipy/optimize/minpack.py:834: OptimizeWarning: Covariance of the parameters could not be estimated
+  category=OptimizeWarning)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Pf(g = R-S &lt; 0) from various methods
+    sample count: 0.52397
+    g integral: 0.5264646795220598
+    R S integral: 0.5264365424769382
+    beta_factor: -0.3102651198488958
+-0.26944259984866864 0.6023160843054596
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_chloride_example_3_2.png" src="../_images/tutorials_chloride_example_3_2.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">model_cl</span><span class="o">.</span><span class="n">pf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.5264365424769382
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calibration</span>
+<span class="c1"># field data at three depth at t = 10 years</span>
+<span class="n">chloride_content_field</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">chloride_content_field</span><span class="p">[</span><span class="s1">&#39;depth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">12.5</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>  <span class="c1"># [mm]</span>
+<span class="n">chloride_content_field</span><span class="p">[</span><span class="s1">&#39;cl&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.226</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">,</span> <span class="mf">0.014</span><span class="p">])</span> <span class="o">/</span> <span class="n">pars_raw</span><span class="o">.</span><span class="n">cement_concrete_ratio</span>  <span class="c1"># chloride_content[wt.-%/cement]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">chloride_content_field</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+   depth     cl
+0   12.5  1.808
+1   50.0  0.320
+2  100.0  0.112
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#calibrate model to the field chloride content</span>
+<span class="n">model_cl_cal</span> <span class="o">=</span> <span class="n">model_cl</span><span class="o">.</span><span class="n">calibrate</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">chloride_content_field</span><span class="p">,</span><span class="n">print_proc</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/chloride.py:76: RuntimeWarning: invalid value encountered in sqrt
+  1 - erf((x - pars.dx) / (2 * (pars.D_app * t) ** 0.5))
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+7.82958984375e-13
+2.9069824218749997e-12
+2.999267578125e-12
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># run the calibrated model for 40 mm and 10 year</span>
+<span class="n">model_cl_cal</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="mi">40</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">model_cl_cal</span><span class="o">.</span><span class="n">postproc</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># plt.savefig(&#39;chloride_at_rebar_40year.pdf&#39;,dpi=1200)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Pf(g = R-S &lt; 0) from various methods
+    sample count: 0.11802
+    g integral: 0.11970350000961451
+    R S integral: 0.11986330913922909
+    beta_factor: 0.49857588419071386
+0.326225250538341 0.2303033179353886
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_chloride_example_7_1.png" src="../_images/tutorials_chloride_example_7_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># run model for a list of time steps</span>
+<span class="n">t_lis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">cover</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">pf_lis</span><span class="p">,</span> <span class="n">beta_lis</span> <span class="o">=</span> <span class="n">model_cl_cal</span><span class="o">.</span><span class="n">chloride_with_year</span><span class="p">(</span><span class="n">depth</span><span class="o">=</span><span class="n">cover</span><span class="p">,</span> <span class="n">year_lis</span><span class="o">=</span><span class="n">t_lis</span><span class="p">,</span><span class="n">amplify</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># fig.savefig(&#39;RS_time_chloride.pdf&#39;,dpi=1200)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/chloride.py:76: RuntimeWarning: invalid value encountered in sqrt
+  1 - erf((x - pars.dx) / (2 * (pars.D_app * t) ** 0.5))
+/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/helper_func.py:440: IntegrationWarning: The maximum number of subdivisions (50) has been achieved.
+  If increasing the limit yields no improvement it is advised to analyze
+  the integrand in order to determine the difficulties.  If the position of a
+  local difficulty can be determined (singularity, discontinuity) one will
+  probably gain from splitting up the interval and calling the integrator
+  on the subranges.  Perhaps a special-purpose integrator should be used.
+  lambda x: R_distrib.cdf(x) * S_kde_fit(x)[0], 0, S_dropna.max()
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_chloride_example_8_1.png" src="../_images/tutorials_chloride_example_8_1.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="carbonation_example.html" class="btn btn-neutral float-left" title="carbonation module example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="corrosion_example.html" class="btn btn-neutral float-right" title="corrosion module example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Gang Li.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

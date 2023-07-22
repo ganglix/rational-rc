@@ -1,6 +1,6 @@
 
 
 {
-    "path": "../../modules/membrane_example.ipynb"
+    "path": "../../tutorials/membrane_example.ipynb"
 
 } 

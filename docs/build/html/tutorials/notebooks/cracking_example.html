@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cracking model example &mdash; rational-rc beta documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/nbsphinx-code-cells.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            rational-rc
+          </a>
+              <div class="version">
+                0.2.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Rational-RC API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/module_index.html">Modules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial_index.html">tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">rational-rc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">cracking model example</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/tutorials/notebooks/cracking_example.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cracking-model-example">
+<h1>cracking model example<a class="headerlink" href="#cracking-model-example" title="Permalink to this heading"></a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">rational_rc.math_helper</span> <span class="k">as</span> <span class="nn">mh</span>
+<span class="kn">from</span> <span class="nn">rational_rc.cracking</span> <span class="kn">import</span> <span class="n">Cracking_Model</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># raw data</span>
+<span class="k">class</span> <span class="nc">Param</span><span class="p">:</span> <span class="k">pass</span>
+<span class="n">raw_pars</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>
+
+<span class="c1"># material properties</span>
+<span class="n">r0_bar_mean</span> <span class="o">=</span> <span class="mf">5e-3</span>          <span class="c1"># rebar diameter [m]</span>
+<span class="n">f_t_mean</span><span class="o">=</span><span class="mf">5.</span>                 <span class="c1"># concrete ultimate tensile strength[MPa]</span>
+<span class="n">E_0_mean</span><span class="o">=</span><span class="mf">32e3</span>               <span class="c1"># concrete modulus of elasticity [Mpa]</span>
+
+<span class="n">x_loss_mean</span> <span class="o">=</span> <span class="mf">12.5e-6</span><span class="o">*</span><span class="mf">0.6</span>   <span class="c1"># rebar section loss, mean [m]</span>
+<span class="n">cover_mean</span> <span class="o">=</span> <span class="mf">4e-2</span>           <span class="c1"># cover thickness, mean [m]</span>
+
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">r0_bar</span> <span class="o">=</span> <span class="n">mh</span><span class="o">.</span><span class="n">normal_custom</span><span class="p">(</span><span class="n">r0_bar_mean</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">r0_bar_mean</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">x_loss</span> <span class="o">=</span> <span class="n">mh</span><span class="o">.</span><span class="n">normal_custom</span><span class="p">(</span><span class="n">x_loss_mean</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">x_loss_mean</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># or from the corrosion model solution</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">cover</span> <span class="o">=</span> <span class="n">mh</span><span class="o">.</span><span class="n">normal_custom</span><span class="p">(</span><span class="n">cover_mean</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">cover_mean</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">f_t</span> <span class="o">=</span> <span class="n">mh</span><span class="o">.</span><span class="n">normal_custom</span><span class="p">(</span><span class="n">f_t_mean</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">f_t_mean</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">E_0</span> <span class="o">=</span> <span class="n">mh</span><span class="o">.</span><span class="n">normal_custom</span><span class="p">(</span><span class="n">E_0_mean</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">E_0_mean</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">w_c</span> <span class="o">=</span> <span class="n">mh</span><span class="o">.</span><span class="n">normal_custom</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">*</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">r_v</span> <span class="o">=</span> <span class="n">mh</span><span class="o">.</span><span class="n">beta_custom</span><span class="p">(</span><span class="mf">2.96</span><span class="p">,</span> <span class="mf">2.96</span><span class="o">*</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">3.3</span><span class="p">,</span> <span class="mf">2.6</span><span class="p">)</span>  <span class="c1"># rust volumetric expansion rate  2.96 lower 2.6  upper: 3.3</span>
+<br/><br/></pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize model</span>
+<span class="n">model_crack</span> <span class="o">=</span> <span class="n">Cracking_Model</span><span class="p">(</span><span class="n">raw_pars</span><span class="p">)</span>
+<span class="c1"># run model in deterministic mode to check the stress and strain diagram</span>
+<span class="n">model_crack</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">stochastic</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">plot_deterministic_result</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+deterministic
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/tutorials_notebooks_cracking_example_3_1.png" src="../../_images/tutorials_notebooks_cracking_example_3_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># run model in stochastic mode</span>
+<span class="n">model_crack</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">stochastic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">model_crack</span><span class="o">.</span><span class="n">postproc</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">model_crack</span><span class="o">.</span><span class="n">crack_visible_rate_count</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model_crack</span><span class="o">.</span><span class="n">R_c</span> <span class="o">-</span> <span class="n">model_crack</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">r0_bar</span><span class="p">)</span> <span class="c1">#/ M.pars.cover</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model_crack</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">cover</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.0
+[0.00135289        nan        nan ... 0.00879189 0.00375403 0.00510172]
+[0.04290379 0.04372729 0.03387371 ... 0.03663915 0.04810321 0.04641713]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">mh</span><span class="o">.</span><span class="n">hist_custom</span><span class="p">(</span><span class="n">model_crack</span><span class="o">.</span><span class="n">crack_condition</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;Figure size 432x288 with 0 Axes&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/tutorials_notebooks_cracking_example_5_1.png" src="../../_images/tutorials_notebooks_cracking_example_5_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># histgram of the relative crack length though the cover</span>
+<span class="n">mh</span><span class="o">.</span><span class="n">hist_custom</span><span class="p">(</span><span class="n">model_crack</span><span class="o">.</span><span class="n">crack_length_over_cover</span><span class="p">[</span><span class="n">model_crack</span><span class="o">.</span><span class="n">crack_length_over_cover</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">])</span> <span class="c1"># eliminate the uncracked case</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;crack length/ cover&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Text(0.5, 0, &#39;crack length/ cover&#39;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/tutorials_notebooks_cracking_example_6_1.png" src="../../_images/tutorials_notebooks_cracking_example_6_1.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Gang Li.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,5 @@
+chloride
+========
+
+.. automodule:: chloride
+   :members:

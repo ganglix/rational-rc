@@ -1,0 +1,6 @@
+
+
+{
+    "path": "../../../notebooks/cracking_example.ipynb"
+
+} 

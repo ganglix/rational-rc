@@ -1,6 +1,6 @@
 
 
 {
-    "path": "../../modules/carbonation_example.ipynb"
+    "path": "../../tutorials/carbonation_example.ipynb"
 
 } 

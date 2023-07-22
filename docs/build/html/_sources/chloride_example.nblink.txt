@@ -1,6 +1,6 @@
 
 
 {
-    "path": "../../modules/chloride_example.ipynb"
+    "path": "../../tutorials/chloride_example.ipynb"
 
 } 

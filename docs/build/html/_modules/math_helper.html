@@ -43,11 +43,13 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Rational-RC API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules.html">Modules</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/module_index.html">Modules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial_index.html">tutorials</a></li>
 </ul>
 
         </div>
@@ -116,31 +118,31 @@
 <span class="c1"># master helper functions</span>
 
 <span class="c1"># Helper function</span>
-<div class="viewcode-block" id="dropna"><a class="viewcode-back" href="../math_helper.html#math_helper.dropna">[docs]</a><span class="k">def</span> <span class="nf">dropna</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<div class="viewcode-block" id="dropna"><a class="viewcode-back" href="../api/modules/math_helper.html#math_helper.dropna">[docs]</a><span class="k">def</span> <span class="nf">dropna</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Removes NaN values from the input array.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span></div>
 
 
-<div class="viewcode-block" id="get_mean"><a class="viewcode-back" href="../math_helper.html#math_helper.get_mean">[docs]</a><span class="k">def</span> <span class="nf">get_mean</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<div class="viewcode-block" id="get_mean"><a class="viewcode-back" href="../api/modules/math_helper.html#math_helper.get_mean">[docs]</a><span class="k">def</span> <span class="nf">get_mean</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the mean of the input array, ignoring NaN values.&quot;&quot;&quot;</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span>
     <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="get_std"><a class="viewcode-back" href="../math_helper.html#math_helper.get_std">[docs]</a><span class="k">def</span> <span class="nf">get_std</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<div class="viewcode-block" id="get_std"><a class="viewcode-back" href="../api/modules/math_helper.html#math_helper.get_std">[docs]</a><span class="k">def</span> <span class="nf">get_std</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the standard deviation of the input array, ignoring NaN values.&quot;&quot;&quot;</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span>
     <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">std</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="hist_custom"><a class="viewcode-back" href="../math_helper.html#math_helper.hist_custom">[docs]</a><span class="k">def</span> <span class="nf">hist_custom</span><span class="p">(</span><span class="n">S</span><span class="p">):</span>
+<div class="viewcode-block" id="hist_custom"><a class="viewcode-back" href="../api/modules/math_helper.html#math_helper.hist_custom">[docs]</a><span class="k">def</span> <span class="nf">hist_custom</span><span class="p">(</span><span class="n">S</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot a histogram with N_SAMPLE//100 bins, ignoring NaN values.&quot;&quot;&quot;</span>
     <span class="n">S_dropna</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">S</span><span class="p">)]</span>
     <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">S_dropna</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">S_dropna</span><span class="p">)</span> <span class="o">//</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">)</span></div>
 
 <span class="c1"># Sampler functions</span>
-<div class="viewcode-block" id="normal_custom"><a class="viewcode-back" href="../math_helper.html#math_helper.normal_custom">[docs]</a><span class="k">def</span> <span class="nf">normal_custom</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">n_sample</span><span class="o">=</span><span class="n">N_SAMPLE</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="normal_custom"><a class="viewcode-back" href="../api/modules/math_helper.html#math_helper.normal_custom">[docs]</a><span class="k">def</span> <span class="nf">normal_custom</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">n_sample</span><span class="o">=</span><span class="n">N_SAMPLE</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Sample from a normal distribution.</span>
 
 <span class="sd">    Parameters</span>
@@ -173,7 +175,7 @@
     <span class="k">return</span> <span class="n">x</span></div>
 
 
-<div class="viewcode-block" id="beta_custom"><a class="viewcode-back" href="../math_helper.html#math_helper.beta_custom">[docs]</a><span class="k">def</span> <span class="nf">beta_custom</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n_sample</span><span class="o">=</span><span class="n">N_SAMPLE</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="beta_custom"><a class="viewcode-back" href="../api/modules/math_helper.html#math_helper.beta_custom">[docs]</a><span class="k">def</span> <span class="nf">beta_custom</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n_sample</span><span class="o">=</span><span class="n">N_SAMPLE</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Draw samples from a general beta distribution.</span>
 
 <span class="sd">    The general beta distribution is described by mean, standard deviation, lower bound, and upper bound.</span>
@@ -231,7 +233,7 @@
 
 
 
-<div class="viewcode-block" id="interp_extrap_f"><a class="viewcode-back" href="../math_helper.html#math_helper.interp_extrap_f">[docs]</a><span class="k">def</span> <span class="nf">interp_extrap_f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x_find</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="interp_extrap_f"><a class="viewcode-back" href="../api/modules/math_helper.html#math_helper.interp_extrap_f">[docs]</a><span class="k">def</span> <span class="nf">interp_extrap_f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x_find</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Interpolate or extrapolate value from an array with a fitted 2nd-degree or 3rd-degree polynomial.</span>
 
 <span class="sd">    Parameters</span>
@@ -297,7 +299,7 @@
     <span class="k">return</span> <span class="n">y_find</span></div>
 
 
-<div class="viewcode-block" id="find_similar_group"><a class="viewcode-back" href="../math_helper.html#math_helper.find_similar_group">[docs]</a><span class="k">def</span> <span class="nf">find_similar_group</span><span class="p">(</span><span class="n">item_list</span><span class="p">,</span> <span class="n">similar_group_size</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<div class="viewcode-block" id="find_similar_group"><a class="viewcode-back" href="../api/modules/math_helper.html#math_helper.find_similar_group">[docs]</a><span class="k">def</span> <span class="nf">find_similar_group</span><span class="p">(</span><span class="n">item_list</span><span class="p">,</span> <span class="n">similar_group_size</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Find the most alike values in a list.</span>
 
 <span class="sd">    Parameters</span>
@@ -320,7 +322,7 @@
     <span class="k">return</span> <span class="n">similar_group</span></div>
 
 
-<div class="viewcode-block" id="sample_integral"><a class="viewcode-back" href="../math_helper.html#math_helper.sample_integral">[docs]</a><span class="k">def</span> <span class="nf">sample_integral</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<div class="viewcode-block" id="sample_integral"><a class="viewcode-back" href="../api/modules/math_helper.html#math_helper.sample_integral">[docs]</a><span class="k">def</span> <span class="nf">sample_integral</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Integrate Y over x, where every Y data point is a bunch of distribution samples.</span>
 
 <span class="sd">    Parameters</span>
@@ -352,7 +354,7 @@
     <span class="k">return</span> <span class="n">int_y_x</span></div>
 
 
-<div class="viewcode-block" id="f_solve_poly2"><a class="viewcode-back" href="../math_helper.html#math_helper.f_solve_poly2">[docs]</a><span class="k">def</span> <span class="nf">f_solve_poly2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+<div class="viewcode-block" id="f_solve_poly2"><a class="viewcode-back" href="../api/modules/math_helper.html#math_helper.f_solve_poly2">[docs]</a><span class="k">def</span> <span class="nf">f_solve_poly2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Find the two roots of the quadratic equation $ax^2+bx+c=0$</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">discriminant</span> <span class="o">=</span> <span class="n">b</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="n">c</span>
@@ -367,7 +369,7 @@
 
 
 <span class="c1"># helper function</span>
-<div class="viewcode-block" id="fit_distribution"><a class="viewcode-back" href="../math_helper.html#math_helper.fit_distribution">[docs]</a><span class="k">def</span> <span class="nf">fit_distribution</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">fit_type</span><span class="o">=</span><span class="s2">&quot;kernel&quot;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">axn</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="fit_distribution"><a class="viewcode-back" href="../api/modules/math_helper.html#math_helper.fit_distribution">[docs]</a><span class="k">def</span> <span class="nf">fit_distribution</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">fit_type</span><span class="o">=</span><span class="s2">&quot;kernel&quot;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">axn</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Fit data to a probability distribution function (parametric or numerical)</span>
 <span class="sd">    and return a continuous random variable or a random variable represented by Gaussian kernels</span>
 <span class="sd">    parametric : normal</span>
@@ -441,7 +443,7 @@
         <span class="k">return</span> <span class="n">kde</span></div>
 
 
-<div class="viewcode-block" id="pf_RS"><a class="viewcode-back" href="../math_helper.html#math_helper.pf_RS">[docs]</a><span class="k">def</span> <span class="nf">pf_RS</span><span class="p">(</span><span class="n">R_info</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">R_distrib_type</span><span class="o">=</span><span class="s2">&quot;normal&quot;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="pf_RS"><a class="viewcode-back" href="../api/modules/math_helper.html#math_helper.pf_RS">[docs]</a><span class="k">def</span> <span class="nf">pf_RS</span><span class="p">(</span><span class="n">R_info</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">R_distrib_type</span><span class="o">=</span><span class="s2">&quot;normal&quot;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;pf_RS calculates the probability of failure Pf = P(R-S&lt;0), given the R(resistance) and S(load)</span>
 <span class="sd">    with three methods and uses method 3 if it is checked &quot;OK&quot; with the other two</span>
 
@@ -651,7 +653,7 @@
     <span class="k">return</span> <span class="n">pf_RS</span><span class="p">,</span> <span class="n">beta_factor</span><span class="p">,</span> <span class="n">R_distrib</span><span class="p">,</span> <span class="n">S_kde_fit</span></div>
 
 
-<div class="viewcode-block" id="plot_RS"><a class="viewcode-back" href="../math_helper.html#math_helper.plot_RS">[docs]</a><span class="k">def</span> <span class="nf">plot_RS</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">t_offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="plot_RS"><a class="viewcode-back" href="../api/modules/math_helper.html#math_helper.plot_RS">[docs]</a><span class="k">def</span> <span class="nf">plot_RS</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">t_offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;plot R S distribution vertically at a time to an axis</span>
 
 <span class="sd">    Parameters</span>
@@ -704,7 +706,7 @@
 
 
 <span class="c1"># additional helper function</span>
-<div class="viewcode-block" id="find_mean"><a class="viewcode-back" href="../math_helper.html#math_helper.find_mean">[docs]</a><span class="k">def</span> <span class="nf">find_mean</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">confidence_one_tailed</span><span class="o">=</span><span class="mf">0.95</span><span class="p">):</span>
+<div class="viewcode-block" id="find_mean"><a class="viewcode-back" href="../api/modules/math_helper.html#math_helper.find_mean">[docs]</a><span class="k">def</span> <span class="nf">find_mean</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">confidence_one_tailed</span><span class="o">=</span><span class="mf">0.95</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;return the mean value of a unknown normal distribution</span>
 <span class="sd">    based on the given value at a known one-tailed confidence level(default 95%)</span>
 
