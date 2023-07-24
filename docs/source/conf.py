@@ -77,3 +77,5 @@ source_suffix={
     '.txt': 'markdown',
     '.md': 'markdown',
 }
+
+pygments_style = "sphinx"
