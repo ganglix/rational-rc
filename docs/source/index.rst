@@ -29,6 +29,7 @@ It covers various deterioration mechanisms such as membrane deterioration, concr
    user/installation
 
 .. toctree::
+   :hidden:
    :maxdepth: 2
    :caption: Features
 
