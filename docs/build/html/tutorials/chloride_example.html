@@ -108,6 +108,8 @@
 <span class="kn">from</span> <span class="nn">rational_rc.chloride</span> <span class="kn">import</span> <span class="n">ChlorideModel</span><span class="p">,</span> <span class="n">load_df_D_RCM</span><span class="p">,</span> <span class="n">C_crit_param</span><span class="p">,</span> <span class="n">C_eqv_to_C_S_0</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -175,30 +177,21 @@
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/gangli/anaconda3/lib/python3.7/site-packages/scipy/optimize/minpack.py:834: OptimizeWarning: Covariance of the parameters could not be estimated
-  category=OptimizeWarning)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Pf(g = R-S &lt; 0) from various methods
-    sample count: 0.52397
-    g integral: 0.5264646795220598
-    R S integral: 0.5264365424769382
-    beta_factor: -0.3102651198488958
--0.26944259984866864 0.6023160843054596
+    sample count: 0.52303
+    g integral: 0.5250313143363667
+    R S integral: 0.5248762860330419
+    beta_factor: -0.30656355108126127
+-0.26621582320192305 0.6133863073737166
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_chloride_example_3_2.png" src="../_images/tutorials_chloride_example_3_2.png" />
+<img alt="../_images/tutorials_chloride_example_3_1.png" src="../_images/tutorials_chloride_example_3_1.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -215,7 +208,7 @@ Pf(g = R-S &lt; 0) from various methods
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-0.5264365424769382
+0.5248762860330419
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -251,27 +244,18 @@ Pf(g = R-S &lt; 0) from various methods
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/chloride.py:76: RuntimeWarning: invalid value encountered in sqrt
-  1 - erf((x - pars.dx) / (2 * (pars.D_app * t) ** 0.5))
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-7.82958984375e-13
-2.9069824218749997e-12
+7.932128906250002e-13
+2.917236328125e-12
 2.999267578125e-12
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># run the calibrated model for 40 mm and 10 year</span>
@@ -287,11 +271,11 @@ Pf(g = R-S &lt; 0) from various methods
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Pf(g = R-S &lt; 0) from various methods
-    sample count: 0.11802
-    g integral: 0.11970350000961451
-    R S integral: 0.11986330913922909
-    beta_factor: 0.49857588419071386
-0.326225250538341 0.2303033179353886
+    sample count: 0.2442
+    g integral: 0.24753247206490384
+    R S integral: 0.24757288096319238
+    beta_factor: 0.18940800855341472
+0.13818657169783283 0.4551735530677979
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -302,7 +286,7 @@ Pf(g = R-S &lt; 0) from various methods
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># run model for a list of time steps</span>
@@ -313,27 +297,19 @@ Pf(g = R-S &lt; 0) from various methods
 <br/></pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/chloride.py:76: RuntimeWarning: invalid value encountered in sqrt
-  1 - erf((x - pars.dx) / (2 * (pars.D_app * t) ** 0.5))
-/Users/gangli/Local Documents/Mitacs project local/Tinkrete/modules/helper_func.py:440: IntegrationWarning: The maximum number of subdivisions (50) has been achieved.
-  If increasing the limit yields no improvement it is advised to analyze
-  the integrand in order to determine the difficulties.  If the position of a
-  local difficulty can be determined (singularity, discontinuity) one will
-  probably gain from splitting up the interval and calling the integrator
-  on the subranges.  Perhaps a special-purpose integrator should be used.
-  lambda x: R_distrib.cdf(x) * S_kde_fit(x)[0], 0, S_dropna.max()
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_chloride_example_8_1.png" src="../_images/tutorials_chloride_example_8_1.png" />
+<img alt="../_images/tutorials_chloride_example_8_0.png" src="../_images/tutorials_chloride_example_8_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">

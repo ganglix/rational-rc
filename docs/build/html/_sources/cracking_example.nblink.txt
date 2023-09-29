@@ -1,6 +1,0 @@
-
-
-{
-    "path": "../../tutorials/cracking_example.ipynb"
-
-} 

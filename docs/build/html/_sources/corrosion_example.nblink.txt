@@ -1,6 +1,0 @@
-
-
-{
-    "path": "../../tutorials/corrosion_example.ipynb"
-
-} 

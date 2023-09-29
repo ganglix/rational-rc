@@ -137,7 +137,7 @@ def pf_RS_special(R_info, S, R_distrib_type="normal", plot=False):
         )
 
         ax2.annotate(
-            s=r"$\{mu}_g$",
+            text=r"$\{mu}_g$",
             xy=(0, g.mean()),
             xytext=(g.mean(), g_kde_fit(0)[0]),
             va="center",

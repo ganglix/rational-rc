@@ -1,6 +1,0 @@
-
-
-{
-    "path": "../../tutorials/membrane_example.ipynb"
-
-} 

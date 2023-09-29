@@ -69,3 +69,9 @@ For `development mode <https://setuptools.pypa.io/en/latest/userguide/developmen
     # as if it was installed in .venv
     python -c "import rational-rc"
 
+Testing
+~~~~~~~
+After the editable installation from the source, configure testing in your IDE or run all tests from the terminal
+.. code:: bash
+    
+    python -m unittest discover tests
