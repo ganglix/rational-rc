@@ -67,7 +67,7 @@ For `development mode <https://setuptools.pypa.io/en/latest/userguide/developmen
     pip install --editable .
     # Now you have access to your package
     # as if it was installed in .venv
-    python -c "import rational-rc"
+    python -c "import rational_rc"
 
 Testing
 ~~~~~~~
