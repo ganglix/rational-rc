@@ -43,11 +43,21 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules.html">Modules</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Features</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user/features.html">Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Rational-RC API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/module_index.html">Modules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial_index.html">Tutorials</a></li>
 </ul>
 
         </div>
@@ -94,9 +104,10 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
-<span class="kn">import</span> <span class="nn">math_helper</span> <span class="k">as</span> <span class="nn">mh</span>
 
-<div class="viewcode-block" id="icorr_to_mmpy"><a class="viewcode-back" href="../corrosion.html#corrosion.icorr_to_mmpy">[docs]</a><span class="k">def</span> <span class="nf">icorr_to_mmpy</span><span class="p">(</span><span class="n">icorr</span><span class="p">):</span>
+<span class="kn">import</span> <span class="nn">rational_rc.math_helper</span> <span class="k">as</span> <span class="nn">mh</span>
+
+<div class="viewcode-block" id="icorr_to_mmpy"><a class="viewcode-back" href="../api/modules/corrosion.html#corrosion.icorr_to_mmpy">[docs]</a><span class="k">def</span> <span class="nf">icorr_to_mmpy</span><span class="p">(</span><span class="n">icorr</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts icorr [A/m^2] to corrosion rate [mm/year] using Faraday&#39;s laws</span>
 
 <span class="sd">    Parameters</span>
@@ -116,7 +127,7 @@
     <span class="k">return</span> <span class="n">icorr</span> <span class="o">*</span> <span class="n">M_Fe</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">F</span> <span class="o">*</span> <span class="n">rho_Fe</span><span class="p">)</span> <span class="o">*</span> <span class="mi">3600</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">365</span> <span class="o">*</span> <span class="mf">1000.0</span></div>
 
 
-<div class="viewcode-block" id="mmpy_to_icorr"><a class="viewcode-back" href="../corrosion.html#corrosion.mmpy_to_icorr">[docs]</a><span class="k">def</span> <span class="nf">mmpy_to_icorr</span><span class="p">(</span><span class="n">rate</span><span class="p">):</span>
+<div class="viewcode-block" id="mmpy_to_icorr"><a class="viewcode-back" href="../api/modules/corrosion.html#corrosion.mmpy_to_icorr">[docs]</a><span class="k">def</span> <span class="nf">mmpy_to_icorr</span><span class="p">(</span><span class="n">rate</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts corrosion rate [mm/year] to icorr [A/m^2] using Faraday&#39;s laws</span>
 
 <span class="sd">    Parameters</span>
@@ -137,7 +148,7 @@
     <span class="k">return</span> <span class="n">rate</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">F</span> <span class="o">*</span> <span class="n">rho_Fe</span> <span class="o">/</span> <span class="p">(</span><span class="n">M_Fe</span> <span class="o">*</span> <span class="mi">3600</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">365</span> <span class="o">*</span> <span class="mf">1000.0</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="icorr_base"><a class="viewcode-back" href="../corrosion.html#corrosion.icorr_base">[docs]</a><span class="k">def</span> <span class="nf">icorr_base</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">iL</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>  <span class="c1"># SI units # regressed model for the ref</span>
+<div class="viewcode-block" id="icorr_base"><a class="viewcode-back" href="../api/modules/corrosion.html#corrosion.icorr_base">[docs]</a><span class="k">def</span> <span class="nf">icorr_base</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">iL</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>  <span class="c1"># SI units # regressed model for the ref</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate averaged corrosion current density over the rebar-concrete interface from resistivity, temperature, limiting current, and cover thickness.</span>
 
 <span class="sd">    Parameters</span>
@@ -190,7 +201,7 @@
     <span class="k">return</span> <span class="n">icorr</span></div>
 
 
-<div class="viewcode-block" id="theta2rho_fun"><a class="viewcode-back" href="../corrosion.html#corrosion.theta2rho_fun">[docs]</a><span class="k">def</span> <span class="nf">theta2rho_fun</span><span class="p">(</span><span class="n">theta_water</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<div class="viewcode-block" id="theta2rho_fun"><a class="viewcode-back" href="../api/modules/corrosion.html#corrosion.theta2rho_fun">[docs]</a><span class="k">def</span> <span class="nf">theta2rho_fun</span><span class="p">(</span><span class="n">theta_water</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert volumetric water content to resistivity using an exponential function.</span>
 
 <span class="sd">    Parameters</span>
@@ -212,7 +223,7 @@
     <span class="k">return</span> <span class="n">rho</span></div>
 
 
-<div class="viewcode-block" id="icorr_f"><a class="viewcode-back" href="../corrosion.html#corrosion.icorr_f">[docs]</a><span class="k">def</span> <span class="nf">icorr_f</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
+<div class="viewcode-block" id="icorr_f"><a class="viewcode-back" href="../api/modules/corrosion.html#corrosion.icorr_f">[docs]</a><span class="k">def</span> <span class="nf">icorr_f</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the corrosion current density using icorr_base() with volumetric water content.</span>
 
 <span class="sd">    Parameters</span>
@@ -243,7 +254,7 @@
     <span class="k">return</span> <span class="n">icorr</span></div>
 
 
-<div class="viewcode-block" id="iL_f"><a class="viewcode-back" href="../corrosion.html#corrosion.iL_f">[docs]</a><span class="k">def</span> <span class="nf">iL_f</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
+<div class="viewcode-block" id="iL_f"><a class="viewcode-back" href="../api/modules/corrosion.html#corrosion.iL_f">[docs]</a><span class="k">def</span> <span class="nf">iL_f</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;calculate O2 limiting current density</span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -282,7 +293,7 @@
     <span class="k">return</span> <span class="n">iL</span></div>
 
 
-<div class="viewcode-block" id="Cs_g_f"><a class="viewcode-back" href="../corrosion.html#corrosion.Cs_g_f">[docs]</a><span class="k">def</span> <span class="nf">Cs_g_f</span><span class="p">():</span>
+<div class="viewcode-block" id="Cs_g_f"><a class="viewcode-back" href="../api/modules/corrosion.html#corrosion.Cs_g_f">[docs]</a><span class="k">def</span> <span class="nf">Cs_g_f</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the atmospheric O2 concentration in the gas phase on the boundary [mol/m^3], converted from 20.95% by volume&quot;&quot;&quot;</span>
     <span class="n">O2_fraction</span> <span class="o">=</span> <span class="mf">20.95</span> <span class="o">/</span> <span class="mi">100</span>
     <span class="n">air_molar_vol</span> <span class="o">=</span> <span class="mf">22.4</span>  <span class="c1"># [L/mol]</span>
@@ -290,7 +301,7 @@
     <span class="k">return</span> <span class="n">Cs_g</span></div>
 
 
-<div class="viewcode-block" id="De_O2_f"><a class="viewcode-back" href="../corrosion.html#corrosion.De_O2_f">[docs]</a><span class="k">def</span> <span class="nf">De_O2_f</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
+<div class="viewcode-block" id="De_O2_f"><a class="viewcode-back" href="../api/modules/corrosion.html#corrosion.De_O2_f">[docs]</a><span class="k">def</span> <span class="nf">De_O2_f</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;calculate the O2 effective diffusivity of concrete</span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -329,7 +340,7 @@
     <span class="k">return</span> <span class="n">De_O2</span></div>
 
 
-<div class="viewcode-block" id="epsilon_p_f"><a class="viewcode-back" href="../corrosion.html#corrosion.epsilon_p_f">[docs]</a><span class="k">def</span> <span class="nf">epsilon_p_f</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
+<div class="viewcode-block" id="epsilon_p_f"><a class="viewcode-back" href="../api/modules/corrosion.html#corrosion.epsilon_p_f">[docs]</a><span class="k">def</span> <span class="nf">epsilon_p_f</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the porosity of the hardened cement paste from the concrete porosity</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
@@ -367,14 +378,14 @@
     <span class="k">return</span> <span class="n">epsilon_p</span></div>
 
 
-<div class="viewcode-block" id="calibrate_f"><a class="viewcode-back" href="../corrosion.html#corrosion.calibrate_f">[docs]</a><span class="k">def</span> <span class="nf">calibrate_f</span><span class="p">(</span><span class="n">raw_model</span><span class="p">,</span> <span class="n">field_data</span><span class="p">):</span>
+<div class="viewcode-block" id="calibrate_f"><a class="viewcode-back" href="../api/modules/corrosion.html#corrosion.calibrate_f">[docs]</a><span class="k">def</span> <span class="nf">calibrate_f</span><span class="p">(</span><span class="n">raw_model</span><span class="p">,</span> <span class="n">field_data</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;[TODO] A placeholder function for future development. field_data: temperature, theta_water, icorr_list&quot;&quot;&quot;</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">raw_model</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">model</span></div>
 
 
 <span class="c1"># RH and water theta is related. Use theoretical model adsorption isotherm or empirical van-Genutchten model</span>
-<div class="viewcode-block" id="RH_to_waterByMassHCP"><a class="viewcode-back" href="../corrosion.html#corrosion.RH_to_waterByMassHCP">[docs]</a><span class="k">def</span> <span class="nf">RH_to_waterByMassHCP</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
+<div class="viewcode-block" id="RH_to_waterByMassHCP"><a class="viewcode-back" href="../api/modules/corrosion.html#corrosion.RH_to_waterByMassHCP">[docs]</a><span class="k">def</span> <span class="nf">RH_to_waterByMassHCP</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return water content(g/g hardened cement paste) from RH in pores/environment based on water-cement ratio w_c, cement_type, temperature by using modified BET model</span>
 
 <span class="sd">    Note</span>
@@ -403,7 +414,7 @@
     <span class="k">return</span> <span class="n">waterByMassHCP</span></div>
 
 
-<div class="viewcode-block" id="waterByMassHCP_to_RH"><a class="viewcode-back" href="../corrosion.html#corrosion.waterByMassHCP_to_RH">[docs]</a><span class="k">def</span> <span class="nf">waterByMassHCP_to_RH</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
+<div class="viewcode-block" id="waterByMassHCP_to_RH"><a class="viewcode-back" href="../api/modules/corrosion.html#corrosion.waterByMassHCP_to_RH">[docs]</a><span class="k">def</span> <span class="nf">waterByMassHCP_to_RH</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return RH in pores/environment from water content(g/g hardened cement paste) based on water-cement ratio w_c, cement type, temperature,</span>
 <span class="sd">    a reverse function of RH_to_waterByMassHCP()&quot;&quot;&quot;</span>
     <span class="n">V_m</span> <span class="o">=</span> <span class="n">V_m_f</span><span class="p">(</span><span class="n">pars</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">pars</span><span class="o">.</span><span class="n">w_c</span><span class="p">,</span> <span class="n">pars</span><span class="o">.</span><span class="n">cement_type</span><span class="p">)</span>
@@ -430,7 +441,7 @@
     <span class="k">return</span> <span class="n">RH</span></div>
 
 
-<div class="viewcode-block" id="V_m_f"><a class="viewcode-back" href="../corrosion.html#corrosion.V_m_f">[docs]</a><span class="k">def</span> <span class="nf">V_m_f</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">w_c</span><span class="p">,</span> <span class="n">cement_type</span><span class="p">):</span>
+<div class="viewcode-block" id="V_m_f"><a class="viewcode-back" href="../api/modules/corrosion.html#corrosion.V_m_f">[docs]</a><span class="k">def</span> <span class="nf">V_m_f</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">w_c</span><span class="p">,</span> <span class="n">cement_type</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate V_m, a BET model parameter.</span>
 
 <span class="sd">    Parameters</span>
@@ -481,7 +492,7 @@
     <span class="k">return</span> <span class="n">V_m</span></div>
 
 
-<div class="viewcode-block" id="C_f"><a class="viewcode-back" href="../corrosion.html#corrosion.C_f">[docs]</a><span class="k">def</span> <span class="nf">C_f</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+<div class="viewcode-block" id="C_f"><a class="viewcode-back" href="../api/modules/corrosion.html#corrosion.C_f">[docs]</a><span class="k">def</span> <span class="nf">C_f</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return BET model parameter C sampled from a normal distribution.</span>
 
 <span class="sd">    Parameters</span>
@@ -500,7 +511,7 @@
     <span class="k">return</span> <span class="n">C_mean</span><span class="p">,</span> <span class="n">C</span></div>
 
 
-<div class="viewcode-block" id="k_f"><a class="viewcode-back" href="../corrosion.html#corrosion.k_f">[docs]</a><span class="k">def</span> <span class="nf">k_f</span><span class="p">(</span><span class="n">C_mean</span><span class="p">,</span> <span class="n">w_c</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">cement_type</span><span class="p">):</span>
+<div class="viewcode-block" id="k_f"><a class="viewcode-back" href="../api/modules/corrosion.html#corrosion.k_f">[docs]</a><span class="k">def</span> <span class="nf">k_f</span><span class="p">(</span><span class="n">C_mean</span><span class="p">,</span> <span class="n">w_c</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">cement_type</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return BET model parameter k</span>
 
 <span class="sd">    Parameters</span>
@@ -544,7 +555,7 @@
     <span class="k">return</span> <span class="n">k</span></div>
 
 
-<div class="viewcode-block" id="waterByMassHCP_to_theta_water"><a class="viewcode-back" href="../corrosion.html#corrosion.waterByMassHCP_to_theta_water">[docs]</a><span class="k">def</span> <span class="nf">waterByMassHCP_to_theta_water</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
+<div class="viewcode-block" id="waterByMassHCP_to_theta_water"><a class="viewcode-back" href="../api/modules/corrosion.html#corrosion.waterByMassHCP_to_theta_water">[docs]</a><span class="k">def</span> <span class="nf">waterByMassHCP_to_theta_water</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert water content from g/g hardened cement paste (HCP) </span>
 <span class="sd">    to volumetric in HCP to volumetric in concrete</span>
 
@@ -583,7 +594,7 @@
     <span class="k">return</span> <span class="n">theta_water</span></div>
 
 
-<div class="viewcode-block" id="theta_water_to_waterByMassHCP"><a class="viewcode-back" href="../corrosion.html#corrosion.theta_water_to_waterByMassHCP">[docs]</a><span class="k">def</span> <span class="nf">theta_water_to_waterByMassHCP</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
+<div class="viewcode-block" id="theta_water_to_waterByMassHCP"><a class="viewcode-back" href="../api/modules/corrosion.html#corrosion.theta_water_to_waterByMassHCP">[docs]</a><span class="k">def</span> <span class="nf">theta_water_to_waterByMassHCP</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; convert water content from volumetric by concrete to volumetric in HCP to g/g in HCP,</span>
 <span class="sd">    a reverse function of waterByMassHCP_to_theta_water()</span>
 <span class="sd">    </span>
@@ -622,7 +633,7 @@
     <span class="k">return</span> <span class="n">waterByMassHCP</span></div>
 
 
-<div class="viewcode-block" id="CorrosionModel"><a class="viewcode-back" href="../corrosion.html#corrosion.CorrosionModel">[docs]</a><span class="k">class</span> <span class="nc">CorrosionModel</span><span class="p">:</span>
+<div class="viewcode-block" id="CorrosionModel"><a class="viewcode-back" href="../api/modules/corrosion.html#corrosion.CorrosionModel">[docs]</a><span class="k">class</span> <span class="nc">CorrosionModel</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the model with Param object and built-in coefficient&quot;&quot;&quot;</span>
         <span class="n">pars</span><span class="o">.</span><span class="n">theta2rho_coeff_a</span> <span class="o">=</span> <span class="mf">18.71810174</span>  <span class="c1"># [TODO: future updates: uncertainty for a and b]</span>
@@ -631,24 +642,24 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">icorr</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x_loss_rate</span> <span class="o">=</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="CorrosionModel.run"><a class="viewcode-back" href="../corrosion.html#corrosion.CorrosionModel.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="CorrosionModel.run"><a class="viewcode-back" href="../api/modules/corrosion.html#corrosion.CorrosionModel.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Solve for icorr and the corresponding section loss rate&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">icorr</span> <span class="o">=</span> <span class="n">icorr_f</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x_loss_rate</span> <span class="o">=</span> <span class="n">icorr_to_mmpy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">icorr</span><span class="p">)</span>  <span class="c1"># [mm/year]</span></div>
 
-<div class="viewcode-block" id="CorrosionModel.calibrate"><a class="viewcode-back" href="../corrosion.html#corrosion.CorrosionModel.calibrate">[docs]</a>    <span class="k">def</span> <span class="nf">calibrate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field_data</span><span class="p">):</span>
+<div class="viewcode-block" id="CorrosionModel.calibrate"><a class="viewcode-back" href="../api/modules/corrosion.html#corrosion.CorrosionModel.calibrate">[docs]</a>    <span class="k">def</span> <span class="nf">calibrate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field_data</span><span class="p">):</span>
         <span class="c1"># place holder function for future update#</span>
         <span class="c1"># update parameters a and b</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="CorrosionModel.copy"><a class="viewcode-back" href="../corrosion.html#corrosion.CorrosionModel.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="CorrosionModel.copy"><a class="viewcode-back" href="../api/modules/corrosion.html#corrosion.CorrosionModel.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div></div>
 
 
 <span class="c1">###### section loss ##########</span>
 
 <span class="c1"># output section loss distribution at time t</span>
-<div class="viewcode-block" id="x_loss_t_fun"><a class="viewcode-back" href="../corrosion.html#corrosion.x_loss_t_fun">[docs]</a><span class="k">def</span> <span class="nf">x_loss_t_fun</span><span class="p">(</span><span class="n">t_end</span><span class="p">,</span> <span class="n">n_step</span><span class="p">,</span> <span class="n">x_loss_rate</span><span class="p">,</span> <span class="n">p_active_t_curve</span><span class="p">):</span>
+<div class="viewcode-block" id="x_loss_t_fun"><a class="viewcode-back" href="../api/modules/corrosion.html#corrosion.x_loss_t_fun">[docs]</a><span class="k">def</span> <span class="nf">x_loss_t_fun</span><span class="p">(</span><span class="n">t_end</span><span class="p">,</span> <span class="n">n_step</span><span class="p">,</span> <span class="n">x_loss_rate</span><span class="p">,</span> <span class="n">p_active_t_curve</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return samples of x_loss at a given time t_end. The samples represent the distribution of all possible x_loss with different corrosion history</span>
 
 <span class="sd">    Parameters</span>
@@ -690,7 +701,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x_loss_at_t</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="x_loss_year"><a class="viewcode-back" href="../corrosion.html#corrosion.x_loss_year">[docs]</a><span class="k">def</span> <span class="nf">x_loss_year</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">year_lis</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">80</span><span class="p">):</span>
+<div class="viewcode-block" id="x_loss_year"><a class="viewcode-back" href="../api/modules/corrosion.html#corrosion.x_loss_year">[docs]</a><span class="k">def</span> <span class="nf">x_loss_year</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">year_lis</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">80</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Run x_loss_t_fun() function over time.</span>
 
 <span class="sd">    Parameters</span>
@@ -755,11 +766,11 @@
     <span class="k">return</span> <span class="p">[</span><span class="n">this_M</span><span class="o">.</span><span class="n">pf</span> <span class="k">for</span> <span class="n">this_M</span> <span class="ow">in</span> <span class="n">M_lis</span><span class="p">],</span> <span class="p">[</span><span class="n">this_M</span><span class="o">.</span><span class="n">beta_factor</span> <span class="k">for</span> <span class="n">this_M</span> <span class="ow">in</span> <span class="n">M_lis</span><span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="SectionLossModel"><a class="viewcode-back" href="../corrosion.html#corrosion.SectionLossModel">[docs]</a><span class="k">class</span> <span class="nc">SectionLossModel</span><span class="p">:</span>
+<div class="viewcode-block" id="SectionLossModel"><a class="viewcode-back" href="../api/modules/corrosion.html#corrosion.SectionLossModel">[docs]</a><span class="k">class</span> <span class="nc">SectionLossModel</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pars</span> <span class="o">=</span> <span class="n">pars</span>  <span class="c1"># pars with user-input</span>
 
-<div class="viewcode-block" id="SectionLossModel.run"><a class="viewcode-back" href="../corrosion.html#corrosion.SectionLossModel.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t_end</span><span class="p">):</span>
+<div class="viewcode-block" id="SectionLossModel.run"><a class="viewcode-back" href="../api/modules/corrosion.html#corrosion.SectionLossModel.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t_end</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;run model to solve the accumulated section loss at t_end by using x_loss_t_fun()</span>
 
 <span class="sd">        Parameters</span>
@@ -770,7 +781,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="n">t_end</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x_loss_t</span> <span class="o">=</span> <span class="n">x_loss_t_fun</span><span class="p">(</span><span class="n">t_end</span><span class="p">,</span> <span class="n">mh</span><span class="o">.</span><span class="n">N_SAMPLE</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">x_loss_rate</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">p_active_t_curve</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SectionLossModel.postproc"><a class="viewcode-back" href="../corrosion.html#corrosion.SectionLossModel.postproc">[docs]</a>    <span class="k">def</span> <span class="nf">postproc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="SectionLossModel.postproc"><a class="viewcode-back" href="../api/modules/corrosion.html#corrosion.SectionLossModel.postproc">[docs]</a>    <span class="k">def</span> <span class="nf">postproc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;calculate the Pf and beta from accumulated section loss and section loss limit</span>
 
 <span class="sd">        Parameters</span>
@@ -785,12 +796,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">S_kde_fit</span> <span class="o">=</span> <span class="n">sol</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">S</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_loss_t</span></div>
     
-<div class="viewcode-block" id="SectionLossModel.copy"><a class="viewcode-back" href="../corrosion.html#corrosion.SectionLossModel.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SectionLossModel.copy"><a class="viewcode-back" href="../api/modules/corrosion.html#corrosion.SectionLossModel.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a deep copy of the object</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
     
-<div class="viewcode-block" id="SectionLossModel.section_loss_with_year"><a class="viewcode-back" href="../corrosion.html#corrosion.SectionLossModel.section_loss_with_year">[docs]</a>    <span class="k">def</span> <span class="nf">section_loss_with_year</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">year_lis</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="SectionLossModel.section_loss_with_year"><a class="viewcode-back" href="../api/modules/corrosion.html#corrosion.SectionLossModel.section_loss_with_year">[docs]</a>    <span class="k">def</span> <span class="nf">section_loss_with_year</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">year_lis</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;use x_loss_year() to report the accumulated section loss at each time step and</span>
 <span class="sd">        the corresponding Pf and beta.</span>
 

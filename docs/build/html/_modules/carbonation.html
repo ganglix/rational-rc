@@ -43,11 +43,21 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules.html">Modules</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Features</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user/features.html">Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Rational-RC API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/module_index.html">Modules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial_index.html">Tutorials</a></li>
 </ul>
 
         </div>
@@ -97,7 +107,7 @@
 <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 
-<span class="kn">import</span> <span class="nn">math_helper</span> <span class="k">as</span> <span class="nn">mh</span>
+<span class="kn">import</span> <span class="nn">rational_rc.math_helper</span> <span class="k">as</span> <span class="nn">mh</span>
 
 <span class="c1"># logger</span>
 <span class="c1"># log levels: NOTSET, DEBUG, INFO, WARNING, ERROR, and CRITICAL</span>
@@ -115,7 +125,7 @@
 
 
 <span class="c1"># model functions</span>
-<div class="viewcode-block" id="carb_depth"><a class="viewcode-back" href="../carbonation.html#carbonation.carb_depth">[docs]</a><span class="k">def</span> <span class="nf">carb_depth</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">pars</span><span class="p">):</span>
+<div class="viewcode-block" id="carb_depth"><a class="viewcode-back" href="../api/modules/carbonation.html#carbonation.carb_depth">[docs]</a><span class="k">def</span> <span class="nf">carb_depth</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">pars</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Calculate carbonation depth at a given time based on the parameters. </span>
 <span class="sd">    The derived parameters (including the k constant of sqrt of time) are also calculated within this function.</span>
 
@@ -172,7 +182,7 @@
 
 
 <span class="c1"># data import function</span>
-<div class="viewcode-block" id="load_df_R_ACC"><a class="viewcode-back" href="../carbonation.html#carbonation.load_df_R_ACC">[docs]</a><span class="k">def</span> <span class="nf">load_df_R_ACC</span><span class="p">():</span>
+<div class="viewcode-block" id="load_df_R_ACC"><a class="viewcode-back" href="../api/modules/carbonation.html#carbonation.load_df_R_ACC">[docs]</a><span class="k">def</span> <span class="nf">load_df_R_ACC</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;load the data table of the accelerated carbonation test</span>
 <span class="sd">    for R_ACC interpolation.</span>
 
@@ -203,7 +213,7 @@
 
     <span class="k">return</span> <span class="n">df</span></div>
 
-<div class="viewcode-block" id="k_e"><a class="viewcode-back" href="../carbonation.html#carbonation.k_e">[docs]</a><span class="k">def</span> <span class="nf">k_e</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
+<div class="viewcode-block" id="k_e"><a class="viewcode-back" href="../api/modules/carbonation.html#carbonation.k_e">[docs]</a><span class="k">def</span> <span class="nf">k_e</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Calculate k_e[-], environmental factor, effect of relative humidity</span>
 
 <span class="sd">    Parameters</span>
@@ -226,7 +236,7 @@
     <span class="k">return</span> <span class="n">k_e</span></div>
 
 
-<div class="viewcode-block" id="k_c"><a class="viewcode-back" href="../carbonation.html#carbonation.k_c">[docs]</a><span class="k">def</span> <span class="nf">k_c</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
+<div class="viewcode-block" id="k_c"><a class="viewcode-back" href="../api/modules/carbonation.html#carbonation.k_c">[docs]</a><span class="k">def</span> <span class="nf">k_c</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; calculate k_c: execution transfer parameter [-], effect of period of curing for the accelerated carbonation test</span>
 
 <span class="sd">    Parameters</span>
@@ -247,7 +257,7 @@
     <span class="k">return</span> <span class="n">k_c</span></div>
 
 
-<div class="viewcode-block" id="R_ACC_0_inv"><a class="viewcode-back" href="../carbonation.html#carbonation.R_ACC_0_inv">[docs]</a><span class="k">def</span> <span class="nf">R_ACC_0_inv</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
+<div class="viewcode-block" id="R_ACC_0_inv"><a class="viewcode-back" href="../api/modules/carbonation.html#carbonation.R_ACC_0_inv">[docs]</a><span class="k">def</span> <span class="nf">R_ACC_0_inv</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Calculate R_ACC_0_inv[(mm^2/year)/(kg/m^3)], the inverse effective carbonation resistance of concrete(accelerated)</span>
 <span class="sd">    From ACC test or from existing empirical data interpolation for orientation purpose</span>
 <span class="sd">    test condition: duration time = 56 days CO2 = 2.0 vol%, T =25 degC RH_ref =65</span>
@@ -318,7 +328,7 @@
 
 
 <span class="c1"># Test method factors</span>
-<div class="viewcode-block" id="k_t"><a class="viewcode-back" href="../carbonation.html#carbonation.k_t">[docs]</a><span class="k">def</span> <span class="nf">k_t</span><span class="p">():</span>
+<div class="viewcode-block" id="k_t"><a class="viewcode-back" href="../api/modules/carbonation.html#carbonation.k_t">[docs]</a><span class="k">def</span> <span class="nf">k_t</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate test method regression parameter k_t[-]</span>
 
 <span class="sd">    Notes</span>
@@ -328,7 +338,7 @@
     <span class="k">return</span> <span class="n">k_t</span></div>
 
 
-<div class="viewcode-block" id="eps_t"><a class="viewcode-back" href="../carbonation.html#carbonation.eps_t">[docs]</a><span class="k">def</span> <span class="nf">eps_t</span><span class="p">():</span>
+<div class="viewcode-block" id="eps_t"><a class="viewcode-back" href="../api/modules/carbonation.html#carbonation.eps_t">[docs]</a><span class="k">def</span> <span class="nf">eps_t</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate error term, eps_t[(mm^2/years)/(kg/m^3)],</span>
 <span class="sd">    considering inaccuracies which occur conditionally when using the ACC test method  k_t[-]</span>
 
@@ -340,7 +350,7 @@
 
 
 <span class="c1"># Environmental impact C_S</span>
-<div class="viewcode-block" id="C_S"><a class="viewcode-back" href="../carbonation.html#carbonation.C_S">[docs]</a><span class="k">def</span> <span class="nf">C_S</span><span class="p">(</span><span class="n">C_S_emi</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="C_S"><a class="viewcode-back" href="../api/modules/carbonation.html#carbonation.C_S">[docs]</a><span class="k">def</span> <span class="nf">C_S</span><span class="p">(</span><span class="n">C_S_emi</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate CO2 density[kg/m^3] in the environment; it is about 350-380 ppm in the atm plus other source or sink</span>
 
 <span class="sd">    Parameters</span>
@@ -358,7 +368,7 @@
 
 
 <span class="c1"># weather function</span>
-<div class="viewcode-block" id="W_t"><a class="viewcode-back" href="../carbonation.html#carbonation.W_t">[docs]</a><span class="k">def</span> <span class="nf">W_t</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">pars</span><span class="p">):</span>
+<div class="viewcode-block" id="W_t"><a class="viewcode-back" href="../api/modules/carbonation.html#carbonation.W_t">[docs]</a><span class="k">def</span> <span class="nf">W_t</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">pars</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Calculate weather parameter W, a parameter considering the meso-climatic conditions due to wetting events of concrete surface</span>
 
 <span class="sd">    Parameters</span>
@@ -392,7 +402,7 @@
 
 
 <span class="c1"># helper function: calibration function</span>
-<div class="viewcode-block" id="calibrate_f"><a class="viewcode-back" href="../carbonation.html#carbonation.calibrate_f">[docs]</a><span class="k">def</span> <span class="nf">calibrate_f</span><span class="p">(</span><span class="n">model_raw</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">carb_depth_field</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">max_count</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">print_out</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="calibrate_f"><a class="viewcode-back" href="../api/modules/carbonation.html#carbonation.calibrate_f">[docs]</a><span class="k">def</span> <span class="nf">calibrate_f</span><span class="p">(</span><span class="n">model_raw</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">carb_depth_field</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">max_count</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">print_out</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calibrate the carbonation model with field carbonation test data [mm] and return the new calibrated model.</span>
 <span class="sd">    Optimization method: searching for the best accelerated test carbonation depth x_c[m] so the model matches field data</span>
 <span class="sd">    on the mean value of the carbonation depth)</span>
@@ -464,7 +474,7 @@
     <span class="k">return</span> <span class="n">model</span></div>
 
 
-<div class="viewcode-block" id="carb_year"><a class="viewcode-back" href="../carbonation.html#carbonation.carb_year">[docs]</a><span class="k">def</span> <span class="nf">carb_year</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">year_lis</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">80</span><span class="p">):</span>
+<div class="viewcode-block" id="carb_year"><a class="viewcode-back" href="../api/modules/carbonation.html#carbonation.carb_year">[docs]</a><span class="k">def</span> <span class="nf">carb_year</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">year_lis</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">80</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Run the model over time and plot the results.&quot;&quot;&quot;</span>
     <span class="n">t_lis</span> <span class="o">=</span> <span class="n">year_lis</span>
     <span class="n">M_cal</span> <span class="o">=</span> <span class="n">model</span>
@@ -532,18 +542,18 @@
     <span class="k">return</span> <span class="p">[</span><span class="n">this_M</span><span class="o">.</span><span class="n">pf</span> <span class="k">for</span> <span class="n">this_M</span> <span class="ow">in</span> <span class="n">M_lis</span><span class="p">],</span> <span class="p">[</span><span class="n">this_M</span><span class="o">.</span><span class="n">beta_factor</span> <span class="k">for</span> <span class="n">this_M</span> <span class="ow">in</span> <span class="n">M_lis</span><span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="CarbonationModel"><a class="viewcode-back" href="../carbonation.html#carbonation.CarbonationModel">[docs]</a><span class="k">class</span> <span class="nc">CarbonationModel</span><span class="p">:</span>
+<div class="viewcode-block" id="CarbonationModel"><a class="viewcode-back" href="../api/modules/carbonation.html#carbonation.CarbonationModel">[docs]</a><span class="k">class</span> <span class="nc">CarbonationModel</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pars</span> <span class="o">=</span> <span class="n">pars</span>  <span class="c1"># pars with user-input, then updated with derived parameters</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Raw pars are </span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">vars</span><span class="p">(</span><span class="n">pars</span><span class="p">)))</span>
 
-<div class="viewcode-block" id="CarbonationModel.run"><a class="viewcode-back" href="../carbonation.html#carbonation.CarbonationModel.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+<div class="viewcode-block" id="CarbonationModel.run"><a class="viewcode-back" href="../api/modules/carbonation.html#carbonation.CarbonationModel.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Run the model for the given time t [year].&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">xc_t</span> <span class="o">=</span> <span class="n">carb_depth</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="n">t</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Carbonation depth, xc_t: </span><span class="si">{}</span><span class="s2"> mm&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xc_t</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="CarbonationModel.postproc"><a class="viewcode-back" href="../carbonation.html#carbonation.CarbonationModel.postproc">[docs]</a>    <span class="k">def</span> <span class="nf">postproc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="CarbonationModel.postproc"><a class="viewcode-back" href="../api/modules/carbonation.html#carbonation.CarbonationModel.postproc">[docs]</a>    <span class="k">def</span> <span class="nf">postproc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Post-process the model results.&quot;&quot;&quot;</span>
         <span class="n">sol</span> <span class="o">=</span> <span class="n">mh</span><span class="o">.</span><span class="n">pf_RS</span><span class="p">(</span>
             <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">cover_mean</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">cover_std</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">xc_t</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">plot</span>
@@ -555,16 +565,16 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">S</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">xc_t</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;pf</span><span class="si">{}</span><span class="se">\n</span><span class="s2"> beta_factor</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pf</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta_factor</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="CarbonationModel.calibrate"><a class="viewcode-back" href="../carbonation.html#carbonation.CarbonationModel.calibrate">[docs]</a>    <span class="k">def</span> <span class="nf">calibrate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">carb_depth_field</span><span class="p">,</span> <span class="n">print_out</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="CarbonationModel.calibrate"><a class="viewcode-back" href="../api/modules/carbonation.html#carbonation.CarbonationModel.calibrate">[docs]</a>    <span class="k">def</span> <span class="nf">calibrate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">carb_depth_field</span><span class="p">,</span> <span class="n">print_out</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Calibrate the model with field data and return a new calibrated model instance.&quot;&quot;&quot;</span>
         <span class="n">model_cal</span> <span class="o">=</span> <span class="n">calibrate_f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">carb_depth_field</span><span class="p">,</span> <span class="n">print_out</span><span class="o">=</span><span class="n">print_out</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">model_cal</span></div>
 
-<div class="viewcode-block" id="CarbonationModel.copy"><a class="viewcode-back" href="../carbonation.html#carbonation.CarbonationModel.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="CarbonationModel.copy"><a class="viewcode-back" href="../api/modules/carbonation.html#carbonation.CarbonationModel.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a deep copy of the model.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CarbonationModel.carb_with_year"><a class="viewcode-back" href="../carbonation.html#carbonation.CarbonationModel.carb_with_year">[docs]</a>    <span class="k">def</span> <span class="nf">carb_with_year</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">year_lis</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">80</span><span class="p">):</span>
+<div class="viewcode-block" id="CarbonationModel.carb_with_year"><a class="viewcode-back" href="../api/modules/carbonation.html#carbonation.CarbonationModel.carb_with_year">[docs]</a>    <span class="k">def</span> <span class="nf">carb_with_year</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">year_lis</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">80</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Run the model over time and return lists of pf and beta values.&quot;&quot;&quot;</span>
         <span class="n">pf_lis</span><span class="p">,</span> <span class="n">beta_lis</span> <span class="o">=</span> <span class="n">carb_year</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">year_lis</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">plot</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="n">amplify</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pf_lis</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">beta_lis</span><span class="p">)</span></div></div>

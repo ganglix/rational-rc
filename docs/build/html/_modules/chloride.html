@@ -43,11 +43,21 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules.html">Modules</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Features</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user/features.html">Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Rational-RC API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/module_index.html">Modules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial_index.html">Tutorials</a></li>
 </ul>
 
         </div>
@@ -99,7 +109,7 @@
 <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 
-<span class="kn">import</span> <span class="nn">math_helper</span> <span class="k">as</span> <span class="nn">mh</span>
+<span class="kn">import</span> <span class="nn">rational_rc.math_helper</span> <span class="k">as</span> <span class="nn">mh</span>
 
 
 <span class="c1"># logger</span>
@@ -118,7 +128,7 @@
 
 
 <span class="c1"># model functions</span>
-<div class="viewcode-block" id="chloride_content"><a class="viewcode-back" href="../chloride.html#chloride.chloride_content">[docs]</a><span class="k">def</span> <span class="nf">chloride_content</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">pars</span><span class="p">):</span>
+<div class="viewcode-block" id="chloride_content"><a class="viewcode-back" href="../api/modules/chloride.html#chloride.chloride_content">[docs]</a><span class="k">def</span> <span class="nf">chloride_content</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">pars</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the chloride content at depth x and time t with Fick&#39;s 2nd law below the advection zone (x &gt; dx).</span>
 <span class="sd">    </span>
 <span class="sd">    + Caution: The pars instance is mutable, so a deepcopy of the original instance should be used if the calculation is not intended for &quot;inplace&quot;.</span>
@@ -154,7 +164,7 @@
     <span class="k">return</span> <span class="n">C_x_t</span></div>
 
 
-<div class="viewcode-block" id="D_app"><a class="viewcode-back" href="../chloride.html#chloride.D_app">[docs]</a><span class="k">def</span> <span class="nf">D_app</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">pars</span><span class="p">):</span>
+<div class="viewcode-block" id="D_app"><a class="viewcode-back" href="../api/modules/chloride.html#chloride.D_app">[docs]</a><span class="k">def</span> <span class="nf">D_app</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">pars</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Calculate the apparent coefficient of chloride diffusion through concrete D_app[mm^2/year]</span>
 
 <span class="sd">    Parameters</span>
@@ -186,7 +196,7 @@
     <span class="k">return</span> <span class="n">D_app</span></div>
 
 
-<div class="viewcode-block" id="k_e"><a class="viewcode-back" href="../chloride.html#chloride.k_e">[docs]</a><span class="k">def</span> <span class="nf">k_e</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
+<div class="viewcode-block" id="k_e"><a class="viewcode-back" href="../api/modules/chloride.html#chloride.k_e">[docs]</a><span class="k">def</span> <span class="nf">k_e</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate the environmental transfer variable k_e [-].</span>
 
@@ -212,13 +222,13 @@
     <span class="k">return</span> <span class="n">k_e</span></div>
 
 
-<div class="viewcode-block" id="b_e"><a class="viewcode-back" href="../chloride.html#chloride.b_e">[docs]</a><span class="k">def</span> <span class="nf">b_e</span><span class="p">():</span>
+<div class="viewcode-block" id="b_e"><a class="viewcode-back" href="../api/modules/chloride.html#chloride.b_e">[docs]</a><span class="k">def</span> <span class="nf">b_e</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Provide a large sample array of b_e: regression variable [K].&quot;&quot;&quot;</span>
     <span class="n">b_e</span> <span class="o">=</span> <span class="n">mh</span><span class="o">.</span><span class="n">normal_custom</span><span class="p">(</span><span class="mi">4800</span><span class="p">,</span> <span class="mi">700</span><span class="p">)</span>  <span class="c1"># K</span>
     <span class="k">return</span> <span class="n">b_e</span></div>
 
 
-<div class="viewcode-block" id="A_t"><a class="viewcode-back" href="../chloride.html#chloride.A_t">[docs]</a><span class="k">def</span> <span class="nf">A_t</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">pars</span><span class="p">):</span>
+<div class="viewcode-block" id="A_t"><a class="viewcode-back" href="../api/modules/chloride.html#chloride.A_t">[docs]</a><span class="k">def</span> <span class="nf">A_t</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">pars</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate A_t considering the ageing effect.</span>
 
 <span class="sd">    Parameters</span>
@@ -269,7 +279,7 @@
     <span class="k">return</span> <span class="n">A</span></div>
 
 
-<div class="viewcode-block" id="D_RCM_0"><a class="viewcode-back" href="../chloride.html#chloride.D_RCM_0">[docs]</a><span class="k">def</span> <span class="nf">D_RCM_0</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
+<div class="viewcode-block" id="D_RCM_0"><a class="viewcode-back" href="../api/modules/chloride.html#chloride.D_RCM_0">[docs]</a><span class="k">def</span> <span class="nf">D_RCM_0</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Return the chloride migration coefficient from Rapid chloride migration test [m^2/s] see NT Build 492</span>
 <span class="sd">    if the test data is not available from pars, use interpolation of existing empirical data for orientation purpose</span>
 <span class="sd">    Pay attention to the units output [mm^2/year], used for the model</span>
@@ -331,7 +341,7 @@
 <span class="c1"># Built-in Data Table for data interpolation</span>
 
 <span class="c1"># Data table to interpolate/extrapolate</span>
-<div class="viewcode-block" id="load_df_D_RCM"><a class="viewcode-back" href="../chloride.html#chloride.load_df_D_RCM">[docs]</a><span class="k">def</span> <span class="nf">load_df_D_RCM</span><span class="p">():</span>
+<div class="viewcode-block" id="load_df_D_RCM"><a class="viewcode-back" href="../api/modules/chloride.html#chloride.load_df_D_RCM">[docs]</a><span class="k">def</span> <span class="nf">load_df_D_RCM</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Load the data table of the Rapid Chloride Migration(RCM) test</span>
 <span class="sd">    for D_RCM interpolation.</span>
 
@@ -355,7 +365,7 @@
     <span class="k">return</span> <span class="n">df</span></div>
 
 
-<div class="viewcode-block" id="C_eqv_to_C_S_0"><a class="viewcode-back" href="../chloride.html#chloride.C_eqv_to_C_S_0">[docs]</a><span class="k">def</span> <span class="nf">C_eqv_to_C_S_0</span><span class="p">(</span><span class="n">C_eqv</span><span class="p">):</span>
+<div class="viewcode-block" id="C_eqv_to_C_S_0"><a class="viewcode-back" href="../api/modules/chloride.html#chloride.C_eqv_to_C_S_0">[docs]</a><span class="k">def</span> <span class="nf">C_eqv_to_C_S_0</span><span class="p">(</span><span class="n">C_eqv</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Convert aqueous solution chloride content to saturated chloride content in concrete</span>
 <span class="sd">    interpolate function for 300kg cement w/c=0.5 OPC. Other empirical function should be used if available</span>
 
@@ -387,7 +397,7 @@
 <span class="c1"># C_S_dx: chloride content at subsurface</span>
 
 <span class="c1"># Environmental param: Potential chloride impact C_eqv</span>
-<div class="viewcode-block" id="C_eqv"><a class="viewcode-back" href="../chloride.html#chloride.C_eqv">[docs]</a><span class="k">def</span> <span class="nf">C_eqv</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
+<div class="viewcode-block" id="C_eqv"><a class="viewcode-back" href="../api/modules/chloride.html#chloride.C_eqv">[docs]</a><span class="k">def</span> <span class="nf">C_eqv</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate equivalent chloride solution concentration, C_eqv[g/L] as a measurement of the Potential chloride impact</span>
 <span class="sd">    from the source of </span>
 
@@ -436,7 +446,7 @@
 
 
 <span class="c1"># exposure condition</span>
-<div class="viewcode-block" id="C_S_0"><a class="viewcode-back" href="../chloride.html#chloride.C_S_0">[docs]</a><span class="k">def</span> <span class="nf">C_S_0</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
+<div class="viewcode-block" id="C_S_0"><a class="viewcode-back" href="../api/modules/chloride.html#chloride.C_S_0">[docs]</a><span class="k">def</span> <span class="nf">C_S_0</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return (surface) chloride saturation concentration C_S_0 [wt.-%/cement] caused by  C_eqv [g/l].</span>
 
 <span class="sd">    Parameters</span>
@@ -467,7 +477,7 @@
 
 
 <span class="c1"># substitute chloride surface concentration</span>
-<div class="viewcode-block" id="C_S_dx"><a class="viewcode-back" href="../chloride.html#chloride.C_S_dx">[docs]</a><span class="k">def</span> <span class="nf">C_S_dx</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
+<div class="viewcode-block" id="C_S_dx"><a class="viewcode-back" href="../api/modules/chloride.html#chloride.C_S_dx">[docs]</a><span class="k">def</span> <span class="nf">C_S_dx</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the substitute chloride surface concentration, i.e. chloride content just below the advection zone.</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
@@ -526,7 +536,7 @@
 
 
 <span class="c1"># Convection depth</span>
-<div class="viewcode-block" id="dx"><a class="viewcode-back" href="../chloride.html#chloride.dx">[docs]</a><span class="k">def</span> <span class="nf">dx</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
+<div class="viewcode-block" id="dx"><a class="viewcode-back" href="../api/modules/chloride.html#chloride.dx">[docs]</a><span class="k">def</span> <span class="nf">dx</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return dx: advection depth [mm] dependent on the exposure conditions.</span>
 
 <span class="sd">    Parameters</span>
@@ -569,7 +579,7 @@
 
 
 <span class="c1">#  Chloride surface content CS resp. substitute chloride surface content C_S_dx</span>
-<div class="viewcode-block" id="C_max"><a class="viewcode-back" href="../chloride.html#chloride.C_max">[docs]</a><span class="k">def</span> <span class="nf">C_max</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
+<div class="viewcode-block" id="C_max"><a class="viewcode-back" href="../api/modules/chloride.html#chloride.C_max">[docs]</a><span class="k">def</span> <span class="nf">C_max</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate C_max: maximum content of chlorides within the chloride profile [wt.-%/cement].</span>
 <span class="sd">    It is calculated from empirical equations or from test data [wt.-%/concrete].</span>
@@ -633,7 +643,7 @@
 
 
 <span class="c1"># critical chloride content</span>
-<div class="viewcode-block" id="C_crit_param"><a class="viewcode-back" href="../chloride.html#chloride.C_crit_param">[docs]</a><span class="k">def</span> <span class="nf">C_crit_param</span><span class="p">():</span>
+<div class="viewcode-block" id="C_crit_param"><a class="viewcode-back" href="../api/modules/chloride.html#chloride.C_crit_param">[docs]</a><span class="k">def</span> <span class="nf">C_crit_param</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the beta distribution parameters for the critical chloride content(total chloride), C_crit [wt.-%/cement]</span>
 
 <span class="sd">    Returns</span>
@@ -646,7 +656,7 @@
 
 
 <span class="c1"># calibration function</span>
-<div class="viewcode-block" id="calibrate_chloride_f"><a class="viewcode-back" href="../chloride.html#chloride.calibrate_chloride_f">[docs]</a><span class="k">def</span> <span class="nf">calibrate_chloride_f</span><span class="p">(</span>
+<div class="viewcode-block" id="calibrate_chloride_f"><a class="viewcode-back" href="../api/modules/chloride.html#chloride.calibrate_chloride_f">[docs]</a><span class="k">def</span> <span class="nf">calibrate_chloride_f</span><span class="p">(</span>
     <span class="n">model_raw</span><span class="p">,</span>
     <span class="n">x</span><span class="p">,</span>
     <span class="n">t</span><span class="p">,</span>
@@ -743,7 +753,7 @@
     <span class="k">return</span> <span class="n">model</span>  <span class="c1"># new calibrated obj</span></div>
 
 
-<div class="viewcode-block" id="calibrate_chloride_f_group"><a class="viewcode-back" href="../chloride.html#chloride.calibrate_chloride_f_group">[docs]</a><span class="k">def</span> <span class="nf">calibrate_chloride_f_group</span><span class="p">(</span>
+<div class="viewcode-block" id="calibrate_chloride_f_group"><a class="viewcode-back" href="../api/modules/chloride.html#chloride.calibrate_chloride_f_group">[docs]</a><span class="k">def</span> <span class="nf">calibrate_chloride_f_group</span><span class="p">(</span>
     <span class="n">model_raw</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">chloride_content_field</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">print_proc</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Use calibrate_chloride_f() to calibrate model to field chloride content at three or more depths, and return the new calibrated model with the averaged D_RCM_0</span>
@@ -803,7 +813,7 @@
     <span class="k">return</span> <span class="n">M_cal_new</span></div>
 
 
-<div class="viewcode-block" id="chloride_year"><a class="viewcode-back" href="../chloride.html#chloride.chloride_year">[docs]</a><span class="k">def</span> <span class="nf">chloride_year</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">year_lis</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">80</span><span class="p">):</span>
+<div class="viewcode-block" id="chloride_year"><a class="viewcode-back" href="../api/modules/chloride.html#chloride.chloride_year">[docs]</a><span class="k">def</span> <span class="nf">chloride_year</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">year_lis</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">80</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Run the model over a list of time steps.</span>
 
@@ -894,7 +904,7 @@
     <span class="k">return</span> <span class="p">[</span><span class="n">this_M</span><span class="o">.</span><span class="n">pf</span> <span class="k">for</span> <span class="n">this_M</span> <span class="ow">in</span> <span class="n">M_lis</span><span class="p">],</span> <span class="p">[</span><span class="n">this_M</span><span class="o">.</span><span class="n">beta_factor</span> <span class="k">for</span> <span class="n">this_M</span> <span class="ow">in</span> <span class="n">M_lis</span><span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="ChlorideModel"><a class="viewcode-back" href="../chloride.html#chloride.ChlorideModel">[docs]</a><span class="k">class</span> <span class="nc">ChlorideModel</span><span class="p">:</span>
+<div class="viewcode-block" id="ChlorideModel"><a class="viewcode-back" href="../api/modules/chloride.html#chloride.ChlorideModel">[docs]</a><span class="k">class</span> <span class="nc">ChlorideModel</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars_raw</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the model object.</span>
 
@@ -908,7 +918,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">C_S_dx</span> <span class="o">=</span> <span class="n">C_S_dx</span><span class="p">(</span><span class="n">pars_raw</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">dx</span> <span class="o">=</span> <span class="n">dx</span><span class="p">(</span><span class="n">pars_raw</span><span class="p">)</span>
 
-<div class="viewcode-block" id="ChlorideModel.run"><a class="viewcode-back" href="../chloride.html#chloride.ChlorideModel.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+<div class="viewcode-block" id="ChlorideModel.run"><a class="viewcode-back" href="../api/modules/chloride.html#chloride.ChlorideModel.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; solve the chloride content at depth x and time t</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -926,7 +936,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="n">t</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">C_x_t</span></div>
 
-<div class="viewcode-block" id="ChlorideModel.postproc"><a class="viewcode-back" href="../chloride.html#chloride.ChlorideModel.postproc">[docs]</a>    <span class="k">def</span> <span class="nf">postproc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="ChlorideModel.postproc"><a class="viewcode-back" href="../api/modules/chloride.html#chloride.ChlorideModel.postproc">[docs]</a>    <span class="k">def</span> <span class="nf">postproc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Postprocess the solved model and attach Pf and beta to the model object.</span>
 
 <span class="sd">        Parameters</span>
@@ -943,7 +953,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">S_kde_fit</span> <span class="o">=</span> <span class="n">sol</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">S</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">C_x_t</span></div>
 
-<div class="viewcode-block" id="ChlorideModel.calibrate"><a class="viewcode-back" href="../chloride.html#chloride.ChlorideModel.calibrate">[docs]</a>    <span class="k">def</span> <span class="nf">calibrate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">chloride_content_field</span><span class="p">,</span> <span class="n">print_proc</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="ChlorideModel.calibrate"><a class="viewcode-back" href="../api/modules/chloride.html#chloride.ChlorideModel.calibrate">[docs]</a>    <span class="k">def</span> <span class="nf">calibrate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">chloride_content_field</span><span class="p">,</span> <span class="n">print_proc</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a calibrated model with `calibrate_chloride_f_group()` function.</span>
 
 <span class="sd">        Parameters</span>
@@ -967,12 +977,12 @@
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">model_cal</span></div>
 
-<div class="viewcode-block" id="ChlorideModel.copy"><a class="viewcode-back" href="../chloride.html#chloride.ChlorideModel.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ChlorideModel.copy"><a class="viewcode-back" href="../api/modules/chloride.html#chloride.ChlorideModel.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;create a deepcopy of the instance, to preserve the mutable object             </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ChlorideModel.chloride_with_year"><a class="viewcode-back" href="../chloride.html#chloride.ChlorideModel.chloride_with_year">[docs]</a>    <span class="k">def</span> <span class="nf">chloride_with_year</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">year_lis</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="ChlorideModel.chloride_with_year"><a class="viewcode-back" href="../api/modules/chloride.html#chloride.ChlorideModel.chloride_with_year">[docs]</a>    <span class="k">def</span> <span class="nf">chloride_with_year</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">year_lis</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Run the model for a list of time steps.</span>
 
 <span class="sd">        Parameters</span>

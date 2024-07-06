@@ -43,11 +43,21 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules.html">Modules</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Features</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user/features.html">Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Rational-RC API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/module_index.html">Modules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial_index.html">Tutorials</a></li>
 </ul>
 
         </div>
@@ -92,11 +102,12 @@
 <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">math_helper</span> <span class="k">as</span> <span class="nn">mh</span>
+
+<span class="kn">import</span> <span class="nn">rational_rc.math_helper</span> <span class="k">as</span> <span class="nn">mh</span>
 
 <span class="c1"># special functions for this module</span>
 
-<div class="viewcode-block" id="pf_RS_special"><a class="viewcode-back" href="../membrane.html#membrane.pf_RS_special">[docs]</a><span class="k">def</span> <span class="nf">pf_RS_special</span><span class="p">(</span><span class="n">R_info</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">R_distrib_type</span><span class="o">=</span><span class="s2">&quot;normal&quot;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="pf_RS_special"><a class="viewcode-back" href="../api/modules/membrane.html#membrane.pf_RS_special">[docs]</a><span class="k">def</span> <span class="nf">pf_RS_special</span><span class="p">(</span><span class="n">R_info</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">R_distrib_type</span><span class="o">=</span><span class="s2">&quot;normal&quot;</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the probability of failure given the resistance R and load S using three methods.</span>
 <span class="sd">        </span>
 <span class="sd">    Parameters</span>
@@ -213,7 +224,7 @@
         <span class="p">)</span>
 
         <span class="n">ax2</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
-            <span class="n">s</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\</span><span class="si">{mu}</span><span class="s2">_g$&quot;</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\</span><span class="si">{mu}</span><span class="s2">_g$&quot;</span><span class="p">,</span>
             <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">g</span><span class="o">.</span><span class="n">mean</span><span class="p">()),</span>
             <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">g_kde_fit</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]),</span>
             <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
@@ -225,7 +236,7 @@
     <span class="k">return</span> <span class="n">pf_RS</span><span class="p">,</span> <span class="n">beta_factor</span><span class="p">,</span> <span class="n">R_distrib</span></div>
 
 
-<div class="viewcode-block" id="plot_RS_special"><a class="viewcode-back" href="../membrane.html#membrane.plot_RS_special">[docs]</a><span class="k">def</span> <span class="nf">plot_RS_special</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">t_offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>  <span class="c1"># updated!</span>
+<div class="viewcode-block" id="plot_RS_special"><a class="viewcode-back" href="../api/modules/membrane.html#membrane.plot_RS_special">[docs]</a><span class="k">def</span> <span class="nf">plot_RS_special</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">t_offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>  <span class="c1"># updated!</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot R-S distribution vertically at a time to an axis (special case: S is a number).</span>
 
 <span class="sd">    Parameters:</span>
@@ -278,7 +289,7 @@
 
 
 <span class="c1"># model function</span>
-<div class="viewcode-block" id="membrane_age"><a class="viewcode-back" href="../membrane.html#membrane.membrane_age">[docs]</a><span class="k">def</span> <span class="nf">membrane_age</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+<div class="viewcode-block" id="membrane_age"><a class="viewcode-back" href="../api/modules/membrane.html#membrane.membrane_age">[docs]</a><span class="k">def</span> <span class="nf">membrane_age</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return the membrane age as the &quot;resistance&quot;.</span>
 
@@ -299,7 +310,7 @@
     <span class="k">return</span> <span class="n">t</span></div>
 
 
-<div class="viewcode-block" id="membrane_life"><a class="viewcode-back" href="../membrane.html#membrane.membrane_life">[docs]</a><span class="k">def</span> <span class="nf">membrane_life</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
+<div class="viewcode-block" id="membrane_life"><a class="viewcode-back" href="../api/modules/membrane.html#membrane.membrane_life">[docs]</a><span class="k">def</span> <span class="nf">membrane_life</span><span class="p">(</span><span class="n">pars</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the mean value of the service life from the manufacturer&#39;s service life label</span>
 <span class="sd">    (e.g., 30 years with 95% confidence) with the given standard deviation.</span>
 
@@ -326,7 +337,7 @@
 
 
 <span class="c1"># calibrate Resistance to match the probability</span>
-<div class="viewcode-block" id="calibrate_f"><a class="viewcode-back" href="../membrane.html#membrane.calibrate_f">[docs]</a><span class="k">def</span> <span class="nf">calibrate_f</span><span class="p">(</span>
+<div class="viewcode-block" id="calibrate_f"><a class="viewcode-back" href="../api/modules/membrane.html#membrane.calibrate_f">[docs]</a><span class="k">def</span> <span class="nf">calibrate_f</span><span class="p">(</span>
     <span class="n">model_raw</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">membrane_failure_ratio_field</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">max_count</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">print_out</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;    Calibrate the membrane model to field conditions by finding the corresponding membrane service life std</span>
@@ -385,7 +396,7 @@
     <span class="k">return</span> <span class="n">model</span></div>
 
 
-<div class="viewcode-block" id="membrane_failure_year"><a class="viewcode-back" href="../membrane.html#membrane.membrane_failure_year">[docs]</a><span class="k">def</span> <span class="nf">membrane_failure_year</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">year_lis</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
+<div class="viewcode-block" id="membrane_failure_year"><a class="viewcode-back" href="../api/modules/membrane.html#membrane.membrane_failure_year">[docs]</a><span class="k">def</span> <span class="nf">membrane_failure_year</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">year_lis</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;    Run the model over a list of time steps.</span>
 
 <span class="sd">    Parameters:</span>
@@ -467,7 +478,7 @@
     <span class="k">return</span> <span class="p">[</span><span class="n">this_M</span><span class="o">.</span><span class="n">pf</span> <span class="k">for</span> <span class="n">this_M</span> <span class="ow">in</span> <span class="n">M_lis</span><span class="p">],</span> <span class="p">[</span><span class="n">this_M</span><span class="o">.</span><span class="n">beta_factor</span> <span class="k">for</span> <span class="n">this_M</span> <span class="ow">in</span> <span class="n">M_lis</span><span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="MembraneModel"><a class="viewcode-back" href="../membrane.html#membrane.MembraneModel">[docs]</a><span class="k">class</span> <span class="nc">MembraneModel</span><span class="p">:</span>
+<div class="viewcode-block" id="MembraneModel"><a class="viewcode-back" href="../api/modules/membrane.html#membrane.MembraneModel">[docs]</a><span class="k">class</span> <span class="nc">MembraneModel</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize the object with raw parameter object (pars) and mean membrane life.</span>
@@ -480,7 +491,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">pars</span> <span class="o">=</span> <span class="n">pars</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">life_mean</span> <span class="o">=</span> <span class="n">membrane_life</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="p">)</span>
 
-<div class="viewcode-block" id="MembraneModel.run"><a class="viewcode-back" href="../membrane.html#membrane.MembraneModel.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+<div class="viewcode-block" id="MembraneModel.run"><a class="viewcode-back" href="../api/modules/membrane.html#membrane.MembraneModel.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Attach the resistance: membrane age.</span>
 
@@ -492,7 +503,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="n">t</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">membrane_age</span><span class="p">(</span><span class="n">t</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="MembraneModel.postproc"><a class="viewcode-back" href="../membrane.html#membrane.MembraneModel.postproc">[docs]</a>    <span class="k">def</span> <span class="nf">postproc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="MembraneModel.postproc"><a class="viewcode-back" href="../api/modules/membrane.html#membrane.MembraneModel.postproc">[docs]</a>    <span class="k">def</span> <span class="nf">postproc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Solve pf, beta, attach R distribution with plot option.</span>
 
@@ -512,7 +523,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">R_distrib</span> <span class="o">=</span> <span class="n">sol</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">S</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">age</span></div>
 
-<div class="viewcode-block" id="MembraneModel.membrane_failure_with_year"><a class="viewcode-back" href="../membrane.html#membrane.MembraneModel.membrane_failure_with_year">[docs]</a>    <span class="k">def</span> <span class="nf">membrane_failure_with_year</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">year_lis</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">80</span><span class="p">):</span>
+<div class="viewcode-block" id="MembraneModel.membrane_failure_with_year"><a class="viewcode-back" href="../api/modules/membrane.html#membrane.MembraneModel.membrane_failure_with_year">[docs]</a>    <span class="k">def</span> <span class="nf">membrane_failure_with_year</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">year_lis</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">80</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Solve pf, beta at a list of time steps with plot option.</span>
 
 <span class="sd">        Parameters:</span>
@@ -534,11 +545,11 @@
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pf_lis</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">beta_lis</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="MembraneModel.copy"><a class="viewcode-back" href="../membrane.html#membrane.MembraneModel.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="MembraneModel.copy"><a class="viewcode-back" href="../api/modules/membrane.html#membrane.MembraneModel.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;create a deepcopy&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="MembraneModel.calibrate"><a class="viewcode-back" href="../membrane.html#membrane.MembraneModel.calibrate">[docs]</a>    <span class="k">def</span> <span class="nf">calibrate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">membrane_age_field</span><span class="p">,</span> <span class="n">membrane_failure_ratio_field</span><span class="p">):</span>
+<div class="viewcode-block" id="MembraneModel.calibrate"><a class="viewcode-back" href="../api/modules/membrane.html#membrane.MembraneModel.calibrate">[docs]</a>    <span class="k">def</span> <span class="nf">calibrate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">membrane_age_field</span><span class="p">,</span> <span class="n">membrane_failure_ratio_field</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Calibrate membrane model to field condition</span>
 
 <span class="sd">        Parameters</span>

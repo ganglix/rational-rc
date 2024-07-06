@@ -43,11 +43,21 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules.html">Modules</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Features</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user/features.html">Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Rational-RC API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/module_index.html">Modules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorial_index.html">Tutorials</a></li>
 </ul>
 
         </div>
@@ -98,7 +108,7 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="c1"># model function</span>
-<div class="viewcode-block" id="bilinear_stress_strain"><a class="viewcode-back" href="../cracking.html#cracking.bilinear_stress_strain">[docs]</a><span class="k">def</span> <span class="nf">bilinear_stress_strain</span><span class="p">(</span><span class="n">epsilon_theta</span><span class="p">,</span> <span class="n">f_t</span><span class="p">,</span> <span class="n">E_0</span><span class="p">):</span>
+<div class="viewcode-block" id="bilinear_stress_strain"><a class="viewcode-back" href="../api/modules/cracking.html#cracking.bilinear_stress_strain">[docs]</a><span class="k">def</span> <span class="nf">bilinear_stress_strain</span><span class="p">(</span><span class="n">epsilon_theta</span><span class="p">,</span> <span class="n">f_t</span><span class="p">,</span> <span class="n">E_0</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the stress in concrete from strain using the bilinear stress-strain curve.</span>
 
 <span class="sd">    Parameters</span>
@@ -148,7 +158,7 @@
     <span class="k">return</span> <span class="n">sigma_theta</span></div>
 
 
-<div class="viewcode-block" id="crack_width_open"><a class="viewcode-back" href="../cracking.html#cracking.crack_width_open">[docs]</a><span class="k">def</span> <span class="nf">crack_width_open</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">u_st</span><span class="p">,</span> <span class="n">f_t</span><span class="p">,</span> <span class="n">E_0</span><span class="p">):</span>
+<div class="viewcode-block" id="crack_width_open"><a class="viewcode-back" href="../api/modules/cracking.html#cracking.crack_width_open">[docs]</a><span class="k">def</span> <span class="nf">crack_width_open</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">u_st</span><span class="p">,</span> <span class="n">f_t</span><span class="p">,</span> <span class="n">E_0</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Calculate crack opening size on the concrete cover surface.</span>
 
 <span class="sd">    Parameters</span>
@@ -174,7 +184,7 @@
     <span class="k">return</span> <span class="n">w</span></div>
 
 
-<div class="viewcode-block" id="strain_f"><a class="viewcode-back" href="../cracking.html#cracking.strain_f">[docs]</a><span class="k">def</span> <span class="nf">strain_f</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">u_st</span><span class="p">,</span> <span class="n">f_t</span><span class="p">,</span> <span class="n">E_0</span><span class="p">,</span> <span class="n">crack_condition</span><span class="p">):</span>
+<div class="viewcode-block" id="strain_f"><a class="viewcode-back" href="../api/modules/cracking.html#cracking.strain_f">[docs]</a><span class="k">def</span> <span class="nf">strain_f</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">u_st</span><span class="p">,</span> <span class="n">f_t</span><span class="p">,</span> <span class="n">E_0</span><span class="p">,</span> <span class="n">crack_condition</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the strain along the polar axis r, a &lt;= r &lt;= b, </span>
 <span class="sd">    fully vectorized for matrix representing samples.</span>
 
@@ -239,7 +249,7 @@
     <span class="k">return</span> <span class="n">epsilon_theta</span></div>
 
 
-<div class="viewcode-block" id="strain_stress_crack_f"><a class="viewcode-back" href="../cracking.html#cracking.strain_stress_crack_f">[docs]</a><span class="k">def</span> <span class="nf">strain_stress_crack_f</span><span class="p">(</span>
+<div class="viewcode-block" id="strain_stress_crack_f"><a class="viewcode-back" href="../api/modules/cracking.html#cracking.strain_stress_crack_f">[docs]</a><span class="k">def</span> <span class="nf">strain_stress_crack_f</span><span class="p">(</span>
     <span class="n">r</span><span class="p">,</span> <span class="n">r0_bar</span><span class="p">,</span> <span class="n">x_loss</span><span class="p">,</span> <span class="n">cover</span><span class="p">,</span> <span class="n">f_t</span><span class="p">,</span> <span class="n">E_0</span><span class="p">,</span> <span class="n">w_c</span><span class="p">,</span> <span class="n">r_v</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;calculate the stress, strain, crack_condition for the whole concrete cover</span>
@@ -385,7 +395,7 @@
     <span class="k">return</span> <span class="n">epsilon_theta</span><span class="p">,</span> <span class="n">sigma_theta</span><span class="p">,</span> <span class="n">rust_thickness</span><span class="p">,</span> <span class="n">crack_condition</span><span class="p">,</span> <span class="n">R_c</span><span class="p">,</span> <span class="n">w_open</span></div>
 
 
-<div class="viewcode-block" id="solve_stress_strain_crack_deterministic"><a class="viewcode-back" href="../cracking.html#cracking.solve_stress_strain_crack_deterministic">[docs]</a><span class="k">def</span> <span class="nf">solve_stress_strain_crack_deterministic</span><span class="p">(</span><span class="n">pars</span><span class="p">,</span> <span class="n">number_of_points</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="solve_stress_strain_crack_deterministic"><a class="viewcode-back" href="../api/modules/cracking.html#cracking.solve_stress_strain_crack_deterministic">[docs]</a><span class="k">def</span> <span class="nf">solve_stress_strain_crack_deterministic</span><span class="p">(</span><span class="n">pars</span><span class="p">,</span> <span class="n">number_of_points</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Solve the stress and strain along the polar axis using strain_stress_crack_f().</span>
 <span class="sd">    One deterministic solution is returned by the mean values of all input variables.</span>
 
@@ -435,7 +445,7 @@
     <span class="k">return</span> <span class="n">epsilon_theta</span><span class="p">,</span> <span class="n">sigma_theta</span><span class="p">,</span> <span class="n">rust_thickness</span><span class="p">,</span> <span class="n">crack_condition</span><span class="p">,</span> <span class="n">R_c</span><span class="p">,</span> <span class="n">w_open</span></div>
 
 
-<div class="viewcode-block" id="solve_stress_strain_crack_stochastic"><a class="viewcode-back" href="../cracking.html#cracking.solve_stress_strain_crack_stochastic">[docs]</a><span class="k">def</span> <span class="nf">solve_stress_strain_crack_stochastic</span><span class="p">(</span><span class="n">pars</span><span class="p">,</span> <span class="n">number_of_points</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<div class="viewcode-block" id="solve_stress_strain_crack_stochastic"><a class="viewcode-back" href="../api/modules/cracking.html#cracking.solve_stress_strain_crack_stochastic">[docs]</a><span class="k">def</span> <span class="nf">solve_stress_strain_crack_stochastic</span><span class="p">(</span><span class="n">pars</span><span class="p">,</span> <span class="n">number_of_points</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Solve the stress and strain along the polar axis using strain_stress_crack_f().</span>
 <span class="sd">    the stochastic solution matrix is returned, where each row represents a deterministic solution</span>
 
@@ -492,11 +502,11 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Cracking_Model"><a class="viewcode-back" href="../cracking.html#cracking.Cracking_Model">[docs]</a><span class="k">class</span> <span class="nc">Cracking_Model</span><span class="p">:</span>
+<div class="viewcode-block" id="Cracking_Model"><a class="viewcode-back" href="../api/modules/cracking.html#cracking.Cracking_Model">[docs]</a><span class="k">class</span> <span class="nc">Cracking_Model</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pars</span> <span class="o">=</span> <span class="n">pars</span>
 
-<div class="viewcode-block" id="Cracking_Model.run"><a class="viewcode-back" href="../cracking.html#cracking.Cracking_Model.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stochastic</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot_deterministic_result</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="Cracking_Model.run"><a class="viewcode-back" href="../api/modules/cracking.html#cracking.Cracking_Model.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stochastic</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot_deterministic_result</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Solve stress, strain, and crack tip location in concrete cover.</span>
 <span class="sd">        </span>
@@ -526,7 +536,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">w_open</span><span class="p">,</span>
         <span class="p">)</span> <span class="o">=</span> <span class="n">sol</span></div>
 
-<div class="viewcode-block" id="Cracking_Model.postproc"><a class="viewcode-back" href="../cracking.html#cracking.Cracking_Model.postproc">[docs]</a>    <span class="k">def</span> <span class="nf">postproc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Cracking_Model.postproc"><a class="viewcode-back" href="../api/modules/cracking.html#cracking.Cracking_Model.postproc">[docs]</a>    <span class="k">def</span> <span class="nf">postproc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;calculate the crack length and surface crack rate.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stochastic</span><span class="p">:</span>
@@ -541,7 +551,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Warning! Postprocessing for stochastic solution only&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Cracking_Model.copy"><a class="viewcode-back" href="../cracking.html#cracking.Cracking_Model.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Cracking_Model.copy"><a class="viewcode-back" href="../api/modules/cracking.html#cracking.Cracking_Model.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a deepcopy of the Cracking_Model instance.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div></div>
 </pre></div>
