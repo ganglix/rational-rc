@@ -9,7 +9,7 @@ modified with material property and exposure environment.
 + **limit-state**: 	chloride content at rebar depth >= critical chloride content
 + **Field data**: 	chloride content profile
 
-TODO: make t input vectorized. 
+Future TODO: make t input vectorized. 
 """
 
 import numpy as np
