@@ -18,5 +18,3 @@ python:
   install:
     - requirements: requirements.txt
     - requirements: requirements_dev.txt
-    - requirements: docs/requirements.txt
-
