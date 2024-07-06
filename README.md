@@ -1,7 +1,7 @@
 
 # Rational RC
 
-[![Documentation Status](https://rational-rc-docs.netlify.app/badge.svg)](https://rational-rc-docs.netlify.app)
+[![Documentation Status](https://rational-rc.readthedocs.io/en/latest/?badge=latest)](https://rational-rc.readthedocs.io)
 
 ## Overview
 
