@@ -1,7 +1,7 @@
 
 # Rational RC
 
-[![Documentation Status](https://rational-rc.readthedocs.io/en/latest/?badge=latest)](https://rational-rc.readthedocs.io)
+[![Documentation Status](https://readthedocs.org/projects/rational-rc/badge/?version=latest)](https://rational-rc.readthedocs.io/en/latest/?badge=latest)
 
 ## Overview
 
