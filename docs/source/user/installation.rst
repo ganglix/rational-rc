@@ -48,7 +48,6 @@ For user mode
 
     git clone https://github.com/ganglix/rational-rc.git
     cd rational-rc
-    pip install -r requirements.txt
     pip install .
 
 
@@ -63,7 +62,7 @@ For `development mode <https://setuptools.pypa.io/en/latest/userguide/developmen
     # Activate your environment with:
     #      `source .venv/bin/activate` on Unix/macOS
     # or   `.venv\Scripts\activate` on Windows
-    pip install -r requirements_dev.txt
+    pip install -r requirements_doc.txt
     pip install --editable .
     # Now you have access to your package
     # as if it was installed in .venv
