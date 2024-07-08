@@ -6,3 +6,4 @@ __pycache__
 .DS_Store
 .ipynb_checkpoints
 .conda
+src/rational_rc/__pycache__
