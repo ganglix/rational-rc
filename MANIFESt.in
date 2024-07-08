@@ -1,0 +1,20 @@
+# MANIFEST.in
+
+# Include all files by default
+global-include *
+
+# Include necessary directories and files
+graft src
+graft docs
+graft tests
+graft notebooks
+
+# Exclude drafts and logs
+prune drafts
+exclude mylog.log
+exclude tests/mylog.log
+exclude notebooks/mylog.log
+
+# Exclude any other unnecessary files
+exclude .gitignore
+exclude MANIFEST.in
