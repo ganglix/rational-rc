@@ -36,7 +36,6 @@ release = 'beta'
 extensions = [
     'sphinx.ext.napoleon',
     'sphinx.ext.autodoc',
-    'autoapi.extension',
     'sphinx.ext.viewcode',
     'nbsphinx',
     'nbsphinx_link',
@@ -48,8 +47,6 @@ extensions = [
     'sphinx.ext.todo',
     'IPython.sphinxext.ipython_console_highlighting',
 ]
-
-autoapi_dirs = ['../../src']
 
 
 # Add any paths that contain templates here, relative to this directory.

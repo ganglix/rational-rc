@@ -16,4 +16,7 @@ formats:
 
 python:
   install:
-    - requirements: requirements_doc.txt
+    - method: pip
+      path: .
+  extra_requirements:
+    - doc  # This will install the optional dependencies for documentation specified in pyproject.toml
