@@ -40,7 +40,7 @@ API Reference
 Here are the classes or methods:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Rational-RC API
 
    api/module_index
