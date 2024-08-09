@@ -122,9 +122,9 @@
 
 <span class="n">pars_raw</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>
 
-<span class="n">pars_raw</span><span class="o">.</span><span class="n">marine</span> <span class="o">=</span> <span class="kc">False</span>
-
-<span class="c1"># 1)marine or coastal</span>
+<span class="c1"># source of chloride</span>
+<span class="c1"># 1) marine</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">marine</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># True, if it is marine or coastal environment</span>
 <span class="n">pars_raw</span><span class="o">.</span><span class="n">C_0_M</span> <span class="o">=</span> <span class="mf">18.980</span> <span class="c1"># natural chloride content of sea water [g/l]</span>
 
 <span class="c1"># 2) de-icing salt (hard to quantify)</span>
@@ -133,26 +133,29 @@
 <span class="n">pars_raw</span><span class="o">.</span><span class="n">C_R_i</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># average amount of chloride spread within one spreading event [g/m2]</span>
 <span class="n">pars_raw</span><span class="o">.</span><span class="n">h_S_i</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># amount of water from rain and melted snow per spreading period [l/m2]</span>
 
-<span class="n">pars_raw</span><span class="o">.</span><span class="n">C_eqv_to_C_S_0</span> <span class="o">=</span> <span class="n">C_eqv_to_C_S_0</span> <span class="c1"># imported correlation function for chloride content from soluiton to concrete</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">C_eqv_to_C_S_0</span> <span class="o">=</span> <span class="n">C_eqv_to_C_S_0</span> <span class="c1"># imported correlation function for chloride content from solution to concrete</span>
 
-<span class="n">pars_raw</span><span class="o">.</span><span class="n">exposure_condition</span> <span class="o">=</span> <span class="s1">&#39;splash&#39;</span>
+<span class="c1"># exposure condition</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">exposure_condition</span> <span class="o">=</span> <span class="s1">&#39;splash&#39;</span>  <span class="c1"># other types: &quot;submerged&quot;, &quot;leakage&quot;, &quot;spray&quot;</span>
 <span class="n">pars_raw</span><span class="o">.</span><span class="n">exposure_condition_geom_sensitive</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">pars_raw</span><span class="o">.</span><span class="n">T_real</span> <span class="o">=</span> <span class="mi">273</span> <span class="o">+</span> <span class="mi">25</span>  <span class="c1"># averaged ambient temperature[K]</span>
 
-<span class="n">pars_raw</span><span class="o">.</span><span class="n">x_a</span> <span class="o">=</span> <span class="mf">10.</span>
-<span class="n">pars_raw</span><span class="o">.</span><span class="n">x_h</span> <span class="o">=</span> <span class="mf">10.</span>
-<span class="n">pars_raw</span><span class="o">.</span><span class="n">D_RCM_test</span> <span class="o">=</span> <span class="s1">&#39;N/A&#39;</span>
-<span class="n">pars_raw</span><span class="o">.</span><span class="n">concrete_type</span> <span class="o">=</span> <span class="s1">&#39;Portland cement concrete&#39;</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">x_a</span> <span class="o">=</span> <span class="mf">10.</span> <span class="c1"># horizontal distance from the roadside [cm]</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">x_h</span> <span class="o">=</span> <span class="mf">10.</span> <span class="c1"># height above road surface [cm]</span>
+
+<span class="c1"># material property</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">D_RCM_test</span> <span class="o">=</span> <span class="s1">&#39;N/A&#39;</span> <span class="c1"># RCM test results[m^2/s]</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">concrete_type</span> <span class="o">=</span> <span class="s1">&#39;Portland cement concrete&#39;</span> <span class="c1"># &#39;Portland cement concrete&#39;, &#39;Portland fly ash cement concrete&#39;, &#39;Blast furnace slag cement concrete&#39;</span>
 <span class="n">pars_raw</span><span class="o">.</span><span class="n">cement_concrete_ratio</span> <span class="o">=</span> <span class="mf">300.</span><span class="o">/</span><span class="mf">2400.</span>
-<span class="n">pars_raw</span><span class="o">.</span><span class="n">C_max_user_input</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="n">pars_raw</span><span class="o">.</span><span class="n">C_max_option</span> <span class="o">=</span> <span class="s1">&#39;empirical&#39;</span>
-<span class="n">pars_raw</span><span class="o">.</span><span class="n">C_0</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">C_max_option</span> <span class="o">=</span> <span class="s1">&#39;empirical&#39;</span>  <span class="c1"># &quot;user_input&quot; - use user input from test.</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">C_max_user_input</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># Experiment-tested maximum chloride content [wt.-%/concrete]</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">C_0</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># initial chloride content of the concrete [wt-.%/cement]</span>
 
 <span class="n">pars_raw</span><span class="o">.</span><span class="n">C_crit_distrib_param</span> <span class="o">=</span> <span class="n">C_crit_param</span><span class="p">()</span>  <span class="c1"># critical chloride content import from Chloride module 0.6 wt.% cement (mean value)</span>
 
-<span class="c1"># more options</span>
+<span class="c1"># or use built-in material property (diffusivity)</span>
 <span class="n">pars_raw</span><span class="o">.</span><span class="n">option</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>
-<span class="n">pars_raw</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">choose</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">pars_raw</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">choose</span> <span class="o">=</span> <span class="kc">True</span> <span class="c1"># interpolation from built-in diffusivity data table</span>
 <span class="n">pars_raw</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">cement_type</span> <span class="o">=</span> <span class="s1">&#39;CEM_I_42.5_R+SF&#39;</span>
 <span class="n">pars_raw</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">wc_eqv</span> <span class="o">=</span> <span class="mf">0.4</span>    <span class="c1"># equivalent water/binder ratio</span>
 <span class="n">pars_raw</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">df_D_RCM_0</span> <span class="o">=</span> <span class="n">load_df_D_RCM</span><span class="p">()</span>
@@ -180,11 +183,11 @@
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Pf(g = R-S &lt; 0) from various methods
-    sample count: 0.52303
-    g integral: 0.5250313143363667
-    R S integral: 0.5248762860330419
-    beta_factor: -0.30656355108126127
--0.26621582320192305 0.6133863073737166
+    sample count: 0.52233
+    g integral: 0.5246345755428972
+    R S integral: 0.5252937743345301
+    beta_factor: -0.31082423860606573
+-0.2711835416643907 0.6046229041573619
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -208,7 +211,7 @@ Pf(g = R-S &lt; 0) from various methods
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-0.5248762860330419
+0.5252937743345301
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -249,8 +252,8 @@ Pf(g = R-S &lt; 0) from various methods
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-7.932128906250002e-13
-2.917236328125e-12
+7.785644531250001e-13
+2.9011230468750003e-12
 2.999267578125e-12
 </pre></div></div>
 </div>
@@ -271,11 +274,11 @@ Pf(g = R-S &lt; 0) from various methods
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Pf(g = R-S &lt; 0) from various methods
-    sample count: 0.2442
-    g integral: 0.24753247206490384
-    R S integral: 0.24757288096319238
-    beta_factor: 0.18940800855341472
-0.13818657169783283 0.4551735530677979
+    sample count: 0.24515
+    g integral: 0.2480473672756721
+    R S integral: 0.24800490212291598
+    beta_factor: 0.1871790881877388
+0.13648371663527079 0.4542663416745244
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -304,22 +307,6 @@ Pf(g = R-S &lt; 0) from various methods
 <img alt="../_images/tutorials_chloride_example_8_0.png" src="../_images/tutorials_chloride_example_8_0.png" />
 </div>
 </div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-</div>
 </section>
 
 
@@ -333,7 +320,7 @@ Pf(g = R-S &lt; 0) from various methods
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Gang Li.</p>
+    <p>&#169; Copyright 2023-2024, Gang Li.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

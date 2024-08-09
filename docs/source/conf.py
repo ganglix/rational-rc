@@ -20,7 +20,7 @@ sys.path.insert(0, os.path.abspath('../../src/rational_rc'))
 # -- Project information -----------------------------------------------------
 
 project = 'rational-rc'
-copyright = '2023, Gang Li'
+copyright = '2023-2024, Gang Li'
 author = 'Gang Li'
 
 # The short X.Y version
