@@ -113,6 +113,16 @@
 <li><p>pandas (&gt;= 2.0.3)</p></li>
 <li><p>matplotlib (&gt;= 3.7.2)</p></li>
 </ul>
+<p>Optional dependencies for documentation:</p>
+<ul class="simple">
+<li><p>ipython (&gt;= 8.14.0)</p></li>
+<li><p>sphinx (== 6.2.1)</p></li>
+<li><p>nbsphinx (== 0.9.2)</p></li>
+<li><p>nbsphinx-link (== 1.3.0)</p></li>
+<li><p>sphinx-rtd-theme (== 1.2.2)</p></li>
+<li><p>sphinx-math-dollar (== 1.2.1)</p></li>
+<li><p>recommonmark (== 0.7.1)</p></li>
+</ul>
 </section>
 <section id="pip-installation">
 <h2><a class="toc-backref" href="#id2" role="doc-backlink">pip installation</a><a class="headerlink" href="#pip-installation" title="Permalink to this heading"></a></h2>
@@ -140,8 +150,10 @@ python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </s
 <span class="c1"># Activate your environment with:</span>
 <span class="c1">#      `source .venv/bin/activate` on Unix/macOS</span>
 <span class="c1"># or   `.venv\Scripts\activate` on Windows</span>
-pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements_doc.txt
-pip<span class="w"> </span>install<span class="w"> </span>--editable<span class="w"> </span>.
+
+<span class="c1"># install core and optional dependencies for documentation</span>
+pip<span class="w"> </span>install<span class="w"> </span>--editable<span class="w"> </span><span class="s2">&quot;.[doc]&quot;</span>
+
 <span class="c1"># Now you have access to your package</span>
 <span class="c1"># as if it was installed in .venv</span>
 python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import rational_rc&quot;</span>
@@ -150,11 +162,10 @@ python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;i
 </section>
 <section id="testing">
 <h2><a class="toc-backref" href="#id4" role="doc-backlink">Testing</a><a class="headerlink" href="#testing" title="Permalink to this heading"></a></h2>
-<p>After the editable installation from the source, configure testing in your IDE or run all tests from the terminal
-.. code:: bash</p>
-<blockquote>
-<div><p>python -m unittest discover tests</p>
-</div></blockquote>
+<p>After the editable installation from the source, configure testing in your IDE or run all tests from the terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>unittest<span class="w"> </span>discover<span class="w"> </span>tests
+</pre></div>
+</div>
 </section>
 </section>
 

@@ -22,7 +22,15 @@ Rational-RC requires:
 - pandas (>= |PandasMinVersion|)
 - matplotlib (>= |MatplotlibMinVersion|)
 
+Optional dependencies for documentation:
 
+- ipython (>= 8.14.0)
+- sphinx (== 6.2.1)
+- nbsphinx (== 0.9.2)
+- nbsphinx-link (== 1.3.0)
+- sphinx-rtd-theme (== 1.2.2)
+- sphinx-math-dollar (== 1.2.1)
+- recommonmark (== 0.7.1)
 
 pip installation
 ~~~~~~~~~~~~~~~~
@@ -50,7 +58,6 @@ For user mode
     cd rational-rc
     pip install .
 
-
 For `development mode <https://setuptools.pypa.io/en/latest/userguide/development_mode.html>`_
 
 .. code:: bash
@@ -62,15 +69,18 @@ For `development mode <https://setuptools.pypa.io/en/latest/userguide/developmen
     # Activate your environment with:
     #      `source .venv/bin/activate` on Unix/macOS
     # or   `.venv\Scripts\activate` on Windows
-    pip install -r requirements_doc.txt
-    pip install --editable .
+
+    # install core and optional dependencies for documentation
+    pip install --editable ".[doc]"
+    
     # Now you have access to your package
     # as if it was installed in .venv
     python -c "import rational_rc"
 
 Testing
 ~~~~~~~
-After the editable installation from the source, configure testing in your IDE or run all tests from the terminal
+After the editable installation from the source, configure testing in your IDE or run all tests from the terminal:
+
 .. code:: bash
     
     python -m unittest discover tests

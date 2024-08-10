@@ -9,10 +9,10 @@ Rational RC is a practical life cycle deterioration modeling framework. It utili
 
 ## Features
 
-- Advanced numerical models for RC structure deterioration
-- Integration with field-sensing technology for tailored assessments
-- Tools for optimizing maintenance schedules based on service life predictions
-- Focus on cost-effectiveness and environmental sustainability
+- Comprehensive life cycle modeling for RC structure deterioration using field survey data.
+- Probabilistic predictions for confident assessment of structural failure risks.
+- Modularized design for sequential analysis of different deterioration stages.
+- Integrated workflow for evaluating and selecting cost-effective rehabilitation strategies.
 
 ## Installation
 
@@ -47,7 +47,6 @@ For user mode:
 ```bash
 git clone https://github.com/ganglix/rational-rc.git
 cd rational-rc
-pip install -r requirements.txt
 pip install .
 ```
 
@@ -61,8 +60,10 @@ python -m venv .venv
 # Activate your environment with:
 #      `source .venv/bin/activate` on Unix/macOS
 # or   `.venv\Scripts\activate` on Windows
-pip install -r requirements_dev.txt
-pip install --editable .
+# On macOS, use quotes for optional dependencies:
+pip install --editable ".[doc]"
+# On other systems, you may omit the quotes:
+# pip install --editable .[doc]
 # Now you have access to your package
 # as if it was installed in .venv
 python -c "import rational_rc"
@@ -78,7 +79,7 @@ python -m unittest discover tests
 
 ## Documentation
 
-Comprehensive documentation for Rational RC is available [here](https://rational-rc-docs.netlify.app).
+Comprehensive documentation for Rational RC is available [here](https://rational-rc.readthedocs.io/en/latest/).
 
 ## API Reference
 
@@ -115,6 +116,4 @@ Contributions are welcome! Please follow these steps to contribute:
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE.txt) file for details.
