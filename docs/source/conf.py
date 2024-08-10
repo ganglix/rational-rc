@@ -14,19 +14,44 @@ import sphinx_rtd_theme
 #
 import os
 import sys
+import toml
+from datetime import datetime
+
 sys.path.insert(0, os.path.abspath('../../src/rational_rc'))
+
+# Add the path
+sys.path.insert(0, os.path.abspath('../../src/rational_rc'))
+
+# Load the pyproject.toml file
+with open('../../pyproject.toml', 'r') as toml_file:
+    pyproject_data = toml.load(toml_file)
+
 
 # -- Project information -----------------------------------------------------
 
 project = 'rational-rc'
-copyright = '2023-2024, Gang Li'
 author = 'Gang Li'
+# Get the current year
+current_year = datetime.now().year
+
+# Set the start year of the project
+start_year = 2023
+
+# Generate the copyright string
+if start_year == current_year:
+    copyright_year = str(start_year)
+else:
+    copyright_year = f"{start_year}-{current_year}"
+
+copyright = f"{copyright_year}, Gang Li"
 
 # The short X.Y version
-version = '0.2.3'
+# Extract the version information from pyproject.toml
+version = pyproject_data['project']['version']
+
 
 # The full version, including alpha/beta/rc tags
-release = 'beta'
+release = f"{version}-beta"
 
 # -- General configuration ---------------------------------------------------
 

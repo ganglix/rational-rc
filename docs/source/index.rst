@@ -6,7 +6,6 @@
 rational-rc documentation
 =========================
 Version
-|version|
 |release|
 
 .. image:: images/linkedin_banner_image_1.png

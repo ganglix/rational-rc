@@ -31,6 +31,8 @@ Optional dependencies for documentation:
 - sphinx-rtd-theme (== 1.2.2)
 - sphinx-math-dollar (== 1.2.1)
 - recommonmark (== 0.7.1)
+- toml (>=0.10.2)
+
 
 pip installation
 ~~~~~~~~~~~~~~~~
