@@ -1,5 +1,5 @@
 import unittest
-from rational_rc.cracking import Cracking_Model
+from rational_rc.cracking import CrackingModel
 import numpy as np
 import rational_rc.math_helper as mh
 
@@ -8,8 +8,8 @@ class TestCracking(unittest.TestCase):
         # Set up the necessary parameters for testing
         self.pars = DummyPars()
 
-        # Create a Cracking_Model instance
-        self.model = Cracking_Model(self.pars)
+        # Create a CrackingModel instance
+        self.model = CrackingModel(self.pars)
         
     def test_run_deterministic(self):
         # Run the model in deterministic mode

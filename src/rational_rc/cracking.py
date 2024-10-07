@@ -283,8 +283,8 @@ def strain_stress_crack_f(
         #         ax.hlines(epsilon_cr, r.min(), r.max(),'r', label=r'critical strain $\epsilon_{cr}$')
         #         ax.hlines(epsilon_1, r.min(), r.max(),'C1', label=r'$\epsilon_1$')
         #         ax.hlines(epsilon_u, r.min(), r.max(), 'b', label=r'zero residual stress strain $\epsilon_u$')
-        ax.vlines(a[0], 0, epsilon_u, linestyle="-", label="rust-concrete boundary")
-        ax.vlines(R_c[0], 0, epsilon_u, linestyle=":", label="crack tip")
+        ax.vlines(a[0], 0, epsilon_u, linestyle="-", color='k', label="rust-concrete boundary")
+        ax.vlines(R_c[0], 0, epsilon_u, linestyle=":", color='k', label="crack tip")
 
         ax.set_title(
             "crack condition: {}, 0-sound, 1-partial, 2-fully cracked".format(
@@ -415,7 +415,7 @@ def solve_stress_strain_crack_stochastic(pars, number_of_points=100):
     )
 
 
-class Cracking_Model:
+class CrackingModel:
     def __init__(self, pars):
         self.pars = pars
 
