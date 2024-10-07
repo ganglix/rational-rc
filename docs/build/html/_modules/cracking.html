@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cracking &mdash; rational-rc beta documentation</title>
+  <title>cracking &mdash; rational-rc 0.2.3-beta documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -370,8 +370,8 @@
         <span class="c1">#         ax.hlines(epsilon_cr, r.min(), r.max(),&#39;r&#39;, label=r&#39;critical strain $\epsilon_{cr}$&#39;)</span>
         <span class="c1">#         ax.hlines(epsilon_1, r.min(), r.max(),&#39;C1&#39;, label=r&#39;$\epsilon_1$&#39;)</span>
         <span class="c1">#         ax.hlines(epsilon_u, r.min(), r.max(), &#39;b&#39;, label=r&#39;zero residual stress strain $\epsilon_u$&#39;)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="n">epsilon_u</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;rust-concrete boundary&quot;</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">R_c</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="n">epsilon_u</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;crack tip&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="n">epsilon_u</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;rust-concrete boundary&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">R_c</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="n">epsilon_u</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;crack tip&quot;</span><span class="p">)</span>
 
         <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
             <span class="s2">&quot;crack condition: </span><span class="si">{}</span><span class="s2">, 0-sound, 1-partial, 2-fully cracked&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
@@ -502,11 +502,11 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Cracking_Model"><a class="viewcode-back" href="../api/modules/cracking.html#cracking.Cracking_Model">[docs]</a><span class="k">class</span> <span class="nc">Cracking_Model</span><span class="p">:</span>
+<div class="viewcode-block" id="CrackingModel"><a class="viewcode-back" href="../api/modules/cracking.html#cracking.CrackingModel">[docs]</a><span class="k">class</span> <span class="nc">CrackingModel</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pars</span> <span class="o">=</span> <span class="n">pars</span>
 
-<div class="viewcode-block" id="Cracking_Model.run"><a class="viewcode-back" href="../api/modules/cracking.html#cracking.Cracking_Model.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stochastic</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot_deterministic_result</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="CrackingModel.run"><a class="viewcode-back" href="../api/modules/cracking.html#cracking.CrackingModel.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stochastic</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot_deterministic_result</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Solve stress, strain, and crack tip location in concrete cover.</span>
 <span class="sd">        </span>
@@ -536,7 +536,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">w_open</span><span class="p">,</span>
         <span class="p">)</span> <span class="o">=</span> <span class="n">sol</span></div>
 
-<div class="viewcode-block" id="Cracking_Model.postproc"><a class="viewcode-back" href="../api/modules/cracking.html#cracking.Cracking_Model.postproc">[docs]</a>    <span class="k">def</span> <span class="nf">postproc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="CrackingModel.postproc"><a class="viewcode-back" href="../api/modules/cracking.html#cracking.CrackingModel.postproc">[docs]</a>    <span class="k">def</span> <span class="nf">postproc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;calculate the crack length and surface crack rate.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stochastic</span><span class="p">:</span>
@@ -551,7 +551,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Warning! Postprocessing for stochastic solution only&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Cracking_Model.copy"><a class="viewcode-back" href="../api/modules/cracking.html#cracking.Cracking_Model.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="CrackingModel.copy"><a class="viewcode-back" href="../api/modules/cracking.html#cracking.CrackingModel.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a deepcopy of the Cracking_Model instance.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div></div>
 </pre></div>
@@ -563,7 +563,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, Gang Li.</p>
+    <p>&#169; Copyright 2023-2024, Gang Li.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -62,10 +62,10 @@
 <li class="toctree-l2"><a class="reference internal" href="chloride.html">chloride</a></li>
 <li class="toctree-l2"><a class="reference internal" href="corrosion.html">corrosion</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">cracking</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#cracking.Cracking_Model"><code class="docutils literal notranslate"><span class="pre">Cracking_Model</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#cracking.Cracking_Model.copy"><code class="docutils literal notranslate"><span class="pre">Cracking_Model.copy()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#cracking.Cracking_Model.postproc"><code class="docutils literal notranslate"><span class="pre">Cracking_Model.postproc()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#cracking.Cracking_Model.run"><code class="docutils literal notranslate"><span class="pre">Cracking_Model.run()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cracking.CrackingModel"><code class="docutils literal notranslate"><span class="pre">CrackingModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cracking.CrackingModel.copy"><code class="docutils literal notranslate"><span class="pre">CrackingModel.copy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cracking.CrackingModel.postproc"><code class="docutils literal notranslate"><span class="pre">CrackingModel.postproc()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cracking.CrackingModel.run"><code class="docutils literal notranslate"><span class="pre">CrackingModel.run()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#cracking.bilinear_stress_strain"><code class="docutils literal notranslate"><span class="pre">bilinear_stress_strain()</span></code></a></li>
@@ -127,24 +127,24 @@ delamination, visible crack ratio</p>
 </li>
 </ul>
 <dl class="py class">
-<dt class="sig sig-object py" id="cracking.Cracking_Model">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cracking.</span></span><span class="sig-name descname"><span class="pre">Cracking_Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cracking.html#Cracking_Model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cracking.Cracking_Model" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="cracking.CrackingModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cracking.</span></span><span class="sig-name descname"><span class="pre">CrackingModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cracking.html#CrackingModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cracking.CrackingModel" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
-<dt class="sig sig-object py" id="cracking.Cracking_Model.copy">
-<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cracking.html#Cracking_Model.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cracking.Cracking_Model.copy" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="cracking.CrackingModel.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cracking.html#CrackingModel.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cracking.CrackingModel.copy" title="Permalink to this definition"></a></dt>
 <dd><p>Create a deepcopy of the Cracking_Model instance.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="cracking.Cracking_Model.postproc">
-<span class="sig-name descname"><span class="pre">postproc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cracking.html#Cracking_Model.postproc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cracking.Cracking_Model.postproc" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="cracking.CrackingModel.postproc">
+<span class="sig-name descname"><span class="pre">postproc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cracking.html#CrackingModel.postproc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cracking.CrackingModel.postproc" title="Permalink to this definition"></a></dt>
 <dd><p>calculate the crack length and surface crack rate.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="cracking.Cracking_Model.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stochastic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_deterministic_result</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cracking.html#Cracking_Model.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cracking.Cracking_Model.run" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="cracking.CrackingModel.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stochastic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_deterministic_result</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cracking.html#CrackingModel.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cracking.CrackingModel.run" title="Permalink to this definition"></a></dt>
 <dd><p>Solve stress, strain, and crack tip location in concrete cover.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
