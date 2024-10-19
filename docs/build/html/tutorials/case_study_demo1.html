@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Study 1: Concrete Silo Wall with Dual Carbonation Attack &mdash; rational-rc 0.2.3-beta documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/nbsphinx-code-cells.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Case Study 2: Membrane and Chloride-Induced Corrosion Analysis" href="case_study_demo2.html" />
+    <link rel="prev" title="cracking model example" href="cracking_example.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            rational-rc
+          </a>
+              <div class="version">
+                0.2.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user/installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Features</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user/features.html">Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Rational-RC API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/module_index.html">Modules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="tutorial_index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="membrane_example.html">membrane module example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="carbonation_example.html">carbonation module example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chloride_example.html">chloride module example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="corrosion_example.html">corrosion module example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cracking_example.html">cracking model example</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Case Study 1: Concrete Silo Wall with Dual Carbonation Attack</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Key-Analysis-Components:">Key Analysis Components:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Problem-Overview:">Problem Overview:</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Weather-data-and-field-data">Weather data and field data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Carbonation">Carbonation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Horizontal-rebar-cover-carbonation">Horizontal rebar cover carbonation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#carbonation-probability-plot,-internal,-external-and-combined">carbonation probability plot, internal, external and combined</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Corrosion">Corrosion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Cracking---Corrosion-Induced">Cracking - Corrosion-Induced</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Assumptions:">Assumptions:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Steps:">Steps:</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#horizontal-rebar---external-cover">horizontal rebar - external cover</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Propagated-probability-of-surface-crack-at-time-t-depending-on-the-onset-of-carbonation-induced-corrosion.">Propagated probability of surface crack at time t depending on the onset of carbonation-induced corrosion.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="case_study_demo2.html">Case Study 2: Membrane and Chloride-Induced Corrosion Analysis</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">rational-rc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="tutorial_index.html">Tutorials</a></li>
+      <li class="breadcrumb-item active">Case Study 1: Concrete Silo Wall with Dual Carbonation Attack</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tutorials/case_study_demo1.nblink.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Case-Study-1:-Concrete-Silo-Wall-with-Dual-Carbonation-Attack">
+<h1>Case Study 1: Concrete Silo Wall with Dual Carbonation Attack<a class="headerlink" href="#Case-Study-1:-Concrete-Silo-Wall-with-Dual-Carbonation-Attack" title="Permalink to this heading"></a></h1>
+<p>This case study examines the carbonation-induced corrosion of horizontal rebars in a concrete silo wall. The wall experiences dual carbonation, with both external and internal surfaces being affected due to differing environmental exposure conditions.</p>
+<section id="Key-Analysis-Components:">
+<h2>Key Analysis Components:<a class="headerlink" href="#Key-Analysis-Components:" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Carbonation</strong>: Progression of carbonation depth from external and internal surfaces.</p></li>
+<li><p><strong>Corrosion</strong>: Evaluation of the probability of corrosion initiation at the rebar based on carbonation-induced depassivation.</p></li>
+<li><p><strong>Rebar Section Loss</strong>: Estimation of rebar section loss due to corrosion.</p></li>
+<li><p><strong>Cracking Prediction</strong>: Assess the potential for surface cracking as a result of rebar expansion due to corrosion.</p></li>
+</ul>
+</section>
+<section id="Problem-Overview:">
+<h2>Problem Overview:<a class="headerlink" href="#Problem-Overview:" title="Permalink to this heading"></a></h2>
+<p>Known parameters for this study include: - Field-tested data such as concrete cover thickness, carbonation depth, rebar size, and concrete compressive strength. - Environmental exposure conditions such as relative humidity (RH) and rain incidences, obtained from weather station data.</p>
+<p>The goal of this analysis is to predict the structural deterioration of the silo wall over its service life, including carbonation progression, corrosion probability, and cracking potential.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import relevant modules from the Rational-RC package</span>
+<span class="kn">import</span> <span class="nn">rational_rc.math_helper</span> <span class="k">as</span> <span class="nn">mh</span>  <span class="c1"># Math helper functions</span>
+<span class="kn">from</span> <span class="nn">rational_rc.carbonation</span> <span class="kn">import</span> <span class="n">CarbonationModel</span>  <span class="c1"># Carbonation model</span>
+
+<span class="c1"># Import standard libraries</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Suppress warnings for cleaner output</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<section id="Weather-data-and-field-data">
+<h3>Weather data and field data<a class="headerlink" href="#Weather-data-and-field-data" title="Permalink to this heading"></a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Weather Data Collection (2009-2019)</span>
+<span class="c1"># This section extracts average precipitation (wet days) and relative humidity (RH) data from the weather station.</span>
+
+<span class="c1"># Wet days calculation (2009-2019 average)</span>
+<span class="n">wetdays</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># List to store the wet day ratio for each year</span>
+
+<span class="c1"># Loop over the years 2009 to 2019 to calculate the wet day ratio</span>
+<span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2009</span><span class="p">,</span> <span class="mi">2020</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;weather/en_climate_daily_SK_4016699_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">_P1D.csv&#39;</span><span class="p">)</span>  <span class="c1"># Load daily weather data</span>
+    <span class="n">wetdays</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Total Precip (mm)&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">2.5</span><span class="p">])</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>  <span class="c1"># Calculate wet day ratio</span>
+
+<span class="c1"># Relative Humidity (RH) calculation for 2019</span>
+<span class="n">RHs</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># List to store the average relative humidity (RH) for each month in 2019</span>
+
+<span class="c1"># Loop over the months to calculate the average RH for each month in 2019</span>
+<span class="n">month_str</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">item</span><span class="si">:</span><span class="s1">02</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">)]</span>  <span class="c1"># Format month strings</span>
+<span class="k">for</span> <span class="n">month</span> <span class="ow">in</span> <span class="n">month_str</span><span class="p">:</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;weather/en_climate_hourly_SK_4016699_</span><span class="si">{</span><span class="n">month</span><span class="si">}</span><span class="s1">-2019_P1H.csv&#39;</span><span class="p">)</span>  <span class="c1"># Load hourly weather data</span>
+    <span class="n">RHs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Rel Hum (%)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>  <span class="c1"># Calculate monthly average relative humidity</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Field Carbonation Data Extraction</span>
+
+<span class="c1"># Load carbonation data from Excel file</span>
+<span class="n">df_carbon</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span>
+    <span class="s1">&#39;field data/carbonation_updated_complete_cover.xlsx&#39;</span><span class="p">,</span>  <span class="c1"># File path</span>
+    <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Carbonation Modified&#39;</span><span class="p">,</span>  <span class="c1"># Sheet containing modified carbonation data</span>
+    <span class="n">skiprows</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>      <span class="c1"># Skip header rows</span>
+    <span class="n">nrows</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span>        <span class="c1"># Number of rows to read</span>
+    <span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;B:H&#39;</span><span class="p">)</span>  <span class="c1"># Columns to extract</span>
+<span class="p">)</span>
+
+<span class="c1"># External carbonation depth (mm)</span>
+<span class="c1"># Extract and flatten data for external carbonation depth (first 8 samples)</span>
+<span class="n">carbon_depth_ex</span> <span class="o">=</span> <span class="n">df_carbon</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">8</span><span class="p">]</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Sample&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="c1"># Internal carbonation depth (mm)</span>
+<span class="n">wall_thickness</span> <span class="o">=</span> <span class="mf">177.8</span>      <span class="c1"># Wall thickness in mm (7 inches)</span>
+<span class="n">bar_size</span> <span class="o">=</span> <span class="mf">12.7</span>             <span class="c1"># Rebar size in mm (1/2 inch)</span>
+<span class="c1"># Calculate internal carbonation depth using the wall thickness minus the internal carbonation data</span>
+<span class="n">carbon_depth_in</span> <span class="o">=</span> <span class="n">wall_thickness</span> <span class="o">-</span> <span class="n">df_carbon</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">13</span><span class="p">]</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Sample&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="c1"># External concrete cover for horizontal rebar (mean and standard deviation)</span>
+<span class="n">cover_mean_h_ex</span> <span class="o">=</span> <span class="mf">44.7</span>      <span class="c1"># Mean external cover in mm</span>
+<span class="n">cover_std_h_ex</span> <span class="o">=</span> <span class="mf">11.2</span>       <span class="c1"># Standard deviation of external cover in mm</span>
+
+<span class="c1"># Internal concrete cover for horizontal rebar (mean and standard deviation)</span>
+<span class="n">cover_mean_h_in</span> <span class="o">=</span> <span class="n">wall_thickness</span> <span class="o">-</span> <span class="n">bar_size</span> <span class="o">-</span> <span class="n">cover_mean_h_ex</span>  <span class="c1"># Calculate internal cover</span>
+<span class="n">cover_std_h_in</span> <span class="o">=</span> <span class="mf">11.2</span>       <span class="c1"># Standard deviation of internal cover in mm</span>
+
+<span class="c1"># Project time duration</span>
+<span class="n">year_start</span> <span class="o">=</span> <span class="mi">1913</span>           <span class="c1"># Year the structure was built</span>
+<span class="n">age</span> <span class="o">=</span> <span class="mi">2019</span> <span class="o">-</span> <span class="n">year_start</span>     <span class="c1"># Calculate the age of the structure</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;External carbonation depth: </span><span class="si">{</span><span class="n">carbon_depth_ex</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> mm</span><span class="se">\n</span><span class="s1">&#39;</span>
+      <span class="sa">f</span><span class="s1">&#39;Cover_h: </span><span class="si">{</span><span class="n">cover_mean_h_ex</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> mm&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Internal carbonation depth: </span><span class="si">{</span><span class="n">carbon_depth_in</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> mm</span><span class="se">\n</span><span class="s1">&#39;</span>
+      <span class="sa">f</span><span class="s1">&#39;Cover_h: </span><span class="si">{</span><span class="n">cover_mean_h_in</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> mm&#39;</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+External carbonation depth: 31.1 mm
+Cover_h: 44.7 mm
+
+Internal carbonation depth: 115.3 mm
+Cover_h: 120.4 mm
+</pre></div></div>
+</div>
+</section>
+<section id="Carbonation">
+<h3>Carbonation<a class="headerlink" href="#Carbonation" title="Permalink to this heading"></a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a class for storing parameters (external conditions)</span>
+<span class="k">class</span> <span class="nc">Param</span><span class="p">:</span>
+    <span class="k">pass</span>
+
+<span class="c1"># Initialize an object to store carbonation parameters</span>
+<span class="n">pars_carb</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>
+
+<span class="c1"># Assign raw parameters for external carbonation conditions</span>
+<span class="n">pars_carb</span><span class="o">.</span><span class="n">RH_real</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">RHs</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>      <span class="c1"># Mean relative humidity</span>
+<span class="n">pars_carb</span><span class="o">.</span><span class="n">t_c</span> <span class="o">=</span> <span class="mi">28</span>                            <span class="c1"># Number of curing days used in lab tests</span>
+<span class="n">pars_carb</span><span class="o">.</span><span class="n">x_c</span> <span class="o">=</span> <span class="mf">0.008</span>                         <span class="c1"># Initial guess for material propertya: accelerated test carbonation depth x_c[m]</span>
+<span class="n">pars_carb</span><span class="o">.</span><span class="n">ToW</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">wetdays</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>      <span class="c1"># Time of wetness (ToW): number of days with rainfall &gt;= 2.5 mm/365</span>
+<span class="n">pars_carb</span><span class="o">.</span><span class="n">p_SR</span> <span class="o">=</span> <span class="mf">1.0</span>                          <span class="c1"># Probability of driving rain (1.0 for exposed vertical walls)</span>
+<span class="n">pars_carb</span><span class="o">.</span><span class="n">C_S_emi</span> <span class="o">=</span> <span class="mf">0.0</span>                       <span class="c1"># Additional CO2 emission (0 for no added CO2)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create Carbonation Model for External Condition (default parameters)</span>
+<span class="n">model_carb</span> <span class="o">=</span> <span class="n">CarbonationModel</span><span class="p">(</span><span class="n">pars_carb</span><span class="p">)</span>  <span class="c1"># Initialize carbonation model with external parameters</span>
+
+<span class="c1"># Calibrate the model using the structure&#39;s age and external carbonation depth data</span>
+<span class="n">model_carb</span> <span class="o">=</span> <span class="n">model_carb</span><span class="o">.</span><span class="n">calibrate</span><span class="p">(</span><span class="n">age</span><span class="p">,</span> <span class="n">carb_depth_field</span><span class="o">=</span><span class="n">carbon_depth_ex</span><span class="p">,</span> <span class="n">print_out</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Create Carbonation Model for Internal Condition (copy external model)</span>
+<span class="n">model_carb_in</span> <span class="o">=</span> <span class="n">model_carb</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Adjust parameters for the internal condition (no exposure to driving rain)</span>
+<span class="n">model_carb_in</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">p_SR</span> <span class="o">=</span> <span class="mf">0.0</span>  <span class="c1"># Set probability of driving rain to 0 for internal surfaces</span>
+
+<span class="c1"># Adjust relative humidity for the internal condition</span>
+<span class="c1"># Assuming internal RH is an average between external RH and 50%</span>
+<span class="n">model_carb_in</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">RH_real</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">RHs</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">+</span> <span class="mi">50</span><span class="p">)</span>
+
+<span class="c1"># Calibrate the internal carbonation model using the internal carbonation depth data</span>
+<span class="n">model_carb_in</span> <span class="o">=</span> <span class="n">model_carb_in</span><span class="o">.</span><span class="n">calibrate</span><span class="p">(</span><span class="n">age</span><span class="p">,</span> <span class="n">carb_depth_field</span><span class="o">=</span><span class="n">carbon_depth_in</span><span class="p">,</span> <span class="n">print_out</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+carb_depth:
+model:
+mean:31.10877752572361
+std:14.97557351210882
+field:
+mean:31.083333333333332
+std:18.94821158374115
+carb_depth:
+model:
+mean:115.4189450986157
+std:22.53544019060845
+field:
+mean:115.2666666666667
+std:13.363964814214215
+</pre></div></div>
+</div>
+</section>
+<section id="Horizontal-rebar-cover-carbonation">
+<h3>Horizontal rebar cover carbonation<a class="headerlink" href="#Horizontal-rebar-cover-carbonation" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>external carbonation</strong></p></li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Carbonation Model for Horizontal Bar Cover (External Carbonation)</span>
+
+<span class="c1"># Create a copy of the external carbonation model for horizontal rebar cover</span>
+<span class="n">model_carb_h_ex</span> <span class="o">=</span> <span class="n">model_carb</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Set cover parameters for horizontal rebar (external cover)</span>
+<span class="n">model_carb_h_ex</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">cover_mean</span> <span class="o">=</span> <span class="n">cover_mean_h_ex</span>  <span class="c1"># Mean cover thickness (mm)</span>
+<span class="n">model_carb_h_ex</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">cover_std</span> <span class="o">=</span> <span class="n">cover_std_h_ex</span>  <span class="c1"># Standard deviation of cover thickness (mm)</span>
+
+<span class="c1"># Run the carbonation model for the given structure&#39;s age</span>
+<span class="n">model_carb_h_ex</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+
+<span class="c1"># Post-process the results and generate plots for visualization</span>
+<span class="n">model_carb_h_ex</span><span class="o">.</span><span class="n">postproc</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Adjust plot layout to avoid clipping of plot elements</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="c1"># Optionally, save the plot to a file (currently disabled)</span>
+<span class="c1"># plt.savefig(&#39;plots/carbonation_external_horizontal_2019.tiff&#39;, dpi=600)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Pf(g = R-S &lt; 0) from various methods
+    sample count: 0.22687218060153835
+    g integral: 0.22780686245538412
+    R S integral: 0.2286197867431708
+    beta_factor: 0.7298142374948087
+13.662503867872877 0.014888704115662305
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_case_study_demo1_11_1.png" src="../_images/tutorials_case_study_demo1_11_1.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;Figure size 640x480 with 0 Axes&gt;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the service life inspection points (in years)</span>
+<span class="n">service_life_inspect_time_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">150</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1"># Inspect every 10 years, starting from 0.1 year</span>
+
+<span class="c1"># Compute the probability of failure (P_f) and reliability index (β) for the external condition</span>
+<span class="c1"># The function calculates how carbonation affects the structure over the service life</span>
+<span class="n">pf_lis_h_ex</span><span class="p">,</span> <span class="n">beta_lis_h_ex</span> <span class="o">=</span> <span class="n">model_carb_h_ex</span><span class="o">.</span><span class="n">carb_with_year</span><span class="p">(</span>
+    <span class="n">year_lis</span><span class="o">=</span><span class="n">service_life_inspect_time_list</span><span class="p">,</span>  <span class="c1"># List of years for inspection</span>
+    <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>       <span class="c1"># Enable plotting of the results</span>
+    <span class="n">amplify</span><span class="o">=</span><span class="mi">500</span>      <span class="c1"># Amplification factor to scale the PDF for better visualization</span>
+<span class="p">)</span>
+
+<span class="c1"># Optionally, save the plot (currently disabled)</span>
+<span class="c1"># plt.savefig(&#39;plots/carbonation at horizontal rebar (low cover) for 150 years since Year 1913.tiff&#39;, dpi=600)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_case_study_demo1_12_0.png" src="../_images/tutorials_case_study_demo1_12_0.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>internal carbonation</strong></p></li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Carbonation Model for Horizontal Bar Cover (Internal Carbonation)</span>
+
+<span class="c1"># Create a copy of the internal carbonation model for horizontal rebar cover</span>
+<span class="n">model_carb_h_in</span> <span class="o">=</span> <span class="n">model_carb_in</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Set cover parameters for horizontal rebar (internal cover)</span>
+<span class="n">model_carb_h_in</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">cover_mean</span> <span class="o">=</span> <span class="n">cover_mean_h_in</span>  <span class="c1"># Mean internal cover thickness (mm)</span>
+<span class="n">model_carb_h_in</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">cover_std</span> <span class="o">=</span> <span class="n">cover_std_h_in</span>    <span class="c1"># Standard deviation of internal cover thickness (mm)</span>
+
+<span class="c1"># Run the carbonation model for the internal condition</span>
+<span class="n">model_carb_h_in</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+
+<span class="c1"># Post-process the results and generate plots for visualization</span>
+<span class="n">model_carb_h_in</span><span class="o">.</span><span class="n">postproc</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="c1"># Optionally, save the plot to a file (currently disabled)</span>
+<span class="c1"># plt.savefig(&#39;plots/carbonation_internal_horizontal_2019.tiff&#39;, dpi=600)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Pf(g = R-S &lt; 0) from various methods
+    sample count: 0.4206899310869065
+    g integral: 0.42096998817770787
+    R S integral: 0.41974533021575944
+    beta_factor: 0.20285812724582197
+5.102467857077843 0.016077065567160088
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_case_study_demo1_14_1.png" src="../_images/tutorials_case_study_demo1_14_1.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;Figure size 640x480 with 0 Axes&gt;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Inspect service life for internal horizontal bar cover</span>
+<span class="n">service_life_inspect_time_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">150</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1"># Inspect every 10 years, starting from 0.1 year</span>
+
+<span class="c1"># Compute the probability of failure (P_f) and reliability index (β) for the internal condition</span>
+<span class="n">pf_lis_h_in</span><span class="p">,</span> <span class="n">beta_lis_h_in</span> <span class="o">=</span> <span class="n">model_carb_h_in</span><span class="o">.</span><span class="n">carb_with_year</span><span class="p">(</span>
+    <span class="n">year_lis</span><span class="o">=</span><span class="n">service_life_inspect_time_list</span><span class="p">,</span>  <span class="c1"># List of years for inspection</span>
+    <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>       <span class="c1"># Enable plotting of the results</span>
+    <span class="n">amplify</span><span class="o">=</span><span class="mi">500</span>      <span class="c1"># Amplification factor to scale the PDF for better visualization</span>
+<span class="p">)</span>
+
+<span class="c1"># Optionally, save the plot (currently disabled)</span>
+<span class="c1"># plt.savefig(&#39;plots/carbonation at horizontal rebar (low cover) for 150 years since Year 1913_internal.tiff&#39;, dpi=600)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+warning: very small Pf
+warning: very small Pf
+warning: very small Pf
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_case_study_demo1_15_1.png" src="../_images/tutorials_case_study_demo1_15_1.png" />
+</div>
+</div>
+</section>
+<section id="carbonation-probability-plot,-internal,-external-and-combined">
+<h3>carbonation probability plot, internal, external and combined<a class="headerlink" href="#carbonation-probability-plot,-internal,-external-and-combined" title="Permalink to this heading"></a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot Carbonation Probability for Internal, External, and Combined Conditions</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="c1"># External</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">service_life_inspect_time_list</span><span class="p">,</span> <span class="n">pf_lis_h_ex</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;External Carbonation&#39;</span><span class="p">)</span>
+
+<span class="c1"># Internal</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">service_life_inspect_time_list</span><span class="p">,</span> <span class="n">pf_lis_h_in</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Internal Carbonation&#39;</span><span class="p">)</span>
+
+<span class="c1"># Calculate the combined probability of failure (union of internal and external carbonation)</span>
+<span class="c1"># This represents the probability of at least one carbonation event (internal or external)</span>
+<span class="n">pf_lis_h_combine</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">pf_lis_h_ex</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">pf_lis_h_in</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">service_life_inspect_time_list</span><span class="p">,</span> <span class="n">pf_lis_h_combine</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Combined&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Carbonation Probability for Horizontal Rebar&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time [years]&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Probability of reaching carbonation limit-state&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="c1"># Optionally, save the plot to a file (currently disabled)</span>
+<span class="c1"># fig.savefig(&#39;plots/p_carbonation_horizontal_rebar.tiff&#39;, dpi=600)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_case_study_demo1_17_0.png" src="../_images/tutorials_case_study_demo1_17_0.png" />
+</div>
+</div>
+</section>
+<section id="Corrosion">
+<h3>Corrosion<a class="headerlink" href="#Corrosion" title="Permalink to this heading"></a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import Corrosion and Section Loss class from the Rational-RC Package</span>
+<span class="kn">from</span> <span class="nn">rational_rc.corrosion</span> <span class="kn">import</span> <span class="n">CorrosionModel</span><span class="p">,</span> <span class="n">SectionLossModel</span>
+
+<span class="c1"># CorrosionModel: Used to simulate corrosion of rebar due to carbonation or chloride ingress</span>
+<span class="c1"># SectionLossModel: Used to model the loss of rebar cross-sectional area due to corrosion over time</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize Corrosion Parameters for Rebar Corrosion Model</span>
+
+<span class="k">class</span> <span class="nc">Param</span><span class="p">:</span>
+    <span class="k">pass</span>
+
+<span class="c1"># Create an object to store corrosion parameters</span>
+<span class="n">pars_corr</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>
+
+<span class="c1"># Geometry and Age</span>
+<span class="c1"># Cover depth for horizontal rebar (converted to meters)</span>
+<span class="n">pars_corr</span><span class="o">.</span><span class="n">d</span> <span class="o">=</span> <span class="n">model_carb_h_ex</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">cover_mean</span> <span class="o">*</span> <span class="mf">1e-3</span>  <span class="c1"># Convert mm to meters</span>
+
+<span class="c1"># Age of the structure in days</span>
+<span class="n">pars_corr</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="mi">3650</span>                 <span class="c1"># 10 years (3650 days)</span>
+
+<span class="c1"># Concrete Composition</span>
+<span class="n">pars_corr</span><span class="o">.</span><span class="n">cement_type</span> <span class="o">=</span> <span class="s1">&#39;Type I&#39;</span>   <span class="c1"># Type of cement used in the concrete mix</span>
+<span class="n">pars_corr</span><span class="o">.</span><span class="n">concrete_density</span> <span class="o">=</span> <span class="mi">2400</span>  <span class="c1"># Concrete density in kg/m^3 (typical value for normal weight concrete)</span>
+<span class="n">pars_corr</span><span class="o">.</span><span class="n">a_c</span> <span class="o">=</span> <span class="mi">2</span>                  <span class="c1"># Aggregate (fine and coarse) to cement ratio</span>
+<span class="n">pars_corr</span><span class="o">.</span><span class="n">w_c</span> <span class="o">=</span> <span class="mf">0.5</span>                <span class="c1"># Water-cement ratio (w/c)</span>
+<span class="n">pars_corr</span><span class="o">.</span><span class="n">rho_c</span> <span class="o">=</span> <span class="mi">3100</span>             <span class="c1"># Density of cement particles in kg/m^3</span>
+<span class="n">pars_corr</span><span class="o">.</span><span class="n">rho_a</span> <span class="o">=</span> <span class="mi">2600</span>             <span class="c1"># Density of aggregate particles (fine and coarse), range 2400-2900 kg/m^3</span>
+
+<span class="c1"># Concrete Condition</span>
+<span class="n">pars_corr</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.25</span>           <span class="c1"># Porosity of concrete (fraction of void spaces)</span>
+<span class="n">pars_corr</span><span class="o">.</span><span class="n">theta_water</span> <span class="o">=</span> <span class="mf">0.075</span>      <span class="c1"># Volumetric water content (fraction)</span>
+<span class="n">pars_corr</span><span class="o">.</span><span class="n">T</span> <span class="o">=</span> <span class="mf">273.15</span> <span class="o">+</span> <span class="mi">25</span>          <span class="c1"># Temperature in Kelvin (25°C)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize and Run Corrosion Model</span>
+
+<span class="c1"># Initialize the corrosion model with the defined parameters</span>
+<span class="n">model_corr</span> <span class="o">=</span> <span class="n">CorrosionModel</span><span class="p">(</span><span class="n">pars_corr</span><span class="p">)</span>
+
+<span class="c1"># Run the corrosion model simulation</span>
+<span class="n">model_corr</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+<span class="c1"># Extract results</span>
+
+<span class="c1"># Corrosion current density (icorr) in A/m^2</span>
+<span class="n">icorr_A_per_m2</span> <span class="o">=</span> <span class="n">model_corr</span><span class="o">.</span><span class="n">icorr</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Corrosion current density, icorr [A/m^2]: </span><span class="si">{</span><span class="n">icorr_A_per_m2</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Corrosion rate and section loss (in mm/year)</span>
+<span class="n">r_corr_mm_per_year</span> <span class="o">=</span> <span class="n">model_corr</span><span class="o">.</span><span class="n">x_loss_rate</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Section loss rate, mean [mm/year]: </span><span class="si">{</span><span class="n">r_corr_mm_per_year</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Section loss rate, std [mm/year]: </span><span class="si">{</span><span class="n">r_corr_mm_per_year</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Corrosion current density, icorr [A/m^2]: 0.004255869509061599
+Section loss rate, mean [mm/year]: 0.004928813746772031
+Section loss rate, std [mm/year]: 3.7648674441932156e-05
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prepare parameters for section loss model</span>
+<span class="n">pars_sl</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>
+<span class="n">pars_sl</span><span class="o">.</span><span class="n">x_loss_rate</span> <span class="o">=</span> <span class="n">model_corr</span><span class="o">.</span><span class="n">x_loss_rate</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>  <span class="c1"># Mean section loss rate from corrosion model</span>
+
+<span class="c1"># Probability of active corrosion over time, combining internal and external carbonation effects</span>
+<span class="n">pars_sl</span><span class="o">.</span><span class="n">p_active_t_curve</span> <span class="o">=</span> <span class="p">(</span><span class="n">service_life_inspect_time_list</span><span class="p">,</span> <span class="n">pf_lis_h_combine</span><span class="p">)</span>
+
+<span class="c1"># Critical section loss limits from structural analysis</span>
+<span class="n">pars_sl</span><span class="o">.</span><span class="n">x_loss_limit_mean</span> <span class="o">=</span> <span class="mf">0.5</span>  <span class="c1"># Mean section loss limit in mm, results of structural analysis</span>
+<span class="n">pars_sl</span><span class="o">.</span><span class="n">x_loss_limit_std</span> <span class="o">=</span> <span class="mf">0.05</span>  <span class="c1"># Standard deviation of section loss limit (10% of mean)</span>
+
+<span class="c1"># Initialize and run the section loss model</span>
+<span class="n">model_sl</span> <span class="o">=</span> <span class="n">SectionLossModel</span><span class="p">(</span><span class="n">pars_sl</span><span class="p">)</span>
+<span class="n">model_sl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">t_end</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>  <span class="c1"># Run model up to 100 years</span>
+
+<span class="c1"># Post-process and plot results</span>
+<span class="n">model_sl</span><span class="o">.</span><span class="n">postproc</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Pf(g = R-S &lt; 0) from various methods
+    sample count: 0.00532
+    g integral: 0.005469410799008344
+    R S integral: 0.005016238516825065
+    beta_factor: 2.7648273674445574
+0.34138479493887086 0.15451019266984112
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_case_study_demo1_22_1.png" src="../_images/tutorials_case_study_demo1_22_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the section loss model for a range of years (60 to 160 in steps of 5)</span>
+<span class="n">pf_sl</span><span class="p">,</span> <span class="n">beta_sl</span> <span class="o">=</span> <span class="n">model_sl</span><span class="o">.</span><span class="n">section_loss_with_year</span><span class="p">(</span>
+    <span class="n">year_lis</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">160</span> <span class="o">+</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>  <span class="c1"># Year steps</span>
+    <span class="n">amplify</span><span class="o">=</span><span class="mi">1</span>  <span class="c1"># Amplification factor for better visualization</span>
+<span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+warning: very small Pf
+warning: very small Pf
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_case_study_demo1_23_1.png" src="../_images/tutorials_case_study_demo1_23_1.png" />
+</div>
+</div>
+</section>
+<section id="Cracking---Corrosion-Induced">
+<h3>Cracking - Corrosion-Induced<a class="headerlink" href="#Cracking---Corrosion-Induced" title="Permalink to this heading"></a></h3>
+</section>
+</section>
+<section id="Assumptions:">
+<h2>Assumptions:<a class="headerlink" href="#Assumptions:" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>No other external stresses are considered.</p></li>
+</ul>
+</section>
+<section id="Steps:">
+<h2>Steps:<a class="headerlink" href="#Steps:" title="Permalink to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Time to Surface Crack</strong>: Calculate the time required for surface cracking in the external concrete cover due to rebar expansion (horizontal rebar).</p></li>
+<li><p><strong>Combine with Corrosion Probability</strong>: Integrate the probability of corrosion onset to estimate the likelihood of surface cracking.</p></li>
+</ol>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the Cracking Model and helper functions</span>
+<span class="kn">from</span> <span class="nn">rational_rc.cracking</span> <span class="kn">import</span> <span class="n">CrackingModel</span>
+<span class="kn">from</span> <span class="nn">rational_rc.math_helper</span> <span class="kn">import</span> <span class="n">normal_custom</span>
+
+<span class="c1"># Display external carbonation depth and cover</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;External carbonation depth: </span><span class="si">{</span><span class="n">carbon_depth_ex</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> mm</span><span class="se">\n</span><span class="s1">&#39;</span>
+      <span class="sa">f</span><span class="s1">&#39;External cover: </span><span class="si">{</span><span class="n">cover_mean_h_ex</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> mm&#39;</span><span class="p">)</span>
+
+<span class="c1"># Display internal carbonation depth and cover</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Internal carbonation depth: </span><span class="si">{</span><span class="n">carbon_depth_in</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> mm</span><span class="se">\n</span><span class="s1">&#39;</span>
+      <span class="sa">f</span><span class="s1">&#39;Internal cover: </span><span class="si">{</span><span class="n">wall_thickness</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">cover_mean_h_in</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> mm&#39;</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+External carbonation depth: 31.1 mm
+External cover: 44.7 mm
+
+Internal carbonation depth: 115.3 mm
+Internal cover: 57.4 mm
+</pre></div></div>
+</div>
+<section id="horizontal-rebar---external-cover">
+<h3>horizontal rebar - external cover<a class="headerlink" href="#horizontal-rebar---external-cover" title="Permalink to this heading"></a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cracking Model for Horizontal External Cover (Low Cover)</span>
+
+<span class="k">class</span> <span class="nc">Param</span><span class="p">:</span> <span class="k">pass</span>
+<span class="n">pars_cr</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>
+
+<span class="c1"># Rebar and concrete properties</span>
+<span class="n">r0_bar_mean</span> <span class="o">=</span> <span class="mf">12.7e-3</span>  <span class="c1"># Rebar radius in meters (1/2 inch)</span>
+<span class="n">f_c</span> <span class="o">=</span> <span class="mi">20</span>               <span class="c1"># Concrete compressive strength in MPa</span>
+<span class="n">rho_c</span> <span class="o">=</span> <span class="mi">2400</span>           <span class="c1"># Concrete density in kg/m³</span>
+
+<span class="c1"># Concrete tensile strength and modulus of elasticity (from design code CSA A23.3-04)</span>
+<span class="n">f_t_mean</span> <span class="o">=</span> <span class="n">f_c</span> <span class="o">*</span> <span class="mf">0.1</span>                                       <span class="c1"># Concrete tensile strength in MPa</span>
+<span class="n">E_0_mean</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3300</span> <span class="o">*</span> <span class="n">f_c</span><span class="o">**</span><span class="mf">0.5</span> <span class="o">+</span> <span class="mi">6900</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">rho_c</span> <span class="o">/</span> <span class="mi">2300</span><span class="p">)</span><span class="o">**</span><span class="mf">1.5</span>  <span class="c1"># Modulus of elasticity</span>
+                                                           <span class="c1"># ACI Committee 363 f 21&lt;fc&lt;83 MPa Design code CSA A23.3-04</span>
+
+
+<span class="c1"># Horizontal rebar cover distribution (external)</span>
+<span class="n">pars_cr</span><span class="o">.</span><span class="n">cover</span> <span class="o">=</span> <span class="n">normal_custom</span><span class="p">(</span><span class="n">cover_mean_h_ex</span> <span class="o">*</span> <span class="mf">1e-3</span><span class="p">,</span> <span class="n">cover_std_h_ex</span> <span class="o">*</span> <span class="mf">1e-3</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Rebar cover in meters</span>
+
+<span class="c1"># Assumed distributions for material properties</span>
+<span class="n">pars_cr</span><span class="o">.</span><span class="n">f_t</span> <span class="o">=</span> <span class="n">normal_custom</span><span class="p">(</span><span class="n">f_t_mean</span><span class="p">,</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="n">f_t_mean</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>           <span class="c1"># Concrete tensile strength</span>
+<span class="n">pars_cr</span><span class="o">.</span><span class="n">E_0</span> <span class="o">=</span> <span class="n">normal_custom</span><span class="p">(</span><span class="n">E_0_mean</span><span class="p">,</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="n">E_0_mean</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>           <span class="c1"># Modulus of elasticity</span>
+<span class="n">pars_cr</span><span class="o">.</span><span class="n">r0_bar</span> <span class="o">=</span> <span class="n">normal_custom</span><span class="p">(</span><span class="n">r0_bar_mean</span><span class="p">,</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">r0_bar_mean</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Rebar radius</span>
+<span class="n">pars_cr</span><span class="o">.</span><span class="n">w_c</span> <span class="o">=</span> <span class="n">normal_custom</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>                     <span class="c1"># Water-cement ratio</span>
+<span class="n">pars_cr</span><span class="o">.</span><span class="n">r_v</span> <span class="o">=</span> <span class="n">mh</span><span class="o">.</span><span class="n">beta_custom</span><span class="p">(</span><span class="mf">2.96</span><span class="p">,</span> <span class="mf">2.96</span> <span class="o">*</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">3.3</span><span class="p">,</span> <span class="mf">2.6</span><span class="p">)</span>  <span class="c1"># Rust volumetric expansion rate, mean 2.96 lower 2.6  upper: 3.3</span>
+
+<span class="c1"># Section loss rate (mean and std) converted to m/year</span>
+<span class="n">x_loss_rate_m_year_mean</span> <span class="o">=</span> <span class="n">model_corr</span><span class="o">.</span><span class="n">x_loss_rate</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mf">1e-3</span>
+<span class="n">x_loss_rate_m_year_std</span> <span class="o">=</span> <span class="n">model_corr</span><span class="o">.</span><span class="n">x_loss_rate</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">*</span> <span class="mf">1e-3</span>
+
+<span class="c1"># Initialize section loss distribution (to be updated later)</span>
+<span class="n">pars_cr</span><span class="o">.</span><span class="n">x_loss</span> <span class="o">=</span> <span class="n">normal_custom</span><span class="p">(</span><span class="n">x_loss_rate_m_year_mean</span> <span class="o">*</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1e-16</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Initialize cracking model</span>
+<span class="n">model_crack</span> <span class="o">=</span> <span class="n">CrackingModel</span><span class="p">(</span><span class="n">pars_cr</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># surface crack vs time [NOTE: 5 min runtime]</span>
+<span class="n">model_crack_lis</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span> <span class="c1"># add progress bar</span>
+<span class="n">_years</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="c1"># Iterate over time steps, adjusting section loss for each year</span>
+<span class="k">for</span> <span class="n">_year</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">_years</span><span class="p">):</span>
+    <span class="n">model_crack</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">x_loss</span> <span class="o">=</span> <span class="n">normal_custom</span><span class="p">(</span><span class="n">x_loss_rate_m_year_mean</span> <span class="o">*</span> <span class="n">_year</span><span class="p">,</span>
+                                            <span class="n">x_loss_rate_m_year_std</span> <span class="o">*</span> <span class="n">_year</span><span class="p">,</span>
+                                            <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Run the cracking model in stochastic mode</span>
+    <span class="n">model_crack</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">stochastic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Post-process results and store the model copy in the list</span>
+    <span class="n">model_crack</span><span class="o">.</span><span class="n">postproc</span><span class="p">()</span>
+    <span class="n">model_crack_lis</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model_crack</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|██████████| 48/48 [03:51&lt;00:00,  4.83s/it]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot surface crack probability vs rebar section loss</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">x_loss_array</span> <span class="o">=</span> <span class="n">_years</span> <span class="o">*</span> <span class="n">x_loss_rate_m_year_mean</span>
+<span class="n">p_surface_crack_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">m</span><span class="o">.</span><span class="n">crack_visible_rate_count</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">model_crack_lis</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_loss_array</span><span class="o">*</span><span class="mf">1e6</span><span class="p">,</span><span class="n">p_surface_crack_array</span><span class="p">,</span> <span class="s1">&#39;--.&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Rebar section loss $[\mu m]$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Probability of surface crack&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="c1"># Optionally save the plot and data to disk (currently disabled)</span>
+<span class="c1"># plt.savefig(&#39;plots/Corrosion-induced surface crack for horizontal rebar (low cover).pdf&#39;,dpi=600)</span>
+<span class="c1"># pd.DataFrame({&#39;section loss[m]&#39;:x_loss_array, &#39;probability of surface crack&#39;:p_surface_crack_array}).to_csv(&quot;tables/section loss and surface cracking.csv&quot;, index=None)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_case_study_demo1_29_0.png" src="../_images/tutorials_case_study_demo1_29_0.png" />
+</div>
+</div>
+</section>
+<section id="Propagated-probability-of-surface-crack-at-time-t-depending-on-the-onset-of-carbonation-induced-corrosion.">
+<h3>Propagated probability of surface crack at time t depending on the onset of carbonation-induced corrosion.<a class="headerlink" href="#Propagated-probability-of-surface-crack-at-time-t-depending-on-the-onset-of-carbonation-induced-corrosion." title="Permalink to this heading"></a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">p_crack_t_fun</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">r_corr_mean</span><span class="p">,</span> <span class="n">p_carbonation_t_curve</span><span class="p">,</span> <span class="n">p_surface_crack_x_loss_curve</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the propagated probability of surface cracking over time,</span>
+<span class="sd">    considering carbonation-induced corrosion onset.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">    t : array-like</span>
+<span class="sd">        Time steps for inspection.</span>
+<span class="sd">    r_corr_mean : float</span>
+<span class="sd">        Mean corrosion rate (section loss).</span>
+<span class="sd">    p_carbonation_t_curve : tuple</span>
+<span class="sd">        Interpolated carbonation curve (service_life_inspect_time_list, pf_lis_h).</span>
+<span class="sd">    p_surface_crack_x_loss_curve : tuple</span>
+<span class="sd">        Surface crack probability curve based on section loss (x_loss_array, p_surface_crack_array).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    np.array : Propagated probability of surface cracking over time.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">p_crack_t</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># Store the propagated probabilities over time</span>
+
+    <span class="c1"># Unpack the carbonation probability curve and surface crack probability curve</span>
+    <span class="n">service_life_inspect_time_list</span><span class="p">,</span> <span class="n">pf_lis_h</span> <span class="o">=</span> <span class="n">p_carbonation_t_curve</span>
+    <span class="n">x_loss_array</span><span class="p">,</span> <span class="n">p_surface_crack_array</span> <span class="o">=</span> <span class="n">p_surface_crack_x_loss_curve</span>
+
+    <span class="c1"># Iterate through each time step in t</span>
+    <span class="k">for</span> <span class="n">ti</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
+        <span class="c1"># Inspect for the current time step ti</span>
+        <span class="n">t_lis</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">t</span> <span class="o">==</span> <span class="n">ti</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">age_lis</span> <span class="o">=</span> <span class="n">ti</span> <span class="o">-</span> <span class="n">t</span>
+        <span class="n">age_lis</span> <span class="o">=</span> <span class="n">age_lis</span><span class="p">[</span><span class="n">age_lis</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># Filter for positive age durations</span>
+        <span class="n">x_loss_lis</span> <span class="o">=</span> <span class="n">age_lis</span> <span class="o">*</span> <span class="n">r_corr_mean</span>  <span class="c1"># Calculate section loss over time</span>
+
+        <span class="c1"># Interpolate surface crack probability based on section loss</span>
+        <span class="n">p_crack_xloss_lis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">x_loss_lis</span><span class="p">,</span> <span class="n">x_loss_array</span><span class="p">,</span> <span class="n">p_surface_crack_array</span><span class="p">)</span>
+
+        <span class="c1"># Interpolate carbonation probability onset curve</span>
+        <span class="n">pf_lis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">t_lis</span><span class="p">,</span> <span class="n">service_life_inspect_time_list</span><span class="p">,</span> <span class="n">pf_lis_h</span><span class="p">)</span>
+
+        <span class="c1"># Calculate incremental probability of corrosion onset over time</span>
+        <span class="n">p_corr_onset_lis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">pf_lis</span><span class="p">,</span> <span class="n">prepend</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># Calculate the propagated probability of at least one crack occurring</span>
+        <span class="n">p_crack_t</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p_crack_xloss_lis</span> <span class="o">*</span> <span class="n">p_corr_onset_lis</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">p_crack_t</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define time steps for the analysis (0 to 150 years, in increments of 0.1 year)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">150.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+
+<span class="c1"># Calculate propagated probability of surface cracking for horizontal bar external surface</span>
+<span class="n">p_crack_t</span> <span class="o">=</span> <span class="n">p_crack_t_fun</span><span class="p">(</span>
+    <span class="n">t</span><span class="p">,</span>
+    <span class="n">x_loss_rate_m_year_mean</span><span class="p">,</span>
+    <span class="n">p_carbonation_t_curve</span><span class="o">=</span><span class="p">(</span><span class="n">service_life_inspect_time_list</span><span class="p">,</span> <span class="n">pf_lis_h_combine</span><span class="p">),</span>
+    <span class="n">p_surface_crack_x_loss_curve</span><span class="o">=</span><span class="p">(</span><span class="n">x_loss_array</span><span class="p">,</span> <span class="n">p_surface_crack_array</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Plot the probability of surface cracking over time</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">p_crack_t</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Horizontal bar, external cover&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">160</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time [years]&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Probability of surface cracking&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># Optionally save the plot (currently disabled)</span>
+<span class="c1"># fig.savefig(&#39;plots/p_surface_crack_vs_year.tiff&#39;, dpi=600)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_case_study_demo1_32_0.png" src="../_images/tutorials_case_study_demo1_32_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cracking_example.html" class="btn btn-neutral float-left" title="cracking model example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="case_study_demo2.html" class="btn btn-neutral float-right" title="Case Study 2: Membrane and Chloride-Induced Corrosion Analysis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2024, Gang Li.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -69,6 +69,8 @@
 <li class="toctree-l2"><a class="reference internal" href="chloride_example.html">chloride module example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="corrosion_example.html">corrosion module example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cracking_example.html">cracking model example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="case_study_demo1.html">Case Study 1: Concrete Silo Wall with Dual Carbonation Attack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="case_study_demo2.html">Case Study 2: Membrane and Chloride-Induced Corrosion Analysis</a></li>
 </ul>
 </li>
 </ul>
@@ -100,56 +102,56 @@
              
   <section id="carbonation-module-example">
 <h1>carbonation module example<a class="headerlink" href="#carbonation-module-example" title="Permalink to this heading"></a></h1>
-<ul class="simple">
-<li><p>Raw parameter data</p></li>
-<li><p>initialize model</p></li>
-<li><p>run model</p></li>
-<li><p>calibrate model</p></li>
-</ul>
+<p>This example demonstrates the following steps: + raw parameter data + initialize model + run model + calibrate model + post-process model results</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">rational_rc.math_helper</span> <span class="k">as</span> <span class="nn">mh</span>
+<span class="c1"># Import necessary modules</span>
+<span class="kn">import</span> <span class="nn">rational_rc.math_helper</span> <span class="k">as</span> <span class="nn">mh</span>  <span class="c1"># Math helper functions</span>
+<span class="kn">from</span> <span class="nn">rational_rc.carbonation</span> <span class="kn">import</span> <span class="n">CarbonationModel</span><span class="p">,</span> <span class="n">load_df_R_ACC</span> <span class="c1"># # Carbonation model class and data</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">rational_rc.carbonation</span> <span class="kn">import</span> <span class="n">CarbonationModel</span><span class="p">,</span> <span class="n">load_df_R_ACC</span>
+
+<span class="c1"># Suppress warnings for cleaner output</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
-</pre></div>
+<br/></pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Case study</span>
-
-<span class="c1"># global - Raw parameters</span>
-<span class="k">class</span> <span class="nc">Param</span><span class="p">:</span> <span class="k">pass</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define raw parameters for the carbonation model</span>
+<span class="k">class</span> <span class="nc">Param</span><span class="p">:</span>
+    <span class="k">pass</span>
 
 <span class="n">pars</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>
 
-<span class="n">pars</span><span class="o">.</span><span class="n">cover_mean</span> <span class="o">=</span> <span class="mi">50</span>  <span class="c1"># mm</span>
-<span class="n">pars</span><span class="o">.</span><span class="n">cover_std</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">pars</span><span class="o">.</span><span class="n">RH_real</span> <span class="o">=</span> <span class="mi">60</span>
-<span class="n">pars</span><span class="o">.</span><span class="n">t_c</span> <span class="o">=</span> <span class="mi">28</span>
-<span class="n">pars</span><span class="o">.</span><span class="n">x_c</span> <span class="o">=</span> <span class="mf">0.008</span>  <span class="c1"># m</span>
-<span class="n">pars</span><span class="o">.</span><span class="n">ToW</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">/</span> <span class="mf">52.</span>
-<span class="n">pars</span><span class="o">.</span><span class="n">p_SR</span> <span class="o">=</span> <span class="mf">0.0</span>
-<span class="n">pars</span><span class="o">.</span><span class="n">C_S_emi</span> <span class="o">=</span> <span class="mf">0.</span>
+<span class="c1"># Concrete cover properties</span>
+<span class="n">pars</span><span class="o">.</span><span class="n">cover_mean</span> <span class="o">=</span> <span class="mi">50</span>    <span class="c1"># Mean concrete cover in mm</span>
+<span class="n">pars</span><span class="o">.</span><span class="n">cover_std</span> <span class="o">=</span> <span class="mi">5</span>      <span class="c1"># Standard deviation of cover in mm</span>
 
+<span class="c1"># Environmental and material properties</span>
+<span class="n">pars</span><span class="o">.</span><span class="n">RH_real</span> <span class="o">=</span> <span class="mi">60</span>       <span class="c1"># Relative humidity in %</span>
+<span class="n">pars</span><span class="o">.</span><span class="n">t_c</span> <span class="o">=</span> <span class="mi">28</span>           <span class="c1"># Curing time in days</span>
+<span class="n">pars</span><span class="o">.</span><span class="n">x_c</span> <span class="o">=</span> <span class="mf">0.008</span>        <span class="c1"># Accelerated test carbonation depth x_c[m]</span>
+<span class="n">pars</span><span class="o">.</span><span class="n">ToW</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">/</span> <span class="mf">52.</span>      <span class="c1"># Time of wetness (ToW): number of days with rainfall &gt;= 2.5 mm/365</span>
+<span class="n">pars</span><span class="o">.</span><span class="n">p_SR</span> <span class="o">=</span> <span class="mf">0.0</span>         <span class="c1"># Probability of driving rain</span>
+<span class="n">pars</span><span class="o">.</span><span class="n">C_S_emi</span> <span class="o">=</span> <span class="mf">0.0</span>      <span class="c1"># Additional CO2 emission</span>
+
+<span class="c1"># Additional model options</span>
 <span class="n">pars</span><span class="o">.</span><span class="n">option</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>
-<span class="n">pars</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">choose</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="n">pars</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">cement_type</span> <span class="o">=</span> <span class="s1">&#39;CEM_I_42.5_R+SF&#39;</span>
-<span class="n">pars</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">wc_eqv</span> <span class="o">=</span> <span class="mf">0.6</span>
-<span class="n">pars</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">df_R_ACC</span> <span class="o">=</span> <span class="n">load_df_R_ACC</span><span class="p">()</span>
-<span class="n">pars</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">plot</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">pars</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">cement_type</span> <span class="o">=</span> <span class="s1">&#39;CEM_I_42.5_R+SF&#39;</span>  <span class="c1"># Cement type with silica fume</span>
+<span class="n">pars</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">wc_eqv</span> <span class="o">=</span> <span class="mf">0.6</span>                     <span class="c1"># Water-cement ratio equivalent</span>
+<span class="n">pars</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">df_R_ACC</span> <span class="o">=</span> <span class="n">load_df_R_ACC</span><span class="p">()</span>       <span class="c1"># load the default data table of the accelerated carbonation test</span>
+<span class="n">pars</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">plot</span> <span class="o">=</span> <span class="kc">True</span>                      <span class="c1"># Enable plotting</span>
 
-<span class="c1"># initialize model</span>
+<span class="c1"># Initialize the carbonation model</span>
 <span class="n">carb_model</span> <span class="o">=</span> <span class="n">CarbonationModel</span><span class="p">(</span><span class="n">pars</span><span class="p">)</span>
 
-<span class="c1"># run and postproc model</span>
+<span class="c1"># Run the model for 50 years and post-process the results</span>
 <span class="n">carb_model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
 <span class="n">carb_model</span><span class="o">.</span><span class="n">postproc</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <br/></pre></div>
@@ -161,11 +163,11 @@
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Pf(g = R-S &lt; 0) from various methods
-    sample count: 0.0002801765112020573
-    g integral: 0.0002917484548932361
-    R S integral: 0.00029599264280921885
-    beta_factor: 3.4712588702355798
-26.05717069754217 0.00013466345694328508
+    sample count: 0.0002802045493210043
+    g integral: 0.0002907722294720924
+    R S integral: 0.0002689161432436497
+    beta_factor: 3.450626864698889
+26.065158690403504 0.00017166376002398508
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -179,9 +181,12 @@ Pf(g = R-S &lt; 0) from various methods
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calibration to field data</span>
-<span class="c1"># field data: field carbonation after 20 years, mean=30, std=5</span>
-<span class="n">carb_depth_field</span> <span class="o">=</span> <span class="n">mh</span><span class="o">.</span><span class="n">normal_custom</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">n_sample</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>  <span class="c1"># mm</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calibration to field data</span>
+<span class="c1"># Simulated field data: carbonation depth after 20 years, mean = 30 mm, standard deviation = 5 mm</span>
+<span class="c1"># This field data is generated for tutorial purposes to demonstrate the calibration process</span>
+<span class="n">carb_depth_field</span> <span class="o">=</span> <span class="n">mh</span><span class="o">.</span><span class="n">normal_custom</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">n_sample</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>  <span class="c1"># Generate 12 samples from a normal distribution</span>
+
+<span class="c1"># Calibrate the carbonation model using the generated field data</span>
 <span class="n">carb_model_cal</span> <span class="o">=</span> <span class="n">carb_model</span><span class="o">.</span><span class="n">calibrate</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">carb_depth_field</span><span class="p">,</span> <span class="n">print_out</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <br/></pre></div>
 </div>
@@ -193,46 +198,36 @@ Pf(g = R-S &lt; 0) from various methods
 <div class="highlight"><pre>
 carb_depth:
 model:
-mean:27.23479040962906
-std:5.768125604782681
+mean:29.710828174839282
+std:6.241915842374235
 field:
-mean:27.256573297275093
-std:3.585642420333089
+mean:29.716381535776396
+std:5.4064726917906825
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># carbonation for a list of time steps</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Carbonation for a list of time steps</span>
 
-<span class="n">year_lis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">150</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+<span class="c1"># Define a list of time steps (years) for carbonation analysis</span>
+<span class="n">year_lis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>  <span class="c1"># Time steps from 10 to 150 years, with a step of 20 years</span>
 
-<span class="n">pf_lis</span><span class="p">,</span> <span class="n">beta_lis</span> <span class="o">=</span> <span class="n">carb_model_cal</span><span class="o">.</span><span class="n">carb_with_year</span><span class="p">(</span><span class="n">year_lis</span><span class="o">=</span><span class="n">year_lis</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="c1"># Compute the probability of failure (P_f) and reliability index (β) over the time steps</span>
+<span class="n">pf_lis</span><span class="p">,</span> <span class="n">beta_lis</span> <span class="o">=</span> <span class="n">carb_model_cal</span><span class="o">.</span><span class="n">carb_with_year</span><span class="p">(</span>
+    <span class="n">year_lis</span><span class="o">=</span><span class="n">year_lis</span><span class="p">,</span>  <span class="c1"># List of years</span>
+    <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>          <span class="c1"># Enable plotting of results</span>
+    <span class="n">amplify</span><span class="o">=</span><span class="mi">200</span>         <span class="c1"># Amplification factor for better visualization</span>
+<span class="p">)</span>
 <br/></pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-warning: very small Pf
-</pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorials_carbonation_example_4_1.png" src="../_images/tutorials_carbonation_example_4_1.png" />
-</div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fig.savefig(&#39;RS_time_carbonation.pdf&#39;,dpi=1200)</span>
-<br/></pre></div>
+<img alt="../_images/tutorials_carbonation_example_4_0.png" src="../_images/tutorials_carbonation_example_4_0.png" />
 </div>
 </div>
 <div class="nbinput nblast docutils container">

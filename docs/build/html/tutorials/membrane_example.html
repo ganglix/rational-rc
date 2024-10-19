@@ -69,6 +69,8 @@
 <li class="toctree-l2"><a class="reference internal" href="chloride_example.html">chloride module example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="corrosion_example.html">corrosion module example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cracking_example.html">cracking model example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="case_study_demo1.html">Case Study 1: Concrete Silo Wall with Dual Carbonation Attack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="case_study_demo2.html">Case Study 2: Membrane and Chloride-Induced Corrosion Analysis</a></li>
 </ul>
 </li>
 </ul>
@@ -100,12 +102,7 @@
              
   <section id="membrane-module-example">
 <h1>membrane module example<a class="headerlink" href="#membrane-module-example" title="Permalink to this heading"></a></h1>
-<ul class="simple">
-<li><p>Raw parameter data</p></li>
-<li><p>initialize model</p></li>
-<li><p>run model</p></li>
-<li><p>calibrate model</p></li>
-</ul>
+<p>This example demonstrates the following steps: + raw parameter data + initialize model + run model + calibrate model + post-process model results</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -120,32 +117,34 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Case study Raw parameter data</span>
-<span class="k">class</span> <span class="nc">Param</span><span class="p">:</span> <span class="k">pass</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Raw Parameter Data for Membrane Model</span>
+<span class="k">class</span> <span class="nc">Param</span><span class="p">:</span>
+    <span class="k">pass</span>
 
 <span class="n">raw_pars</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>
 
-<span class="c1"># product information</span>
-<span class="n">raw_pars</span><span class="o">.</span><span class="n">life_product_label_life</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># year, defined as 95% confident non-failure</span>
-<span class="n">raw_pars</span><span class="o">.</span><span class="n">life_std</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="n">raw_pars</span><span class="o">.</span><span class="n">life_product_label_life</span> <span class="c1"># assume if not known, calibrate later for real service conditions</span>
-<span class="n">raw_pars</span><span class="o">.</span><span class="n">life_confidence</span> <span class="o">=</span> <span class="mf">0.95</span>
+<span class="c1"># Product information</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">life_product_label_life</span> <span class="o">=</span> <span class="mi">10</span>   <span class="c1"># Expected life of membrane (years), defined as 95% confident non-failure</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">life_std</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="n">raw_pars</span><span class="o">.</span><span class="n">life_product_label_life</span>  <span class="c1"># Assumed standard deviation, calibrate later</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">life_confidence</span> <span class="o">=</span> <span class="mf">0.95</span>         <span class="c1"># Confidence level for product life</span>
 
-<span class="c1"># calibration data (if available)</span>
-<span class="c1"># field survey result</span>
-<span class="n">raw_pars</span><span class="o">.</span><span class="n">membrane_failure_ratio_field</span> <span class="o">=</span> <span class="mf">0.01</span>
-<span class="n">raw_pars</span><span class="o">.</span><span class="n">membrane_age_field</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># [year]</span>
-<br/><br/></pre></div>
+<span class="c1"># Field survey data for calibration (if available)</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">membrane_failure_ratio_field</span> <span class="o">=</span> <span class="mf">0.01</span>  <span class="c1"># Observed failure ratio from the field survey</span>
+<span class="n">raw_pars</span><span class="o">.</span><span class="n">membrane_age_field</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># Age of the membrane from field data in years</span>
+</pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize model</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize the Membrane Model with raw parameters</span>
 <span class="n">mem_model</span> <span class="o">=</span> <span class="n">MembraneModel</span><span class="p">(</span><span class="n">raw_pars</span><span class="p">)</span>
 
-<span class="c1"># run and postproc (uncalibrated)</span>
-<span class="n">mem_model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># 10 years</span>
+<span class="c1"># Run the membrane model for 10 years (uncalibrated)</span>
+<span class="n">mem_model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Post-process and plot the results</span>
 <span class="n">mem_model</span><span class="o">.</span><span class="n">postproc</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -156,10 +155,10 @@
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Pf(g = R-S &lt; 0) from various methods
-    sample count: 0.05073
-    g integral: 0.05151268398553435
+    sample count: 0.04964
+    g integral: 0.050765909508775894
     R S integral: 0.05000000000001138
-    beta_factor: 1.6407275254024214
+    beta_factor: 1.6449112019599341
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -173,9 +172,10 @@ Pf(g = R-S &lt; 0) from various methods
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calibration to field data</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calibrate the membrane model using field data</span>
+<span class="c1"># Calibration based on membrane age and observed failure ratio from the field survey</span>
 <span class="n">mem_model_cal</span> <span class="o">=</span> <span class="n">mem_model</span><span class="o">.</span><span class="n">calibrate</span><span class="p">(</span><span class="n">raw_pars</span><span class="o">.</span><span class="n">membrane_age_field</span><span class="p">,</span> <span class="n">raw_pars</span><span class="o">.</span><span class="n">membrane_failure_ratio_field</span><span class="p">)</span>
-<br/><br/></pre></div>
+</pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -192,8 +192,10 @@ field: 0.01
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># run and postproc (calibrated)</span>
-<span class="n">mem_model_cal</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># 10 years</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the calibrated membrane model for 10 years</span>
+<span class="n">mem_model_cal</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Post-process and plot the calibrated results</span>
 <span class="n">mem_model_cal</span><span class="o">.</span><span class="n">postproc</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -204,10 +206,10 @@ field: 0.01
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Pf(g = R-S &lt; 0) from various methods
-    sample count: 0.17862
-    g integral: 0.17950717563813234
+    sample count: 0.17934
+    g integral: 0.180230536467678
     R S integral: 0.17795324587799488
-    beta_factor: 0.9194830397489749
+    beta_factor: 0.9195490114293149
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -221,10 +223,16 @@ Pf(g = R-S &lt; 0) from various methods
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># model with a list of time steps</span>
-<span class="n">t_lis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">pf_lis</span><span class="p">,</span> <span class="n">beta_lis</span> <span class="o">=</span> <span class="n">mem_model_cal</span><span class="o">.</span><span class="n">membrane_failure_with_year</span><span class="p">(</span><span class="n">year_lis</span><span class="o">=</span><span class="n">t_lis</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
-</pre></div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the calibrated membrane model for a list of time steps (0 to 20 years)</span>
+<span class="n">t_lis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Define time steps from 0 to 20 years</span>
+
+<span class="c1"># Calculate probability of failure (P_f) and reliability index (β) over the time steps</span>
+<span class="n">pf_lis</span><span class="p">,</span> <span class="n">beta_lis</span> <span class="o">=</span> <span class="n">mem_model_cal</span><span class="o">.</span><span class="n">membrane_failure_with_year</span><span class="p">(</span>
+    <span class="n">year_lis</span><span class="o">=</span><span class="n">t_lis</span><span class="p">,</span>  <span class="c1"># Time steps</span>
+    <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>       <span class="c1"># Plot the results</span>
+    <span class="n">amplify</span><span class="o">=</span><span class="mi">30</span>       <span class="c1"># Amplification factor for better visualization</span>
+<span class="p">)</span>
+<br/></pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">

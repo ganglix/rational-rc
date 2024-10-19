@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Study 2: Membrane and Chloride-Induced Corrosion Analysis &mdash; rational-rc 0.2.3-beta documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/nbsphinx-code-cells.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Case Study 1: Concrete Silo Wall with Dual Carbonation Attack" href="case_study_demo1.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            rational-rc
+          </a>
+              <div class="version">
+                0.2.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user/installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Features</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user/features.html">Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Rational-RC API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/module_index.html">Modules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="tutorial_index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="membrane_example.html">membrane module example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="carbonation_example.html">carbonation module example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chloride_example.html">chloride module example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="corrosion_example.html">corrosion module example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cracking_example.html">cracking model example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="case_study_demo1.html">Case Study 1: Concrete Silo Wall with Dual Carbonation Attack</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Case Study 2: Membrane and Chloride-Induced Corrosion Analysis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Membrane-breakdown">Membrane breakdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Chloride-transport">Chloride transport</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Combined-Probability-of-Chloride-Induced-Corrosion-at-Time-t">Combined Probability of Chloride-Induced Corrosion at Time t</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">rational-rc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="tutorial_index.html">Tutorials</a></li>
+      <li class="breadcrumb-item active">Case Study 2: Membrane and Chloride-Induced Corrosion Analysis</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tutorials/case_study_demo2.nblink.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Case-Study-2:-Membrane-and-Chloride-Induced-Corrosion-Analysis">
+<h1>Case Study 2: Membrane and Chloride-Induced Corrosion Analysis<a class="headerlink" href="#Case-Study-2:-Membrane-and-Chloride-Induced-Corrosion-Analysis" title="Permalink to this heading"></a></h1>
+<p>This analysis evaluates the time to chloride-induced corrosion in bridge decks, considering:</p>
+<ul class="simple">
+<li><p><strong>Membrane Options</strong>: No maintenance vs. with maintenance, affecting membrane service life.</p></li>
+<li><p><strong>Concrete Options</strong>: Two concrete covers with different chloride resistance.</p></li>
+<li><p><strong>Probability of Failure</strong>: Calculating the probability of chloride-induced corrosion, with chloride ingress dependent on membrane failure.</p></li>
+</ul>
+<p>The goal is to determine when the probability of corrosion onset on the top rebar reaches 50%.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Import relevant modules from rational_rc package</span>
+<span class="kn">from</span> <span class="nn">rational_rc.membrane</span> <span class="kn">import</span> <span class="n">MembraneModel</span>  <span class="c1"># Membrane life model</span>
+<span class="kn">from</span> <span class="nn">rational_rc.chloride</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ChlorideModel</span><span class="p">,</span>  <span class="c1"># Chloride diffusion model class</span>
+    <span class="n">load_df_D_RCM</span><span class="p">,</span>  <span class="c1"># Function to load chloride diffusion coefficients</span>
+    <span class="n">C_crit_param</span><span class="p">,</span>   <span class="c1"># Critical chloride concentration parameters</span>
+    <span class="n">C_eqv_to_C_S_0</span>  <span class="c1"># Function to calculate equivalent surface chloride concentration</span>
+<span class="p">)</span>
+<span class="kn">import</span> <span class="nn">rational_rc.math_helper</span> <span class="k">as</span> <span class="nn">mh</span>  <span class="c1"># Math helper functions</span>
+
+<span class="c1"># Suppress warnings for cleaner output</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<br/><br/></pre></div>
+</div>
+</div>
+<section id="Membrane-breakdown">
+<h2>Membrane breakdown<a class="headerlink" href="#Membrane-breakdown" title="Permalink to this heading"></a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Case Study - Global Parameters</span>
+
+<span class="c1"># Create a generic parameter class to store parameters</span>
+<span class="k">class</span> <span class="nc">Param</span><span class="p">:</span> <span class="k">pass</span>
+
+<span class="c1"># Initialize membrane parameters</span>
+<span class="n">pars_mem</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>
+
+<span class="c1"># Membrane service life parameters</span>
+<span class="n">pars_mem</span><span class="o">.</span><span class="n">life_product_label_life</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># Membrane life (years) with 95% confidence (non-failure)</span>
+<span class="n">pars_mem</span><span class="o">.</span><span class="n">life_std</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="n">pars_mem</span><span class="o">.</span><span class="n">life_product_label_life</span>  <span class="c1"># Standard deviation, assumed at 20% of the product life</span>
+<span class="n">pars_mem</span><span class="o">.</span><span class="n">life_confidence</span> <span class="o">=</span> <span class="mf">0.95</span>  <span class="c1"># Confidence level for the membrane service life</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize and Run Membrane Models</span>
+
+<span class="c1"># Initialize membrane model for &quot;with maintenance&quot; scenario</span>
+<span class="n">mem_model_with_main</span> <span class="o">=</span> <span class="n">MembraneModel</span><span class="p">(</span><span class="n">pars_mem</span><span class="p">)</span>
+
+<span class="c1"># Create a copy of the model for &quot;no maintenance&quot; scenario</span>
+<span class="n">mem_model_no_main</span> <span class="o">=</span> <span class="n">mem_model_with_main</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Override with known values for membrane life</span>
+
+<span class="c1"># No maintenance scenario</span>
+<span class="n">mem_model_no_main</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">life_mean</span> <span class="o">=</span> <span class="mf">12.5</span>  <span class="c1"># Mean service life (years)</span>
+<span class="n">mem_model_no_main</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">life_std</span> <span class="o">=</span> <span class="mf">2.5</span>    <span class="c1"># Standard deviation of service life (years)</span>
+
+<span class="c1"># With maintenance scenario</span>
+<span class="n">mem_model_with_main</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">life_mean</span> <span class="o">=</span> <span class="mi">35</span>  <span class="c1"># Mean service life (years)</span>
+<span class="n">mem_model_with_main</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">life_std</span> <span class="o">=</span> <span class="mi">5</span>    <span class="c1"># Standard deviation of service life (years)</span>
+
+<span class="c1"># Run the membrane model for &quot;no maintenance&quot; scenario for 10 years</span>
+<span class="n">mem_model_no_main</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Post-process results for the &quot;no maintenance&quot; model (plotting disabled)</span>
+<span class="n">mem_model_no_main</span><span class="o">.</span><span class="n">postproc</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulate Membrane Failure over Time (No Maintenance)</span>
+
+<span class="c1"># Define the list of years for the simulation</span>
+<span class="n">year_lis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Simulate from year 1 to 29</span>
+
+<span class="c1"># Run the membrane failure model for each year in the list</span>
+<span class="c1"># &#39;amplify&#39; adjusts the scaling of the probability density function (PDF) for better visualization</span>
+<span class="n">pf_mem</span><span class="p">,</span> <span class="n">beta_mem</span> <span class="o">=</span> <span class="n">mem_model_no_main</span><span class="o">.</span><span class="n">membrane_failure_with_year</span><span class="p">(</span><span class="n">year_lis</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Optionally, save the plot (disabled for now)</span>
+<span class="c1"># plt.savefig(&#39;plots/membrane_year.pdf&#39;, dpi=600)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_case_study_demo2_5_0.png" src="../_images/tutorials_case_study_demo2_5_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Store Results in a Pandas DataFrame and Save to Disk</span>
+
+<span class="c1"># Create a DataFrame to store the year, probability of failure (pf), and reliability index (beta)</span>
+<span class="n">df_mem</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;year&#39;</span><span class="p">:</span> <span class="n">year_lis</span><span class="p">,</span>   <span class="c1"># List of years</span>
+    <span class="s1">&#39;pf&#39;</span><span class="p">:</span> <span class="n">pf_mem</span><span class="p">,</span>       <span class="c1"># Probability of membrane failure</span>
+    <span class="s1">&#39;beta&#39;</span><span class="p">:</span> <span class="n">beta_mem</span>    <span class="c1"># Reliability index (beta)</span>
+<span class="p">})</span>
+
+<span class="c1"># Optionally, save the DataFrame to a CSV file (disabled for now)</span>
+<span class="c1"># df_mem.to_csv(&quot;tables/membrane_year.csv&quot;, index=None)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulate Membrane Failure over Time (With Maintenance)</span>
+
+<span class="c1"># Define the list of years for the simulation (with maintenance)</span>
+<span class="n">year_lis_main</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Simulate from year 1 to 49</span>
+
+<span class="c1"># Run the membrane failure model for the &quot;with maintenance&quot; scenario</span>
+<span class="c1"># &#39;amplify&#39; scales the probability density function (PDF) for better visualization</span>
+<span class="n">pf_mem_main</span><span class="p">,</span> <span class="n">beta_mem_main</span> <span class="o">=</span> <span class="n">mem_model_with_main</span><span class="o">.</span><span class="n">membrane_failure_with_year</span><span class="p">(</span><span class="n">year_lis_main</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Optionally, save the plot (currently disabled)</span>
+<span class="c1"># plt.savefig(&#39;plots/membrane_main_year.pdf&#39;, dpi=600)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_case_study_demo2_7_0.png" src="../_images/tutorials_case_study_demo2_7_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Store Results in a Pandas DataFrame and Save to Disk (With Maintenance Scenario)</span>
+
+<span class="c1"># Create a DataFrame to store the year, probability of failure (pf), and reliability index (beta)</span>
+<span class="n">df_mem_main</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;year&#39;</span><span class="p">:</span> <span class="n">year_lis_main</span><span class="p">,</span>  <span class="c1"># List of years for the &quot;with maintenance&quot; scenario</span>
+    <span class="s1">&#39;pf&#39;</span><span class="p">:</span> <span class="n">pf_mem_main</span><span class="p">,</span>      <span class="c1"># Probability of membrane failure</span>
+    <span class="s1">&#39;beta&#39;</span><span class="p">:</span> <span class="n">beta_mem_main</span>   <span class="c1"># Reliability index (beta)</span>
+<span class="p">})</span>
+
+<span class="c1"># Optionally, save the DataFrame to a CSV file (currently disabled)</span>
+<span class="c1"># df_mem_main.to_csv(&quot;tables/membrane_main_year.csv&quot;, index=None)</span>
+<br/></pre></div>
+</div>
+</div>
+</section>
+<section id="Chloride-transport">
+<h2>Chloride transport<a class="headerlink" href="#Chloride-transport" title="Permalink to this heading"></a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example of Diffusivity reported from Rapid chloride Migration Test</span>
+<span class="n">load_df_D_RCM</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CEM_I_42.5_R</th>
+      <th>CEM_I_42.5_R+FA</th>
+      <th>CEM_I_42.5_R+SF</th>
+      <th>CEM_III/B_42.5</th>
+    </tr>
+    <tr>
+      <th>wc_eqv</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.35</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4.4</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>0.40</th>
+      <td>8.9</td>
+      <td>5.6</td>
+      <td>4.8</td>
+      <td>8.3</td>
+    </tr>
+    <tr>
+      <th>0.45</th>
+      <td>10.0</td>
+      <td>6.9</td>
+      <td>NaN</td>
+      <td>1.9</td>
+    </tr>
+    <tr>
+      <th>0.50</th>
+      <td>15.8</td>
+      <td>9.0</td>
+      <td>NaN</td>
+      <td>2.8</td>
+    </tr>
+    <tr>
+      <th>0.55</th>
+      <td>17.9</td>
+      <td>10.9</td>
+      <td>5.3</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>0.60</th>
+      <td>25.0</td>
+      <td>14.9</td>
+      <td>NaN</td>
+      <td>3.4</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pars_cl</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>
+
+<span class="n">pars_cl</span><span class="o">.</span><span class="n">marine</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># 1)marine or coastal</span>
+<span class="n">pars_cl</span><span class="o">.</span><span class="n">marine</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># True, if it is marine or coastal environment</span>
+<span class="n">pars_cl</span><span class="o">.</span><span class="n">C_0_M</span> <span class="o">=</span> <span class="mf">18.980</span>  <span class="c1"># natural chloirde content of sea water [g/l] https://www.lenntech.com/composition-seawater.htm</span>
+
+<span class="c1"># 2) de icing salt (hard to quantify, set to zero for now then overwrite the advection zone and boundary chloride content)</span>
+<span class="n">pars_cl</span><span class="o">.</span><span class="n">C_0_R</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># average chloride content of the chloride contaminated water [g/l]</span>
+<span class="n">pars_cl</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>      <span class="c1"># average number of salting events per year [-]</span>
+<span class="n">pars_cl</span><span class="o">.</span><span class="n">C_R_i</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># average amount of chloride spread within one spreading event [g/m2]</span>
+<span class="n">pars_cl</span><span class="o">.</span><span class="n">h_S_i</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># amount of water from rain and melted snow per spreading period [l/m2]</span>
+
+<span class="n">pars_cl</span><span class="o">.</span><span class="n">exposure_condition</span> <span class="o">=</span> <span class="s1">&#39;splash&#39;</span>   <span class="c1"># Splash zone exposure, will be overwritten later</span>
+
+
+<span class="n">pars_cl</span><span class="o">.</span><span class="n">T_real</span> <span class="o">=</span> <span class="mi">273</span> <span class="o">+</span> <span class="mi">25</span>  <span class="c1"># Real temperature in Kelvin (assumed 25°C)</span>
+
+<span class="n">pars_cl</span><span class="o">.</span><span class="n">D_RCM_test</span> <span class="o">=</span> <span class="s1">&#39;N/A&#39;</span>  <span class="c1"># No specific Rapid Chloride Migration (RCM) test data</span>
+<span class="n">pars_cl</span><span class="o">.</span><span class="n">concrete_type</span> <span class="o">=</span> <span class="s1">&#39;Portland cement concrete&#39;</span>
+<span class="n">pars_cl</span><span class="o">.</span><span class="n">cement_concrete_ratio</span> <span class="o">=</span> <span class="mf">300.</span> <span class="o">/</span> <span class="mf">2400.</span>  <span class="c1"># Cement content to concrete ratio</span>
+<span class="n">pars_cl</span><span class="o">.</span><span class="n">C_0</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Initial chloride content in concrete</span>
+
+<span class="c1"># Critical chloride concentration distribution parameters</span>
+<span class="n">pars_cl</span><span class="o">.</span><span class="n">C_crit_distrib_param</span> <span class="o">=</span> <span class="n">C_crit_param</span><span class="p">()</span>
+
+<span class="c1"># Options for chloride diffusion modeling</span>
+<span class="n">pars_cl</span><span class="o">.</span><span class="n">option</span> <span class="o">=</span> <span class="n">Param</span><span class="p">()</span>
+<span class="n">pars_cl</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">choose</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># Enable option selection</span>
+<span class="n">pars_cl</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">cement_type</span> <span class="o">=</span> <span class="s1">&#39;CEM_I_42.5_R&#39;</span>  <span class="c1"># Cement type</span>
+<span class="n">pars_cl</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">wc_eqv</span> <span class="o">=</span> <span class="mf">0.4</span>  <span class="c1"># Water-cement ratio (equivalent)</span>
+<span class="n">pars_cl</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">df_D_RCM_0</span> <span class="o">=</span> <span class="n">load_df_D_RCM</span><span class="p">()</span>  <span class="c1"># Load diffusivity coefficients from RCM tests</span>
+<span class="n">pars_cl</span><span class="o">.</span><span class="n">exposure_condition_geom_sensitive</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># Geometry-sensitive exposure condition (set to False)</span>
+<span class="n">pars_cl</span><span class="o">.</span><span class="n">C_eqv_to_C_S_0</span> <span class="o">=</span> <span class="n">C_eqv_to_C_S_0</span>
+
+<span class="c1"># Cover depth for chloride diffusion (normally distributed)</span>
+<span class="n">cover_depth</span> <span class="o">=</span> <span class="n">mh</span><span class="o">.</span><span class="n">normal_custom</span><span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">non_negative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Cover depth in mm (mean = 70 mm, std dev = 10 mm)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run Chloride Diffusion Model at t = 10 years</span>
+
+<span class="c1"># Initialize the chloride diffusion model using the defined parameters</span>
+<span class="n">cl_model</span> <span class="o">=</span> <span class="n">ChlorideModel</span><span class="p">(</span><span class="n">pars_cl</span><span class="p">)</span>
+
+<span class="c1"># Overwrite surface chloride concentration (C_S_dx) and advection zone thickness (dx)</span>
+<span class="n">cl_model</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">C_S_dx</span> <span class="o">=</span> <span class="mf">0.409</span> <span class="o">/</span> <span class="n">pars_cl</span><span class="o">.</span><span class="n">cement_concrete_ratio</span>  <span class="c1"># Surface chloride concentration adjusted for cement/concrete ratio</span>
+<span class="n">cl_model</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">dx</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># Advection zone thickness in mm</span>
+
+<span class="c1"># Run the chloride diffusion model at time t = 10 years and for the given cover depth</span>
+<span class="n">cl_model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">cover_depth</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Post-process the results and generate a plot</span>
+<span class="n">cl_model</span><span class="o">.</span><span class="n">postproc</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Pf(g = R-S &lt; 0) from various methods
+    sample count: 0.32978
+    g integral: 0.3306601733583403
+    R S integral: 0.3307812810784724
+    beta_factor: 0.3486954367821007
+0.13893412765728455 0.727126581069722
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_case_study_demo2_12_1.png" src="../_images/tutorials_case_study_demo2_12_1.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulate Chloride Ingress Over Time</span>
+
+<span class="c1"># Define the list of years for the simulation (1 to 99 years)</span>
+<span class="n">year_lis_cl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Run the chloride ingress model for each year in the list</span>
+<span class="c1"># &#39;amplify&#39; scales the probability density function (PDF) for better visualization (set to 4 here)</span>
+<span class="n">pf_cl</span><span class="p">,</span> <span class="n">beta_cl</span> <span class="o">=</span> <span class="n">cl_model</span><span class="o">.</span><span class="n">chloride_with_year</span><span class="p">(</span><span class="n">depth</span><span class="o">=</span><span class="n">cover_depth</span><span class="p">,</span> <span class="n">year_lis</span><span class="o">=</span><span class="n">year_lis_cl</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Optionally, save the plot (currently disabled)</span>
+<span class="c1"># plt.savefig(&#39;plots/chloride_year.pdf&#39;, dpi=600)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Store Chloride Ingress Results in a Pandas DataFrame and Save to Disk</span>
+
+<span class="c1"># Create a DataFrame to store the year, probability of failure (pf), and reliability index (beta)</span>
+<span class="n">df_cl</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;year&#39;</span><span class="p">:</span> <span class="n">year_lis_cl</span><span class="p">,</span>  <span class="c1"># List of years for chloride ingress simulation</span>
+    <span class="s1">&#39;pf&#39;</span><span class="p">:</span> <span class="n">pf_cl</span><span class="p">,</span>          <span class="c1"># Probability of chloride-induced failure</span>
+    <span class="s1">&#39;beta&#39;</span><span class="p">:</span> <span class="n">beta_cl</span>       <span class="c1"># Reliability index (beta)</span>
+<span class="p">})</span>
+
+<span class="c1"># Optionally, save the DataFrame to a CSV file (currently disabled)</span>
+<span class="c1"># df_cl.to_csv(&quot;tables/chloride_year_wc04_cem.csv&quot;, index=None)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Chloride Ingress Simulation with 0.35 Water-Cement Ratio and Silica Fume (SF)</span>
+
+<span class="c1"># Create a copy of the original chloride model and modify for silica fume (SF) addition</span>
+<span class="n">cl_model_SF</span> <span class="o">=</span> <span class="n">cl_model</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">cl_model_SF</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">cement_type</span> <span class="o">=</span> <span class="s1">&#39;CEM_I_42.5_R+SF&#39;</span>  <span class="c1"># Cement type with silica fume</span>
+<span class="n">cl_model_SF</span><span class="o">.</span><span class="n">pars</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">wc_eqv</span> <span class="o">=</span> <span class="mf">0.35</span>  <span class="c1"># Water-cement ratio equivalent set to 0.35</span>
+
+<span class="c1"># Run chloride ingress simulation with the modified model</span>
+<span class="n">pf_cl_SF</span><span class="p">,</span> <span class="n">beta_cl_SF</span> <span class="o">=</span> <span class="n">cl_model_SF</span><span class="o">.</span><span class="n">chloride_with_year</span><span class="p">(</span><span class="n">depth</span><span class="o">=</span><span class="n">cover_depth</span><span class="p">,</span> <span class="n">year_lis</span><span class="o">=</span><span class="n">year_lis_cl</span><span class="p">,</span> <span class="n">amplify</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Store the results in a DataFrame</span>
+<span class="n">df_cl_SF</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;year&#39;</span><span class="p">:</span> <span class="n">year_lis_cl</span><span class="p">,</span>  <span class="c1"># List of years</span>
+    <span class="s1">&#39;pf&#39;</span><span class="p">:</span> <span class="n">pf_cl_SF</span><span class="p">,</span>       <span class="c1"># Probability of chloride-induced failure with SF</span>
+    <span class="s1">&#39;beta&#39;</span><span class="p">:</span> <span class="n">beta_cl_SF</span>    <span class="c1"># Reliability index (beta) with SF</span>
+<span class="p">})</span>
+
+<span class="c1"># Optionally, save the DataFrame to a CSV file (currently disabled)</span>
+<span class="c1"># df_cl_SF.to_csv(&quot;tables/chloride_year_wc04_cem_SF.csv&quot;, index=None)</span>
+<br/></pre></div>
+</div>
+</div>
+</section>
+<section id="Combined-Probability-of-Chloride-Induced-Corrosion-at-Time-t">
+<h2>Combined Probability of Chloride-Induced Corrosion at Time t<a class="headerlink" href="#Combined-Probability-of-Chloride-Induced-Corrosion-at-Time-t" title="Permalink to this heading"></a></h2>
+<p>Now that we have the probability of membrane breakdown (P_f_mem) over time, we can combine it with the chloride diffusion process.</p>
+<p>At each historical time step t_i (t_i &lt; t): - Chloride diffusion begins with an incremental probability ΔP_f_mem(t_i). - For each subsequent time step (t - t_i), chloride diffusion continues with a probability P_f_cl(t - t_i) of reaching the critical chloride concentration.</p>
+<p>By summing over all time steps, we calculate the combined probability of chloride-induced corrosion, considering both membrane breakdown and chloride diffusion.</p>
+<p>Pseudo-code:</p>
+<ol class="arabic simple">
+<li><p>Define the list of time steps: t_list</p></li>
+<li><p>Compute incremental probability of membrane failure: ΔP_f_mem = diff(P_f_mem)</p></li>
+<li><p>For each year t:</p>
+<ul class="simple">
+<li><p>Compute: 1 - product of [1 - ΔP_f_mem(t_i) * P_f_chloride(t - t_i)] for all time steps t_i from 0 up to year t</p></li>
+</ul>
+</li>
+</ol>
+<p>The final result will be the propogated probability of chloride-induced corrosion over time.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pf_mem_cl</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">pf_membrane_t_curve</span><span class="p">,</span> <span class="n">pf_cl_t_curve</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the propagated total probability of membrane failure and chloride-induced corrosion.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">    t : array-like</span>
+<span class="sd">        List of time steps (years).</span>
+<span class="sd">    pf_membrane_t_curve : tuple</span>
+<span class="sd">        Interpolation curve for membrane failure probability (t_lis, pf_lis).</span>
+<span class="sd">    pf_cl_t_curve : tuple</span>
+<span class="sd">        Interpolation curve for chloride-induced corrosion (x_loss_array, p_surface_crack_array).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    pf_mem_cl_t : numpy array</span>
+<span class="sd">        Propagated total probability of membrane failure and chloride-induced corrosion at each time step.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Initialize list to store combined probability results over time</span>
+    <span class="n">pf_mem_cl_t</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Unpack the membrane failure and chloride failure curves</span>
+    <span class="n">t_mem</span><span class="p">,</span> <span class="n">pf_mem</span> <span class="o">=</span> <span class="n">pf_membrane_t_curve</span>
+    <span class="n">t_cl</span><span class="p">,</span> <span class="n">pf_cl</span> <span class="o">=</span> <span class="n">pf_cl_t_curve</span>
+
+    <span class="k">for</span> <span class="n">ti</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
+        <span class="c1"># Get time steps up to the current year (ti)</span>
+        <span class="n">t_lis</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">t</span> <span class="o">==</span> <span class="n">ti</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">age_lis</span> <span class="o">=</span> <span class="n">ti</span> <span class="o">-</span> <span class="n">t</span>  <span class="c1"># Calculate duration</span>
+        <span class="n">age_lis</span> <span class="o">=</span> <span class="n">age_lis</span><span class="p">[</span><span class="n">age_lis</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># Consider only positive durations</span>
+
+        <span class="c1"># Interpolate membrane failure probability at each age step</span>
+        <span class="n">pf_mem_lis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span>
+            <span class="n">age_lis</span><span class="p">,</span> <span class="n">t_mem</span><span class="p">,</span> <span class="n">pf_mem</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="n">pf_mem</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">right</span><span class="o">=</span><span class="n">pf_mem</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Interpolate chloride-induced failure probability at each age step</span>
+        <span class="n">pf_cl_lis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span>
+            <span class="n">age_lis</span><span class="p">,</span> <span class="n">t_cl</span><span class="p">,</span> <span class="n">pf_cl</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="n">pf_cl</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">right</span><span class="o">=</span><span class="n">pf_cl</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Compute the incremental membrane failure probability</span>
+        <span class="n">pf_mem_increment</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">pf_mem_lis</span><span class="p">,</span> <span class="n">prepend</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># Compute the combined probability of membrane failure and chloride-induced corrosion</span>
+        <span class="n">pf_mem_cl_t</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">pf_cl_lis</span> <span class="o">*</span> <span class="n">pf_mem_increment</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pf_mem_cl_t</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Time range for the simulation (0 to 300.5 years, with a step of 0.5 years)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">150.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># Combine membrane and chloride failure probabilities for w/c = 0.4</span>
+<span class="n">pf_mem_cl_t</span> <span class="o">=</span> <span class="n">pf_mem_cl</span><span class="p">(</span>
+    <span class="n">t</span><span class="p">,</span>
+    <span class="n">pf_membrane_t_curve</span><span class="o">=</span><span class="p">(</span><span class="n">year_lis</span><span class="p">,</span> <span class="n">pf_mem</span><span class="p">),</span>  <span class="c1"># Membrane without maintenance</span>
+    <span class="n">pf_cl_t_curve</span><span class="o">=</span><span class="p">(</span><span class="n">year_lis_cl</span><span class="p">,</span> <span class="n">pf_cl</span><span class="p">)</span>       <span class="c1"># Chloride diffusion w/c = 0.4</span>
+<span class="p">)</span>
+
+<span class="n">pf_mem_main_cl_t</span> <span class="o">=</span> <span class="n">pf_mem_cl</span><span class="p">(</span>
+    <span class="n">t</span><span class="p">,</span>
+    <span class="n">pf_membrane_t_curve</span><span class="o">=</span><span class="p">(</span><span class="n">year_lis_main</span><span class="p">,</span> <span class="n">pf_mem_main</span><span class="p">),</span>  <span class="c1"># Membrane with maintenance</span>
+    <span class="n">pf_cl_t_curve</span><span class="o">=</span><span class="p">(</span><span class="n">year_lis_cl</span><span class="p">,</span> <span class="n">pf_cl</span><span class="p">)</span>                 <span class="c1"># Chloride diffusion w/c = 0.4</span>
+<span class="p">)</span>
+
+<span class="c1"># Combine membrane and chloride failure probabilities for w/c equivalent = 0.35 with silica fume (SF)</span>
+<span class="n">pf_mem_cl_t_SF</span> <span class="o">=</span> <span class="n">pf_mem_cl</span><span class="p">(</span>
+    <span class="n">t</span><span class="p">,</span>
+    <span class="n">pf_membrane_t_curve</span><span class="o">=</span><span class="p">(</span><span class="n">year_lis</span><span class="p">,</span> <span class="n">pf_mem</span><span class="p">),</span>  <span class="c1"># Membrane without maintenance</span>
+    <span class="n">pf_cl_t_curve</span><span class="o">=</span><span class="p">(</span><span class="n">year_lis_cl</span><span class="p">,</span> <span class="n">pf_cl_SF</span><span class="p">)</span>    <span class="c1"># Chloride diffusion w/c = 0.35 with SF</span>
+<span class="p">)</span>
+
+<span class="n">pf_mem_main_cl_t_SF</span> <span class="o">=</span> <span class="n">pf_mem_cl</span><span class="p">(</span>
+    <span class="n">t</span><span class="p">,</span>
+    <span class="n">pf_membrane_t_curve</span><span class="o">=</span><span class="p">(</span><span class="n">year_lis_main</span><span class="p">,</span> <span class="n">pf_mem_main</span><span class="p">),</span>  <span class="c1"># Membrane with maintenance</span>
+    <span class="n">pf_cl_t_curve</span><span class="o">=</span><span class="p">(</span><span class="n">year_lis_cl</span><span class="p">,</span> <span class="n">pf_cl_SF</span><span class="p">)</span>              <span class="c1"># Chloride diffusion w/c = 0.35 with SF</span>
+<span class="p">)</span>
+
+<span class="c1"># Create a DataFrame to store results for membrane and chloride failure probabilities</span>
+<span class="n">df_membrane_and_chloride</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;year&#39;</span><span class="p">:</span> <span class="n">t</span><span class="p">,</span>
+    <span class="s1">&#39;membrane&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">year_lis</span><span class="p">,</span> <span class="n">pf_mem</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="n">pf_mem</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">right</span><span class="o">=</span><span class="n">pf_mem</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span>
+    <span class="s1">&#39;chloride_wc_0.4&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">year_lis_cl</span><span class="p">,</span> <span class="n">pf_cl</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="n">pf_cl</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">right</span><span class="o">=</span><span class="n">pf_cl</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span>
+    <span class="s1">&#39;chloride_wc_0.35_SF&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">year_lis_cl</span><span class="p">,</span> <span class="n">pf_cl_SF</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="n">pf_cl_SF</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">right</span><span class="o">=</span><span class="n">pf_cl_SF</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span>
+    <span class="s1">&#39;membrane + chloride_wc_0.4&#39;</span><span class="p">:</span> <span class="n">pf_mem_cl_t</span><span class="p">,</span>
+    <span class="s1">&#39;membrane with maintenance + chloride_wc_0.4&#39;</span><span class="p">:</span> <span class="n">pf_mem_main_cl_t</span><span class="p">,</span>
+    <span class="s1">&#39;membrane + chloride_wc_0.35_SF&#39;</span><span class="p">:</span> <span class="n">pf_mem_cl_t_SF</span><span class="p">,</span>
+    <span class="s1">&#39;membrane with maintenance + chloride_wc_0.35_SF&#39;</span><span class="p">:</span> <span class="n">pf_mem_main_cl_t_SF</span>
+<span class="p">})</span>
+
+<span class="c1"># Optionally save the DataFrame to a CSV file (currently disabled)</span>
+<span class="c1"># df_membrane_and_chloride.to_csv(&quot;plots/pf_membrane_and_chloride_plot_data.csv&quot;, index=None)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the combined probability of membrane breakdown and chloride-induced corrosion</span>
+
+<span class="c1"># Define time range for plotting</span>
+<span class="n">t_range</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">df_membrane_and_chloride</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">t_range</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Mask to filter years up to 100</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">df_membrane_and_chloride</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">],</span>
+    <span class="n">df_membrane_and_chloride</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span><span class="s1">&#39;membrane + chloride_wc_0.4&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;--&#39;</span><span class="p">,</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;C0&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;membrane+chloride, w/c=0.4&#39;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">df_membrane_and_chloride</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">],</span>
+    <span class="n">df_membrane_and_chloride</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span><span class="s1">&#39;membrane with maintenance + chloride_wc_0.4&#39;</span><span class="p">],</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;C0&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;membrane with maintenance + chloride, w/c=0.4&#39;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">df_membrane_and_chloride</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">],</span>
+    <span class="n">df_membrane_and_chloride</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span><span class="s1">&#39;membrane + chloride_wc_0.35_SF&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;--&#39;</span><span class="p">,</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;C1&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;membrane+chloride, w/c=0.35, SF&#39;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">df_membrane_and_chloride</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">],</span>
+    <span class="n">df_membrane_and_chloride</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span><span class="s1">&#39;membrane with maintenance + chloride_wc_0.35_SF&#39;</span><span class="p">],</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;C1&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;membrane with maintenance + chloride, w/c=0.35, SF&#39;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper center&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.35</span><span class="p">),</span>
+          <span class="n">ncol</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">fancybox</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">shadow</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time into service [year]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability of chloride-induced corrosion&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="c1"># Optionally save the plot (currently disabled)</span>
+<span class="c1"># plt.savefig(&#39;plots/pf_chloride_induced_corrosion_all.pdf&#39;, dpi=600)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_case_study_demo2_19_0.png" src="../_images/tutorials_case_study_demo2_19_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="case_study_demo1.html" class="btn btn-neutral float-left" title="Case Study 1: Concrete Silo Wall with Dual Carbonation Attack" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2024, Gang Li.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

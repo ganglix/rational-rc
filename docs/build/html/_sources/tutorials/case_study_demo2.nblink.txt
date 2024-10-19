@@ -1,0 +1,6 @@
+
+
+{
+    "path": "../../../notebooks/case study demo2/case_study_membrane_chloride_LCC.ipynb"
+
+} 
