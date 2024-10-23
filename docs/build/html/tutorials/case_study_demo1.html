@@ -70,20 +70,16 @@
 <li class="toctree-l2"><a class="reference internal" href="corrosion_example.html">corrosion module example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cracking_example.html">cracking model example</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Case Study 1: Concrete Silo Wall with Dual Carbonation Attack</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Key-Analysis-Components:">Key Analysis Components:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Problem-Overview:">Problem Overview:</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Weather-data-and-field-data">Weather data and field data</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Carbonation">Carbonation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Weather-data-and-field-data">Weather data and field data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Carbonation">Carbonation</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#Horizontal-rebar-cover-carbonation">Horizontal rebar cover carbonation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#carbonation-probability-plot,-internal,-external-and-combined">carbonation probability plot, internal, external and combined</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Corrosion">Corrosion</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Cracking---Corrosion-Induced">Cracking - Corrosion-Induced</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Carbonation-probability:-internal,-external-and-combined">Carbonation probability: internal, external and combined</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#Assumptions:">Assumptions:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Steps:">Steps:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Corrosion">Corrosion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Cracking---Corrosion-Induced">Cracking - Corrosion-Induced</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#horizontal-rebar---external-cover">horizontal rebar - external cover</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Propagated-probability-of-surface-crack-at-time-t-depending-on-the-onset-of-carbonation-induced-corrosion.">Propagated probability of surface crack at time t depending on the onset of carbonation-induced corrosion.</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Propagated-probability-of-surface-crack-at-time-t-depending-on-the-onset-of-carbonation-induced-corrosion">Propagated probability of surface crack at time t depending on the onset of carbonation-induced corrosion</a></li>
 </ul>
 </li>
 </ul>
@@ -121,18 +117,8 @@
   <section id="Case-Study-1:-Concrete-Silo-Wall-with-Dual-Carbonation-Attack">
 <h1>Case Study 1: Concrete Silo Wall with Dual Carbonation Attack<a class="headerlink" href="#Case-Study-1:-Concrete-Silo-Wall-with-Dual-Carbonation-Attack" title="Permalink to this heading"></a></h1>
 <p>This case study examines the carbonation-induced corrosion of horizontal rebars in a concrete silo wall. The wall experiences dual carbonation, with both external and internal surfaces being affected due to differing environmental exposure conditions.</p>
-<section id="Key-Analysis-Components:">
-<h2>Key Analysis Components:<a class="headerlink" href="#Key-Analysis-Components:" title="Permalink to this heading"></a></h2>
-<ul class="simple">
-<li><p><strong>Carbonation</strong>: Progression of carbonation depth from external and internal surfaces.</p></li>
-<li><p><strong>Corrosion</strong>: Evaluation of the probability of corrosion initiation at the rebar based on carbonation-induced depassivation.</p></li>
-<li><p><strong>Rebar Section Loss</strong>: Estimation of rebar section loss due to corrosion.</p></li>
-<li><p><strong>Cracking Prediction</strong>: Assess the potential for surface cracking as a result of rebar expansion due to corrosion.</p></li>
-</ul>
-</section>
-<section id="Problem-Overview:">
-<h2>Problem Overview:<a class="headerlink" href="#Problem-Overview:" title="Permalink to this heading"></a></h2>
-<p>Known parameters for this study include: - Field-tested data such as concrete cover thickness, carbonation depth, rebar size, and concrete compressive strength. - Environmental exposure conditions such as relative humidity (RH) and rain incidences, obtained from weather station data.</p>
+<p><strong>Key Analysis Components:</strong> - <strong>Carbonation</strong>: Progression of carbonation depth from external and internal surfaces. - <strong>Corrosion</strong>: Evaluation of the probability of corrosion initiation at the rebar based on carbonation-induced depassivation. - <strong>Rebar Section Loss</strong>: Estimation of rebar section loss due to corrosion. - <strong>Cracking Prediction</strong>: Assess the potential for surface cracking as a result of rebar expansion due to corrosion.</p>
+<p><strong>Problem Overview:</strong> Known parameters for this study include: - Field-tested data such as concrete cover thickness, carbonation depth, rebar size, and concrete compressive strength. - Environmental exposure conditions such as relative humidity (RH) and rain incidences, obtained from weather station data.</p>
 <p>The goal of this analysis is to predict the structural deterioration of the silo wall over its service life, including carbonation progression, corrosion probability, and cracking potential.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -154,7 +140,7 @@
 </div>
 </div>
 <section id="Weather-data-and-field-data">
-<h3>Weather data and field data<a class="headerlink" href="#Weather-data-and-field-data" title="Permalink to this heading"></a></h3>
+<h2>Weather data and field data<a class="headerlink" href="#Weather-data-and-field-data" title="Permalink to this heading"></a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
@@ -246,7 +232,7 @@ Cover_h: 120.4 mm
 </div>
 </section>
 <section id="Carbonation">
-<h3>Carbonation<a class="headerlink" href="#Carbonation" title="Permalink to this heading"></a></h3>
+<h2>Carbonation<a class="headerlink" href="#Carbonation" title="Permalink to this heading"></a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
@@ -314,7 +300,6 @@ mean:115.2666666666667
 std:13.363964814214215
 </pre></div></div>
 </div>
-</section>
 <section id="Horizontal-rebar-cover-carbonation">
 <h3>Horizontal rebar cover carbonation<a class="headerlink" href="#Horizontal-rebar-cover-carbonation" title="Permalink to this heading"></a></h3>
 <ul class="simple">
@@ -495,8 +480,8 @@ warning: very small Pf
 </div>
 </div>
 </section>
-<section id="carbonation-probability-plot,-internal,-external-and-combined">
-<h3>carbonation probability plot, internal, external and combined<a class="headerlink" href="#carbonation-probability-plot,-internal,-external-and-combined" title="Permalink to this heading"></a></h3>
+<section id="Carbonation-probability:-internal,-external-and-combined">
+<h3>Carbonation probability: internal, external and combined<a class="headerlink" href="#Carbonation-probability:-internal,-external-and-combined" title="Permalink to this heading"></a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
@@ -535,8 +520,9 @@ warning: very small Pf
 </div>
 </div>
 </section>
+</section>
 <section id="Corrosion">
-<h3>Corrosion<a class="headerlink" href="#Corrosion" title="Permalink to this heading"></a></h3>
+<h2>Corrosion<a class="headerlink" href="#Corrosion" title="Permalink to this heading"></a></h2>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
@@ -692,21 +678,9 @@ warning: very small Pf
 </div>
 </section>
 <section id="Cracking---Corrosion-Induced">
-<h3>Cracking - Corrosion-Induced<a class="headerlink" href="#Cracking---Corrosion-Induced" title="Permalink to this heading"></a></h3>
-</section>
-</section>
-<section id="Assumptions:">
-<h2>Assumptions:<a class="headerlink" href="#Assumptions:" title="Permalink to this heading"></a></h2>
-<ul class="simple">
-<li><p>No other external stresses are considered.</p></li>
-</ul>
-</section>
-<section id="Steps:">
-<h2>Steps:<a class="headerlink" href="#Steps:" title="Permalink to this heading"></a></h2>
-<ol class="arabic simple">
-<li><p><strong>Time to Surface Crack</strong>: Calculate the time required for surface cracking in the external concrete cover due to rebar expansion (horizontal rebar).</p></li>
-<li><p><strong>Combine with Corrosion Probability</strong>: Integrate the probability of corrosion onset to estimate the likelihood of surface cracking.</p></li>
-</ol>
+<h2>Cracking - Corrosion-Induced<a class="headerlink" href="#Cracking---Corrosion-Induced" title="Permalink to this heading"></a></h2>
+<p><strong>Assumptions:</strong> - No other external stresses are considered.</p>
+<p><strong>Steps:</strong> 1. <strong>Time to Surface Crack</strong>: Calculate the time required for surface cracking in the external concrete cover due to rebar expansion (horizontal rebar). 2. <strong>Combine with Corrosion Probability</strong>: Integrate the probability of corrosion onset to estimate the likelihood of surface cracking.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
@@ -840,8 +814,8 @@ Internal cover: 57.4 mm
 </div>
 </div>
 </section>
-<section id="Propagated-probability-of-surface-crack-at-time-t-depending-on-the-onset-of-carbonation-induced-corrosion.">
-<h3>Propagated probability of surface crack at time t depending on the onset of carbonation-induced corrosion.<a class="headerlink" href="#Propagated-probability-of-surface-crack-at-time-t-depending-on-the-onset-of-carbonation-induced-corrosion." title="Permalink to this heading"></a></h3>
+<section id="Propagated-probability-of-surface-crack-at-time-t-depending-on-the-onset-of-carbonation-induced-corrosion">
+<h3>Propagated probability of surface crack at time t depending on the onset of carbonation-induced corrosion<a class="headerlink" href="#Propagated-probability-of-surface-crack-at-time-t-depending-on-the-onset-of-carbonation-induced-corrosion" title="Permalink to this heading"></a></h3>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
