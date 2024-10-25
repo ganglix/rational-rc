@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "rational-rc"
-version = "0.2.3"
+version = "0.2.4"
 description = "Rational RC is a practical life cycle deterioration modeling framework. It utilizes field survey data and provides probabilistic predictions of RC structure deterioration through different stages of the service life cycle. It covers various deterioration mechanisms such as membrane deterioration, concrete carbonation and chloride penetration, corrosion, and cracking."
 readme = "README.md"
 requires-python = ">=3.9"
