@@ -99,16 +99,14 @@ Here are the classes or methods:
 - chloride module example
 - corrosion module example
 - cracking model example
+- case study demo1: dual carbonation
+- case study demo2: membrane chloride LCC
 
 ## Contributing
 
-Contributions are welcome! Please follow these steps to contribute:
+## Contributing
 
-1. Fork the repository
-2. Create a new branch (`git checkout -b feature/your-feature-name`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin feature/your-feature-name`)
-5. Create a new Pull Request
+We welcome contributions of all kinds—bug fixes, documentation improvements, or new deterioration models. Please see our [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
 ## Authors
 
