@@ -104,8 +104,6 @@ Here are the classes or methods:
 
 ## Contributing
 
-## Contributing
-
 We welcome contributions of all kinds—bug fixes, documentation improvements, or new deterioration models. Please see our [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
 ## Authors
