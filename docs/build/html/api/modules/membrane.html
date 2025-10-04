@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>membrane &mdash; rational-rc 0.2.3-beta documentation</title>
+  <title>membrane &mdash; rational-rc 0.2.4-beta documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -38,7 +38,7 @@
             rational-rc
           </a>
               <div class="version">
-                0.2.3
+                0.2.4
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -263,24 +263,24 @@ that matches the failure ratio in the field.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="membrane.membrane_failure_year">
 <span class="sig-prename descclassname"><span class="pre">membrane.</span></span><span class="sig-name descname"><span class="pre">membrane_failure_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year_lis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/membrane.html#membrane_failure_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#membrane.membrane_failure_year" title="Permalink to this definition"></a></dt>
-<dd><p>Run the model over a list of time steps.</p>
+<dd><p>Run the membrane model over a list of time steps and optionally plot results.</p>
 <section id="id7">
 <h2>Parameters:<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
 <dl class="simple">
-<dt>model<span class="classifier">class instance</span></dt><dd><p>Membrane_model class instance.</p>
+<dt>model<span class="classifier">class instance</span></dt><dd><p>MembraneModel class instance.</p>
 </dd>
-<dt>year_lis<span class="classifier">list, array-like</span></dt><dd><p>A list of time steps.</p>
+<dt>year_lis<span class="classifier">list</span></dt><dd><p>Time steps (years).</p>
 </dd>
-<dt>plot<span class="classifier">bool, optional</span></dt><dd><p>If True, plot the Pf, beta, R S distribution. Default is True.</p>
+<dt>plot<span class="classifier">bool</span></dt><dd><p>If True, generate plots.</p>
 </dd>
-<dt>amplify<span class="classifier">int, optional</span></dt><dd><p>The arbitrary comparable size of the distribution curve. Default is 30.</p>
+<dt>amplify<span class="classifier">int</span></dt><dd><p>Amplification factor for plotting distributions.</p>
 </dd>
 </dl>
 </section>
 <section id="id8">
 <h2>Returns:<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
 <dl class="simple">
-<dt>tuple</dt><dd><p>(pf list, beta list)</p>
+<dt>tuple</dt><dd><p>Lists of (P_f, beta) over time.</p>
 </dd>
 </dl>
 </section>
@@ -379,7 +379,7 @@ with three three methods and use method 3 if it is checked “OK” with the oth
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023-2024, Gang Li.</p>
+    <p>&#169; Copyright 2023-2025, Gang Li.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

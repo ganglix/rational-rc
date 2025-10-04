@@ -726,29 +726,18 @@ def calibrate_chloride_f_group(
     return M_cal_new
 
 
+import matplotlib.pyplot as plt
+import numpy as np
+import matplotlib.patches as mpatches
+
+import matplotlib.pyplot as plt
+from matplotlib.ticker import MaxNLocator
+import numpy as np
+import matplotlib.patches as mpatches
+
 def chloride_year(model, depth, year_lis, plot=True, amplify=80):
     """
-    Run the model over a list of time steps.
-
-    Parameters
-    ----------
-    model : instance of ChlorideModel class
-        The chloride model to run.
-    depth : float
-        Depth [mm].
-    year_list : list of int or float
-        List of time steps [years].
-    plot : bool, optional
-        If True, plot the results, by default True.
-    amplify : float, optional
-        Amplification factor for the plot, by default 80.
-
-    Returns
-    -------
-    list
-        Probability of failure (Pf) for each time step.
-    list
-        Reliability factor (beta) for each time step.
+    Run the chloride model over a list of time steps and plot results with consistent formatting.
     """
     t_lis = year_lis
     M_cal = model
@@ -758,6 +747,7 @@ def chloride_year(model, depth, year_lis, plot=True, amplify=80):
         M_cal.run(depth, t)
         M_cal.postproc()
         M_lis.append(M_cal.copy())
+
     if plot:
         fig, [ax1, ax2, ax3] = plt.subplots(
             nrows=3,
@@ -765,56 +755,50 @@ def chloride_year(model, depth, year_lis, plot=True, amplify=80):
             sharex=True,
             gridspec_kw={"height_ratios": [1, 1, 3]},
         )
-        # plot a few distribution
-        indx = np.linspace(0, len(year_lis) - 1, min(6, len(year_lis))).astype("int")[
-            1:
-        ]
+
+        # Select representative models for plotting distributions
+        indx = np.linspace(0, len(t_lis) - 1, min(6, len(t_lis))).astype(int)[1:]
         M_sel = [M_lis[i] for i in indx]
 
-        ax1.plot([this_M.t for this_M in M_lis], [this_M.pf for this_M in M_lis], "k--")
-        ax1.plot(
-            [this_M.t for this_M in M_sel],
-            [this_M.pf for this_M in M_sel],
-            "k|",
-            markersize=15,
-        )
-        ax1.set_ylabel("Probability of failure $P_f$")
+        # -- Plot P_f --
+        ax1.plot([m.t for m in M_lis], [m.pf for m in M_lis], "k--")
+        ax1.plot([m.t for m in M_sel], [m.pf for m in M_sel], "k|", markersize=15)
+        ax1.set_ylabel(r"$P_f$", fontsize=16)
+        ax1.yaxis.set_major_locator(MaxNLocator(nbins=5))
 
-        ax2.plot(
-            [this_M.t for this_M in M_lis],
-            [this_M.beta_factor for this_M in M_lis],
-            "k--",
-        )
-        ax2.plot(
-            [this_M.t for this_M in M_sel],
-            [this_M.beta_factor for this_M in M_sel],
-            "k|",
-            markersize=15,
-        )
-        ax2.set_ylabel(r"Reliability factor $\beta$")
+        # -- Plot beta --
+        beta_vals = [m.beta_factor for m in M_lis]
+        ax2.plot([m.t for m in M_lis], beta_vals, "k--")
+        ax2.plot([m.t for m in M_sel], [m.beta_factor for m in M_sel], "k|", markersize=15)
+        ax2.set_ylabel(r"$\beta$", fontsize=16)
+        ax2.yaxis.set_major_locator(MaxNLocator(nbins=5))
 
-        # plot mean results
-        ax3.plot(t_lis, [M.pars.C_crit_distrib_param[0] for M in M_lis], "--C0")
-        ax3.plot(t_lis, [mh.get_mean(M.C_x_t) for M in M_lis], "--C1")
-        # plot distribution
-        for this_M in M_sel:
-            mh.plot_RS(this_M, ax=ax3, t_offset=this_M.t, amplify=amplify)
+        # -- Plot distributions --
+        ax3.plot(t_lis, [m.pars.C_crit_distrib_param[0] for m in M_lis], "--C0")
+        ax3.plot(t_lis, [mh.get_mean(m.C_x_t) for m in M_lis], "--C1")
+        for m in M_sel:
+            mh.plot_RS(m, ax=ax3, t_offset=m.t, amplify=amplify)
 
-        import matplotlib.patches as mpatches
-
-        R_patch = mpatches.Patch(
-            color="C0", label="R: critical chloride content", alpha=0.8
-        )
-        S_patch = mpatches.Patch(
-            color="C1", label="S: chloride content at rebar depth", alpha=0.8
+        ax3.set_xlabel("Time [year]", fontsize=16)
+        ax3.set_ylabel("Chloride Content [wt-% cement]", fontsize=16)
+        ax3.legend(
+            handles=[
+                mpatches.Patch(color="C0", label="R: critical chloride content", alpha=0.8),
+                mpatches.Patch(color="C1", label="S: chloride content at rebar depth", alpha=0.8),
+            ],
+            loc="upper left",
+            fontsize=16
         )
 
-        ax3.set_xlabel("Time[year]")
-        ax3.set_ylabel("Chloride content[wt-% cement]")
-        ax3.legend(handles=[R_patch, S_patch], loc="upper left")
+        # Apply consistent tick label size
+        for ax in [ax1, ax2, ax3]:
+            ax.tick_params(axis="both", which="major", labelsize=16)
 
         plt.tight_layout()
-    return [this_M.pf for this_M in M_lis], [this_M.beta_factor for this_M in M_lis]
+        plt.show()
+
+    return [m.pf for m in M_lis], [m.beta_factor for m in M_lis]
+
 
 
 class ChlorideModel:

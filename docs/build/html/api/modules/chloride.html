@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>chloride &mdash; rational-rc 0.2.3-beta documentation</title>
+  <title>chloride &mdash; rational-rc 0.2.4-beta documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -36,7 +36,7 @@
             rational-rc
           </a>
               <div class="version">
-                0.2.3
+                0.2.4
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -592,25 +592,7 @@ erf    : imported error function</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="chloride.chloride_year">
 <span class="sig-prename descclassname"><span class="pre">chloride.</span></span><span class="sig-name descname"><span class="pre">chloride_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year_lis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">80</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/chloride.html#chloride_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#chloride.chloride_year" title="Permalink to this definition"></a></dt>
-<dd><p>Run the model over a list of time steps.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>model</strong> (<em>instance</em><em> of </em><em>ChlorideModel class</em>) – The chloride model to run.</p></li>
-<li><p><strong>depth</strong> (<em>float</em>) – Depth [mm].</p></li>
-<li><p><strong>year_list</strong> (<em>list</em><em> of </em><em>int</em><em> or </em><em>float</em>) – List of time steps [years].</p></li>
-<li><p><strong>plot</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, plot the results, by default True.</p></li>
-<li><p><strong>amplify</strong> (<em>float</em><em>, </em><em>optional</em>) – Amplification factor for the plot, by default 80.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><em>list</em> – Probability of failure (Pf) for each time step.</p></li>
-<li><p><em>list</em> – Reliability factor (beta) for each time step.</p></li>
-</ul>
-</p>
-</dd>
-</dl>
+<dd><p>Run the chloride model over a list of time steps and plot results with consistent formatting.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -687,7 +669,7 @@ for D_RCM interpolation.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023-2024, Gang Li.</p>
+    <p>&#169; Copyright 2023-2025, Gang Li.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

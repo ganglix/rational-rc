@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>carbonation &mdash; rational-rc 0.2.3-beta documentation</title>
+  <title>carbonation &mdash; rational-rc 0.2.4-beta documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -38,7 +38,7 @@
             rational-rc
           </a>
               <div class="version">
-                0.2.3
+                0.2.4
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -297,7 +297,27 @@ typical value of k =3~4 for unit mm,year [<a class="reference external" href="ht
 <dl class="py function">
 <dt class="sig sig-object py" id="carbonation.carb_year">
 <span class="sig-prename descclassname"><span class="pre">carbonation.</span></span><span class="sig-name descname"><span class="pre">carb_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year_lis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">80</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/carbonation.html#carb_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#carbonation.carb_year" title="Permalink to this definition"></a></dt>
-<dd><p>Run the model over time and plot the results.</p>
+<dd><p>Run the carbonation model over time and plot results with enhanced readability.</p>
+<section id="parameters">
+<h2>Parameters:<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt>model<span class="classifier">class instance</span></dt><dd><p>CarbonationModel class instance.</p>
+</dd>
+<dt>year_lis<span class="classifier">list</span></dt><dd><p>Time steps (years).</p>
+</dd>
+<dt>plot<span class="classifier">bool</span></dt><dd><p>If True, generate plots.</p>
+</dd>
+<dt>amplify<span class="classifier">int</span></dt><dd><p>Amplification factor for plotting distributions.</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h2>Returns:<a class="headerlink" href="#returns" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt>tuple</dt><dd><p>Lists of (P_f, beta) over time.</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
 <dl class="py function">
@@ -392,7 +412,7 @@ for R_ACC interpolation.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023-2024, Gang Li.</p>
+    <p>&#169; Copyright 2023-2025, Gang Li.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

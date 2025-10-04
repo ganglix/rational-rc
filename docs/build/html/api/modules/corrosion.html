@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>corrosion &mdash; rational-rc 0.2.3-beta documentation</title>
+  <title>corrosion &mdash; rational-rc 0.2.4-beta documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -17,6 +17,8 @@
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,7 +38,7 @@
             rational-rc
           </a>
               <div class="version">
-                0.2.3
+                0.2.4
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -567,7 +569,7 @@ to volumetric in HCP to volumetric in concrete</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="corrosion.x_loss_year">
 <span class="sig-prename descclassname"><span class="pre">corrosion.</span></span><span class="sig-name descname"><span class="pre">x_loss_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year_lis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">80</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/corrosion.html#x_loss_year"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corrosion.x_loss_year" title="Permalink to this definition"></a></dt>
-<dd><p>Run x_loss_t_fun() function over time.</p>
+<dd><p>Run section loss model over time and plot reliability results.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -579,8 +581,8 @@ to volumetric in HCP to volumetric in concrete</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
-<li><p><em>list</em> – List of probabilities of failure (Pf) at each year</p></li>
-<li><p><em>list</em> – List of reliability factors (beta) at each year</p></li>
+<li><p><em>list</em> – Probability of failure (<span class="math notranslate nohighlight">\(P_f\)</span>) at each year</p></li>
+<li><p><em>list</em> – Reliability index (<span class="math notranslate nohighlight">\(eta\)</span>) at each year</p></li>
 </ul>
 </p>
 </dd>
@@ -600,7 +602,7 @@ to volumetric in HCP to volumetric in concrete</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023-2024, Gang Li.</p>
+    <p>&#169; Copyright 2023-2025, Gang Li.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

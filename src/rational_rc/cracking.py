@@ -269,42 +269,43 @@ def strain_stress_crack_f(
     sigma_theta = bilinear_stress_strain(epsilon_theta, f_t, E_0)
 
     if plot:
-        if ax is None:
-            ax = plt.gca()
+        fig, ax = plt.subplots(figsize=(8, 6))  # wider aspect ratio
+
+        # Strain plot
         ax.plot(
             r[0, :],
             epsilon_theta[0, :],
             color="C0",
             label=r"strain $\epsilon_{\theta}$",
         )
-
-        # epsilon_1 = 0.0003
         epsilon_u = 0.002
-        #         ax.hlines(epsilon_cr, r.min(), r.max(),'r', label=r'critical strain $\epsilon_{cr}$')
-        #         ax.hlines(epsilon_1, r.min(), r.max(),'C1', label=r'$\epsilon_1$')
-        #         ax.hlines(epsilon_u, r.min(), r.max(), 'b', label=r'zero residual stress strain $\epsilon_u$')
         ax.vlines(a[0], 0, epsilon_u, linestyle="-", color='k', label="rust-concrete boundary")
         ax.vlines(R_c[0], 0, epsilon_u, linestyle=":", color='k', label="crack tip")
 
         ax.set_title(
-            "crack condition: {}, 0-sound, 1-partial, 2-fully cracked".format(
-                crack_condition[0]
-            )
+            "crack condition: {}, 0-sound, 1-partial, 2-fully cracked".format(crack_condition[0]),
+            fontsize=14
         )
-        ax.set_xlabel("Distance from the center of the rebar,[m]")
-        ax.set_ylabel("Strain perpendicular to polar axis")
-        ax.legend()
+        ax.set_xlabel("Distance from the center of the rebar [m]", fontsize=14)
+        ax.set_ylabel("Strain perpendicular to polar axis", fontsize=14)
+        ax.tick_params(axis='both', labelsize=14)
+        ax.legend(fontsize=14)
 
+        # Stress plot
         ax1 = ax.twinx()
         ax1.plot(
-            r[0, :], sigma_theta[0, :], color="C1", label=r"stress $\sigma_{\theta}$"
+            r[0, :],
+            sigma_theta[0, :],
+            color="C1",
+            label=r"stress $\sigma_{\theta}$"
         )
+        ax1.set_ylabel("Stress perpendicular to polar axis [MPa]", fontsize=14)
+        ax1.tick_params(axis='both', labelsize=14)
+        ax1.legend(loc="center right", fontsize=14)
 
-        ax1.set_ylabel("Stress perpendicular to polar axis,[MPa]")
-        ax1.legend(loc="center right")
         plt.tight_layout()
-
         plt.show()
+
     return epsilon_theta, sigma_theta, rust_thickness, crack_condition, R_c, w_open
 
 
