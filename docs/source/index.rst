@@ -21,6 +21,7 @@ Rational-RC is a practical life cycle deterioration modelling framework.
 It utilizes the field survey data and provides probabilistic predictions of the RC structure deterioration through different stages of the service life cycle. 
 It covers various deterioration mechanisms such as membrane deterioration, concrete carbonation and chloride penetration, corrosion and cracking.
 
+
 .. toctree::
    :maxdepth: 2
    :caption: User Guide
@@ -34,9 +35,6 @@ It covers various deterioration mechanisms such as membrane deterioration, concr
 
    user/features
 
-API Reference
--------------
-Here are the classes or methods:
 
 .. toctree::
    :maxdepth: 2
@@ -45,13 +43,19 @@ Here are the classes or methods:
    api/module_index
 
 
-Here are the tutorials:
-
 .. toctree::
    :maxdepth: 4
    :caption: Tutorials
 
    tutorials/tutorial_index
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Technical Report
+
+   tech_report
+
+
 
 Indices and tables
 ==================

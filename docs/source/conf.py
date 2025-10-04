@@ -54,6 +54,7 @@ version = pyproject_data['project']['version']
 release = f"{version}-beta"
 
 # -- General configuration ---------------------------------------------------
+html_static_path = ['_static']
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
